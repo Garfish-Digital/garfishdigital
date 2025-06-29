@@ -33,3 +33,348 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+
+/* Logo styling with distinctive stroke effect */
+.logo-text {
+  font-family: sans-serif, Arial;
+  font-size: 10vw;
+  font-weight: bold;
+  background-size: 15% 15%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 3px rgba(218, 165, 32, 0.25);
+  /* -webkit-text-stroke: 3px rgb(204, 65, 37, .5); */
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Subtle embossed buttons that emerge from the surface */
+.embossed-btn {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(0);
+  
+  /* Dual-direction shadows create embossed surface effect */
+  box-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.4),
+    -6px -6px 12px rgba(255, 255, 255, 0.1);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.35);
+  text-shadow:
+    -1px -1px 1px rgba(0, 0, 0, 0.5),
+    1px 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Remove complex styling - buttons now use simple embossed approach */
+
+/* Hover effects - subtle enhancement */
+.embossed-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    4px 4px 8px rgba(0, 0, 0, 0.5),
+    -4px -4px 8px rgba(255, 255, 255, 0.15),
+    0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+.embossed-btn:hover .btn-text {
+  color: rgba(255, 255, 255, 0.45);
+  text-shadow:
+    -1px -1px 1px rgba(0, 0, 0, 0.5),
+    1px 1px 1px rgba(255, 255, 255, 0.2),
+    0 0 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Active/pressed state - button pressed into surface */
+.embossed-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 3px 3px 8px rgba(0, 0, 0, 0.6),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.1);
+}
+
+.embossed-btn:active .btn-text {
+  color: rgba(255, 255, 255, 0.3);
+  text-shadow:
+    1px 1px 1px rgba(0, 0, 0, 0.4),
+    -1px -1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Focus bounce animation - one-time bounce effect */
+.focus-bounce {
+  animation: focusBounce 0.6s ease-out;
+}
+
+@keyframes focusBounce {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(0.5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Odometer-style placeholder transitions */
+input::placeholder,
+textarea::placeholder {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Create rolling transition effect */
+input:not(:placeholder-shown)::placeholder,
+textarea:not(:placeholder-shown)::placeholder {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+/* Placeholder color with smooth transitions */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Typed Text Effect */
+.typed-text {
+  font-family: 'Courier New', monospace;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgba(200, 200, 200, 0.5);
+  text-align: left;
+}
+
+.typed-text-1,
+.typed-text-2,
+.typed-text-3 {
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  animation: typed-text-fadeout 2.2s forwards;
+  animation-delay: 4s;
+}
+
+.typed-text.animate .typed-text-1 {
+  animation: typeReveal-1 0.7s steps(16) forwards;
+}
+
+.typed-text.animate .typed-text-2 {
+  animation: typeReveal-2 2.2s steps(35) forwards;
+  animation-delay: 0.9s;
+}
+
+.typed-text.animate .typed-text-3 {
+  animation: typeReveal-3 1s steps(17) forwards;
+  animation-delay: 3s;
+}
+
+
+@keyframes typeReveal-1 {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes typeReveal-2 {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes typeReveal-3 {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+
+@keyframes typed-text-fadeout {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Glitch Text Effect */
+.glitched-text {
+  font-family: 'Courier New', monospace;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgba(200, 200, 200, 0.5);
+  z-index: 10;
+  cursor: pointer;
+  text-align: left;
+}
+
+
+.glitched-text-1 {
+  animation: flicker-1 13s infinite;
+}
+
+.glitched-text-2 {
+  animation: flicker-2 3.5s infinite;
+}
+
+.glitched-text-3 {
+  animation: flicker-3 2.7s infinite;
+}
+
+.glitched-text-4 {
+  animation: flicker-4 10.8s infinite;
+}
+
+.glitched-text-5 {
+  animation: flicker-5 6.5s infinite;
+}
+
+.glitched-text-6 {
+  animation: flicker-6 15s infinite;
+}
+
+@keyframes flicker-1 {
+  0%, 10%, 12%, 15%, 20%, 50%, 55%, 100% {
+    opacity: 1;
+  }
+  4%, 7%, 10%, 12% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes flicker-2 {
+  0%, 13%, 19%, 22%, 24%, 70%, 85%, 100% {
+    opacity: 1;
+  }
+  11%, 14%, 16%, 19% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes flicker-3 {
+  0%, 10%, 12%, 15%, 20%, 50%, 55%, 100% {
+    opacity: 1;
+  }
+  11%, 14%, 16%, 19% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes flicker-4 {
+  0%, 10%, 12%, 15%, 20%, 50%, 55%, 100% {
+    opacity: 1;
+  }
+  11%, 14%, 16%, 19% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes flicker-5 {
+  0%, 10%, 12%, 15%, 20%, 50%, 55%, 100% {
+    opacity: 1;
+  }
+  11%, 14%, 16%, 19% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes flicker-6 {
+  0%, 10%, 12%, 15%, 20%, 50%, 55%, 100% {
+    opacity: 1;
+  }
+  11%, 14%, 16%, 19% {
+    opacity: 0.2;
+    color: rgb(220, 220, 220);
+  }
+}
+
+
+/* Minimap Glitch Effects - Border only for inactive keys */
+.glitch-border {
+  position: relative;
+  animation: glitch-border-flicker 5s infinite;
+}
+
+@keyframes glitch-border-flicker {
+  0%, 85%, 100% {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  86% {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  87% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  88% {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  89% {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  90% {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  91%, 94% {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  95% {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  96% {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  97% {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .embossed-btn {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .btn-text {
+    font-size: 1rem;
+  }
+
+  .typed-text {
+    font-size: 1.8rem;
+  }
+
+  .glitched-text {
+    font-size: 1.8rem;
+  }
+}

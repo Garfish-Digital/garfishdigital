@@ -1,140 +1,122 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Minimap from '@/components/Minimap';
-import BackgroundSwitcher from '@/components/BackgroundSwitcher';
-
-const pages = [
-  { id: 'gallery', title: 'Gallery', gridColumn: '1/2', gridRow: '1/2', color: '#ff6b6b' },
-  { id: 'about', title: 'About', gridColumn: '2/3', gridRow: '1/2', color: '#ffcc5c' },
-  { id: 'home', title: 'Home', gridColumn: '1/3', gridRow: '2/3', color: '#88d8b0' },
-  { id: 'contact', title: 'Contact', gridColumn: '1/2', gridRow: '3/4', color: '#4ecdc4' },
-  { id: 'payment', title: 'Payment', gridColumn: '2/3', gridRow: '3/4', color: '#556270' },
-];
+import Link from 'next/link';
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [currentBackground, setCurrentBackground] = useState('');
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const scrollToPage = (pageId: string) => {
-    const page = pages.find(p => p.id === pageId);
-    if (!page || !wrapperRef.current) return;
-
-    let scrollLeft = 0;
-    let scrollTop = 0;
-
-    switch (pageId) {
-      case 'gallery':
-        scrollLeft = 0;
-        scrollTop = 0;
-        break;
-      case 'about':
-        scrollLeft = window.innerWidth;
-        scrollTop = 0;
-        break;
-      case 'home':
-        scrollLeft = window.innerWidth / 2;
-        scrollTop = window.innerHeight;
-        break;
-      case 'contact':
-        scrollLeft = 0;
-        scrollTop = window.innerHeight * 2;
-        break;
-      case 'payment':
-        scrollLeft = window.innerWidth;
-        scrollTop = window.innerHeight * 2;
-        break;
-    }
-
-    wrapperRef.current.scrollTo({
-      left: scrollLeft,
-      top: scrollTop,
-      behavior: 'smooth'
-    });
-
-    setCurrentPage(pageId);
-  };
-
-  useEffect(() => {
-    scrollToPage('home');
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const keyMap: { [key: string]: string } = {
-        '7': 'gallery',
-        '9': 'about', 
-        '5': 'home',
-        '1': 'contact',
-        '3': 'payment'
-      };
-
-      if (keyMap[e.key]) {
-        scrollToPage(keyMap[e.key]);
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   return (
-    <>
-      <div 
-        ref={wrapperRef}
-        className="w-screen h-screen overflow-scroll scrollbar-hide"
-        style={{ 
-          scrollBehavior: 'smooth',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none'
-        }}
-      >
-        <div 
-          className="grid relative"
-          style={{
-            width: '200vw',
-            height: '300vh',
-            gridTemplateColumns: 'repeat(2, 100vw)',
-            gridTemplateRows: 'repeat(3, 100vh)',
-            backgroundImage: currentBackground ? `url(${currentBackground})` : 'none',
-            backgroundSize: '200vw 300vh',
-            backgroundPosition: '0 0',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-          {pages.map((page) => (
-            <div
-              key={page.id}
-              className="flex items-center justify-center text-white font-sans text-5xl font-bold"
-              style={{
-                gridColumn: page.gridColumn,
-                gridRow: page.gridRow,
-                backgroundColor: currentBackground ? 'transparent' : page.color,
-              }}
-            >
+    <div 
+      className="min-h-screen text-white overflow-hidden scrollbar-hide"
+      style={{
+        background: `
+          radial-gradient(at 40% 80%, #4A4A4A 0px, transparent 50%),
+          radial-gradient(at 80% 20%, #2F4538 0px, transparent 70%),
+          radial-gradient(at 0% 50%, #5A5A5A 0px, transparent 90%),
+          #0A0A0A
+        `
+      }}
+    >
+      <div className="p-8 space-y-32">
+        {/* Logo and Byline */}
+        <div className="pt-4">
+          <motion.h1 
+            className="logo-text"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            Garfish
+          </motion.h1>
+          <motion.h2 
+            className="logo-text"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            Digital
+          </motion.h2>
+          <motion.div
+            className="mt-20 pr-40"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <h3 className="text-3xl md:text-4xl font-bold text-white leading-tight px-20">
+              Experiences
+              <span className="text-white/70"> for the rest of us</span>
+            </h3>
+          </motion.div>
+        </div>
+
+        {/* Main Content */}
+        <div className="space-y-32">
+          {/* Gallery Section */}
+          <div style={{ paddingTop: '40vh' }}>
+            <div className="flex items-start justify-between ps-20 pe-8">
               <motion.div
+                className="text-left whitespace-nowrap"
+                style={{ marginTop: '-20vh' }}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <p className="text-xl text-white/80 font-medium leading-relaxed">
+                  Your Business Doesn't Fit the Mold. Neither Do We.
+                </p>
+              </motion.div>
+              <motion.div
+                className="flex-shrink-0"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1, delay: 1 }}
               >
-                {page.title}
+                <Link href="/gallery">
+                  <button className="embossed-btn">
+                    <span className="btn-text">GALLERY</span>
+                  </button>
+                </Link>
               </motion.div>
             </div>
-          ))}
+          </div>
+
+          {/* Contact Section */}
+          <div style={{ paddingTop: '40vh' }}>
+            <div className="flex items-start justify-between ps-20 pe-8">
+              <motion.div
+                className="text-left whitespace-nowrap"
+                style={{ marginTop: '-20vh' }}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
+              >
+                <p className="text-xl text-white/80 font-medium leading-relaxed">
+                  Not feeling corporate? Tell us your idea.
+                </p>
+              </motion.div>
+              <motion.div
+                className="flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 1.4 }}
+              >
+                <Link href="/contact">
+                  <button className="embossed-btn contact-btn">
+                    <span className="btn-text">CONTACT</span>
+                    <div className="btn-glow"></div>
+                  </button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="pt-32 pb-8 text-center">
+          <p className="text-white/40 text-sm">
+            © 2024 Garfish Digital. All rights reserved.
+          </p>
         </div>
       </div>
-
-      <BackgroundSwitcher 
-        onBackgroundChange={setCurrentBackground}
-      />
-
-      <Minimap 
-        currentPage={currentPage} 
-        onPageClick={scrollToPage}
-        pages={pages}
-      />
-    </>
+    </div>
   );
 }

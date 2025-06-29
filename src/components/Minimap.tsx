@@ -17,38 +17,52 @@ interface MinimapProps {
 }
 
 export default function Minimap({ currentPage, onPageClick, pages }: MinimapProps) {
+  // Dynamic positioning logic - position minimap on side nearest to Home from current page
   const getMinimapPosition = (pageId: string) => {
     switch (pageId) {
-      case 'home':
-        return { top: '2rem', right: '2rem' };
-      case 'gallery':
-        return { bottom: '2rem', right: '2rem' };
+      // Top row - minimap goes to bottom (toward Home)
+      case 'portfolio':
+        return { bottom: '2rem', right: '2rem' }; // bottom-right toward Home
+      case 'experiments':
+        return { bottom: '2rem', left: 'calc(50% - 75px)' }; // bottom center toward Home
+      case 'demos':
+        return { bottom: '2rem', left: '2rem' }; // bottom-left toward Home
+      
+      // Middle row  
+      case 'clients':
+        return { top: 'calc(50% - 75px)', right: '2rem' }; // right side toward Home
+      case 'showcase':
+        return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' }; // perfectly centered on Home
+      case 'tools':
+        return { top: 'calc(50% - 75px)', left: '2rem' }; // left side toward Home
+      
+      // Bottom row - minimap goes to top (toward Home)
       case 'about':
-        return { bottom: '2rem', left: '2rem' };
+        return { top: '2rem', right: '2rem' }; // top-right toward Home
       case 'contact':
-        return { top: '2rem', right: '2rem' };
-      case 'payment':
-        return { top: '2rem', left: '2rem' };
+        return { top: '2rem', left: 'calc(50% - 75px)' }; // top center toward Home
+      case 'blog':
+        return { top: '2rem', left: '2rem' }; // top-left toward Home
+      
       default:
-        return { top: '2rem', right: '2rem' };
+        return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' };
     }
   };
 
-  const getMinimapCellPosition = (pageId: string) => {
-    switch (pageId) {
-      case 'gallery':
-        return { gridColumn: '1/2', gridRow: '1/2' };
-      case 'about':
-        return { gridColumn: '2/3', gridRow: '1/2' };
-      case 'home':
-        return { gridColumn: '1/3', gridRow: '2/3' };
-      case 'contact':
-        return { gridColumn: '1/2', gridRow: '3/4' };
-      case 'payment':
-        return { gridColumn: '2/3', gridRow: '3/4' };
-      default:
-        return { gridColumn: '1/2', gridRow: '1/2' };
-    }
+  // Map page IDs to their 3x3 grid positions
+  const getGridPosition = (pageId: string) => {
+    const positions = {
+      'portfolio': { row: 1, col: 1 },
+      'experiments': { row: 1, col: 2 },
+      'demos': { row: 1, col: 3 },
+      'clients': { row: 2, col: 1 },
+      'showcase': { row: 2, col: 2 }, // Home in center
+      'tools': { row: 2, col: 3 },
+      'about': { row: 3, col: 1 },
+      'contact': { row: 3, col: 2 },
+      'blog': { row: 3, col: 3 },
+    };
+    return positions[pageId as keyof typeof positions] || { row: 2, col: 2 };
   };
 
   const position = getMinimapPosition(currentPage);
@@ -57,65 +71,87 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
     <motion.div
       className="fixed z-50 pointer-events-auto"
       style={position}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       layout
     >
+      {/* 3x3 Grid Container */}
       <div 
-        className="grid gap-1 p-2 rounded-lg backdrop-blur-sm"
+        className="relative p-2 rounded-lg backdrop-blur-sm"
         style={{
-          width: '120px',
-          height: '180px',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gridTemplateRows: 'repeat(3, 1fr)',
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          width: '150px',
+          height: '150px',
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          border: '2px solid rgba(255, 255, 255, 0.1)',
         }}
       >
-        {pages.map((page) => {
-          const cellPosition = getMinimapCellPosition(page.id);
-          const isActive = currentPage === page.id;
-          
-          return (
-            <motion.button
-              key={page.id}
-              className={`
-                relative text-xs font-medium cursor-pointer rounded-sm
-                flex items-center justify-center transition-all duration-200
-                ${isActive ? 'text-white' : 'text-[#43695B]'}
-              `}
-              style={{
-                gridColumn: cellPosition.gridColumn,
-                gridRow: cellPosition.gridRow,
-                border: `2px solid #43695B`,
-                backgroundColor: isActive ? 'rgba(124, 179, 66, 0.2)' : 'transparent',
-                boxShadow: isActive ? '0 0 10px rgba(124, 179, 66, 0.5)' : 'none',
-              }}
-              onClick={() => onPageClick(page.id)}
-              whileHover={{ 
-                scale: 1.1,
-                backgroundColor: 'rgba(124, 179, 66, 0.1)'
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="text-center leading-tight">
-                {page.title}
-              </span>
-              {isActive && (
-                <motion.div
-                  className="absolute inset-0 rounded-sm"
-                  style={{
-                    backgroundColor: 'rgba(124, 179, 66, 0.3)',
-                    boxShadow: '0 0 15px rgba(124, 179, 66, 0.6), inset 0 0 15px rgba(124, 179, 66, 0.3)',
-                  }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              )}
-            </motion.button>
-          );
-        })}
+        
+        {/* 3x3 Grid */}
+        <div 
+          className="grid gap-1 h-full relative z-10"
+          style={{
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateRows: 'repeat(3, 1fr)',
+          }}
+        >
+          {Array.from({ length: 9 }).map((_, index) => {
+            const row = Math.floor(index / 3) + 1;
+            const col = (index % 3) + 1;
+            
+            // Find page that matches this grid position
+            const page = pages.find(p => {
+              const pos = getGridPosition(p.id);
+              return pos.row === row && pos.col === col;
+            });
+            
+            const isActive = page && currentPage === page.id;
+            const isCenter = row === 2 && col === 2; // Home position
+            
+            return (
+              <motion.button
+                key={`${row}-${col}`}
+                className={`
+                  relative text-xs font-bold cursor-pointer rounded-sm
+                  flex items-center justify-center transition-all duration-200
+                  ${isActive ? 'text-white' : 'text-gray-400'}
+                  ${isCenter ? 'border-2' : 'border'}
+                  ${!isActive && page ? 'glitch-border' : ''}
+                `}
+                style={{
+                  border: isActive 
+                    ? '2px solid rgba(255, 255, 255, 0.8)' 
+                    : isCenter 
+                    ? '2px solid rgba(255, 255, 255, 0.4)'
+                    : '1px solid rgba(255, 255, 255, 0.2)',
+                  backgroundColor: isActive 
+                    ? 'rgba(255, 255, 255, 0.15)' 
+                    : isCenter 
+                    ? 'rgba(255, 255, 255, 0.08)'
+                    : 'rgba(255, 255, 255, 0.05)',
+                  boxShadow: isActive 
+                    ? '0 0 15px rgba(255, 255, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.1)' 
+                    : 'none',
+                  animationDelay: !isActive && page ? `${(row + col) * 0.6}s` : undefined,
+                }}
+                onClick={() => page && onPageClick(page.id)}
+                disabled={!page}
+                whileHover={page ? { 
+                  scale: 1.1,
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderColor: 'rgba(255, 255, 255, 0.6)'
+                } : {}}
+                whileTap={page ? { scale: 0.9 } : {}}
+              >
+                {page && (
+                  <span className="text-center leading-tight relative z-10">
+                    {page.id === 'showcase' ? 'H' : page.title.charAt(0)}
+                  </span>
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
       </div>
     </motion.div>
   );
