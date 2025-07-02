@@ -148,21 +148,58 @@ export default function Gallery() {
         );
       case 'demos':
         return (
-          <div className="text-center space-y-4">
+          <div className="h-full p-8 flex flex-col">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
+              className="text-center mb-8"
             >
               <h2 className="text-5xl font-bold mb-4">Interactive Demos</h2>
               <p className="text-xl text-white/80">Experience our technical capabilities</p>
-              <Link 
-                href="/gallery/interactive-nav"
-                className="inline-block mt-6 px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-lg"
-              >
-                Navigation System Demo →
-              </Link>
             </motion.div>
+
+            {/* Featured Project */}
+            <div className="flex-1 flex items-center justify-center">
+              <motion.a
+                href="https://infernoink-demo.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-black/40 backdrop-blur-sm rounded-lg border border-white/10 p-8 transition-all duration-300 hover:border-red-500/50 hover:shadow-lg hover:shadow-red-500/20 max-w-md"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                {/* Red glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 to-orange-900/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-3xl font-bold text-white">Inferno Ink</h3>
+                    <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+                  </div>
+                  
+                  <p className="text-red-400 font-medium mb-6 italic text-lg">Hell Hath No Fury</p>
+                  
+                  <div className="space-y-2 mb-8">
+                    <p className="text-white/60 text-sm font-medium">Effects:</p>
+                    <ul className="text-white/80 text-sm space-y-1">
+                      <li>• Fire particles</li>
+                      <li>• Custom cursor</li>
+                      <li>• Animated scrolling</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="flex items-center text-white/70 group-hover:text-white transition-colors">
+                    <span className="text-sm font-medium">View Live Demo</span>
+                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </motion.a>
+            </div>
           </div>
         );
       case 'clients':

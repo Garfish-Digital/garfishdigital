@@ -208,7 +208,7 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl font-bold mb-4 text-center">Let us see what you see</h1>
+          {/* <h1 className="text-4xl font-bold mb-4 text-center">Let us see what you see</h1> */}
           <p className="text-xl text-white/60 mb-12 text-center">
             We will guard your information with our lives.<br/> No spam, no selling, just conversation.
           </p>
@@ -439,8 +439,8 @@ export default function Contact() {
         </button>
       </div>
 
-      {/* Glitch Animation - Bottom Left */}
-      <div className="fixed bottom-8 left-8 z-50">
+      {/* Glitch Animation - Upper Left */}
+      <div className="fixed top-8 left-8 z-50">
         <div className="glitched-text">
           <span className="glitched-text-1">garf</span><span>.</span><span className="glitched-text-2">sh</span>&nbsp;<span className="glitched-text-3">d</span><span className="glitched-text-4">.</span><span>g</span><span className="glitched-text-5">.</span><span className="glitched-text-6">tal</span><br />
         </div>
