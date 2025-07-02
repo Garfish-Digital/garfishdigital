@@ -61,7 +61,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
                 <p className="text-xl text-white/80 font-medium leading-relaxed">
-                  Your Business Doesn't Fit the Mold. Neither Do We.
+                  Your Business Doesn&apos;t Fit the Mold. Neither Do We.
                 </p>
               </motion.div>
               <motion.div

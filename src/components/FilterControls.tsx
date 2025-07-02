@@ -1,6 +1,5 @@
 'use client';
 
-import { Edit } from '@/app/globals.css';
 
 export default function FilterControls() {
   return (

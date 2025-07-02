@@ -30,16 +30,16 @@ export default function Contact() {
   });
   const [showModal, setShowModal] = useState<'privacy' | 'terms' | null>(null);
 
-  // Cycling placeholder text
-  const placeholderOptions = {
-    name: [`What's your name`, 'What should we call you?', 'How about a nickname?', 'Who are you?'],
-    email: ['your@email.com', 'Where do you get messages?', 'Your digit@l address', 'How do we reach you?'],
-    company: ['Your company (optional)', 'What type of work do you do?', 'The place you go to bust your a$$', 'Are you part of an organization?'],
-    message: ['Tell us about your project...', 'What are you building?', 'Share your vision...', 'What keeps you up at night?', 'What can we do for you?']
-  };
-
   // Separate cycling for each field with staggered timing
   useEffect(() => {
+    // Cycling placeholder text
+    const placeholderOptions = {
+      name: [`What&apos;s your name`, 'What should we call you?', 'How about a nickname?', 'Who are you?'],
+      email: ['your@email.com', 'Where do you get messages?', 'Your digit@l address', 'How do we reach you?'],
+      company: ['Your company (optional)', 'What type of work do you do?', 'The place you go to bust your a$$', 'Are you part of an organization?'],
+      message: ['Tell us about your project...', 'What are you building?', 'Share your vision...', 'What keeps you up at night?', 'What can we do for you?']
+    };
+
     let nameIndex = 0;
     let emailIndex = 0;
     let companyIndex = 0;
@@ -169,7 +169,7 @@ export default function Contact() {
         >
           <div className="text-6xl mb-8">✓</div>
           <h1 className="text-3xl font-bold mb-4">Message Sent</h1>
-          <p className="text-white/70 mb-8">We'll get back to you within 24 hours.</p>
+          <p className="text-white/70 mb-8">We&apos;ll get back to you within 24 hours.</p>
           <Link 
             href="/"
             className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
