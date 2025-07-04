@@ -30,7 +30,9 @@ export default function Contact() {
     message: 0
   });
   const [showModal, setShowModal] = useState<'privacy' | 'terms' | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showGlitchLogo, setShowGlitchLogo] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showFinalLogo, setShowFinalLogo] = useState(false);
   const [backTextOpacity, setBackTextOpacity] = useState(0);
   const [glitchOpacity, setGlitchOpacity] = useState(1);
