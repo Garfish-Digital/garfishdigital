@@ -240,12 +240,8 @@ export default function Gallery() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-6xl font-bold mb-6">our work</h1>
-                  <p className="text-2xl text-black/80 mb-8">go see</p>
-                  {/* <div className="text-lg text-white/60 space-y-2">
-                    <p>Use keyboard numpad or click the minimap to explore</p>
-                    <p>9 sections to discover</p>
-                  </div> */}
+                  <h1 className="text-6xl font-bold mb-6 gallery-showcase-heading">see our work</h1>
+                  {/* <p className="text-2xl text-black/80 mb-8">go see</p> */}
                 </motion.div>
                 </div>
               </div>
@@ -370,19 +366,11 @@ export default function Gallery() {
         </div>
       </div>
 
-
       <Minimap 
         currentPage={currentPage} 
         onPageClick={scrollToPage}
         pages={pages}
       />
-
-      {/* Gallery Navigation Info */}
-      {/* <div className="fixed bottom-4 right-4 z-40 bg-black/80 text-white p-3 rounded-lg text-sm">
-        <h4 className="font-semibold mb-1">Gallery Navigation</h4>
-        <p className="text-xs text-gray-300">Multi-dimensional portfolio exploration</p>
-        <p className="text-xs text-gray-400 mt-1">Numpad 1-9 Navigate | Click Minimap</p>
-      </div> */}
     </>
   );
 }
