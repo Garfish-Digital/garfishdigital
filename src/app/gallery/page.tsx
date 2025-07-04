@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Minimap from '@/components/Minimap';
-import { HomeModernIcon } from '@heroicons/react/24/solid';
+import { HomeModernIcon, AtSymbolIcon } from '@heroicons/react/24/outline';
 
 const pages = [
   { id: 'portfolio', title: 'Portfolio', gridColumn: '1/2', gridRow: '1/2', color: '#ff6b6b' },
@@ -231,21 +231,23 @@ export default function Gallery() {
               </div>
             )}
             
-            {/* Main Content - Centered */}
-            <div className="flex items-center justify-center h-full">
-              <div className="text-center space-y-6">
+            {/* Main Content - Golden Section Bottom Right */}
+            <div className="absolute bottom-0 right-0 w-full h-full">
+              <div className="absolute" style={{ right: '23.6vw', bottom: '23.6vh' }}>
+                <div className="text-center space-y-6">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-6xl font-bold mb-6">Gallery Home</h1>
-                  <p className="text-2xl text-white/80 mb-8">Navigate through our creative universe</p>
-                  <div className="text-lg text-white/60 space-y-2">
+                  <h1 className="text-6xl font-bold mb-6">our work</h1>
+                  <p className="text-2xl text-black/80 mb-8">go see</p>
+                  {/* <div className="text-lg text-white/60 space-y-2">
                     <p>Use keyboard numpad or click the minimap to explore</p>
                     <p>9 sections to discover</p>
-                  </div>
+                  </div> */}
                 </motion.div>
+                </div>
               </div>
             </div>
           </div>
@@ -321,7 +323,16 @@ export default function Gallery() {
         className="fixed top-8 right-8 z-50 transition-all duration-300 hover:brightness-150"
         title="Back to Home"
       >
-        <HomeModernIcon className="w-12 h-12 text-white/80 drop-shadow-lg" />
+        <HomeModernIcon className="w-12 h-12 home-icon drop-shadow-lg" />
+      </Link>
+      
+      {/* Contact Icon - Fixed Position Upper Right */}
+      <Link 
+        href="/contact"
+        className="fixed top-30 right-8 z-50 transition-all duration-300 hover:brightness-150"
+        title="Contact"
+      >
+        <AtSymbolIcon className="w-12 h-12 home-icon drop-shadow-lg" />
       </Link>
 
       <div 
@@ -338,28 +349,19 @@ export default function Gallery() {
             height: '300vh',
             gridTemplateColumns: 'repeat(3, 100vw)',
             gridTemplateRows: 'repeat(3, 100vh)',
-            background: `
-              radial-gradient(at 40% 80%, #4A4A4A 0px, transparent 50%),
-              radial-gradient(at 80% 20%, #2F2F2F 0px, transparent 70%),
-              radial-gradient(at 0% 50%, #5A5A5A 0px, transparent 90%),
-              #0A0A0A
-            `
+            background: '#FFFFFF',
+            fontFamily: 'Courier New, monospace'
           }}
         >
           {pages.map((page) => (
             <div
               key={page.id}
-              className="flex items-center justify-center text-white font-sans"
+              className="flex items-center justify-center text-black"
               style={{
                 gridColumn: page.gridColumn,
                 gridRow: page.gridRow,
-                backgroundColor: page.id === 'showcase' ? undefined : page.color,
-                background: page.id === 'showcase' ? `
-                  radial-gradient(at 40% 20%, #4A4A4A 0px, transparent 50%),
-                  radial-gradient(at 80% 80%, #2F2F2F 0px, transparent 70%),
-                  radial-gradient(at 0% 50%, #5A5A5A 0px, transparent 90%),
-                  #0A0A0A
-                ` : undefined,
+                backgroundColor: page.id === 'showcase' ? '#FFFFFF' : page.color,
+                fontFamily: 'Courier New, monospace',
               }}
             >
               {getPageContent(page.id)}
@@ -376,11 +378,11 @@ export default function Gallery() {
       />
 
       {/* Gallery Navigation Info */}
-      <div className="fixed bottom-4 right-4 z-40 bg-black/80 text-white p-3 rounded-lg text-sm">
+      {/* <div className="fixed bottom-4 right-4 z-40 bg-black/80 text-white p-3 rounded-lg text-sm">
         <h4 className="font-semibold mb-1">Gallery Navigation</h4>
         <p className="text-xs text-gray-300">Multi-dimensional portfolio exploration</p>
         <p className="text-xs text-gray-400 mt-1">Numpad 1-9 Navigate | Click Minimap</p>
-      </div>
+      </div> */}
     </>
   );
 }

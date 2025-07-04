@@ -37,17 +37,19 @@ body {
 
 /* Logo styling with distinctive stroke effect */
 .logo-text {
-  font-family: sans-serif, Arial;
+  /* font-family: sans-serif, Arial; */
+    font-family: 'Courier New', monospace;
+
   font-size: 10vw;
   font-weight: bold;
-  background-size: 15% 15%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-stroke: 3px rgba(218, 165, 32, 0.25);
+  /* background-size: 15% 15%; */
+  /* -webkit-background-clip: text; */
+  /* background-clip: text; */
+  /* -webkit-text-stroke: 3px rgba(218, 165, 32, 0.25); */
   /* -webkit-text-stroke: 3px rgb(204, 65, 37, .5); */
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
-  user-select: none;
+  /* -webkit-text-fill-color: transparent; */
+  /* line-height: 1; */
+  /* user-select: none; */
 }
 
 .page-logo {
@@ -177,7 +179,7 @@ textarea:not(:placeholder-shown)::placeholder {
 input::placeholder,
 textarea::placeholder {
   color: rgba(255, 255, 255, 0.5);
-}2
+}
 
 input:focus::placeholder,
 textarea:focus::placeholder {
@@ -458,6 +460,46 @@ textarea:focus::placeholder {
 }
 
 /* Responsive adjustments */
+/* Brutalist button styling */
+.brutalist-btn {
+  border: 1px solid #aaaaaa;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.brutalist-btn:hover {
+  border-color: #555555;
+}
+
+/* Contact form styling */
+.contact-form-field {
+  border: 1px solid #aaaaaa !important;
+  border-radius: 5px !important;
+}
+
+.contact-form-button {
+    padding: 0.5rem 2rem !important;
+  border: 1px solid #aaaaaa !important;
+  border-radius: 5px !important;
+  font-weight: normal !important;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form-button:hover {
+  border-color: #555555 !important;
+}
+
+/* Home icon styling */
+.home-icon {
+  color: #aaaaaa;
+  transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+  color: #555555;
+}
+
 @media (max-width: 640px) {
   .embossed-btn {
     width: 140px;

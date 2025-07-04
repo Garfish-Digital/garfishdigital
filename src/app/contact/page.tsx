@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { HomeModernIcon } from '@heroicons/react/24/solid';
+import { HomeModernIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -183,14 +183,10 @@ export default function Contact() {
 
   return (
     <div 
-      className="min-h-screen text-white"
+      className="min-h-screen text-black"
       style={{
-        background: `
-          radial-gradient(at 40% 20%, #4A4A4A 0px, transparent 50%),
-          radial-gradient(at 80% 80%, #2F2F2F 0px, transparent 70%),
-          radial-gradient(at 0% 50%, #5A5A5A 0px, transparent 90%),
-          #0A0A0A
-        `
+        background: '#FFFFFF',
+        fontFamily: 'Courier New, monospace',
       }}
     >
       {/* Home Icon - Top Right */}
@@ -199,20 +195,30 @@ export default function Contact() {
         className="fixed top-8 right-8 z-50 transition-all duration-300 hover:brightness-150"
         title="Back to Home"
       >
-        <HomeModernIcon className="w-12 h-12 text-white/80 drop-shadow-lg" />
+        <HomeModernIcon className="w-12 h-12 home-icon drop-shadow-lg" />
+      </Link>
+      
+      {/* Gallery Icon - Top Right */}
+      <Link 
+        href="/gallery"
+        className="fixed top-30 right-8 z-50 transition-all duration-300 hover:brightness-150"
+        title="Gallery"
+      >
+        <Squares2X2Icon className="w-12 h-12 home-icon drop-shadow-lg" />
       </Link>
 
-      <div className="max-w-2xl mx-auto pt-24 px-6">
-        <motion.div
+      <div className="flex items-center justify-center min-h-screen px-6">
+        <div className="w-full max-w-2xl">
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* <h1 className="text-4xl font-bold mb-4 text-center">Let us see what you see</h1> */}
-          <p className="text-xl text-white/60 mb-12 text-center">
+          <h1 className="text-4xl font-bold mb-4 text-center">Let us see what you see</h1>
+          <p className="text-xl text-black/60 mb-12 text-center" style={{ fontFamily: 'Courier New, monospace' }}>
             We will guard your information with our lives.<br/> No spam, no selling, just conversation.
           </p>
-        </motion.div>
+        </motion.div> */}
 
         <motion.form
           onSubmit={handleSubmit}
@@ -233,10 +239,10 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus('name')}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-4 bg-white/5 backdrop-blur-sm border-2 rounded-lg focus:outline-none text-white transition-all duration-300 ${
+                  className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
                     focusedField === 'name' 
-                      ? 'border-white/40 focus-bounce' 
-                      : 'border-white/10'
+                      ? 'focus-bounce' 
+                      : ''
                   }`}
                   placeholder=" "
                 />
@@ -244,7 +250,7 @@ export default function Contact() {
                   <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.name}
-                      className="text-white/50"
+                      className="text-gray-500"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -279,10 +285,10 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus('email')}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-4 bg-white/5 backdrop-blur-sm border-2 rounded-lg focus:outline-none text-white transition-all duration-300 ${
+                  className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
                     focusedField === 'email' 
-                      ? 'border-white/40 focus-bounce' 
-                      : 'border-white/10'
+                      ? 'focus-bounce' 
+                      : ''
                   }`}
                   placeholder=" "
                 />
@@ -290,7 +296,7 @@ export default function Contact() {
                   <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.email}
-                      className="text-white/50"
+                      className="text-gray-500"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -325,10 +331,10 @@ export default function Contact() {
                 onChange={handleChange}
                 onFocus={() => handleFocus('company')}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-4 bg-white/5 backdrop-blur-sm border-2 rounded-lg focus:outline-none text-white transition-all duration-300 ${
+                className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
                   focusedField === 'company' 
-                    ? 'border-white/40 focus-bounce' 
-                    : 'border-white/10'
+                    ? 'focus-bounce' 
+                    : ''
                 }`}
                 placeholder=" "
               />
@@ -336,7 +342,7 @@ export default function Contact() {
                 <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.company}
-                    className="text-white/50"
+                    className="text-gray-500"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
@@ -360,10 +366,10 @@ export default function Contact() {
                 onChange={handleChange}
                 onFocus={() => handleFocus('message')}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-4 bg-white/5 backdrop-blur-sm border-2 rounded-lg focus:outline-none text-white resize-none transition-all duration-300 ${
+                className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black resize-none transition-all duration-300 ${
                   focusedField === 'message' 
-                    ? 'border-white/40 focus-bounce' 
-                    : 'border-white/10'
+                    ? 'focus-bounce' 
+                    : ''
                 }`}
                 placeholder=" "
               />
@@ -371,7 +377,7 @@ export default function Contact() {
                 <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.message}
-                    className="text-white/50"
+                    className="text-gray-500"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
@@ -398,9 +404,7 @@ export default function Contact() {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 bg-gradient-to-r from-[#43695B] to-[#2F4538] hover:from-[#4A7562] hover:to-[#35503F] disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-semibold text-lg transition-all duration-300 transform focus:outline-none focus:ring-2 focus:ring-white/30"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="inline-block bg-white contact-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 transform focus:outline-none"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
@@ -408,19 +412,11 @@ export default function Contact() {
                 Sending Message...
               </div>
             ) : (
-              'Send Message'
+              'Send'
             )}
           </motion.button>
         </motion.form>
-
-        <motion.div
-          className="mt-12 text-center text-white/50 text-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <p>We typically respond within 24 - 48 hours</p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Legal Links - Bottom Right */}
@@ -442,7 +438,7 @@ export default function Contact() {
       {/* Glitch Animation - Upper Left */}
       <div className="fixed top-8 left-8 z-50">
         <div className="glitched-text">
-          <span className="glitched-text-1">garf</span><span>.</span><span className="glitched-text-2">sh</span>&nbsp;<span className="glitched-text-3">d</span><span className="glitched-text-4">.</span><span>g</span><span className="glitched-text-5">.</span><span className="glitched-text-6">tal</span><br />
+          <span className="glitched-text-1">garf</span><span>.</span><span className="glitched-text-2">sh</span>&nbsp;<span className="glitched-text-3">d</span><span className="glitched-text-4">.</span><span>g</span><span className="glitched-text-5">i</span><span className="glitched-text-6">tal</span><br />
         </div>
       </div>
 
