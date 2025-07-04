@@ -500,6 +500,72 @@ textarea:focus::placeholder {
   color: #555555;
 }
 
+/* Mobile Portrait - 375px breakpoint */
+@media (max-width: 375px) {
+  /* Home page logo text - 50% increase */
+  .logo-text {
+    font-size: 15vw; /* Increased from 10vw */
+  }
+  
+  /* Home page navigation icons - 50% decrease */
+  .home-icon {
+    width: 3rem !important; /* Decreased from w-24 (6rem) */
+    height: 3rem !important; /* Decreased from h-24 (6rem) */
+  }
+  
+  /* Gallery showcase heading - 25% decrease */
+  .gallery-showcase-heading {
+    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
+  }
+}
+
+/* Mobile Landscape - 667px breakpoint */
+@media (max-width: 667px) and (min-width: 376px) {
+  /* Home page navigation icons - 50% decrease */
+  .home-icon {
+    width: 3rem !important; /* Decreased from w-24 (6rem) */
+    height: 3rem !important; /* Decreased from h-24 (6rem) */
+  }
+  
+  /* Contact form container - 25% decrease in width */
+  .contact-form-container {
+    max-width: 36rem !important; /* Decreased from max-w-2xl (48rem) to 75% */
+  }
+  
+  /* Gallery showcase heading - 25% decrease */
+  .gallery-showcase-heading {
+    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
+  }
+}
+
+/* Tablet Portrait - 768px breakpoint */
+@media (max-width: 768px) and (min-width: 668px) {
+  /* Navigation icons - 25% decrease */
+  .home-icon {
+    width: 4.5rem !important; /* Decreased from w-24 (6rem) to 75% */
+    height: 4.5rem !important; /* Decreased from h-24 (6rem) to 75% */
+  }
+  
+  /* Gallery showcase heading - 25% decrease */
+  .gallery-showcase-heading {
+    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
+  }
+}
+
+/* Small Desktop - 1280px breakpoint */
+@media (max-width: 1280px) and (min-width: 769px) {
+  /* Contact and Gallery navigation icons - 25% decrease */
+  .home-icon {
+    width: 2.25rem !important; /* Decreased from w-12 (3rem) to 75% */
+    height: 2.25rem !important; /* Decreased from w-12 (3rem) to 75% */
+  }
+  
+  /* Gallery showcase heading - 25% decrease */
+  .gallery-showcase-heading {
+    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
+  }
+}
+
 @media (max-width: 640px) {
   .embossed-btn {
     width: 140px;

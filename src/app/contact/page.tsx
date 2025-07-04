@@ -208,18 +208,8 @@ export default function Contact() {
       </Link>
 
       <div className="flex items-center justify-center min-h-screen px-6">
-        <div className="w-full max-w-2xl">
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl font-bold mb-4 text-center">Let us see what you see</h1>
-          <p className="text-xl text-black/60 mb-12 text-center" style={{ fontFamily: 'Courier New, monospace' }}>
-            We will guard your information with our lives.<br/> No spam, no selling, just conversation.
-          </p>
-        </motion.div> */}
-
+        <div className="w-full max-w-2xl contact-form-container">
+      
         <motion.form
           onSubmit={handleSubmit}
           className="space-y-8"
