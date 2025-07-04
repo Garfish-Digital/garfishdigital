@@ -17,31 +17,32 @@ interface MinimapProps {
 }
 
 export default function Minimap({ currentPage, onPageClick, pages }: MinimapProps) {
+
   // Dynamic positioning logic - position minimap on side nearest to Home from current page
   const getMinimapPosition = (pageId: string) => {
     switch (pageId) {
       // Top row - minimap goes to bottom (toward Home)
-      case 'portfolio':
+      case 'cell1':
         return { bottom: '2rem', right: '2rem' }; // bottom-right toward Home
-      case 'experiments':
+      case 'cell2':
         return { bottom: '2rem', left: 'calc(50% - 75px)' }; // bottom center toward Home
-      case 'demos':
+      case 'cell3':
         return { bottom: '2rem', left: '2rem' }; // bottom-left toward Home
       
       // Middle row  
-      case 'clients':
+      case 'cell4':
         return { top: 'calc(50% - 75px)', right: '2rem' }; // right side toward Home
-      case 'showcase':
+      case 'cell5':
         return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' }; // perfectly centered on Home
-      case 'tools':
+      case 'cell6':
         return { top: 'calc(50% - 75px)', left: '2rem' }; // left side toward Home
       
       // Bottom row - minimap goes to top (toward Home)
-      case 'about':
+      case 'cell7':
         return { top: '2rem', right: '2rem' }; // top-right toward Home
-      case 'contact':
+      case 'cell8':
         return { top: '2rem', left: 'calc(50% - 75px)' }; // top center toward Home
-      case 'blog':
+      case 'cell9':
         return { top: '2rem', left: '2rem' }; // top-left toward Home
       
       default:
@@ -52,15 +53,15 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
   // Map page IDs to their 3x3 grid positions
   const getGridPosition = (pageId: string) => {
     const positions = {
-      'portfolio': { row: 1, col: 1 },
-      'experiments': { row: 1, col: 2 },
-      'demos': { row: 1, col: 3 },
-      'clients': { row: 2, col: 1 },
-      'showcase': { row: 2, col: 2 }, // Home in center
-      'tools': { row: 2, col: 3 },
-      'about': { row: 3, col: 1 },
-      'contact': { row: 3, col: 2 },
-      'blog': { row: 3, col: 3 },
+      'cell1': { row: 1, col: 1 },
+      'cell2': { row: 1, col: 2 },
+      'cell3': { row: 1, col: 3 },
+      'cell4': { row: 2, col: 1 },
+      'cell5': { row: 2, col: 2 }, // Home in center
+      'cell6': { row: 2, col: 3 },
+      'cell7': { row: 3, col: 1 },
+      'cell8': { row: 3, col: 2 },
+      'cell9': { row: 3, col: 3 },
     };
     return positions[pageId as keyof typeof positions] || { row: 2, col: 2 };
   };
@@ -82,7 +83,7 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
         style={{
           width: '150px',
           height: '150px',
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          backgroundColor: '#555555',
           border: '2px solid rgba(255, 255, 255, 0.1)',
         }}
       >
@@ -106,48 +107,29 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
             });
             
             const isActive = page && currentPage === page.id;
-            const isCenter = row === 2 && col === 2; // Home position
             
             return (
               <motion.button
                 key={`${row}-${col}`}
                 className={`
-                  relative text-xs font-bold cursor-pointer rounded-sm
-                  flex items-center justify-center transition-all duration-200
-                  ${isActive ? 'text-white' : 'text-gray-400'}
-                  ${isCenter ? 'border-2' : 'border'}
-                  ${!isActive && page ? 'glitch-border' : ''}
+                  relative cursor-pointer rounded-sm
+                  flex items-center justify-center transition-all duration-50
+                  ${isActive ? '' : ''}
                 `}
                 style={{
-                  border: isActive 
-                    ? '2px solid rgba(255, 255, 255, 0.8)' 
-                    : isCenter 
-                    ? '2px solid rgba(255, 255, 255, 0.4)'
-                    : '1px solid rgba(255, 255, 255, 0.2)',
+                    border : '1px solid rgba(255, 255, 255, 0.2)',
                   backgroundColor: isActive 
-                    ? 'rgba(255, 255, 255, 0.15)' 
-                    : isCenter 
-                    ? 'rgba(255, 255, 255, 0.08)'
+                    ? 'rgba(170, 170, 170)'
                     : 'rgba(255, 255, 255, 0.05)',
-                  boxShadow: isActive 
-                    ? '0 0 15px rgba(255, 255, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.1)' 
-                    : 'none',
-                  animationDelay: !isActive && page ? `${(row + col) * 0.6}s` : undefined,
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page ? { 
-                  scale: 1.1,
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  borderColor: 'rgba(255, 255, 255, 0.6)'
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >
-                {page && (
-                  <span className="text-center leading-tight relative z-10">
-                    {page.id === 'showcase' ? 'H' : page.title.charAt(0)}
-                  </span>
-                )}
+                {/* No text content - just empty buttons */}
               </motion.button>
             );
           })}

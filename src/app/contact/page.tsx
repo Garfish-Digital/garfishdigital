@@ -30,12 +30,18 @@ export default function Contact() {
     message: 0
   });
   const [showModal, setShowModal] = useState<'privacy' | 'terms' | null>(null);
+  const [showGlitchLogo, setShowGlitchLogo] = useState(true);
+  const [showFinalLogo, setShowFinalLogo] = useState(false);
+  const [backTextOpacity, setBackTextOpacity] = useState(0);
+  const [glitchOpacity, setGlitchOpacity] = useState(1);
+  const [glitchText7, setGlitchText7] = useState('.');
+  const [glitchText4, setGlitchText4] = useState('.');
 
   // Separate cycling for each field with staggered timing
   useEffect(() => {
     // Cycling placeholder text
     const placeholderOptions = {
-      name: [`What&apos;s your name`, 'What should we call you?', 'How about a nickname?', 'Who are you?'],
+      name: [`What\'s your name`, 'What should we call you?', 'How about a nickname?', 'Who are you?'],
       email: ['your@email.com', 'Where do you get messages?', 'Your digit@l address', 'How do we reach you?'],
       company: ['Your company (optional)', 'What type of work do you do?', 'The place you go to bust your a$$', 'Are you part of an organization?'],
       message: ['Tell us about your project...', 'What are you building?', 'Share your vision...', 'What keeps you up at night?', 'What can we do for you?']
@@ -78,6 +84,35 @@ export default function Contact() {
     };
   }, []);
 
+  // No final logo transition - let the black text remain as the final state
+
+  // Text content changes
+  useEffect(() => {
+    // Change glitched-text-7 to "i" after 10 seconds
+    const text7Timer = setTimeout(() => {
+      setGlitchText7('i');
+    }, 10000);
+
+    // Change glitched-text-4 to "i" after 20 seconds  
+    const text4Timer = setTimeout(() => {
+      setGlitchText4('i');
+    }, 20000);
+
+    return () => {
+      clearTimeout(text7Timer);
+      clearTimeout(text4Timer);
+    };
+  }, []);
+
+  // Back-text and glitch fade animations - start after 20 seconds
+  useEffect(() => {
+    const animationTimer = setTimeout(() => {
+      setBackTextOpacity(1);  // Fade in black back-text
+      setGlitchOpacity(0);    // Fade out glitch text
+    }, 20000);
+
+    return () => clearTimeout(animationTimer);
+  }, []);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -176,23 +211,23 @@ export default function Contact() {
   return (
     <div className="min-h-screen text-black contact-page-container"
     >
-      {/* Home Icon - Top Right */}
-      <Link 
-        href="/"
-        className="fixed top-8 right-8 z-50 transition-all duration-300 hover:brightness-150"
-        title="Back to Home"
-      >
-        <HomeModernIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
-      </Link>
-      
-      {/* Gallery Icon - Top Right */}
-      <Link 
-        href="/gallery"
-        className="fixed right-8 z-50 transition-all duration-300 hover:brightness-150"
-        title="Gallery"
-      >
-        <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
-      </Link>
+      {/* Navigation Icons - Bottom Right */}
+      <div className="bottom-nav-container">  
+        <Link 
+          href="/gallery"
+          className="transition-all duration-300 hover:brightness-150"
+          title="Gallery"
+        >
+          <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
+        </Link>
+        <Link 
+          href="/"
+          className="transition-all duration-300 hover:brightness-150"
+          title="Back to Home"
+        >
+          <HomeModernIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
+        </Link>
+      </div>
 
       <div className="flex items-center justify-center min-h-screen px-6">
         <div className="w-full max-w-2xl contact-form-container">
@@ -396,28 +431,55 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Legal Links - Bottom Right */}
-      <div className="fixed bottom-8 right-8 z-40 flex gap-4 text-xs">
+      {/* Legal Links - Bottom Left */}
+      <div className="fixed bottom-8 left-8 z-40 flex gap-4 text-xs">
         <button
           onClick={() => setShowModal('privacy')}
-          className="text-white/40 hover:text-white/70 transition-colors duration-200 underline decoration-dotted underline-offset-2"
+          className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2"
         >
           Privacy
         </button>
         <button
           onClick={() => setShowModal('terms')}
-          className="text-white/40 hover:text-white/70 transition-colors duration-200 underline decoration-dotted underline-offset-2"
+          className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2"
         >
           Terms
         </button>
       </div>
 
       {/* Glitch Animation - Upper Left */}
-      <div className="fixed top-8 left-8 z-50">
-        <div className="glitched-text">
-          <span className="glitched-text-1">garf</span><span>.</span><span className="glitched-text-2">sh</span>&nbsp;<span className="glitched-text-3">d</span><span className="glitched-text-4">.</span><span>g</span><span className="glitched-text-5">i</span><span className="glitched-text-6">tal</span><br />
+      {showGlitchLogo && (
+        <div className="fixed top-8 left-8">
+          {/* Black back-text - identical positioning with animated opacity */}
+          <div 
+            className="glitched-text back-text z-40" 
+            style={{ 
+              opacity: backTextOpacity,
+              transition: 'opacity 10s ease-in-out'
+            }}
+          ><span>garfish digital</span>
+          </div>
+          {/* Original glitch text on top */}
+          <div 
+            className="glitched-text z-50 absolute top-0 left-0"
+            style={{
+              opacity: glitchOpacity,
+              transition: 'opacity 10s ease-in-out'
+            }}
+          >
+            <span className="glitched-text-1">garf</span><span className="glitched-text-7">{glitchText7}</span><span className="glitched-text-2">sh</span>&nbsp;<span className="glitched-text-3">d</span><span className="glitched-text-4">{glitchText4}</span><span>g</span><span className="glitched-text-5">i</span><span className="glitched-text-6">tal</span><br />
+          </div>
         </div>
-      </div>
+      )}
+      
+      {/* Final Logo State - Upper Left */}
+      {showFinalLogo && (
+        <div className="fixed top-8 left-8 z-50">
+          <div className="logo-final-state">
+            garfish digital
+          </div>
+        </div>
+      )}
 
       {/* Fast Modal for Privacy/Terms */}
       <AnimatePresence>

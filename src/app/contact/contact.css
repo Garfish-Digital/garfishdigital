@@ -21,9 +21,27 @@
               rgba(10, 10, 10, 0.95) !important;
 }
 
+/* Form sizing adjustments for better mobile responsiveness */
+.contact-form-container {
+  max-width: 28rem !important; /* Reduced from max-w-2xl (32rem) to max-w-lg (28rem) */
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 667px) {
   .contact-form-container {
-    margin-top: 8rem !important; /* Push form down on mobile */
+    margin-top: 4rem !important; /* Push form down on mobile */
+    max-width: 20rem !important; /* Even smaller on mobile */
+  }
+}
+
+/* Reduce form field height for better mobile experience */
+.contact-form-field {
+  padding: 0.75rem !important; /* Reduced from py-4 (1rem) to 0.75rem */
+}
+
+/* Reduce textarea rows on mobile */
+@media (max-width: 667px) {
+  .contact-form-field textarea {
+    min-height: 4rem !important; /* Smaller textarea on mobile */
   }
 }
