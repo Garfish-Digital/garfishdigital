@@ -6,24 +6,8 @@ import { Squares2X2Icon, AtSymbolIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
-    <div
-      className="text-black"
-      style={{
-        background: "#FFFFFF",
-        fontFamily: "Courier New, monospace",
-        height: "100vh",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          height: "100vh",
-          paddingLeft: "5vw",
-          paddingTop: "3vw",
-        }}
-      >
+    <div className="text-black home-page-container">
+      <div className="home-page-layout">
         {/* Logo and Byline */}
         <div>
           <motion.h1
@@ -46,7 +30,7 @@ export default function Home() {
 
         {/* Gallery Section */}
         <div>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div className="home-nav-container">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -54,8 +38,7 @@ export default function Home() {
             >
               <Link href="/gallery">
                 <Squares2X2Icon
-                  className="w-24 h-24 home-icon drop-shadow-lg"
-                  style={{ marginRight: "5rem" }}
+                  className="home-icon home-page-gallery-icon home-gallery-icon drop-shadow-lg"
                 />
               </Link>
             </motion.div>
@@ -66,18 +49,18 @@ export default function Home() {
               transition={{ duration: 1, delay: 1.4 }}
             >
               <Link href="/contact">
-                <AtSymbolIcon className="w-24 h-24 home-icon drop-shadow-lg" />
+                <AtSymbolIcon className="home-icon home-page-contact-icon drop-shadow-lg" />
               </Link>
             </motion.div>
           </div>
-        </div>
-
         {/* Copyright */}
         <div>
-          <p style={{ fontFamily: "Courier New, monospace", color: "#555555" }}>
+          <p className="home-copyright">
             © 2024 Garfish Digital. All rights reserved.
           </p>
         </div>
+        </div>
+
       </div>
     </div>
   );

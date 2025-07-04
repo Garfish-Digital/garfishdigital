@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Minimap from '@/components/Minimap';
 import { HomeModernIcon, AtSymbolIcon } from '@heroicons/react/24/outline';
+import './gallery.css';
 
 const pages = [
   { id: 'portfolio', title: 'Portfolio', gridColumn: '1/2', gridRow: '1/2', color: '#ff6b6b' },
@@ -232,8 +233,8 @@ export default function Gallery() {
             )}
             
             {/* Main Content - Golden Section Bottom Right */}
-            <div className="absolute bottom-0 right-0 w-full h-full">
-              <div className="absolute" style={{ right: '23.6vw', bottom: '23.6vh' }}>
+            {/* <div className="absolute bottom-0 right-0 w-full h-full">
+              <div className="absolute gallery-showcase-position">
                 <div className="text-center space-y-6">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -241,11 +242,10 @@ export default function Gallery() {
                   transition={{ duration: 0.8 }}
                 >
                   <h1 className="text-6xl font-bold mb-6 gallery-showcase-heading">see our work</h1>
-                  {/* <p className="text-2xl text-black/80 mb-8">go see</p> */}
                 </motion.div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         );
       case 'tools':
@@ -319,46 +319,29 @@ export default function Gallery() {
         className="fixed top-8 right-8 z-50 transition-all duration-300 hover:brightness-150"
         title="Back to Home"
       >
-        <HomeModernIcon className="w-12 h-12 home-icon drop-shadow-lg" />
+        <HomeModernIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
       </Link>
       
       {/* Contact Icon - Fixed Position Upper Right */}
       <Link 
         href="/contact"
-        className="fixed top-30 right-8 z-50 transition-all duration-300 hover:brightness-150"
+        className="fixed right-8 z-50 transition-all duration-300 hover:brightness-150"
         title="Contact"
       >
-        <AtSymbolIcon className="w-12 h-12 home-icon drop-shadow-lg" />
+        <AtSymbolIcon className="home-icon gallery-page-contact-icon drop-shadow-lg" />
       </Link>
 
       <div 
         ref={wrapperRef}
-        className="w-screen h-screen overflow-hidden"
-        style={{ 
-          scrollBehavior: 'smooth'
-        }}
+        className="w-screen h-screen overflow-hidden gallery-wrapper"
       >
         <div 
-          className="grid relative"
-          style={{
-            width: '300vw',
-            height: '300vh',
-            gridTemplateColumns: 'repeat(3, 100vw)',
-            gridTemplateRows: 'repeat(3, 100vh)',
-            background: '#FFFFFF',
-            fontFamily: 'Courier New, monospace'
-          }}
+          className="grid relative gallery-grid"
         >
           {pages.map((page) => (
             <div
               key={page.id}
-              className="flex items-center justify-center text-black"
-              style={{
-                gridColumn: page.gridColumn,
-                gridRow: page.gridRow,
-                backgroundColor: page.id === 'showcase' ? '#FFFFFF' : page.color,
-                fontFamily: 'Courier New, monospace',
-              }}
+              className={`flex items-center justify-center text-black gallery-page-item gallery-page-${page.id}`}
             >
               {getPageContent(page.id)}
             </div>

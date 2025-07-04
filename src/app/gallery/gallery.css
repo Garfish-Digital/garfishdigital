@@ -1,0 +1,82 @@
+/* Gallery Page Styles */
+
+/* Gallery wrapper scroll container */
+.gallery-wrapper {
+  scroll-behavior: smooth !important;
+}
+
+/* Gallery grid container */
+.gallery-grid {
+  width: 300vw !important;
+  height: 300vh !important;
+  grid-template-columns: repeat(3, 100vw) !important;
+  grid-template-rows: repeat(3, 100vh) !important;
+  background: #FFFFFF !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+/* Gallery page items */
+.gallery-page-item {
+  font-family: 'Courier New', monospace !important;
+}
+
+/* Showcase page positioning */
+.gallery-showcase-position {
+  right: 23.6vw !important;
+  bottom: 23.6vh !important;
+}
+
+/* Individual page backgrounds */
+.gallery-page-portfolio {
+  grid-column: 1/2 !important;
+  grid-row: 1/2 !important;
+  background-color: #ff6b6b !important;
+}
+
+.gallery-page-experiments {
+  grid-column: 2/3 !important;
+  grid-row: 1/2 !important;
+  background-color: #ffcc5c !important;
+}
+
+.gallery-page-demos {
+  grid-column: 3/4 !important;
+  grid-row: 1/2 !important;
+  background-color: #556270 !important;
+}
+
+.gallery-page-clients {
+  grid-column: 1/2 !important;
+  grid-row: 2/3 !important;
+  background-color: #4ecdc4 !important;
+}
+
+.gallery-page-showcase {
+  grid-column: 2/3 !important;
+  grid-row: 2/3 !important;
+  background-color: #FFFFFF !important;
+}
+
+.gallery-page-tools {
+  grid-column: 3/4 !important;
+  grid-row: 2/3 !important;
+  background-color: #9b59b6 !important;
+}
+
+.gallery-page-about {
+  grid-column: 1/2 !important;
+  grid-row: 3/4 !important;
+  background-color: #e67e22 !important;
+}
+
+.gallery-page-contact {
+  grid-column: 2/3 !important;
+  grid-row: 3/4 !important;
+  background-color: #34495e !important;
+}
+
+.gallery-page-blog {
+  grid-column: 3/4 !important;
+  grid-row: 3/4 !important;
+  background-color: #95a5a6 !important;
+}

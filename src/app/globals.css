@@ -500,6 +500,39 @@ textarea:focus::placeholder {
   color: #555555;
 }
 
+/* Specific icon sizing classes for independent control */
+.home-page-gallery-icon {
+  width: 6rem !important; /* w-24 equivalent */
+  height: 6rem !important;
+}
+
+.home-page-contact-icon {
+  width: 6rem !important; /* w-24 equivalent */
+  height: 6rem !important;
+}
+
+.contact-page-home-icon {
+  width: 3rem !important; /* w-12 equivalent */
+  height: 3rem !important;
+}
+
+.contact-page-gallery-icon {
+  width: 3rem !important; /* w-12 equivalent */
+  height: 3rem !important;
+  margin-top: 5rem;
+}
+
+.gallery-page-home-icon {
+  width: 3rem !important; /* w-12 equivalent */
+  height: 3rem !important;
+}
+
+.gallery-page-contact-icon {
+  width: 3rem !important; /* w-12 equivalent */
+  height: 3rem !important;
+    margin-top: 5rem;
+}
+
 /* Mobile Portrait - 375px breakpoint */
 @media (max-width: 375px) {
   /* Home page logo text - 50% increase */
@@ -507,10 +540,15 @@ textarea:focus::placeholder {
     font-size: 15vw; /* Increased from 10vw */
   }
   
-  /* Home page navigation icons - 50% decrease */
-  .home-icon {
-    width: 3rem !important; /* Decreased from w-24 (6rem) */
-    height: 3rem !important; /* Decreased from h-24 (6rem) */
+  /* All icons uniform size for mobile - 24px (1.5rem) */
+  .home-page-gallery-icon,
+  .home-page-contact-icon,
+  .contact-page-home-icon,
+  .contact-page-gallery-icon,
+  .gallery-page-home-icon,
+  .gallery-page-contact-icon {
+    width: 1.5rem !important; /* 24px */
+    height: 1.5rem !important; /* 24px */
   }
   
   /* Gallery showcase heading - 25% decrease */
@@ -521,10 +559,15 @@ textarea:focus::placeholder {
 
 /* Mobile Landscape - 667px breakpoint */
 @media (max-width: 667px) and (min-width: 376px) {
-  /* Home page navigation icons - 50% decrease */
-  .home-icon {
-    width: 3rem !important; /* Decreased from w-24 (6rem) */
-    height: 3rem !important; /* Decreased from h-24 (6rem) */
+  /* All icons uniform size for mobile - 24px (1.5rem) */
+  .home-page-gallery-icon,
+  .home-page-contact-icon,
+  .contact-page-home-icon,
+  .contact-page-gallery-icon,
+  .gallery-page-home-icon,
+  .gallery-page-contact-icon {
+    width: 1.5rem !important; /* 24px */
+    height: 1.5rem !important; /* 24px */
   }
   
   /* Contact form container - 25% decrease in width */
@@ -540,10 +583,15 @@ textarea:focus::placeholder {
 
 /* Tablet Portrait - 768px breakpoint */
 @media (max-width: 768px) and (min-width: 668px) {
-  /* Navigation icons - 25% decrease */
-  .home-icon {
-    width: 4.5rem !important; /* Decreased from w-24 (6rem) to 75% */
-    height: 4.5rem !important; /* Decreased from h-24 (6rem) to 75% */
+  /* All icons uniform size for tablet - 30px (1.875rem) */
+  .home-page-gallery-icon,
+  .home-page-contact-icon,
+  .contact-page-home-icon,
+  .contact-page-gallery-icon,
+  .gallery-page-home-icon,
+  .gallery-page-contact-icon {
+    width: 1.875rem !important; /* 30px */
+    height: 1.875rem !important; /* 30px */
   }
   
   /* Gallery showcase heading - 25% decrease */
@@ -554,16 +602,57 @@ textarea:focus::placeholder {
 
 /* Small Desktop - 1280px breakpoint */
 @media (max-width: 1280px) and (min-width: 769px) {
-  /* Contact and Gallery navigation icons - 25% decrease */
-  .home-icon {
-    width: 2.25rem !important; /* Decreased from w-12 (3rem) to 75% */
-    height: 2.25rem !important; /* Decreased from w-12 (3rem) to 75% */
+  /* Tablet/small desktop sizing - keep current desktop proportions but smaller */
+  .home-page-gallery-icon,
+  .home-page-contact-icon {
+    width: 4.5rem !important; /* 72px - 25% smaller than 96px */
+    height: 4.5rem !important;
+  }
+  
+  .contact-page-home-icon,
+  .contact-page-gallery-icon,
+  .gallery-page-home-icon,
+  .gallery-page-contact-icon {
+    width: 2.25rem !important; /* 36px - 25% smaller than 48px */
+    height: 2.25rem !important;
   }
   
   /* Gallery showcase heading - 25% decrease */
   .gallery-showcase-heading {
     font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
   }
+}
+
+/* Home page layout classes */
+.home-page-container {
+  background: #FFFFFF !important;
+  font-family: "Courier New", monospace !important;
+  height: 100vh !important;
+}
+
+.home-page-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100vh !important;
+  padding-left: 5vw !important;
+  padding-top: 3vw !important;
+}
+
+.home-nav-container {
+  display: flex !important;
+  gap: 1rem !important;
+  margin-bottom: 10vh;
+}
+
+.home-gallery-icon {
+  margin-right: 5rem !important;
+}
+
+.home-copyright {
+    font-size: .5rem;
+  font-family: "Courier New", monospace !important;
+  color: #555555 !important;
 }
 
 @media (max-width: 640px) {

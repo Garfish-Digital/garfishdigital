@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { HomeModernIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import './contact.css';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -150,16 +151,7 @@ export default function Contact() {
 
   if (isSubmitted) {
     return (
-      <div 
-        className="min-h-screen text-white flex items-center justify-center"
-        style={{
-          background: `
-            radial-gradient(at 40% 20%, #4A4A4A 0px, transparent 50%),
-            radial-gradient(at 80% 80%, #2F2F2F 0px, transparent 70%),
-            radial-gradient(at 0% 50%, #5A5A5A 0px, transparent 90%),
-            #0A0A0A
-          `
-        }}
+      <div className="min-h-screen text-white flex items-center justify-center contact-success-background"
       >
         <motion.div
           className="text-center"
@@ -182,12 +174,7 @@ export default function Contact() {
   }
 
   return (
-    <div 
-      className="min-h-screen text-black"
-      style={{
-        background: '#FFFFFF',
-        fontFamily: 'Courier New, monospace',
-      }}
+    <div className="min-h-screen text-black contact-page-container"
     >
       {/* Home Icon - Top Right */}
       <Link 
@@ -195,16 +182,16 @@ export default function Contact() {
         className="fixed top-8 right-8 z-50 transition-all duration-300 hover:brightness-150"
         title="Back to Home"
       >
-        <HomeModernIcon className="w-12 h-12 home-icon drop-shadow-lg" />
+        <HomeModernIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
       </Link>
       
       {/* Gallery Icon - Top Right */}
       <Link 
         href="/gallery"
-        className="fixed top-30 right-8 z-50 transition-all duration-300 hover:brightness-150"
+        className="fixed right-8 z-50 transition-all duration-300 hover:brightness-150"
         title="Gallery"
       >
-        <Squares2X2Icon className="w-12 h-12 home-icon drop-shadow-lg" />
+        <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
       </Link>
 
       <div className="flex items-center justify-center min-h-screen px-6">
@@ -444,14 +431,7 @@ export default function Contact() {
           onClick={() => setShowModal(null)}
         >
           <motion.div
-            className="w-full max-w-4xl mx-4 mb-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden"
-            style={{
-              background: `
-                radial-gradient(at 20% 30%, rgba(67, 105, 91, 0.1) 0px, transparent 50%),
-                radial-gradient(at 80% 70%, rgba(47, 69, 56, 0.1) 0px, transparent 60%),
-                rgba(10, 10, 10, 0.95)
-              `
-            }}
+            className="w-full max-w-4xl mx-4 mb-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden contact-modal-background"
             initial={{ y: '100%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
