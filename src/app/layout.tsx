@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Poppins, Source_Sans_3 } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Poppins, Source_Sans_3, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,6 +29,12 @@ const sourceSans = Source_Sans_3({
   weight: ["400", "500", "600"],
 });
 
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
   title: "Garfish Digital",
   description: "Web Design and Development",
@@ -42,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${sourceSans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${sourceSans.variable} ${robotoMono.variable} antialiased`}
       >
         {children}
       </body>

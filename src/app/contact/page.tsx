@@ -264,7 +264,8 @@ export default function Contact() {
                   <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.name}
-                      className="text-gray-500 font-poppins"
+                      className="text-[#AAAAAA]"
+                      style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -310,7 +311,8 @@ export default function Contact() {
                   <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.email}
-                      className="text-gray-500 font-poppins"
+                      className="text-[#AAAAAA]"
+                      style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -356,7 +358,8 @@ export default function Contact() {
                 <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.company}
-                    className="text-gray-500 font-poppins"
+                    className="text-[#AAAAAA]"
+                    style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
@@ -391,7 +394,8 @@ export default function Contact() {
                 <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.message}
-                    className="text-gray-500 font-poppins"
+                    className="text-[#AAAAAA]"
+                    style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
@@ -419,7 +423,7 @@ export default function Contact() {
             type="submit"
             disabled={isSubmitting}
             className="inline-block bg-white contact-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 transform focus:outline-none"
-            style={{ fontFamily: "'Courier New', monospace" }}
+            style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">

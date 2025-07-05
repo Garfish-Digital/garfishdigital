@@ -12,12 +12,12 @@
   grid-template-columns: repeat(3, 100vw) !important;
   grid-template-rows: repeat(3, 100vh) !important;
   background: #FFFFFF !important;
-  font-family: 'Courier New', monospace !important;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace !important;
 }
 
 /* Gallery page items */
 .gallery-page-item {
-  font-family: 'Courier New', monospace !important;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace !important;
 }
 
 /* Showcase page positioning */

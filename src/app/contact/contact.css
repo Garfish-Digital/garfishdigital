@@ -11,7 +11,7 @@
 /* Main contact page container */
 .contact-page-container {
   background: #FFFFFF !important;
-  font-family: 'Courier New', monospace !important;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace !important;
 }
 
 /* Modal background */

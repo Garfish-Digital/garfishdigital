@@ -224,43 +224,35 @@ export default function Gallery() {
     const techData = {
       cell1: {
         title: 'Portfolio Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell2: {
         title: 'Experiment Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell3: {
         title: 'Interactive Demo Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell4: {
         title: 'Client Work Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell6: {
         title: 'Tools Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell7: {
         title: 'About Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell8: {
         title: 'Contact Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       },
       cell9: {
         title: 'Blog Techniques',
-        leftColumn: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor'],
-        rightColumn: ['Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
+        items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
       }
     };
     return techData[cellId as keyof typeof techData] || null;
@@ -402,7 +394,7 @@ export default function Gallery() {
               className="back-text" 
               style={{ 
                 color: '#000000',
-                fontFamily: "'Courier New', monospace",
+                fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace",
                 fontSize: '2.5rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
@@ -492,7 +484,7 @@ export default function Gallery() {
           
           {/* Tech Card */}
           <motion.div
-            className="relative z-10 mx-[20vw] my-[10vh] bg-[#555555] rounded-lg overflow-hidden"
+            className="relative z-10 mx-4 my-[10vh] bg-[#555555] rounded-lg overflow-hidden"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
@@ -511,30 +503,17 @@ export default function Gallery() {
 
             {/* Header */}
             <div className="flex items-center justify-between p-6 bg-[#555555]">
-              <h2 className="text-2xl font-bold text-[#aaaaaa]" style={{ fontFamily: "'Courier New', monospace" }}>
+              <h2 className="text-2xl font-bold text-[#aaaaaa]" style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}>
                 {getTechCardData(currentPage)?.title || 'Techniques Involved'}
               </h2>
             </div>
 
             {/* Content */}
             <div className="p-6 px-12 md:px-16 lg:px-20 bg-[#555555]">
-              <div className="grid grid-cols-2 gap-12 md:gap-16 lg:gap-20">
-                {/* Left Column */}
+              <div className="grid grid-cols-1 gap-12 md:gap-16 lg:gap-20">
                 <div>
-                  <ul className="text-white space-y-3" style={{ fontFamily: "'Courier New', monospace" }}>
-                    {getTechCardData(currentPage)?.leftColumn.map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-[#aaaaaa] mr-3">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Right Column */}
-                <div>
-                  <ul className="text-white space-y-3" style={{ fontFamily: "'Courier New', monospace" }}>
-                    {getTechCardData(currentPage)?.rightColumn.map((item, index) => (
+                  <ul className="text-white space-y-3" style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}>
+                    {getTechCardData(currentPage)?.items.map((item, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-[#aaaaaa] mr-3">•</span>
                         <span>{item}</span>

@@ -13,6 +13,7 @@
   --font-inter: var(--font-inter);
   --font-poppins: var(--font-poppins);
   --font-source-sans: var(--font-source-sans);
+  --font-roboto-mono: var(--font-roboto-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,13 +40,13 @@ body {
 
 /* Logo styling with distinctive stroke effect */
 .logo-text {
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace;
   font-size: 10vw;
   font-weight: bold;
 }
 
 .page-logo {
-     font-family: 'Courier New', monospace;
+     font-family: var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace;
   font-size: 2.5rem;
   font-weight: bold;
   color: rgba(200, 200, 200, 0.5);
@@ -445,7 +446,7 @@ textarea:focus::placeholder {
     padding: 0.5rem 2rem !important;
   border: 1px solid #aaaaaa !important;
   border-radius: 5px !important;
-  font-weight: 600 !important;
+  font-weight: normal !important;
   transition: border-color 0.3s ease;
 }
 
