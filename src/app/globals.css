@@ -10,6 +10,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+  --font-poppins: var(--font-poppins);
+  --font-source-sans: var(--font-source-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -442,7 +445,7 @@ textarea:focus::placeholder {
     padding: 0.5rem 2rem !important;
   border: 1px solid #aaaaaa !important;
   border-radius: 5px !important;
-  font-weight: normal !important;
+  font-weight: 600 !important;
   transition: border-color 0.3s ease;
 }
 
@@ -595,7 +598,7 @@ textarea:focus::placeholder {
 .home-page-container {
   background: #FFFFFF !important;
   font-family: "Courier New", monospace !important;
-  height: 100vh !important;
+  height: 100dvh !important;
   overflow: hidden !important; /* Lock viewport - no scrolling */
 }
 
@@ -603,7 +606,7 @@ textarea:focus::placeholder {
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  height: 100vh !important;
+  height: 100dvh !important;
   padding-left: 5vw !important;
   padding-top: 3vw !important;
 }

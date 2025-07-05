@@ -23,27 +23,27 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
     switch (pageId) {
       // Top row - minimap goes to bottom (toward Home)
       case 'cell1':
-        return { bottom: '2rem', right: '2rem' }; // bottom-right toward Home
+        return { bottom: 'calc(2rem + 10vh)', right: '2rem' }; // bottom-right toward Home
       case 'cell2':
-        return { bottom: '2rem', left: 'calc(50% - 75px)' }; // bottom center toward Home
+        return { bottom: 'calc(2rem + 10vh)', left: 'calc(50% - 75px)' }; // bottom center toward Home
       case 'cell3':
-        return { bottom: '2rem', left: '2rem' }; // bottom-left toward Home
+        return { bottom: 'calc(2rem + 10vh)', left: '2rem' }; // bottom-left toward Home
       
       // Middle row  
       case 'cell4':
-        return { top: 'calc(50% - 75px)', right: '2rem' }; // right side toward Home
+        return { top: 'calc(50% - 75px - 25vh)', right: '2rem' }; // right side toward Home
       case 'cell5':
         return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' }; // perfectly centered on Home
       case 'cell6':
-        return { top: 'calc(50% - 75px)', left: '2rem' }; // left side toward Home
+        return { top: 'calc(50% - 75px - 25vh)', left: '2rem' }; // left side toward Home
       
       // Bottom row - minimap goes to top (toward Home)
       case 'cell7':
-        return { top: '2rem', right: '2rem' }; // top-right toward Home
+        return { top: 'calc(2rem + 15vh)', right: '2rem' }; // top-right toward Home
       case 'cell8':
-        return { top: '2rem', left: 'calc(50% - 75px)' }; // top center toward Home
+        return { top: 'calc(2rem + 15vh)', left: 'calc(50% - 75px)' }; // top center toward Home
       case 'cell9':
-        return { top: '2rem', left: '2rem' }; // top-left toward Home
+        return { top: 'calc(2rem + 15vh)', left: '2rem' }; // top-left toward Home
       
       default:
         return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' };

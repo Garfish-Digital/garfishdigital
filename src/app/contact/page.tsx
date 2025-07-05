@@ -43,10 +43,10 @@ export default function Contact() {
   useEffect(() => {
     // Cycling placeholder text
     const placeholderOptions = {
-      name: [`What\'s your name`, 'What should we call you?', 'How about a nickname?', 'Who are you?'],
-      email: ['your@email.com', 'Where do you get messages?', 'Your digit@l address', 'How do we reach you?'],
-      company: ['Your company (optional)', 'What type of work do you do?', 'The place you go to bust your a$$', 'Are you part of an organization?'],
-      message: ['Tell us about your project...', 'What are you building?', 'Share your vision...', 'What keeps you up at night?', 'What can we do for you?']
+      name: [`What\'s your name`, 'A nickname?', 'Who are you?'],
+      email: ['your@email.com', 'Where do you get messages?', 'How do we reach you?'],
+      company: ['Your company (optional)', 'What type of work do you do?', 'The people you bust your a$$ for'],
+      message: ['What are you building?', 'What keeps you up at night?', 'What can we do?']
     };
 
     let nameIndex = 0;
@@ -58,25 +58,25 @@ export default function Contact() {
       nameIndex = (nameIndex + 1) % placeholderOptions.name.length;
       setPlaceholders(prev => ({ ...prev, name: placeholderOptions.name[nameIndex] }));
       setPlaceholderKeys(prev => ({ ...prev, name: prev.name + 1 }));
-    }, 7600);
+    }, 12600);
 
     const emailInterval = setInterval(() => {
       emailIndex = (emailIndex + 1) % placeholderOptions.email.length;
       setPlaceholders(prev => ({ ...prev, email: placeholderOptions.email[emailIndex] }));
       setPlaceholderKeys(prev => ({ ...prev, email: prev.email + 1 }));
-    }, 13000);
+    }, 18000);
 
     const companyInterval = setInterval(() => {
       companyIndex = (companyIndex + 1) % placeholderOptions.company.length;
       setPlaceholders(prev => ({ ...prev, company: placeholderOptions.company[companyIndex] }));
       setPlaceholderKeys(prev => ({ ...prev, company: prev.company + 1 }));
-    }, 15500);
+    }, 20500);
 
     const messageInterval = setInterval(() => {
       messageIndex = (messageIndex + 1) % placeholderOptions.message.length;
       setPlaceholders(prev => ({ ...prev, message: placeholderOptions.message[messageIndex] }));
       setPlaceholderKeys(prev => ({ ...prev, message: prev.message + 1 }));
-    }, 10000);
+    }, 15000);
 
     return () => {
       clearInterval(nameInterval);
@@ -216,18 +216,18 @@ export default function Contact() {
       {/* Navigation Icons - Bottom Right */}
       <div className="bottom-nav-container">  
         <Link 
-          href="/gallery"
-          className="transition-all duration-300 hover:brightness-150"
-          title="Gallery"
-        >
-          <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
-        </Link>
-        <Link 
           href="/"
           className="transition-all duration-300 hover:brightness-150"
           title="Back to Home"
         >
           <HomeModernIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
+        </Link>
+        <Link 
+          href="/gallery"
+          className="transition-all duration-300 hover:brightness-150"
+          title="Gallery"
+        >
+          <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
         </Link>
       </div>
 
@@ -237,8 +237,8 @@ export default function Contact() {
         <motion.form
           onSubmit={handleSubmit}
           className="space-y-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="grid md:grid-cols-2 gap-6">
@@ -264,7 +264,7 @@ export default function Contact() {
                   <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.name}
-                      className="text-gray-500"
+                      className="text-gray-500 font-poppins"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -310,7 +310,7 @@ export default function Contact() {
                   <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.email}
-                      className="text-gray-500"
+                      className="text-gray-500 font-poppins"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -356,7 +356,7 @@ export default function Contact() {
                 <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.company}
-                    className="text-gray-500"
+                    className="text-gray-500 font-poppins"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
@@ -391,7 +391,7 @@ export default function Contact() {
                 <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.message}
-                    className="text-gray-500"
+                    className="text-gray-500 font-poppins"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
@@ -419,6 +419,7 @@ export default function Contact() {
             type="submit"
             disabled={isSubmitting}
             className="inline-block bg-white contact-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 transform focus:outline-none"
+            style={{ fontFamily: "'Courier New', monospace" }}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
