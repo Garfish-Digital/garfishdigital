@@ -23,7 +23,7 @@ const demoCards = {
   cell1: {
     title: 'Black Lodge Brews',
     subtitle: 'Micro Brewery Taproom',
-    url: 'https://blacklodgebrews-demo.netlify.app',
+    url: '/',
     effects: ['Responsive design', 'Performance optimized', 'Modern aesthetics'],
     hoverColors: {
       border: 'hover:border-blue-500/50',
@@ -35,7 +35,7 @@ const demoCards = {
   cell2: {
     title: 'Lab Experiments',
     subtitle: 'Innovation Station',
-    url: 'https://infernoink-demo.netlify.app',
+    url: '/',
     effects: ['WebGL shaders', 'AI integration', 'Real-time effects'],
     hoverColors: {
       border: 'hover:border-yellow-500/50',
@@ -47,7 +47,7 @@ const demoCards = {
   cell3: {
     title: 'Inferno Ink',
     subtitle: 'Hell Hath No Fury',
-    url: 'https://infernoink-demo.netlify.app',
+    url: '/',
     effects: ['Fire particles', 'Custom cursor', 'Animated scrolling'],
     hoverColors: {
       border: 'hover:border-red-500/50',
@@ -59,7 +59,7 @@ const demoCards = {
   cell4: {
     title: 'Client Projects',
     subtitle: 'Professional Solutions',
-    url: 'https://infernoink-demo.netlify.app',
+    url: '/',
     effects: ['Custom frameworks', 'Enterprise scale', 'Security focused'],
     hoverColors: {
       border: 'hover:border-teal-500/50',
@@ -71,7 +71,7 @@ const demoCards = {
   cell6: {
     title: 'Obsidian Peaks',
     subtitle: 'Snowboarding Lessons & Tours',
-    url: 'https://obsidianpeaks-demo.netlify.app',
+    url: '/',
     effects: ['CLI automation', 'Code generation', 'Testing frameworks'],
     hoverColors: {
       border: 'hover:border-purple-500/50',
@@ -83,7 +83,7 @@ const demoCards = {
   cell7: {
     title: 'Our Story',
     subtitle: 'Digital Craftsmen',
-    url: 'https://infernoink-demo.netlify.app',
+    url: '/',
     effects: ['User-centered design', 'Agile methodology', 'Continuous learning'],
     hoverColors: {
       border: 'hover:border-orange-500/50',
@@ -95,7 +95,7 @@ const demoCards = {
   cell8: {
     title: 'Get In Touch',
     subtitle: 'Start Your Project',
-    url: '/contact',
+    url: '/',
     effects: ['Free consultation', 'Project planning', 'Custom solutions'],
     hoverColors: {
       border: 'hover:border-slate-500/50',
@@ -107,7 +107,7 @@ const demoCards = {
   cell9: {
     title: 'Hearth & Harrow',
     subtitle: 'Divination Supplies',
-    url: 'https://hearthandharrow-demo.netlify.app',
+    url: '/',
     effects: ['Technical deep-dives', 'Industry trends', 'Best practices'],
     hoverColors: {
       border: 'hover:border-gray-500/50',
@@ -121,7 +121,6 @@ const demoCards = {
 export default function Gallery() {
   const [currentPage, setCurrentPage] = useState('cell5');
   const [showTechCard, setShowTechCard] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const scrollToPage = (pageId: string) => {
     const page = pages.find(p => p.id === pageId);
