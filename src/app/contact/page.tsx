@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { GlobeAltIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, Squares2X2Icon, AtSymbolIcon } from '@heroicons/react/24/outline';
 import './contact.css';
 
 export default function Contact() {
@@ -188,8 +188,9 @@ export default function Contact() {
             href="/"
             className="transition-all duration-300 hover:brightness-150"
             title="Back to Home"
+            style={{ position: 'relative', top: '-6px' }}
           >
-            <GlobeAltIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
+            <GlobeAltIcon className="home-icon contact-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }}  />
           </Link>
         </motion.div>
         <motion.div
@@ -201,9 +202,18 @@ export default function Contact() {
             href="/gallery"
             className="transition-all duration-300 hover:brightness-150"
             title="Gallery"
+            style={{ position: 'relative', top: '-6px' }}
           >
             <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
           </Link>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <AtSymbolIcon className="home-icon contact-page-gallery-icon drop-shadow-lg" style={{ color: '#555555', position: 'relative', top: '-6px' }} />
         </motion.div>
       </div>
 
@@ -217,7 +227,7 @@ export default function Contact() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 contact-form-grid">
             <div className="relative">
               <div className="relative">
                 <input
@@ -354,7 +364,7 @@ export default function Contact() {
                 id="message"
                 name="message"
                 required
-                rows={4}
+                rows={2}
                 value={formData.message}
                 onChange={handleChange}
                 onFocus={() => handleFocus('message')}

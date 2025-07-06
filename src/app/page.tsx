@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Squares2X2Icon, AtSymbolIcon } from "@heroicons/react/24/outline";
+import { Squares2X2Icon, AtSymbolIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
@@ -75,10 +75,19 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          <GlobeAltIcon className="home-icon home-page-gallery-icon drop-shadow-lg" style={{ color: '#555555', position: 'relative', top: '-6px' }} />
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <Link 
             href="/gallery"
             className="transition-all duration-300 hover:brightness-150"
             title="Gallery"
+            style={{ position: 'relative', top: '-6px' }}
           >
             <Squares2X2Icon className="home-icon home-page-gallery-icon drop-shadow-lg" />
           </Link>
@@ -93,6 +102,7 @@ export default function Home() {
             href="/contact"
             className="transition-all duration-300 hover:brightness-150"
             title="Contact"
+            style={{ position: 'relative', top: '-6px' }}
           >
             <AtSymbolIcon className="home-icon home-page-contact-icon drop-shadow-lg" />
           </Link>

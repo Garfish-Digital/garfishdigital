@@ -18,36 +18,10 @@ interface MinimapProps {
 
 export default function Minimap({ currentPage, onPageClick, pages }: MinimapProps) {
 
-  // Dynamic positioning logic - position minimap on side nearest to Home from current page
-  const getMinimapPosition = (pageId: string) => {
-    switch (pageId) {
-      // Top row - minimap goes to bottom (toward Home)
-      case 'cell1':
-        return { bottom: 'calc(2rem + 10vh)', right: '2rem' }; // bottom-right toward Home
-      case 'cell2':
-        return { bottom: 'calc(2rem + 10vh)', left: 'calc(50% - 75px)' }; // bottom center toward Home
-      case 'cell3':
-        return { bottom: 'calc(2rem + 10vh)', left: '2rem' }; // bottom-left toward Home
-      
-      // Middle row  
-      case 'cell4':
-        return { top: 'calc(50% - 75px - 25vh)', right: '2rem' }; // right side toward Home
-      case 'cell5':
-        return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' }; // perfectly centered on Home
-      case 'cell6':
-        return { top: 'calc(50% - 75px - 25vh)', left: '2rem' }; // left side toward Home
-      
-      // Bottom row - minimap goes to top (toward Home)
-      case 'cell7':
-        return { top: 'calc(2rem + 15vh)', right: '2rem' }; // top-right toward Home
-      case 'cell8':
-        return { top: 'calc(2rem + 15vh)', left: 'calc(50% - 75px)' }; // top center toward Home
-      case 'cell9':
-        return { top: 'calc(2rem + 15vh)', left: '2rem' }; // top-left toward Home
-      
-      default:
-        return { top: 'calc(50% - 75px)', left: 'calc(50% - 75px)' };
-    }
+  // Fixed positioning logic - minimap always in upper right corner
+  const getMinimapPosition = () => {
+    // Always position in upper right corner regardless of current page
+    return { top: 'calc(2rem + 72px)', right: '2rem' };
   };
 
   // Map page IDs to their 3x3 grid positions
@@ -66,7 +40,7 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
     return positions[pageId as keyof typeof positions] || { row: 2, col: 2 };
   };
 
-  const position = getMinimapPosition(currentPage);
+  const position = getMinimapPosition();
 
   return (
     <motion.div
@@ -83,8 +57,8 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
         style={{
           width: '150px',
           height: '150px',
-          backgroundColor: '#555555',
-          border: '2px solid rgba(255, 255, 255, 0.1)',
+          backgroundColor: '#ffffff',
+        //   border: '1px solid rgba(170, 170, 170, 0.25)',
         }}
       >
         
@@ -117,15 +91,16 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
                   ${isActive ? '' : ''}
                 `}
                 style={{
-                    border : '1px solid rgba(255, 255, 255, 0.2)',
+                    border : '1px solid rgba(170, 170, 170, 0.5)',
                   backgroundColor: isActive 
                     ? 'rgba(170, 170, 170)'
-                    : 'rgba(255, 255, 255, 0.05)',
+                    : 'white',
+                    // : 'rgba(170, 170, 170, 0.25)',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page ? { 
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.25)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >

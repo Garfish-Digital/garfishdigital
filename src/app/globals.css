@@ -610,7 +610,60 @@ textarea:focus::placeholder {
     width: 1.5rem !important; /* 24px - same as mobile portrait */
     height: 1.5rem !important;
   }
+  
+  /* Contact form adjustments for landscape */
+  .contact-form-container {
+    max-width: 28rem !important; /* Smaller width in landscape - reduced from 32rem */
+    transform: scale(0.75) !important; /* Further scale reduction */
+    transform-origin: center !important;
+  }
+  
+  /* Force single column layout in landscape on all devices */
+  .contact-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important; /* Reduced gap between name/email fields */
+  }
+  
+  /* Reduce form spacing in landscape */
+  .contact-form-container .space-y-4 {
+    gap: 0.75rem !important; /* Reduce space between all form elements */
+  }
+  
+  /* Reduce top padding in landscape only on contact page */
+  .contact-page-container .pt-24 {
+    padding-top: 4rem !important; /* Override pt-24 to pt-16 in landscape for contact page only */
+  }
+  
 }
+
+/* Surface Duo landscape specific adjustments - 720x540 */
+@media (min-width: 720px) and (max-width: 720px) and (min-height: 540px) and (max-height: 540px) and (orientation: landscape) {
+  .contact-page-container .pt-24 {
+    padding-top: 6rem !important; /* Restore pt-24 for Surface Duo landscape */
+  }
+}
+
+/* Contact modal size reduction - all devices and orientations */
+.contact-modal-background {
+  max-width: 28rem !important; /* Reduced from max-w-4xl (56rem) to 28rem */
+  max-height: 70vh !important; /* Limit height to 70% of viewport */
+}
+
+.contact-modal-background .p-6 {
+  padding: 1rem !important; /* Reduced from p-6 (1.5rem) to 1rem */
+}
+
+.contact-modal-background .max-h-\[60vh\] {
+  max-height: 50vh !important; /* Reduced content area height */
+}
+
+
+/* Gallery demo cards sizing - normal size (was previously reduced by 25%) */
+.gallery-page-item .h-full > a {
+  transform: scale(1.0) !important; /* Restore to normal size (25% increase from previous 0.75) */
+  transform-origin: center !important;
+}
+
 
 /* Home page layout classes */
 .home-page-container {

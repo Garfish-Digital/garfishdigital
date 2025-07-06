@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Minimap from '@/components/Minimap';
-import { GlobeAltIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, ArrowsPointingOutIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import './gallery.css';
 
 const pages = [
@@ -125,70 +125,13 @@ export default function Gallery() {
 
   const scrollToPage = (pageId: string) => {
     const page = pages.find(p => p.id === pageId);
-    if (!page || !wrapperRef.current) return;
+    if (!page) return;
 
-    let scrollLeft = 0;
-    let scrollTop = 0;
-
-    switch (pageId) {
-      case 'cell1':
-        scrollLeft = 0;
-        scrollTop = 0;
-        break;
-      case 'cell2':
-        scrollLeft = window.innerWidth;
-        scrollTop = 0;
-        break;
-      case 'cell3':
-        scrollLeft = window.innerWidth * 2;
-        scrollTop = 0;
-        break;
-      case 'cell4':
-        scrollLeft = 0;
-        scrollTop = window.innerHeight;
-        break;
-      case 'cell5':
-        scrollLeft = window.innerWidth;
-        scrollTop = window.innerHeight;
-        break;
-      case 'cell6':
-        scrollLeft = window.innerWidth * 2;
-        scrollTop = window.innerHeight;
-        break;
-      case 'cell7':
-        scrollLeft = 0;
-        scrollTop = window.innerHeight * 2;
-        break;
-      case 'cell8':
-        scrollLeft = window.innerWidth;
-        scrollTop = window.innerHeight * 2;
-        break;
-      case 'cell9':
-        scrollLeft = window.innerWidth * 2;
-        scrollTop = window.innerHeight * 2;
-        break;
-    }
-
-    wrapperRef.current.scrollTo({
-      left: scrollLeft,
-      top: scrollTop,
-      behavior: 'smooth'
-    });
-
+    // Just update state - CSS transform will handle the animation
     setCurrentPage(pageId);
   };
 
-  useEffect(() => {
-    // Initialize scroll position to cell5 without animation
-    if (wrapperRef.current) {
-      wrapperRef.current.scrollTo({
-        left: window.innerWidth,
-        top: window.innerHeight,
-        behavior: 'auto' // No animation on initial load
-      });
-    }
-  }, []);
-
+  // No initialization needed - CSS handles default positioning
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -390,28 +333,13 @@ export default function Gallery() {
   const getPageContent = (pageId: string) => {
     if (pageId === 'cell5') {
       return (
-        <div className="relative w-full h-full">
-          {/* Static Black Logo - Upper Left Corner */}
-          <motion.div 
-            className="fixed top-8 left-8 z-20"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+        <div className="relative w-full h-full flex items-center justify-center">
+          <p 
+            className="text-black font-normal"
+            style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
           >
-            <div 
-              className="back-text" 
-              style={{ 
-                color: '#000000',
-                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
-                fontSize: '2.5rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                textAlign: 'left'
-              }}
-            >
-              garfish digital
-            </div>
-          </motion.div>
+            go see
+          </p>
         </div>
       );
     }
@@ -426,6 +354,28 @@ export default function Gallery() {
 
   return (
     <>
+      {/* Fixed Logo - Always Visible */}
+      <motion.div 
+        className="fixed top-8 left-8 z-20"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div 
+          className="back-text" 
+          style={{ 
+            color: '#000000',
+            fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            textAlign: 'left'
+          }}
+        >
+          garfish digital
+        </div>
+      </motion.div>
+
       {/* Navigation Icons - Bottom Right */}
       <div className="bottom-nav-container">
         <motion.div
@@ -438,8 +388,16 @@ export default function Gallery() {
             className="transition-all duration-300 hover:brightness-150"
             title="Back to Home"
           >
-            <GlobeAltIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
+            <GlobeAltIcon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }} />
           </Link>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <Squares2X2Icon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#555555' }} />
         </motion.div>
         
         <motion.div
@@ -459,46 +417,52 @@ export default function Gallery() {
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <AnimatePresence mode="wait">
-            {currentPage === 'cell5' ? (
-              <motion.button
-                key="random-nav"
-                onClick={handleRandomNavigation}
-                className="transition-all duration-300 hover:brightness-150"
-                title="Explore Random Page"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.2, ease: "easeOut", delay: 0.7 }}
-              >
-                <ArrowsPointingOutIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
-              </motion.button>
-            ) : (
-              <motion.button
-                key="tech-card"
-                onClick={handleTechCardOpen}
-                className="transition-all duration-300 hover:brightness-150"
-                title="View Techniques"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-              >
-                <BeakerIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
-              </motion.button>
-            )}
-          </AnimatePresence>
+         <motion.button
+  onClick={currentPage === 'cell5' ? handleRandomNavigation : handleTechCardOpen}
+  className="transition-all duration-300 hover:brightness-150 block"
+  title={currentPage === 'cell5' ? "Explore Random Page" : "View Techniques"}
+  style={{ margin: 0, padding: 0, border: 'none', background: 'none' }}
+  initial={false}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{ duration: 0.2, ease: "easeOut" }}
+>
+  <AnimatePresence mode="wait">
+    {currentPage === 'cell5' ? (
+      <motion.span
+        key="random-nav"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        style={{ display: 'inline-block' }}
+      >
+        <ArrowsPointingOutIcon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }} />
+      </motion.span>
+    ) : (
+      <motion.span
+        key="tech-card"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        style={{ display: 'inline-block' }}
+      >
+        <BeakerIcon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa'}}/>
+      </motion.span>
+    )}
+  </AnimatePresence>
+</motion.button>
         </motion.div>
       </div>
 
       <div 
-        ref={wrapperRef}
         className="w-screen h-screen overflow-hidden gallery-wrapper"
       >
         <div 
-          className="grid relative gallery-grid"
+          className={`grid relative gallery-grid gallery-grid-${currentPage}`}
         >
           {pages.map((page) => (
             <div
