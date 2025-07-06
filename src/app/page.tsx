@@ -10,40 +10,70 @@ export default function Home() {
       <div className="home-page-layout">
         {/* Logo and Byline */}
         <div>
-          <motion.h1
-            className="logo-text"
+          <motion.div 
+            className="fixed top-8 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            garfish
-          </motion.h1>
-          <motion.h2
-            className="logo-text"
+            <div 
+              className="back-text" 
+              style={{ 
+                color: '#000000',
+                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '2.5rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                textAlign: 'left'
+              }}
+            >
+              garfish digital
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="fixed top-25 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          > 
-            digital
-          </motion.h2>
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          >
+            <div 
+              className="back-text" 
+              style={{ 
+                color: '#000000',
+                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '1rem',
+                fontWeight: 'normal',
+                cursor: 'pointer',
+                textAlign: 'left'
+              }}
+            >
+              web design
+            </div>
+          </motion.div>
+          
         </div>
 
         {/* Spacer for layout */}
         <div></div>
         {/* Copyright */}
-        <div>
-          <p className="home-copyright">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+        >
+          <p className="home-copyright" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
             © 2024 Garfish Digital. All rights reserved.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       {/* Navigation Icons - Bottom Right */}
       <div className="bottom-nav-container">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 1 }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Link 
             href="/gallery"
@@ -55,9 +85,9 @@ export default function Home() {
         </motion.div>
         
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 1.4 }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Link 
             href="/contact"

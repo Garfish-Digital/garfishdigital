@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Minimap from '@/components/Minimap';
-import { HomeModernIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, HomeModernIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, XMarkIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
 import './gallery.css';
 
 const pages = [
@@ -269,6 +269,14 @@ export default function Gallery() {
     setShowTechCard(false);
   };
 
+  const handleRandomNavigation = () => {
+    // Get all pages except cell5
+    const availablePages = pages.filter(page => page.id !== 'cell5');
+    // Pick a random page
+    const randomPage = availablePages[Math.floor(Math.random() * availablePages.length)];
+    scrollToPage(randomPage.id);
+  };
+
   // 3D Tilt Effect Functions
   const createTiltHandlers = () => {
     let animationFrameId: number | null = null;
@@ -354,14 +362,14 @@ export default function Gallery() {
             
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex items-start justify-between mb-3 sm:mb-4">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight font-poppins">{cardData.title}</h3>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>{cardData.title}</h3>
               </div>
               
-              <p className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed font-poppins`}>{cardData.subtitle}</p>
+              <p className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed`} style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>{cardData.subtitle}</p>
               
               <div className="space-y-2 mb-6 sm:mb-8 flex-1">
-                <p className="text-white/60 text-xs sm:text-sm font-medium font-poppins">Features:</p>
-                <ul className="text-white/80 text-xs sm:text-sm space-y-1 font-poppins">
+                <p className="text-white/60 text-xs sm:text-sm font-medium" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Features:</p>
+                <ul className="text-white/80 text-xs sm:text-sm space-y-1" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
                   {cardData.effects.map((effect, index) => (
                     <li key={index}>• {effect}</li>
                   ))}
@@ -369,7 +377,7 @@ export default function Gallery() {
               </div>
               
               <div className="flex items-center text-white/70 group-hover:text-white transition-colors mt-auto">
-                <span className="text-xs sm:text-sm font-medium font-poppins">{cardData.url.startsWith('http') ? 'View Live Demo' : 'Explore'}</span>
+                <span className="text-xs sm:text-sm font-medium" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>{cardData.url.startsWith('http') ? 'View Live Demo' : 'Explore'}</span>
                 <ChevronDoubleRightIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
                 <RectangleGroupIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
               </div>
@@ -394,7 +402,7 @@ export default function Gallery() {
               className="back-text" 
               style={{ 
                 color: '#000000',
-                fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace",
+                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
                 fontSize: '2.5rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
@@ -420,29 +428,69 @@ export default function Gallery() {
     <>
       {/* Navigation Icons - Bottom Right */}
       <div className="bottom-nav-container">
-        {currentPage !== 'cell5' && (
-          <button 
-            onClick={handleTechCardOpen}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <Link 
+            href="/"
             className="transition-all duration-300 hover:brightness-150"
-            title="View Techniques"
+            title="Back to Home"
           >
-            <BeakerIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
-          </button>
-        )}
-        <Link 
-          href="/"
-          className="transition-all duration-300 hover:brightness-150"
-          title="Back to Home"
+            <GlobeAltIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
+          </Link>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <HomeModernIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
-        </Link>
-        <Link 
-          href="/contact"
-          className="transition-all duration-300 hover:brightness-150"
-          title="Contact"
+          <Link 
+            href="/contact"
+            className="transition-all duration-300 hover:brightness-150"
+            title="Contact"
+          >
+            <AtSymbolIcon className="home-icon gallery-page-contact-icon drop-shadow-lg" />
+          </Link>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <AtSymbolIcon className="home-icon gallery-page-contact-icon drop-shadow-lg" />
-        </Link>
+          <AnimatePresence mode="wait">
+            {currentPage === 'cell5' ? (
+              <motion.button
+                key="random-nav"
+                onClick={handleRandomNavigation}
+                className="transition-all duration-300 hover:brightness-150"
+                title="Explore Random Page"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2, ease: "easeOut", delay: 0.7 }}
+              >
+                <ArrowsPointingOutIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
+              </motion.button>
+            ) : (
+              <motion.button
+                key="tech-card"
+                onClick={handleTechCardOpen}
+                className="transition-all duration-300 hover:brightness-150"
+                title="View Techniques"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              >
+                <BeakerIcon className="home-icon gallery-page-home-icon drop-shadow-lg" />
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       <div 
@@ -469,63 +517,89 @@ export default function Gallery() {
         pages={pages}
       />
 
-      {/* Tech Card Modal */}
-      {showTechCard && (
-        <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          onClick={handleTechCardClose}
-        >
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black opacity-20" />
-          
-          {/* Tech Card */}
+      {/* Hip & Soothing Tech Card Modal */}
+      <AnimatePresence>
+        {showTechCard && (
           <motion.div
-            className="relative z-10 mx-4 my-[10vh] bg-[#555555] rounded-lg overflow-hidden"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            onClick={handleTechCardClose}
           >
-            {/* Close Button */}
-            <div className="flex justify-end">
-              <button
-                onClick={handleTechCardClose}
-                className="text-[#aaaaaa] hover:text-white transition-colors p-2"
+            <motion.div
+              className="w-full max-w-4xl mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden"
+              initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -1 }}
+              animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20, rotate: 1 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <motion.div 
+                className="flex items-center justify-between p-6 border-b border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.4 }}
               >
-                <XMarkIcon className="w-6 h-6" />
-              </button>
-            </div>
+                <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
+                  {getTechCardData(currentPage)?.title || 'Techniques Involved'}
+                </h2>
+                <motion.button
+                  onClick={handleTechCardClose}
+                  className="text-white/60 hover:text-white transition-colors p-2"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </motion.button>
+              </motion.div>
 
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 bg-[#555555]">
-              <h2 className="text-2xl font-bold text-[#aaaaaa]" style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}>
-                {getTechCardData(currentPage)?.title || 'Techniques Involved'}
-              </h2>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 px-12 md:px-16 lg:px-20 bg-[#555555]">
-              <div className="grid grid-cols-1 gap-12 md:gap-16 lg:gap-20">
-                <div>
-                  <ul className="text-white space-y-3" style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}>
+              {/* Content */}
+              <motion.div 
+                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed" 
+                style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+              >
+                <div className="space-y-4">
+                  <ul className="text-white space-y-3">
                     {getTechCardData(currentPage)?.items.map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-[#aaaaaa] mr-3">•</span>
+                      <motion.li 
+                        key={index} 
+                        className="flex items-start"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 + (index * 0.1), duration: 0.4 }}
+                      >
+                        <span className="text-white/60 mr-3">•</span>
                         <span>{item}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+
+              {/* Footer */}
+              <motion.div 
+                className="p-6 border-t border-white/10 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+              >
+                <p className="text-white/50 text-sm" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Technical implementation details</p>
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }

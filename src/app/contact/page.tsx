@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { HomeModernIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, HomeModernIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import './contact.css';
 
 export default function Contact() {
@@ -30,14 +30,6 @@ export default function Contact() {
     message: 0
   });
   const [showModal, setShowModal] = useState<'privacy' | 'terms' | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [showGlitchLogo, setShowGlitchLogo] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [showFinalLogo, setShowFinalLogo] = useState(false);
-  const [backTextOpacity, setBackTextOpacity] = useState(0);
-  const [glitchOpacity, setGlitchOpacity] = useState(1);
-  const [glitchText7, setGlitchText7] = useState('.');
-  const [glitchText4, setGlitchText4] = useState('.');
 
   // Separate cycling for each field with staggered timing
   useEffect(() => {
@@ -45,7 +37,7 @@ export default function Contact() {
     const placeholderOptions = {
       name: [`What\'s your name`, 'A nickname?', 'Who are you?'],
       email: ['your@email.com', 'Where do you get messages?', 'How do we reach you?'],
-      company: ['Your company (optional)', 'What type of work do you do?', 'The people you bust your a$$ for'],
+      company: ['Your company (optional)', 'What type of work do you do?', 'Who you bust your a$$ for'],
       message: ['What are you building?', 'What keeps you up at night?', 'What can we do?']
     };
 
@@ -86,35 +78,6 @@ export default function Contact() {
     };
   }, []);
 
-  // No final logo transition - let the black text remain as the final state
-
-  // Text content changes
-  useEffect(() => {
-    // Change glitched-text-7 to "i" after 10 seconds
-    const text7Timer = setTimeout(() => {
-      setGlitchText7('i');
-    }, 10000);
-
-    // Change glitched-text-4 to "i" after 20 seconds  
-    const text4Timer = setTimeout(() => {
-      setGlitchText4('i');
-    }, 20000);
-
-    return () => {
-      clearTimeout(text7Timer);
-      clearTimeout(text4Timer);
-    };
-  }, []);
-
-  // Back-text and glitch fade animations - start after 20 seconds
-  useEffect(() => {
-    const animationTimer = setTimeout(() => {
-      setBackTextOpacity(1);  // Fade in black back-text
-      setGlitchOpacity(0);    // Fade out glitch text
-    }, 20000);
-
-    return () => clearTimeout(animationTimer);
-  }, []);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -197,11 +160,12 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-6xl mb-8">✓</div>
-          <h1 className="text-3xl font-bold mb-4">Message Sent</h1>
-          <p className="text-white/70 mb-8">We&apos;ll get back to you within 24 hours.</p>
+          <h1 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Message Sent</h1>
+          <p className="text-white/70 mb-8" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>We&apos;ll get back to you within 24 hours.</p>
           <Link 
             href="/"
             className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+            style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
           >
             ← Back to Home
           </Link>
@@ -211,32 +175,44 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen text-black contact-page-container"
+    <div className="h-screen overflow-hidden text-black contact-page-container"
     >
       {/* Navigation Icons - Bottom Right */}
       <div className="bottom-nav-container">  
-        <Link 
-          href="/"
-          className="transition-all duration-300 hover:brightness-150"
-          title="Back to Home"
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <HomeModernIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
-        </Link>
-        <Link 
-          href="/gallery"
-          className="transition-all duration-300 hover:brightness-150"
-          title="Gallery"
+          <Link 
+            href="/"
+            className="transition-all duration-300 hover:brightness-150"
+            title="Back to Home"
+          >
+            <GlobeAltIcon className="home-icon contact-page-home-icon drop-shadow-lg" />
+          </Link>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
-        </Link>
+          <Link 
+            href="/gallery"
+            className="transition-all duration-300 hover:brightness-150"
+            title="Gallery"
+          >
+            <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
+          </Link>
+        </motion.div>
       </div>
 
-      <div className="flex items-center justify-center min-h-screen px-6">
-        <div className="w-full max-w-2xl contact-form-container">
+      <div className="flex items-start justify-center h-screen px-4 pt-24">
+        <div className="w-full max-w-lg contact-form-container">
       
         <motion.form
           onSubmit={handleSubmit}
-          className="space-y-8"
+          className="space-y-4"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -253,7 +229,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus('name')}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
+                  className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
                     focusedField === 'name' 
                       ? 'focus-bounce' 
                       : ''
@@ -261,7 +237,7 @@ export default function Contact() {
                   placeholder=" "
                 />
                 {!formData.name && (
-                  <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
+                  <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.name}
                       className="text-[#AAAAAA]"
@@ -300,7 +276,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus('email')}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
+                  className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
                     focusedField === 'email' 
                       ? 'focus-bounce' 
                       : ''
@@ -308,7 +284,7 @@ export default function Contact() {
                   placeholder=" "
                 />
                 {!formData.email && (
-                  <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
+                  <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.email}
                       className="text-[#AAAAAA]"
@@ -347,7 +323,7 @@ export default function Contact() {
                 onChange={handleChange}
                 onFocus={() => handleFocus('company')}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
+                className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
                   focusedField === 'company' 
                     ? 'focus-bounce' 
                     : ''
@@ -355,7 +331,7 @@ export default function Contact() {
                 placeholder=" "
               />
               {!formData.company && (
-                <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
+                <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.company}
                     className="text-[#AAAAAA]"
@@ -378,12 +354,12 @@ export default function Contact() {
                 id="message"
                 name="message"
                 required
-                rows={6}
+                rows={4}
                 value={formData.message}
                 onChange={handleChange}
                 onFocus={() => handleFocus('message')}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-4 bg-white contact-form-field focus:outline-none text-black resize-none transition-all duration-300 ${
+                className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black resize-none transition-all duration-300 ${
                   focusedField === 'message' 
                     ? 'focus-bounce' 
                     : ''
@@ -391,7 +367,7 @@ export default function Contact() {
                 placeholder=" "
               />
               {!formData.message && (
-                <div className="absolute left-4 top-4 pointer-events-none overflow-hidden h-6">
+                <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                   <motion.div
                     key={placeholderKeys.message}
                     className="text-[#AAAAAA]"
@@ -438,133 +414,157 @@ export default function Contact() {
         </div>
       </div>
 
+      {/* Static Logo - Upper Left */}
+      <motion.div 
+        className="fixed top-8 left-8 z-20"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div 
+          className="back-text" 
+          style={{ 
+            color: '#000000',
+            fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            textAlign: 'left'
+          }}
+        >
+          garfish digital
+        </div>
+      </motion.div>
+
       {/* Legal Links - Bottom Left */}
       <div className="fixed bottom-8 left-8 z-40 flex gap-4 text-xs">
-        <button
+        <motion.button
           onClick={() => setShowModal('privacy')}
           className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+          style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+          initial={{ opacity: 0, x: -30, y: 30 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
         >
           Privacy
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           onClick={() => setShowModal('terms')}
           className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+          style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+          initial={{ opacity: 0, x: -30, y: 30 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
         >
           Terms
-        </button>
+        </motion.button>
       </div>
 
-      {/* Glitch Animation - Upper Left */}
-      {showGlitchLogo && (
-        <div className="fixed top-8 left-8">
-          {/* Black back-text - identical positioning with animated opacity */}
-          <div 
-            className="glitched-text back-text z-40" 
-            style={{ 
-              opacity: backTextOpacity,
-              transition: 'opacity 10s ease-in-out'
-            }}
-          ><span>garfish digital</span>
-          </div>
-          {/* Original glitch text on top */}
-          <div 
-            className="glitched-text z-50 absolute top-0 left-0"
-            style={{
-              opacity: glitchOpacity,
-              transition: 'opacity 10s ease-in-out'
-            }}
-          >
-            <span className="glitched-text-1">garf</span><span className="glitched-text-7">{glitchText7}</span><span className="glitched-text-2">sh</span>&nbsp;<span className="glitched-text-3">d</span><span className="glitched-text-4">{glitchText4}</span><span>g</span><span className="glitched-text-5">i</span><span className="glitched-text-6">tal</span><br />
-          </div>
-        </div>
-      )}
-      
-      {/* Final Logo State - Upper Left */}
-      {showFinalLogo && (
-        <div className="fixed top-8 left-8 z-50">
-          <div className="logo-final-state">
-            garfish digital
-          </div>
-        </div>
-      )}
 
-      {/* Fast Modal for Privacy/Terms */}
+      {/* Hip & Soothing Modal for Privacy/Terms */}
       <AnimatePresence>
         {showModal && (
           <motion.div
-          className="fixed inset-0 z-[100] flex items-end justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+          animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+          exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           onClick={() => setShowModal(null)}
         >
           <motion.div
-            className="w-full max-w-4xl mx-4 mb-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden contact-modal-background"
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '100%', opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="w-full max-w-4xl mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden contact-modal-background"
+            initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -1 }}
+            animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -20, rotate: 1 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/10">
-              <h2 className="text-2xl font-bold text-white">
+            <motion.div 
+              className="flex items-center justify-between p-6 border-b border-white/10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+            >
+              <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
                 {showModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
               </h2>
-              <button
+              <motion.button
                 onClick={() => setShowModal(null)}
                 className="text-white/60 hover:text-white transition-colors p-2"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
             {/* Content */}
-            <div className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed">
+            <motion.div 
+              className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed" 
+              style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+            >
               {showModal === 'privacy' ? (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-white">Information Collection</h3>
-                  <p>We collect information you provide directly to us, such as when you fill out our contact form or communicate with us.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Use of Information</h3>
-                  <p>We use the information we collect to respond to your inquiries, provide our services, and improve your experience.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Information Sharing</h3>
-                  <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Data Security</h3>
-                  <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Contact Us</h3>
-                  <p>If you have questions about this Privacy Policy, please contact us through our contact form.</p>
+                  {[
+                    { title: 'Information Collection', content: 'We collect information you provide directly to us, such as when you fill out our contact form or communicate with us.' },
+                    { title: 'Use of Information', content: 'We use the information we collect to respond to your inquiries, provide our services, and improve your experience.' },
+                    { title: 'Information Sharing', content: 'We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.' },
+                    { title: 'Data Security', content: 'We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.' },
+                    { title: 'Contact Us', content: 'If you have questions about this Privacy Policy, please contact us through our contact form.' }
+                  ].map((section, index) => (
+                    <motion.div
+                      key={section.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + (index * 0.1), duration: 0.4 }}
+                    >
+                      <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                      <p>{section.content}</p>
+                    </motion.div>
+                  ))}
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-white">Acceptance of Terms</h3>
-                  <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Services</h3>
-                  <p>Garfish Digital provides web design, development, and digital consulting services. Specific terms for each project will be outlined in separate agreements.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Intellectual Property</h3>
-                  <p>The content, organization, graphics, design, and other matters related to this website are protected under applicable copyrights and other proprietary laws.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Limitation of Liability</h3>
-                  <p>Garfish Digital shall not be liable for any damages arising from the use of this website or our services, except as required by law.</p>
-                  
-                  <h3 className="text-lg font-semibold text-white">Changes to Terms</h3>
-                  <p>We reserve the right to modify these terms at any time. Continued use of the website constitutes acceptance of any changes.</p>
+                  {[
+                    { title: 'Acceptance of Terms', content: 'By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.' },
+                    { title: 'Services', content: 'Garfish Digital provides web design, development, and digital consulting services. Specific terms for each project will be outlined in separate agreements.' },
+                    { title: 'Intellectual Property', content: 'The content, organization, graphics, design, and other matters related to this website are protected under applicable copyrights and other proprietary laws.' },
+                    { title: 'Limitation of Liability', content: 'Garfish Digital shall not be liable for any damages arising from the use of this website or our services, except as required by law.' },
+                    { title: 'Changes to Terms', content: 'We reserve the right to modify these terms at any time. Continued use of the website constitutes acceptance of any changes.' }
+                  ].map((section, index) => (
+                    <motion.div
+                      key={section.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + (index * 0.1), duration: 0.4 }}
+                    >
+                      <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                      <p>{section.content}</p>
+                    </motion.div>
+                  ))}
                 </div>
               )}
-            </div>
+            </motion.div>
 
             {/* Footer */}
-            <div className="p-6 border-t border-white/10 text-center">
-              <p className="text-white/50 text-sm">Last updated: January 2025</p>
-            </div>
+            <motion.div 
+              className="p-6 border-t border-white/10 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+            >
+              <p className="text-white/50 text-sm" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Last updated: January 2025</p>
+            </motion.div>
           </motion.div>
         </motion.div>
         )}

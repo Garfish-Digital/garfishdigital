@@ -595,6 +595,23 @@ textarea:focus::placeholder {
   }
 }
 
+/* Landscape orientation override for mobile devices - MUST come after other media queries */
+@media (orientation: landscape) {
+  .home-page-gallery-icon,
+  .home-page-contact-icon {
+    width: 1.5rem !important; /* 24px - same as mobile portrait */
+    height: 1.5rem !important;
+  }
+  
+  .contact-page-home-icon,
+  .contact-page-gallery-icon,
+  .gallery-page-home-icon,
+  .gallery-page-contact-icon {
+    width: 1.5rem !important; /* 24px - same as mobile portrait */
+    height: 1.5rem !important;
+  }
+}
+
 /* Home page layout classes */
 .home-page-container {
   background: #FFFFFF !important;
