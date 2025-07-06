@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Minimap from '@/components/Minimap';
-import { GlobeAltIcon, HomeModernIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, XMarkIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
 import './gallery.css';
 
 const pages = [

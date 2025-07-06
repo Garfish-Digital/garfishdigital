@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { GlobeAltIcon, HomeModernIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { GlobeAltIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import './contact.css';
 
 export default function Contact() {
