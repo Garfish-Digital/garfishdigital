@@ -21,7 +21,8 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
   // Fixed positioning logic - minimap always in upper right corner
   const getMinimapPosition = () => {
     // Always position in upper right corner regardless of current page
-    return { top: 'calc(2rem + 72px)', right: '2rem' };
+    // return { top: 'calc(2rem + 72px)', right: '2rem' };
+    return currentPage === 'cell5' ? { top: 'calc(50vh - 75px)', right: 'calc(50vw - 75px)' } : { top: 'calc(2rem + 72px)', right: '2rem' };
   };
 
   // Map page IDs to their 3x3 grid positions

@@ -27,9 +27,16 @@
 }
 
 /* Mobile responsive adjustments */
-@media (max-width: 667px) {
+@media (max-width: 540px) {
   .contact-form-container {
     margin-top: 4rem !important; /* Push form down on mobile */
+    max-width: 20rem !important; /* Even smaller on mobile */
+  }
+ 
+}
+@media (max-width: 540px) and (min-height: 540px) {
+  .contact-form-container {
+    margin-top: 6rem !important; /* Push form down on mobile */
     max-width: 20rem !important; /* Even smaller on mobile */
   }
 }
@@ -43,5 +50,13 @@
 @media (max-width: 667px) {
   .contact-form-field textarea {
     min-height: 4rem !important; /* Smaller textarea on mobile */
+  }
+  
+}
+
+/* Large screen adjustments */
+@media (min-width: 940px), (min-height: 940px) {
+  .contact-form-container {
+    margin-top: 25vh !important;
   }
 }

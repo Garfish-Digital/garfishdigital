@@ -11,7 +11,7 @@ export default function Home() {
         {/* Logo and Byline */}
         <div>
           <motion.div 
-            className="fixed top-8 left-8 z-20"
+            className="fixed top-4 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -21,18 +21,31 @@ export default function Home() {
               style={{ 
                 color: '#000000',
                 fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
-                fontSize: '2.5rem',
+                fontSize: '5rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 textAlign: 'left'
               }}
             >
-              garfish digital
+              garfish
+            </div>
+            <div 
+              className="back-text" 
+              style={{ 
+                color: '#000000',
+                fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '5rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                textAlign: 'left'
+              }}
+            >
+              digital
             </div>
           </motion.div>
 
           <motion.div 
-            className="fixed top-25 left-8 z-20"
+            className="fixed top-65 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
@@ -42,7 +55,7 @@ export default function Home() {
               style={{ 
                 color: '#000000',
                 fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
-                fontSize: '1rem',
+                fontSize: '2rem',
                 fontWeight: 'normal',
                 cursor: 'pointer',
                 textAlign: 'left'
