@@ -38,6 +38,7 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: "Garfish Digital",
   description: "Web Design and Development",
+  robots: "noindex, nofollow",
 };
 
 export default function RootLayout({
