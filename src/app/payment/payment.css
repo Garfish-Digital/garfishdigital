@@ -1,0 +1,53 @@
+/* Payment Page Styles */
+.payment-page-container {
+  background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-content-container {
+  position: relative;
+  z-index: 10;
+}
+
+.payment-card {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.payment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.payment-feature {
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.payment-feature:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Remove custom logo styling - use global styles instead */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .payment-content-container {
+    max-width: 90%;
+  }
+  
+  .payment-card {
+    padding: 1.5rem;
+  }
+  
+  .payment-page-container h1 {
+    font-size: 2.5rem;
+  }
+}

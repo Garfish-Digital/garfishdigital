@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { GlobeAltIcon, Squares2X2Icon, AtSymbolIcon } from '@heroicons/react/24/outline';
+import Navigation from '@/components/Navigation';
 import './contact.css';
 
 export default function Contact() {
@@ -160,12 +160,11 @@ export default function Contact() {
                     transition={{ duration: 0.6 }}
                 >
                     <div className="text-6xl mb-8">✓</div>
-                    <h1 className="text-3xl font-bold mb-4" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Message Sent</h1>
-                    <p className="text-white/70 mb-8" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>We&apos;ll get back to you within 24 hours.</p>
+                    <h1 className="text-3xl font-bold mb-4 font-primary">Message Sent</h1>
+                    <p className="text-white/70 mb-8 font-primary">We&apos;ll get back to you within 24 hours.</p>
                     <Link
                         href="/"
-                        className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
-                        style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+                        className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors font-primary"
                     >
                         ← Back to Home
                     </Link>
@@ -210,8 +209,7 @@ export default function Contact() {
                                         <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                             <motion.div
                                                 key={placeholderKeys.name}
-                                                className="text-[#AAAAAA]"
-                                                style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
+                                                className="text-[#AAAAAA] font-mono"
                                                 initial={{ y: 20, opacity: 0 }}
                                                 animate={{ y: 0, opacity: 1 }}
                                                 exit={{ y: -20, opacity: 0 }}
@@ -255,8 +253,7 @@ export default function Contact() {
                                         <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                             <motion.div
                                                 key={placeholderKeys.email}
-                                                className="text-[#AAAAAA]"
-                                                style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
+                                                className="text-[#AAAAAA] font-mono"
                                                 initial={{ y: 20, opacity: 0 }}
                                                 animate={{ y: 0, opacity: 1 }}
                                                 exit={{ y: -20, opacity: 0 }}
@@ -300,8 +297,7 @@ export default function Contact() {
                                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                         <motion.div
                                             key={placeholderKeys.company}
-                                            className="text-[#AAAAAA]"
-                                            style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
+                                            className="text-[#AAAAAA] font-mono"
                                             initial={{ y: 20, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
                                             exit={{ y: -20, opacity: 0 }}
@@ -335,8 +331,7 @@ export default function Contact() {
                                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                         <motion.div
                                             key={placeholderKeys.message}
-                                            className="text-[#AAAAAA]"
-                                            style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
+                                            className="text-[#AAAAAA] font-mono"
                                             initial={{ y: 20, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
                                             exit={{ y: -20, opacity: 0 }}
@@ -362,8 +357,7 @@ export default function Contact() {
                         <motion.button
                             type="submit"
                             disabled={isSubmitting}
-                            className="inline-block bg-white contact-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 transform focus:outline-none"
-                            style={{ fontFamily: "var(--font-roboto-mono), 'Roboto Mono', 'Courier New', 'Monaco', 'Menlo', monospace" }}
+                            className="inline-block bg-white contact-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 transform focus:outline-none font-mono"
                         >
                             {isSubmitting ? (
                                 <div className="flex items-center justify-center">
@@ -386,15 +380,7 @@ export default function Contact() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <div
-                    className="back-text"
-                    style={{
-                        color: '#000000',
-                        fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
-                        fontSize: '2.5rem',
-                        fontWeight: 'bold',
-                        cursor: 'pointer',
-                        textAlign: 'left'
-                    }}
+                    className="back-text font-primary logo-base"
                 >
                     garfish digital
                 </div>
@@ -404,8 +390,7 @@ export default function Contact() {
             <div className="fixed bottom-8 left-8 z-40 flex gap-4 text-xs">
                 <motion.button
                     onClick={() => setShowModal('privacy')}
-                    className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2"
-                    style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+                    className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
                     initial={{ opacity: 0, x: -30, y: 30 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
@@ -414,8 +399,7 @@ export default function Contact() {
                 </motion.button>
                 <motion.button
                     onClick={() => setShowModal('terms')}
-                    className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2"
-                    style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+                    className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
                     initial={{ opacity: 0, x: -30, y: 30 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -425,44 +409,7 @@ export default function Contact() {
             </div>
 
             {/* Navigation Icons - Bottom Right */}
-            <div className="bottom-nav-container">
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <Link
-                        href="/"
-                        className="transition-all duration-300 hover:brightness-150"
-                        title="Back to Home"
-                        style={{ position: 'relative', top: '-6px' }}
-                    >
-                        <GlobeAltIcon className="home-icon contact-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }} />
-                    </Link>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <Link
-                        href="/gallery"
-                        className="transition-all duration-300 hover:brightness-150"
-                        title="Gallery"
-                        style={{ position: 'relative', top: '-6px' }}
-                    >
-                        <Squares2X2Icon className="home-icon contact-page-gallery-icon drop-shadow-lg" />
-                    </Link>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <AtSymbolIcon className="home-icon contact-page-gallery-icon drop-shadow-lg" style={{ color: '#555555', position: 'relative', top: '-6px' }} />
-                </motion.div>
-            </div>
+            <Navigation currentPage="contact" />
 
             {/* Hip & Soothing Modal for Privacy/Terms */}
             <AnimatePresence>
@@ -490,7 +437,7 @@ export default function Contact() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1, duration: 0.4 }}
                             >
-                                <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
+                                <h2 className="text-2xl font-bold text-white font-primary">
                                     {showModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
                                 </h2>
                                 <motion.button
@@ -510,8 +457,7 @@ export default function Contact() {
 
                             {/* Content */}
                             <motion.div
-                                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed"
-                                style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+                                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed font-primary"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -566,7 +512,7 @@ export default function Contact() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.4 }}
                             >
-                                <p className="text-white/50 text-sm" style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Last updated: January 2025</p>
+                                <p className="text-white/50 text-sm font-primary">Last updated: January 2025</p>
                             </motion.div>
                         </motion.div>
                     </motion.div>

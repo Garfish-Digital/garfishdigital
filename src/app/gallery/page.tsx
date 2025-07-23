@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import Minimap from '@/components/Minimap';
-import { GlobeAltIcon, AtSymbolIcon, BeakerIcon, ChevronDoubleRightIcon, RectangleGroupIcon, ArrowsPointingOutIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket, faWindow } from '@fortawesome/pro-regular-svg-icons';
+import Navigation from '@/components/Navigation';
 import './gallery.css';
 
 const pages = [
@@ -23,7 +24,7 @@ const demoCards = {
     cell1: {
         title: 'Black Lodge Brews',
         subtitle: 'Micro Brewery Taproom',
-        url: 'https://blacklodgebrews-demo.netlify.app',
+        url: 'https://black-lodge-brews.netlify.app',
         effects: 'A demonstration on particle animation, floating navs, and liquid transitions.',
         hoverColors: {
             border: 'hover:border-blue-500/50',
@@ -32,49 +33,10 @@ const demoCards = {
             text: 'text-[#FFD54F]'
         }
     },
-    cell2: {
-        title: 'Lab Experiments',
-        subtitle: 'Innovation Station',
-        url: '/',
-                effects: 'Blurbs goes here.',
-        // effects: ['WebGL shaders', 'AI integration', 'Real-time effects'],
-        hoverColors: {
-            border: 'hover:border-yellow-500/50',
-            shadow: 'hover:shadow-yellow-500/20',
-            gradient: 'from-yellow-500/20 to-yellow-500/10',
-            text: 'text-yellow-500'
-        }
-    },
-    cell3: {
-        title: 'Inferno Ink',
-        subtitle: 'Hell Hath No Fury',
-        url: '/',
-                effects: 'Blurbs goes here.',
-        // effects: ['Fire particles', 'Custom cursor', 'Animated scrolling'],
-        hoverColors: {
-            border: 'hover:border-red-500/50',
-            shadow: 'hover:shadow-red-500/20',
-            gradient: 'from-red-500/20 to-red-500/10',
-            text: 'text-red-500'
-        }
-    },
-    cell4: {
-        title: 'Client Projects',
-        subtitle: 'Professional Solutions',
-        url: '/',
-            effects: 'Blurbs goes here.',
-        // effects: ['Custom frameworks', 'Enterprise scale', 'Security focused'],
-        hoverColors: {
-            border: 'hover:border-teal-500/50',
-            shadow: 'hover:shadow-teal-500/20',
-            gradient: 'from-teal-500/20 to-teal-500/10',
-            text: 'text-teal-500'
-        }
-    },
-    cell6: {
+     cell2: {
         title: 'Obsidian Peaks',
         subtitle: 'Snowboarding Lessons & Tours',
-        url: '/',
+        url: 'https://obsidian-peaks.netlify.app',
                 effects: 'Blurbs goes here.',
         // effects: ['CLI automation', 'Code generation', 'Testing frameworks'],
         hoverColors: {
@@ -84,10 +46,50 @@ const demoCards = {
             text: 'text-purple-500'
         }
     },
+   
+    cell3: {
+        title: 'Inferno Ink',
+        subtitle: 'Hell Hath No Fury',
+        url: 'https://inferno-ink.netlify.app',
+        effects: 'A demonstration on scroll animations, cursor visuals, and fiery effects.',
+        // effects: ['Fire particles', 'Custom cursor', 'Animated scrolling'],
+        hoverColors: {
+            border: 'hover:border-red-500/50',
+            shadow: 'hover:shadow-red-500/20',
+            gradient: 'from-red-500/20 to-red-500/10',
+            text: 'text-red-500'
+        }
+    },
+    cell4: {
+        title: 'Cryptic Elixir',
+        subtitle: 'Rare and Ancient Occult Literature',
+        url: 'https://cryptic-elixir.netlify.app',
+            effects: 'A demonstration on skeleton screens, layered, textures, and vapor effects.',
+        // effects: ['Custom frameworks', 'Enterprise scale', 'Security focused'],
+        hoverColors: {
+            border: 'hover:border-teal-500/50',
+            shadow: 'hover:shadow-teal-500/20',
+            gradient: 'from-teal-500/20 to-teal-500/10',
+            text: 'text-teal-500'
+        }
+    },
+    cell6: {
+        title: 'Hearth & Harrow',
+        subtitle: 'Divination Tools & Supplies',
+        url: 'https://hearth-and-harrow.netlify.app',
+                effects: 'A demonstration on Bento boxes, flowing animation, and noise effects.',
+        // effects: ['WebGL shaders', 'AI integration', 'Real-time effects'],
+        hoverColors: {
+            border: 'hover:border-yellow-500/50',
+            shadow: 'hover:shadow-yellow-500/20',
+            gradient: 'from-yellow-500/20 to-yellow-500/10',
+            text: 'text-yellow-500'
+        }
+    },
     cell7: {
-        title: 'Our Story',
+        title: 'Via Mortis',
         subtitle: 'Digital Craftsmen',
-        url: '/',
+        url: 'https://via-mortis.netlify.app',
                 effects: 'Blurbs goes here.',
         // effects: ['User-centered design', 'Agile methodology', 'Continuous learning'],
         hoverColors: {
@@ -98,7 +100,7 @@ const demoCards = {
         }
     },
     cell8: {
-        title: 'Get In Touch',
+        title: 'Velvet Quill',
         subtitle: 'Start Your Project',
         url: '/',
                 effects: 'Blurbs goes here.',
@@ -111,9 +113,9 @@ const demoCards = {
         }
     },
     cell9: {
-        title: 'Hearth & Harrow',
+        title: 'The Scrap Pit',
         subtitle: 'Divination Supplies',
-        url: '/',
+        url: 'https://thescrappit-demo.netlify.app',
         effects: 'Blurbs goes here.',
         // effects: ['Technical deep-dives', 'Industry trends', 'Best practices'],
         hoverColors: {
@@ -226,71 +228,13 @@ export default function Gallery() {
         scrollToPage(randomPage.id);
     };
 
-    // 3D Tilt Effect Functions
-    const createTiltHandlers = () => {
-        let animationFrameId: number | null = null;
-
-        const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-            const target = e.currentTarget;
-
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-
-            animationFrameId = requestAnimationFrame(() => {
-                const rect = target.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-
-                // Calculate position relative to center (-0.5 to 0.5)
-                const rotX = (mouseY - centerY) / rect.height;
-                const rotY = (mouseX - centerX) / rect.width;
-
-                // Tilt strength settings
-                const tiltStrength = 0.15;
-                const parallaxStrength = 8;
-
-                // Calculate tilt angles
-                const tiltY = -rotY * (tiltStrength * 100);
-                const tiltX = rotX * (tiltStrength * 100);
-
-                // Calculate parallax translation
-                const parallaxX = -rotY * parallaxStrength;
-                const parallaxY = -rotX * parallaxStrength;
-
-                // Calculate dynamic shadow (opposite to tilt direction for realistic lighting)
-                const shadowStrength = 20; // Base shadow strength
-                const shadowX = rotY * shadowStrength; // Shadow moves opposite to horizontal tilt
-                const shadowY = rotX * shadowStrength; // Shadow moves opposite to vertical tilt
-                const shadowBlur = 15 + Math.abs(rotX * 10) + Math.abs(rotY * 10); // Dynamic blur based on tilt intensity
-
-                target.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateX(${parallaxX}px) translateY(${parallaxY}px)`;
-                target.style.boxShadow = `${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, 0.3)`;
-                target.style.transition = 'none';
-            });
-        };
-
-        const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-            const target = e.currentTarget;
-
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-
-            animationFrameId = requestAnimationFrame(() => {
-                target.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px)';
-                target.style.boxShadow = '0px 4px 15px rgba(0, 0, 0, 0.1)'; // Return to subtle base shadow
-                target.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.320, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.320, 1)';
-            });
-        };
-
-        return { handleMouseMove, handleMouseLeave };
+    // 3D Tilt Effect using Framer Motion
+    const tiltTransition = {
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 30,
+        mass: 0.8
     };
-
-    const { handleMouseMove: handleTiltMove, handleMouseLeave: handleTiltLeave } = createTiltHandlers();
 
     const renderDemoCard = (cardData: typeof demoCards.cell1) => {
         return (
@@ -300,10 +244,16 @@ export default function Gallery() {
                     target={cardData.url.startsWith('http') ? "_blank" : undefined}
                     rel={cardData.url.startsWith('http') ? "noopener noreferrer" : undefined}
                     className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-all duration-300 ${cardData.hoverColors.border} hover:shadow-lg ${cardData.hoverColors.shadow} w-80 sm:w-96 md:w-[420px]`}
-                    onMouseMove={handleTiltMove}
-                    onMouseLeave={handleTiltLeave}
+                    style={{ perspective: 1000 }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
+                    whileHover={{
+                        rotateX: 5,
+                        rotateY: 5,
+                        translateY: -10,
+                        boxShadow: "0px 20px 25px rgba(0, 0, 0, 0.4)",
+                        transition: tiltTransition
+                    }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
                     {/* Glow effect */}
@@ -311,14 +261,14 @@ export default function Gallery() {
 
                     <div className="relative z-10 flex flex-col h-full">
                         <div className="flex items-start justify-between mb-3 sm:mb-4">
-                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>{cardData.title}</h3>
+                            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight font-primary">{cardData.title}</h3>
                         </div>
 
-                        <p className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed`} style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>{cardData.subtitle}</p>
+                        <p className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed font-primary`}>{cardData.subtitle}</p>
 
                         <div className="space-y-2 mb-6 sm:mb-8 flex-1">
-                            {/* <p className="text-white/60 text-xs sm:text-sm font-medium" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Features:</p> */}
-                            <ul className="text-white/80 text-xs sm:text-sm space-y-1" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
+                            {/* <p className="text-white/60 text-xs sm:text-sm font-medium font-primary">Features:</p> */}
+                            <ul className="text-white/80 text-xs sm:text-sm space-y-1 font-primary">
                                 {/* {cardData.effects.map((effect, index) => (
                                     <li key={index}>• {effect}</li>
                                 ))} */}
@@ -327,9 +277,9 @@ export default function Gallery() {
                         </div>
 
                         <div className="flex items-center text-white/70 group-hover:text-white transition-colors mt-auto">
-                            <span className="text-xs sm:text-sm font-medium" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>{cardData.url.startsWith('http') ? 'View Live Demo' : 'Explore'}</span>
-                            <ChevronDoubleRightIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                            <RectangleGroupIcon className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transform group-hover:scale-110 group-hover:translate-x-1 transition-transform delay-500" />
+                            <span className="text-xs sm:text-sm font-medium font-primary">{cardData.url.startsWith('http') ? 'View Live Demo' : 'Explore'}</span>
+                            <FontAwesomeIcon icon={faArrowRightFromBracket} className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
+                            <FontAwesomeIcon icon={faWindow} className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transform group-hover:scale-110 group-hover:translate-x-1 transition-transform delay-500" />
                         </div>
                     </div>
                 </motion.a>
@@ -338,24 +288,10 @@ export default function Gallery() {
     };
 
     const getPageContent = (pageId: string) => {
-        // if (pageId === 'cell5') {
-        //     return (
-        //         <div className="relative w-full h-full flex items-center justify-center">
-        //             <p
-        //                 className="text-black font-normal"
-        //                 style={{ fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif' }}
-        //             >
-        //                 go see
-        //             </p>
-        //         </div>
-        //     );
-        // }
-
         const cardData = demoCards[pageId as keyof typeof demoCards];
         if (cardData) {
             return renderDemoCard(cardData);
         }
-
         return null;
     };
 
@@ -369,101 +305,19 @@ export default function Gallery() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <div
-                    className="back-text"
-                    style={{
-                        color: '#000000',
-                        fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
-                        fontSize: '2.5rem',
-                        fontWeight: 'bold',
-                        cursor: 'pointer',
-                        textAlign: 'left'
-                    }}
+                    className="back-text font-primary logo-base"
                 >
                     garfish digital
                 </div>
             </motion.div>
 
             {/* Navigation Icons - Bottom Right */}
-            <div className="bottom-nav-container">
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <Link
-                        href="/"
-                        className="transition-all duration-300 hover:brightness-150"
-                        title="Back to Home"
-                    >
-                        <GlobeAltIcon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }} />
-                    </Link>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <Squares2X2Icon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#555555' }} />
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <Link
-                        href="/contact"
-                        className="transition-all duration-300 hover:brightness-150"
-                        title="Contact"
-                    >
-                        <AtSymbolIcon className="home-icon gallery-page-contact-icon drop-shadow-lg" />
-                    </Link>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <motion.button
-                        onClick={currentPage === 'cell5' ? handleRandomNavigation : handleTechCardOpen}
-                        className="transition-all duration-300 hover:brightness-150 block"
-                        title={currentPage === 'cell5' ? "Explore Random Page" : "View Techniques"}
-                        style={{ margin: 0, padding: 0, border: 'none', background: 'none' }}
-                        initial={false}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                    >
-                        <AnimatePresence mode="wait">
-                            {currentPage === 'cell5' ? (
-                                <motion.span
-                                    key="random-nav"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.2, ease: "easeOut" }}
-                                    style={{ display: 'inline-block' }}
-                                >
-                                    <ArrowsPointingOutIcon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }} />
-                                </motion.span>
-                            ) : (
-                                <motion.span
-                                    key="tech-card"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.2, ease: "easeOut" }}
-                                    style={{ display: 'inline-block' }}
-                                >
-                                    <BeakerIcon className="home-icon gallery-page-home-icon drop-shadow-lg" style={{ color: '#aaaaaa' }} />
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
-                    </motion.button>
-                </motion.div>
-            </div>
+            <Navigation 
+                currentPage="gallery"
+                galleryCurrentPage={currentPage}
+                onBowArrowClick={handleRandomNavigation}
+                onFlaskGearClick={handleTechCardOpen}
+            />
 
             <div
                 className="w-screen h-screen overflow-hidden gallery-wrapper"
@@ -514,7 +368,7 @@ export default function Gallery() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1, duration: 0.4 }}
                             >
-                                <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>
+                                <h2 className="text-2xl font-bold text-white font-primary">
                                     {getTechCardData(currentPage)?.title || 'Techniques Involved'}
                                 </h2>
                                 <motion.button
@@ -534,8 +388,7 @@ export default function Gallery() {
 
                             {/* Content */}
                             <motion.div
-                                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed"
-                                style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}
+                                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed font-primary"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -565,7 +418,7 @@ export default function Gallery() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.4 }}
                             >
-                                <p className="text-white/50 text-sm" style={{ fontFamily: 'system-ui, Arial, "Helvetica Neue", Helvetica, sans-serif' }}>Technical implementation details</p>
+                                <p className="text-white/50 text-sm font-primary">Technical implementation details</p>
                             </motion.div>
                         </motion.div>
                     </motion.div>
