@@ -13,10 +13,12 @@ import {
   faBowArrow,             // Example: For "Collections" (as discussed for Astro)
   faFlaskGear,              // Example: For "User Profile" or "Account"
   faMessage,              // Example: For "Settings"
-  faEnvelopeOpenDollar,         // Example: Your attache/satchel for "shopping cart"
   faArrowRightFromBracket,
-  faWindow,
   faUserGear,
+  faWindow,
+  faEnvelopeOpenDollar,
+  faFileContract,
+  faEyeSlash,
   // Add any other specific Classic Regular icons you expect to use frequently here.
   // You can find their names on fontawesome.com (e.g., search "home", then look for its `fa` name).
 } from '@fortawesome/pro-regular-svg-icons'; // <--- IMPORTANT: Note 'pro-regular-svg-icons'
@@ -34,11 +36,12 @@ library.add(
   faBowArrow,
   faFlaskGear,
   faMessage,
+   faArrowRightFromBracket,
+  faUserGear,
+  faWindow,
   faEnvelopeOpenDollar,
-    faArrowRightFromBracket,
-    faWindow,
-      faUserGear,
-
+  faFileContract,
+  faEyeSlash,
 );
 
 export const metadata: Metadata = {
@@ -58,7 +61,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Cutive+Mono:wght@400;700&display=swap" 
           rel="stylesheet" 
         />
       </head>

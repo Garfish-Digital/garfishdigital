@@ -1,5 +1,12 @@
 /* Contact Page Styles */
 
+
+/* Contact form styling */
+.contact-form-field {
+  border: 1px solid #aaaaaa !important;
+  border-radius: 5px !important;
+}
+
 /* Success page background */
 .contact-success-background {
   background: radial-gradient(at 40% 20%, #4A4A4A 0px, transparent 50%),

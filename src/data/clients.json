@@ -1,0 +1,22 @@
+[
+    {
+        "password": "garfish123",
+        "project": "Inferno Ink Website",
+        "milestones": "[]",
+        "documents": {
+            "scope": "/documents/client1-scope.pdf",
+            "agreement": "/documents/client1-agreement.pdf",
+            "handoff": "/documents/client1-handoff.pdf"
+        }
+    },
+    {
+        "password": "robinson0430",
+        "project": "Obsidian Peaks Website",
+        "milestones": "[]",
+        "documents": {
+            "scope": "/documents/client2-scope.pdf",
+            "agreement": "/documents/client2-agreement.pdf",
+            "handoff": "/documents/client2-handoff.pdf"
+        }
+    }
+]

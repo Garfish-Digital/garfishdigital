@@ -1,44 +1,62 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import Navigation from '@/components/Navigation';
-import './contact.css';
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import Navigation from "@/components/Navigation";
+import { useClientAuth } from "@/hooks/useClientAuth";
+import "./contact.css";
 
 export default function Contact() {
+    const { isClientAuthenticated } = useClientAuth();
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        company: '',
-        message: ''
+        name: "",
+        email: "",
+        company: "",
+        message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [focusedField, setFocusedField] = useState<string | null>(null);
     const [validation, setValidation] = useState<Record<string, string>>({});
     const [placeholders, setPlaceholders] = useState({
-        name: 'Your name',
-        email: 'your@email.com',
-        company: 'Your company (optional)',
-        message: 'Tell us about your project...'
+        name: "Your name",
+        email: "your@email.com",
+        company: "Your company (optional)",
+        message: "Tell us about your project...",
     });
     const [placeholderKeys, setPlaceholderKeys] = useState({
         name: 0,
         email: 0,
         company: 0,
-        message: 0
+        message: 0,
     });
-    const [showModal, setShowModal] = useState<'privacy' | 'terms' | null>(null);
+    const [showModal, setShowModal] = useState<"privacy" | "terms" | null>(null);
 
     // Separate cycling for each field with staggered timing
     useEffect(() => {
         // Cycling placeholder text
         const placeholderOptions = {
-            name: [`What\'s your name`, 'A nickname?', 'Who are you?'],
-            email: ['your@email.com', 'Where do you get messages?', 'How do we reach you?'],
-            company: ['Your company (optional)', 'What type of work do you do?', 'Who you bust your a$$ for'],
-            message: ['What are you building?', 'What keeps you up at night?', 'What can we do?']
+            name: [
+                `What\'s your name`,
+                "A nickname?",
+                "Who are you?",
+            ],
+            email: [
+                "your@email.com",
+                "Where do you get messages?",
+                "How do we reach you?",
+            ],
+            company: [
+                "Your company (optional)",
+                "What type of work do you do?",
+                "Who you bust your a$$ for",
+            ],
+            message: [
+                "What are you building?",
+                "Do you have wild ideas?",
+                "What can we do?",
+            ],
         };
 
         let nameIndex = 0;
@@ -48,26 +66,38 @@ export default function Contact() {
 
         const nameInterval = setInterval(() => {
             nameIndex = (nameIndex + 1) % placeholderOptions.name.length;
-            setPlaceholders(prev => ({ ...prev, name: placeholderOptions.name[nameIndex] }));
-            setPlaceholderKeys(prev => ({ ...prev, name: prev.name + 1 }));
+            setPlaceholders((prev) => ({
+                ...prev,
+                name: placeholderOptions.name[nameIndex],
+            }));
+            setPlaceholderKeys((prev) => ({ ...prev, name: prev.name + 1 }));
         }, 12600);
 
         const emailInterval = setInterval(() => {
             emailIndex = (emailIndex + 1) % placeholderOptions.email.length;
-            setPlaceholders(prev => ({ ...prev, email: placeholderOptions.email[emailIndex] }));
-            setPlaceholderKeys(prev => ({ ...prev, email: prev.email + 1 }));
+            setPlaceholders((prev) => ({
+                ...prev,
+                email: placeholderOptions.email[emailIndex],
+            }));
+            setPlaceholderKeys((prev) => ({ ...prev, email: prev.email + 1 }));
         }, 18000);
 
         const companyInterval = setInterval(() => {
             companyIndex = (companyIndex + 1) % placeholderOptions.company.length;
-            setPlaceholders(prev => ({ ...prev, company: placeholderOptions.company[companyIndex] }));
-            setPlaceholderKeys(prev => ({ ...prev, company: prev.company + 1 }));
+            setPlaceholders((prev) => ({
+                ...prev,
+                company: placeholderOptions.company[companyIndex],
+            }));
+            setPlaceholderKeys((prev) => ({ ...prev, company: prev.company + 1 }));
         }, 20500);
 
         const messageInterval = setInterval(() => {
             messageIndex = (messageIndex + 1) % placeholderOptions.message.length;
-            setPlaceholders(prev => ({ ...prev, message: placeholderOptions.message[messageIndex] }));
-            setPlaceholderKeys(prev => ({ ...prev, message: prev.message + 1 }));
+            setPlaceholders((prev) => ({
+                ...prev,
+                message: placeholderOptions.message[messageIndex],
+            }));
+            setPlaceholderKeys((prev) => ({ ...prev, message: prev.message + 1 }));
         }, 15000);
 
         return () => {
@@ -78,40 +108,40 @@ export default function Contact() {
         };
     }, []);
 
-
     // Handle ESC key to close modal
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setShowModal(null);
+            if (e.key === "Escape") setShowModal(null);
         };
-        document.addEventListener('keydown', handleEsc);
-        return () => document.removeEventListener('keydown', handleEsc);
+        document.addEventListener("keydown", handleEsc);
+        return () => document.removeEventListener("keydown", handleEsc);
     }, []);
 
     // Smart validation
     const validateField = (name: string, value: string) => {
         switch (name) {
-            case 'name':
-                if (!value) return '';
-                if (value.length < 2) return 'A bit short for a name...';
-                if (value.length > 50) return 'That\'s quite a name!';
-                return 'Perfect 👌';
+            case "name":
+                if (!value) return "";
+                if (value.length < 2) return "A bit short for a name...";
+                if (value.length > 50) return "That's quite a name!";
+                return "Perfect ✓";
 
-            case 'email':
-                if (!value) return '';
-                if (!value.includes('@')) return 'Missing the @ symbol';
-                if (!value.includes('.')) return 'Needs a domain ending';
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Email format seems off';
-                return 'Looking good ✓';
+            case "email":
+                if (!value) return "";
+                if (!value.includes("@")) return "Missing the @ symbol";
+                if (!value.includes(".")) return "Needs a domain ending";
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+                    return "Email format seems off";
+                return "Looking good ✓";
 
-            case 'message':
-                if (!value) return '';
-                if (value.length < 10) return 'Tell us a bit more...';
-                if (value.length > 1000) return 'Whoa, that\'s detailed!';
-                return `${value.length} characters of brilliance`;
+            case "message":
+                if (!value) return "";
+                if (value.length < 10) return "Can you give us a bit more...?";
+                if (value.length > 1000) return "Whoa, that's detailed!";
+                return `${value.length} characters of brilliance!`;
 
             default:
-                return '';
+                return "";
         }
     };
 
@@ -120,24 +150,26 @@ export default function Contact() {
         setIsSubmitting(true);
 
         // Simulate form submission - replace with actual email service
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
 
         setIsSubmitted(true);
         setIsSubmitting(false);
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
 
         // Real-time validation
         const validationMessage = validateField(name, value);
-        setValidation(prev => ({
+        setValidation((prev) => ({
             ...prev,
-            [name]: validationMessage
+            [name]: validationMessage,
         }));
     };
 
@@ -151,8 +183,7 @@ export default function Contact() {
 
     if (isSubmitted) {
         return (
-            <div className="min-h-screen text-white flex items-center justify-center contact-success-background"
-            >
+            <div className="min-h-screen text-white flex items-center justify-center contact-success-background">
                 <motion.div
                     className="text-center"
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -161,7 +192,9 @@ export default function Contact() {
                 >
                     <div className="text-6xl mb-8">✓</div>
                     <h1 className="text-3xl font-bold mb-4 font-primary">Message Sent</h1>
-                    <p className="text-white/70 mb-8 font-primary">We&apos;ll get back to you within 24 hours.</p>
+                    <p className="text-white/70 mb-8 font-primary">
+                        We&apos;ll get back to you within 24 hours.
+                    </p>
                     <Link
                         href="/"
                         className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors font-primary"
@@ -174,19 +207,54 @@ export default function Contact() {
     }
 
     return (
-        <div className="h-screen overflow-hidden text-black contact-page-container"
-        >
+        <div className="h-screen overflow-hidden text-black contact-page-container">
+
+
+            {/* Static Logo - Upper Left */}
+            <motion.div
+                className="fixed top-8 left-8 z-20"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+                <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
+                    Garfish Digital
+                </div>
+            </motion.div>
 
             <div className="flex items-start justify-center h-screen px-4 pt-24">
-                <div className="w-full max-w-lg contact-form-container">
 
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                >
+                    {/* <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+                  Welcome Back
+                </h2> */}
+                    <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+                        Welcome to your client dashboard. Navigate through your
+                        project materials, review contracts, and process payments
+                        using the icons in the bottom right corner.
+                    </p>
+                </motion.div>
+
+                <div className="w-full max-w-lg contact-form-container">
                     <motion.form
                         onSubmit={handleSubmit}
                         className="space-y-4"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
+                        name="contact"           {/* ADD THIS LINE */}
+                        data-netlify="true"      {/* ADD THIS LINE */}
                     >
+
+                        <input type="hidden" name="form-name" value="contact" />
+                        <p hidden>
+                            <label>Don’t fill this out: <input name="bot-field" /></label>
+                        </p>
+
                         <div className="grid md:grid-cols-2 gap-6 contact-form-grid">
                             <div className="relative">
                                 <div className="relative">
@@ -197,11 +265,9 @@ export default function Contact() {
                                         required
                                         value={formData.name}
                                         onChange={handleChange}
-                                        onFocus={() => handleFocus('name')}
+                                        onFocus={() => handleFocus("name")}
                                         onBlur={handleBlur}
-                                        className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${focusedField === 'name'
-                                                ? 'focus-bounce'
-                                                : ''
+                                        className={`w-full px-3 py-3 contact-form-field text-black transition-all duration-300 ${focusedField === "name" ? "focus-bounce" : ""
                                             }`}
                                         placeholder=" "
                                     />
@@ -221,12 +287,16 @@ export default function Contact() {
                                     )}
                                 </div>
                                 {validation.name && (
-                                    <div className={`text-xs mt-1 transition-all duration-300 ${validation.name.includes('Perfect') || validation.name.includes('✓')
-                                            ? 'text-green-400'
-                                            : validation.name.includes('short') || validation.name.includes('quite')
-                                                ? 'text-yellow-400'
-                                                : 'text-white/60'
-                                        }`}>
+                                    <div
+                                        className={`text-xs mt-1 transition-all duration-300 ${validation.name.includes("Perfect") ||
+                                                validation.name.includes("✓")
+                                                ? "text-green-400"
+                                                : validation.name.includes("short") ||
+                                                    validation.name.includes("quite")
+                                                    ? "text-yellow-400"
+                                                    : "text-white/60"
+                                            }`}
+                                    >
                                         {validation.name}
                                     </div>
                                 )}
@@ -241,11 +311,9 @@ export default function Contact() {
                                         required
                                         value={formData.email}
                                         onChange={handleChange}
-                                        onFocus={() => handleFocus('email')}
+                                        onFocus={() => handleFocus("email")}
                                         onBlur={handleBlur}
-                                        className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${focusedField === 'email'
-                                                ? 'focus-bounce'
-                                                : ''
+                                        className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${focusedField === "email" ? "focus-bounce" : ""
                                             }`}
                                         placeholder=" "
                                     />
@@ -265,12 +333,17 @@ export default function Contact() {
                                     )}
                                 </div>
                                 {validation.email && (
-                                    <div className={`text-xs mt-1 transition-all duration-300 ${validation.email.includes('Looking good') || validation.email.includes('✓')
-                                            ? 'text-green-400'
-                                            : validation.email.includes('Missing') || validation.email.includes('Needs') || validation.email.includes('format')
-                                                ? 'text-yellow-400'
-                                                : 'text-white/60'
-                                        }`}>
+                                    <div
+                                        className={`text-xs mt-1 transition-all duration-300 ${validation.email.includes("Looking good") ||
+                                                validation.email.includes("✓")
+                                                ? "text-green-400"
+                                                : validation.email.includes("Missing") ||
+                                                    validation.email.includes("Needs") ||
+                                                    validation.email.includes("format")
+                                                    ? "text-yellow-400"
+                                                    : "text-white/60"
+                                            }`}
+                                    >
                                         {validation.email}
                                     </div>
                                 )}
@@ -285,11 +358,9 @@ export default function Contact() {
                                     name="company"
                                     value={formData.company}
                                     onChange={handleChange}
-                                    onFocus={() => handleFocus('company')}
+                                    onFocus={() => handleFocus("company")}
                                     onBlur={handleBlur}
-                                    className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${focusedField === 'company'
-                                            ? 'focus-bounce'
-                                            : ''
+                                    className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${focusedField === "company" ? "focus-bounce" : ""
                                         }`}
                                     placeholder=" "
                                 />
@@ -319,11 +390,9 @@ export default function Contact() {
                                     rows={2}
                                     value={formData.message}
                                     onChange={handleChange}
-                                    onFocus={() => handleFocus('message')}
+                                    onFocus={() => handleFocus("message")}
                                     onBlur={handleBlur}
-                                    className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black resize-none transition-all duration-300 ${focusedField === 'message'
-                                            ? 'focus-bounce'
-                                            : ''
+                                    className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black resize-none transition-all duration-300 ${focusedField === "message" ? "focus-bounce" : ""
                                         }`}
                                     placeholder=" "
                                 />
@@ -343,12 +412,15 @@ export default function Contact() {
                                 )}
                             </div>
                             {validation.message && (
-                                <div className={`text-xs mt-1 transition-all duration-300 ${validation.message.includes('brilliance')
-                                        ? 'text-green-400'
-                                        : validation.message.includes('more') || validation.message.includes('detailed')
-                                            ? 'text-yellow-400'
-                                            : 'text-white/60'
-                                    }`}>
+                                <div
+                                    className={`text-xs mt-1 transition-all duration-300 ${validation.message.includes("brilliance")
+                                            ? "text-green-400"
+                                            : validation.message.includes("more") ||
+                                                validation.message.includes("detailed")
+                                                ? "text-yellow-400"
+                                                : "text-white/60"
+                                        }`}
+                                >
                                     {validation.message}
                                 </div>
                             )}
@@ -357,7 +429,7 @@ export default function Contact() {
                         <motion.button
                             type="submit"
                             disabled={isSubmitting}
-                            className="inline-block bg-white contact-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 transform focus:outline-none font-mono"
+                            className="inline-block garfish-button text-lg transition-all duration-300 transform font-arial"
                         >
                             {isSubmitting ? (
                                 <div className="flex items-center justify-center">
@@ -365,31 +437,17 @@ export default function Contact() {
                                     Sending Message...
                                 </div>
                             ) : (
-                                'Send'
+                                "Send"
                             )}
                         </motion.button>
                     </motion.form>
                 </div>
             </div>
 
-            {/* Static Logo - Upper Left */}
-            <motion.div
-                className="fixed top-8 left-8 z-20"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-                <div
-                    className="back-text font-primary logo-base"
-                >
-                    garfish digital
-                </div>
-            </motion.div>
-
             {/* Legal Links - Bottom Left */}
-            <div className="fixed bottom-8 left-8 z-40 flex gap-4 text-xs">
+            <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">
                 <motion.button
-                    onClick={() => setShowModal('privacy')}
+                    onClick={() => setShowModal("privacy")}
                     className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
                     initial={{ opacity: 0, x: -30, y: 30 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
@@ -398,7 +456,7 @@ export default function Contact() {
                     Privacy
                 </motion.button>
                 <motion.button
-                    onClick={() => setShowModal('terms')}
+                    onClick={() => setShowModal("terms")}
                     className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
                     initial={{ opacity: 0, x: -30, y: 30 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
@@ -409,7 +467,10 @@ export default function Contact() {
             </div>
 
             {/* Navigation Icons - Bottom Right */}
-            <Navigation currentPage="contact" />
+            <Navigation
+                currentPage="contact"
+                isClientAuthenticated={isClientAuthenticated}
+            />
 
             {/* Hip & Soothing Modal for Privacy/Terms */}
             <AnimatePresence>
@@ -438,7 +499,9 @@ export default function Contact() {
                                 transition={{ delay: 0.1, duration: 0.4 }}
                             >
                                 <h2 className="text-2xl font-bold text-white font-primary">
-                                    {showModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
+                                    {showModal === "privacy"
+                                        ? "Privacy Policy"
+                                        : "Terms of Service"}
                                 </h2>
                                 <motion.button
                                     onClick={() => setShowModal(null)}
@@ -449,8 +512,18 @@ export default function Contact() {
                                     whileHover={{ scale: 1.1, rotate: 90 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            d="M18 6L6 18M6 6l12 12"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                        />
                                     </svg>
                                 </motion.button>
                             </motion.div>
@@ -462,22 +535,44 @@ export default function Contact() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.4 }}
                             >
-                                {showModal === 'privacy' ? (
+                                {showModal === "privacy" ? (
                                     <div className="space-y-4">
                                         {[
-                                            { title: 'Information Collection', content: 'We collect information you provide directly to us, such as when you fill out our contact form or communicate with us.' },
-                                            { title: 'Use of Information', content: 'We use the information we collect to respond to your inquiries, provide our services, and improve your experience.' },
-                                            { title: 'Information Sharing', content: 'We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.' },
-                                            { title: 'Data Security', content: 'We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.' },
-                                            { title: 'Contact Us', content: 'If you have questions about this Privacy Policy, please contact us through our contact form.' }
+                                            {
+                                                title: "Information Collection",
+                                                content:
+                                                    "We collect information you provide directly to us, such as when you fill out our contact form or communicate with us.",
+                                            },
+                                            {
+                                                title: "Use of Information",
+                                                content:
+                                                    "We use the information we collect to respond to your inquiries, provide our services, and improve your experience.",
+                                            },
+                                            {
+                                                title: "Information Sharing",
+                                                content:
+                                                    "We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.",
+                                            },
+                                            {
+                                                title: "Data Security",
+                                                content:
+                                                    "We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+                                            },
+                                            {
+                                                title: "Contact Us",
+                                                content:
+                                                    "If you have questions about this Privacy Policy, please contact us through our contact form.",
+                                            },
                                         ].map((section, index) => (
                                             <motion.div
                                                 key={section.title}
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.3 + (index * 0.1), duration: 0.4 }}
+                                                transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                                             >
-                                                <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                                                <h3 className="text-lg font-semibold text-white">
+                                                    {section.title}
+                                                </h3>
                                                 <p>{section.content}</p>
                                             </motion.div>
                                         ))}
@@ -485,19 +580,41 @@ export default function Contact() {
                                 ) : (
                                     <div className="space-y-4">
                                         {[
-                                            { title: 'Acceptance of Terms', content: 'By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.' },
-                                            { title: 'Services', content: 'Garfish Digital provides web design, development, and digital consulting services. Specific terms for each project will be outlined in separate agreements.' },
-                                            { title: 'Intellectual Property', content: 'The content, organization, graphics, design, and other matters related to this website are protected under applicable copyrights and other proprietary laws.' },
-                                            { title: 'Limitation of Liability', content: 'Garfish Digital shall not be liable for any damages arising from the use of this website or our services, except as required by law.' },
-                                            { title: 'Changes to Terms', content: 'We reserve the right to modify these terms at any time. Continued use of the website constitutes acceptance of any changes.' }
+                                            {
+                                                title: "Acceptance of Terms",
+                                                content:
+                                                    "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
+                                            },
+                                            {
+                                                title: "Services",
+                                                content:
+                                                    "Garfish Digital provides web design, development, and digital consulting services. Specific terms for each project will be outlined in separate agreements.",
+                                            },
+                                            {
+                                                title: "Intellectual Property",
+                                                content:
+                                                    "The content, organization, graphics, design, and other matters related to this website are protected under applicable copyrights and other proprietary laws.",
+                                            },
+                                            {
+                                                title: "Limitation of Liability",
+                                                content:
+                                                    "Garfish Digital shall not be liable for any damages arising from the use of this website or our services, except as required by law.",
+                                            },
+                                            {
+                                                title: "Changes to Terms",
+                                                content:
+                                                    "We reserve the right to modify these terms at any time. Continued use of the website constitutes acceptance of any changes.",
+                                            },
                                         ].map((section, index) => (
                                             <motion.div
                                                 key={section.title}
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.3 + (index * 0.1), duration: 0.4 }}
+                                                transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                                             >
-                                                <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                                                <h3 className="text-lg font-semibold text-white">
+                                                    {section.title}
+                                                </h3>
                                                 <p>{section.content}</p>
                                             </motion.div>
                                         ))}
@@ -512,7 +629,9 @@ export default function Contact() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.4 }}
                             >
-                                <p className="text-white/50 text-sm font-primary">Last updated: January 2025</p>
+                                <p className="text-white/50 text-sm font-primary">
+                                    Last updated: January 2025
+                                </p>
                             </motion.div>
                         </motion.div>
                     </motion.div>

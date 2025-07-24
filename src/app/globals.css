@@ -11,6 +11,8 @@
   --gray-dark: oklch(44.836% 0.02038 145.341);
   --black: oklch(9.957% 0.03388 142.511);
   
+  --green-light: oklch(70.588% 0.04706 120.000);
+    --green-dark: oklch(30.588% 0.04706 120.000);
 }
 
 @theme inline {
@@ -23,6 +25,9 @@
   --color-gray-shadow: var(--gray-dark-transparent);
   --color-gray-dark: var(--gray-dark);
   --color-black: var(--black);
+
+  --color-green-light: var(--green-light);
+  --color-green-dark: var(--green-dark);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -39,9 +44,80 @@
 }
 
 
+/* NAVIGATION */
+/* Fixed navigation container - position: fixed is intentional for persistent navigation */
+.bottom-nav-container {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  z-index: 50 !important;
+  display: flex !important;
+  gap: 1rem !important;
+}
+
+.nav-icon-offset {
+  transform: translateY(-6px);
+}
+
+
+/* BUTTONS */
+.garfish-button {
+  padding: 0.5rem 2rem;
+  background-color: var(--color-gray-dark);
+  border-radius: 5px;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.garfish-button:hover {
+    background-color: var(--color-black);
+}
+
+.garfish-button:active {
+    background-color: var(--color-black);
+}
+
+
+/* INPUT FIELDS */
+input {
+    background-color: var(--color-gray-faint);
+}
+
+textarea {
+    background-color: var(--color-gray-faint);
+}
+
+/* Odometer-style placeholder transitions */
+input::placeholder,
+textarea::placeholder {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Create rolling transition effect */
+input:not(:placeholder-shown)::placeholder,
+textarea:not(:placeholder-shown)::placeholder {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+/* Placeholder color with smooth transitions */
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-gray-dark);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: var(--color-gray-faint);
+  border: var(--color-green-dark)
+}
+
+
+
 /* HOME PAGE */
 .home-page-container {
-  /* height: 100dvh !important; */
   overflow: hidden !important; /* Lock viewport - no scrolling */
 }
 
@@ -52,25 +128,6 @@
   height: 100dvh !important;
 }
 
-.home-copyright {
-  /* font-size: 0.5rem; */
-}
-
-
-
-
-
-.btn-text {
-  position: relative;
-  z-index: 2;
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.35);
-  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5),
-    1px 1px 1px rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease-in-out;
-}
 
 /* Focus bounce animation - one-time bounce effect */
 .focus-bounce {
@@ -98,32 +155,6 @@
   }
 }
 
-/* Odometer-style placeholder transitions */
-input::placeholder,
-textarea::placeholder {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Create rolling transition effect */
-input:not(:placeholder-shown)::placeholder,
-textarea:not(:placeholder-shown)::placeholder {
-  transform: translateY(-20px);
-  opacity: 0;
-}
-
-/* Placeholder color with smooth transitions */
-input::placeholder,
-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-input:focus::placeholder,
-textarea:focus::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .fade-in {
   animation: fade-in-smooth 800ms ease-in-out forwards;
   opacity: 0;
@@ -140,94 +171,10 @@ textarea:focus::placeholder {
   }
 }
 
-.page-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Responsive adjustments */
-/* Brutalist button styling */
-.brutalist-btn {
-  border: 1px solid #aaaaaa;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-}
-
-.brutalist-btn:hover {
-  border-color: #555555;
-}
-
-/* Contact form styling */
-.contact-form-field {
-  border: 1px solid #aaaaaa !important;
-  border-radius: 5px !important;
-}
-
-.contact-form-button {
-  padding: 0.5rem 2rem !important;
-  border: 1px solid #aaaaaa !important;
-  border-radius: 5px !important;
-  font-weight: normal !important;
-  transition: border-color 0.3s ease;
-}
-
-.contact-form-button:hover {
-  border-color: #555555 !important;
-}
-
-
-/* Specific icon sizing classes for independent control */
-.home-page-gallery-icon {
-  width: 6rem !important; /* w-24 equivalent */
-  height: 6rem !important;
-}
-
-.home-page-contact-icon {
-  width: 6rem !important; /* w-24 equivalent */
-  height: 6rem !important;
-}
-
-.contact-page-home-icon {
-  width: 3rem !important; /* w-12 equivalent */
-  height: 3rem !important;
-}
-
-.contact-page-gallery-icon {
-  width: 3rem !important; /* w-12 equivalent */
-  height: 3rem !important;
-}
-
-.gallery-page-home-icon {
-  width: 3rem !important; /* w-12 equivalent */
-  height: 3rem !important;
-}
-
-.gallery-page-contact-icon {
-  width: 3rem !important; /* w-12 equivalent */
-  height: 3rem !important;
-}
 
 /* Mobile Portrait - 375px breakpoint */
 @media (max-width: 375px) {
-  /* Home page logo text - 50% increase */
-  .logo-text {
-    font-size: 15vw; /* Increased from 10vw */
-  }
-
-  /* All icons uniform size for mobile - 24px (1.5rem) */
-  .home-page-gallery-icon,
-  .home-page-contact-icon,
-  .contact-page-home-icon,
-  .contact-page-gallery-icon,
-  .gallery-page-home-icon,
-  .gallery-page-contact-icon {
-    width: 1.5rem !important; /* 24px */
-    height: 1.5rem !important; /* 24px */
-  }
-
+  
   /* Gallery showcase heading - 25% decrease */
   .gallery-showcase-heading {
     font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
@@ -236,17 +183,7 @@ textarea:focus::placeholder {
 
 /* Mobile Landscape - 667px breakpoint */
 @media (max-width: 667px) and (min-width: 376px) {
-  /* All icons uniform size for mobile - 24px (1.5rem) */
-  .home-page-gallery-icon,
-  .home-page-contact-icon,
-  .contact-page-home-icon,
-  .contact-page-gallery-icon,
-  .gallery-page-home-icon,
-  .gallery-page-contact-icon {
-    width: 1.5rem !important; /* 24px */
-    height: 1.5rem !important; /* 24px */
-  }
-
+  
   /* Contact form container - 25% decrease in width */
   .contact-form-container {
     max-width: 36rem !important; /* Decreased from max-w-2xl (48rem) to 75% */
@@ -260,17 +197,7 @@ textarea:focus::placeholder {
 
 /* Tablet Portrait - 768px breakpoint */
 @media (max-width: 768px) and (min-width: 668px) {
-  /* All icons uniform size for tablet - 30px (1.875rem) */
-  .home-page-gallery-icon,
-  .home-page-contact-icon,
-  .contact-page-home-icon,
-  .contact-page-gallery-icon,
-  .gallery-page-home-icon,
-  .gallery-page-contact-icon {
-    width: 1.875rem !important; /* 30px */
-    height: 1.875rem !important; /* 30px */
-  }
-
+ 
   /* Gallery showcase heading - 25% decrease */
   .gallery-showcase-heading {
     font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
@@ -279,21 +206,7 @@ textarea:focus::placeholder {
 
 /* Small Desktop - 1280px breakpoint */
 @media (max-width: 1280px) and (min-width: 769px) {
-  /* Tablet/small desktop sizing - keep current desktop proportions but smaller */
-  .home-page-gallery-icon,
-  .home-page-contact-icon {
-    width: 4.5rem !important; /* 72px - 25% smaller than 96px */
-    height: 4.5rem !important;
-  }
-
-  .contact-page-home-icon,
-  .contact-page-gallery-icon,
-  .gallery-page-home-icon,
-  .gallery-page-contact-icon {
-    width: 2.25rem !important; /* 36px - 25% smaller than 48px */
-    height: 2.25rem !important;
-  }
-
+ 
   /* Gallery showcase heading - 25% decrease */
   .gallery-showcase-heading {
     font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
@@ -302,20 +215,7 @@ textarea:focus::placeholder {
 
 /* Landscape orientation override for mobile devices - MUST come after other media queries */
 @media (orientation: landscape) {
-  .home-page-gallery-icon,
-  .home-page-contact-icon {
-    width: 1.5rem !important; /* 24px - same as mobile portrait */
-    height: 1.5rem !important;
-  }
-
-  .contact-page-home-icon,
-  .contact-page-gallery-icon,
-  .gallery-page-home-icon,
-  .gallery-page-contact-icon {
-    width: 1.5rem !important; /* 24px - same as mobile portrait */
-    height: 1.5rem !important;
-  }
-
+  
   /* Contact form adjustments for landscape */
   .contact-form-container {
     max-width: 28rem !important; /* Smaller width in landscape - reduced from 32rem */
@@ -368,32 +268,3 @@ textarea:focus::placeholder {
   ) !important; /* Restore to normal size (25% increase from previous 0.75) */
   transform-origin: center !important;
 }
-
-
-/* NAVIGATION */
-
-/* Fixed navigation container - position: fixed is intentional for persistent navigation */
-.bottom-nav-container {
-  position: fixed !important;
-  bottom: 2rem !important;
-  right: 2rem !important;
-  z-index: 50 !important;
-  display: flex !important;
-  gap: 1rem !important;
-}
-
-.nav-icon-offset {
-  transform: translateY(-6px);
-}
-/* 
-.icon-gray-light {
-  color: var(--color-gray-light);
-}
-
-.icon-gray-dark {
-  color: var(--color-gray-dark);
-}
-
-.icon-black {
-  color: var(--color-black);
-} */

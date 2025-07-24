@@ -17,6 +17,7 @@ interface NavigationProps {
   galleryCurrentPage?: string; // For gallery-specific logic
   onBowArrowClick?: () => void; // Custom handler for bow-arrow icon
   onFlaskGearClick?: () => void; // Custom handler for flask-gear icon
+  isClientAuthenticated?: boolean; // Client authentication state
   className?: string;
 }
 
@@ -112,6 +113,7 @@ const Navigation = ({
   galleryCurrentPage,
   onBowArrowClick,
   onFlaskGearClick,
+  isClientAuthenticated = false,
   className = ''
 }: NavigationProps) => {
   const pathname = usePathname();
@@ -121,7 +123,10 @@ const Navigation = ({
     if (pathname === '/') return 'home';
     if (pathname === '/gallery') return 'gallery';
     if (pathname === '/contact') return 'contact';
-    if (pathname === '/payment') return 'payment';
+    if (pathname === '/client') return 'client';
+    if (pathname === '/client/project') return 'project';
+    if (pathname === '/client/documents') return 'documents';
+    if (pathname === '/client/payment') return 'payment';
     return currentPage;
   };
 
@@ -132,7 +137,7 @@ const Navigation = ({
   return (
     <div className={`bottom-nav-container ${className}`}>
       {sortedItems
-        .filter(item => getIconEnabledState(item, actualCurrentPage, galleryCurrentPage))
+        .filter(item => getIconEnabledState(item, actualCurrentPage, galleryCurrentPage, isClientAuthenticated))
         .map((item, index) => {
           const isActive = item.id === activeItemId;
           const delay = index * 0.1; // Staggered animation delay

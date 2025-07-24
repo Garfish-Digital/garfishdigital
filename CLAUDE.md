@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Garfish Digital is a portfolio website built with Next.js 15, featuring a clean landing page and an interactive gallery section. The project combines modern web technologies including Tailwind CSS for styling and Framer Motion for animations.
+Garfish Digital is a portfolio website built with Next.js 15, featuring a clean landing page, interactive gallery, contact form, and client authentication system. The project combines modern web technologies with a Brutalist design approach using OKLCH color spaces and Font Awesome Pro+ icons.
 
 ## Development Commands
 
@@ -19,32 +19,78 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 ### Tech Stack
 - **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS with OKLCH color system
 - **Animations**: Framer Motion
+- **Icons**: Font Awesome Pro+ Classic Regular
+- **Fonts**: Cutive Mono (via Google Fonts CDN), Courier New fallback
 
 ### Project Structure
 - `src/app/` - Next.js App Router pages and layouts
-- `src/app/page.tsx` - Clean, professional landing page
-- `src/app/gallery/` - Portfolio demos and interactive experiences
-- `src/app/contact/` - Contact form page
+  - `src/app/page.tsx` - Clean, professional landing page
+  - `src/app/gallery/` - Interactive 3x3 grid portfolio showcase
+  - `src/app/contact/` - Professional contact form with cycling placeholders
+  - `src/app/client/` - Client authentication portal with nested sub-pages
+    - `src/app/client/page.tsx` - Dashboard and authentication form
+    - `src/app/client/project/page.tsx` - Project milestone tracking table
+    - `src/app/client/documents/page.tsx` - Document access center
+    - `src/app/client/payment/page.tsx` - Payment management interface
 - `src/components/` - Reusable React components
+  - `src/components/Navigation.tsx` - Context-aware navigation system
+  - `src/components/Minimap.tsx` - Gallery grid navigation
+- `src/config/` - Configuration files
+  - `src/config/navigation.ts` - Centralized navigation configuration
+- `src/hooks/` - Custom React hooks
+  - `src/hooks/useClientAuth.ts` - Client authentication state management
 
 ### Key Pages
-- **Landing Page**: Clean, minimal design showcasing professionalism first
-- **Gallery**: Interactive 3x3 grid navigation showcasing portfolio projects
-- **Contact**: Professional contact form with animated placeholders
+- **Landing Page**: Brutalist typography with clean hierarchy
+- **Gallery**: Interactive 3x3 grid with dynamic navigation and demo cards
+- **Contact**: Professional form with real-time validation and cycling placeholders
+- **Client Portal**: Password-protected dashboard with persistent authentication
+  - **Client Dashboard**: Welcome interface with navigation to sub-pages
+  - **Project Page**: Comprehensive milestone tracking with scrollable table
+  - **Documents Page**: Document access center with three main document types
+  - **Payment Page**: Payment management interface (structure established)
 
 ### Design Philosophy
-- **Progressive Disclosure**: Simple landing → portfolio showcase
-- **Client-First UX**: Professional impression first, technical capability second
-- **Clean Architecture**: Streamlined components with focused functionality
+- **Brutalist Aesthetics**: Bold typography, OKLCH colors, clean geometric layouts
+- **Progressive Disclosure**: Simple landing → portfolio showcase → client portal
+- **Client-First UX**: Professional impression with accessible functionality
+- **Context-Aware Navigation**: Icons appear/disappear based on page and authentication state
 
-### Components
-- **Minimap**: Dynamic navigation component for gallery grid navigation
+### Navigation System
+- **Centralized Configuration**: All navigation items defined in `src/config/navigation.ts`
+- **Dynamic Visibility**: Icons filter based on page context and authentication state
+- **Persistent Authentication**: Client login state persists via localStorage
+- **Font Awesome Integration**: Pro+ icons with global library registration
+
+### Color System
+- **OKLCH Colors**: Modern color space with semantic naming conventions
+- **CSS Variables**: `--color-black`, `--color-gray-dark`, `--color-gray-light`, `--color-green-light`, `--color-green-dark`, etc.
+- **Tailwind Integration**: Custom color mapping via @theme inline syntax
+- **Recent Additions**: Green color variants for enhanced UI feedback
+
+### Authentication Flow
+- **Client Portal**: Password-protected access ("garfish123")
+- **State Persistence**: localStorage-based authentication across sessions
+- **Icon Enablement**: Project/Payment/Contract icons appear after authentication
+- **Cross-Page Consistency**: Authentication state shared via custom hook
+
+### Client Portal Features
+- **Project Tracking**: 40+ milestone entries across 6 project phases (Discovery, Design, Development, Testing, Launch, Post-Launch)
+- **Document Management**: Three document types (Scope, Agreement, Handoff) with contextual descriptions
+- **Sticky Table Headers**: Optimized scrolling experience for large datasets
+- **Status Indicators**: Color-coded status badges (Completed, In Progress, Pending)
+- **Responsive Design**: Bottom margin spacing to accommodate navigation icons
 
 ## Development Notes
 
 - All client-side components must include `'use client'` directive
 - Framer Motion animations use staggered delays and smooth transitions
-- Tailwind utility classes are preferred over custom CSS
-- Component-specific CSS files are used for complex styling (gallery.css, contact.css)
+- Font Awesome icons must be imported in `src/app/layout.tsx` and added to library
+- Navigation changes require updates to both `navigation.ts` and `Navigation.tsx`
+- Client authentication uses localStorage for persistence across sessions
+- OKLCH colors provide better color space than hex/rgb for modern displays
+- Component-specific CSS files used for complex styling (gallery.css, contact.css, client.css)
+- Client sub-pages follow nested directory structure under `/client/`
+- Input field styling now includes consistent background colors and placeholder behavior

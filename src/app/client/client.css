@@ -1,0 +1,107 @@
+/* Client page specific styles */
+
+.client-page-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+}
+
+.client-success-background {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+}
+
+.client-form-container {
+    position: relative;
+    z-index: 10;
+}
+
+.client-content-container {
+    position: relative;
+    z-index: 10;
+}
+
+.client-form-field {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.client-form-field:focus {
+    border-color: #495057;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.client-form-button {
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 2px solid #495057;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.client-form-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border-color: #212529;
+}
+
+.client-form-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.client-modal-background {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* Password field styling */
+.client-form-field[type="password"],
+.client-form-field[type="text"] {
+    padding-right: 50px;
+}
+
+/* Success state styling */
+.client-success-background::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Form validation colors */
+.text-green-400 {
+    color: #48bb78;
+}
+
+.text-red-400 {
+    color: #f56565;
+}
+
+.text-yellow-400 {
+    color: #ed8936;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .client-form-container,
+    .client-content-container {
+        padding: 0 16px;
+    }
+    
+    .client-form-field {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}

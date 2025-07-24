@@ -7,8 +7,10 @@ import {
   faBowArrow,
   faFlaskGear,
   faMessage,
+  faUserGear,
+  faWindow,
   faEnvelopeOpenDollar,
-    faUserGear,
+  faFileContract,
 
 } from '@fortawesome/pro-regular-svg-icons';
 
@@ -24,7 +26,7 @@ export interface NavigationItem {
   order: number;
 }
 
-export type PageId = 'home' | 'gallery' | 'contact' | 'payment';
+export type PageId = 'home' | 'gallery' | 'contact' | 'client' | 'project' | 'documents' | 'payment';
 
 export const navigationItems: NavigationItem[] = [
   {
@@ -76,13 +78,32 @@ export const navigationItems: NavigationItem[] = [
     order: 6
   },
   {
-    id: 'payment',
-    title: 'Payment',
-    href: '/payment',
-    icon: faEnvelopeOpenDollar,
-    enabled: true,
+    id: 'project',
+    title: 'View Project',
+    href: '/client/project',
+    icon: faWindow,
+    enabled: false, // Disabled by default
+    // Will be enabled based on client password success
     order: 7
-  }
+  },
+  {
+      id: 'documents',
+      title: 'View Documents',
+      href: '/client/documents',
+      icon: faFileContract,
+      enabled: false, // Disabled by default
+      // Will be enabled based on client password success
+      order: 8
+    },
+    {
+      id: 'payment',
+      title: 'Make Payment',
+      href: '/client/payment',
+      icon: faEnvelopeOpenDollar,
+      enabled: false, // Disabled by default
+      // Will be enabled based on client password success
+      order: 9
+    },
 ];
 
 // Helper function to get navigation items sorted by order
@@ -94,8 +115,14 @@ export const getSortedNavigationItems = (): NavigationItem[] => {
 export const getIconEnabledState = (
   item: NavigationItem, 
   currentPage: PageId,
-  galleryCurrentPage?: string
+  galleryCurrentPage?: string,
+  isClientAuthenticated?: boolean
 ): boolean => {
+  // Handle client-only icons (project, documents, payment)
+  if (['project', 'documents', 'payment'].includes(item.id)) {
+    return isClientAuthenticated === true;
+  }
+  
   // Handle flask-gear special logic (same as BeakerIcon)
   if (item.id === 'flask-gear') {
     return currentPage === 'gallery' && galleryCurrentPage !== 'cell5';
@@ -124,6 +151,9 @@ export const getActiveNavigationItem = (currentPage: PageId): string | null => {
     'home': 'home',
     'gallery': 'gallery', 
     'contact': 'contact',
+    'client': 'client',
+    'project': 'project',
+    'documents': 'documents',
     'payment': 'payment'
   };
   

@@ -6,6 +6,7 @@ import Minimap from '@/components/Minimap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faWindow } from '@fortawesome/pro-regular-svg-icons';
 import Navigation from '@/components/Navigation';
+import { useClientAuth } from '@/hooks/useClientAuth';
 import './gallery.css';
 
 const pages = [
@@ -128,6 +129,7 @@ const demoCards = {
 };
 
 export default function Gallery() {
+    const { isClientAuthenticated } = useClientAuth();
     const [currentPage, setCurrentPage] = useState('cell5');
     const [showTechCard, setShowTechCard] = useState(false);
 
@@ -298,7 +300,7 @@ export default function Gallery() {
     return (
         <>
             {/* Fixed Logo - Always Visible */}
-            <motion.div
+            {/* <motion.div
                 className="fixed top-8 left-8 z-20"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -309,7 +311,17 @@ export default function Gallery() {
                 >
                     garfish digital
                 </div>
-            </motion.div>
+            </motion.div> */}
+            <motion.div
+          className="fixed top-8 left-8 z-20"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
+            Garfish Digital
+          </div>
+        </motion.div>
 
             {/* Navigation Icons - Bottom Right */}
             <Navigation 
@@ -317,6 +329,7 @@ export default function Gallery() {
                 galleryCurrentPage={currentPage}
                 onBowArrowClick={handleRandomNavigation}
                 onFlaskGearClick={handleTechCardOpen}
+                isClientAuthenticated={isClientAuthenticated}
             />
 
             <div

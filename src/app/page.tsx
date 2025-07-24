@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
+import { useClientAuth } from "@/hooks/useClientAuth";
 
 export default function Home() {
+  const { isClientAuthenticated } = useClientAuth();
+  
   return (
     <div className="home-page-container">
       <div className="home-page-layout">
@@ -37,7 +40,7 @@ export default function Home() {
             className="fixed top-60 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
           >
             <div className="text-[color:var(--color-gray-dark)] font-arial text-4xl font-normal text-left">
               design &
@@ -47,7 +50,7 @@ export default function Home() {
             className="fixed top-70 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
           >
             <div className="text-[color:var(--color-gray-dark)] font-arial text-4xl font-normal text-left">
               development
@@ -72,7 +75,7 @@ export default function Home() {
       </div>
 
       {/* Navigation Icons - Bottom Right */}
-      <Navigation currentPage="home" />
+      <Navigation currentPage="home" isClientAuthenticated={isClientAuthenticated} />
     </div>
   );
 }
