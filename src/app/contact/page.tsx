@@ -145,32 +145,15 @@ export default function Contact() {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = () => {
+        // Let Netlify handle the form submission naturally
         setIsSubmitting(true);
-
-        try {
-            const form = e.target as HTMLFormElement;
-            const formData = new FormData(form);
-            
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(Array.from(formData.entries()) as [string, string][]).toString()
-            });
-
-            if (response.ok) {
-                setIsSubmitted(true);
-            } else {
-                throw new Error('Form submission failed');
-            }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            // Still show success for demo purposes
+        
+        // Add a small delay to show the loading state
+        setTimeout(() => {
             setIsSubmitted(true);
-        } finally {
             setIsSubmitting(false);
-        }
+        }, 1000);
     };
 
     const handleChange = (
@@ -227,15 +210,19 @@ export default function Contact() {
         <div className="h-screen overflow-hidden text-black contact-page-container">
             <div className="flex items-start justify-center h-screen px-4 pt-24">
                 <div className="w-full max-w-lg contact-form-container">
-                    <motion.form
-                        onSubmit={handleSubmit}
-                        className="space-y-4"
+                    <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        name="contact"
-                        data-netlify="true"
                     >
+                        <form
+                            onSubmit={handleSubmit}
+                            className="space-y-4"
+                            name="contact"
+                            method="POST"
+                            data-netlify="true"
+                            action="/success"
+                        >
 
                         <input type="hidden" name="form-name" value="contact" />
                         <p hidden>
@@ -250,7 +237,7 @@ export default function Contact() {
                                         id="name"
                                         name="name"
                                         required
-                                        value={formData.name}
+                                        defaultValue=""
                                         onChange={handleChange}
                                         onFocus={() => handleFocus("name")}
                                         onBlur={handleBlur}
@@ -276,12 +263,12 @@ export default function Contact() {
                                 {validation.name && (
                                     <div
                                         className={`text-xs mt-1 transition-all duration-300 ${validation.name.includes("Perfect") ||
-                                                validation.name.includes("✓")
-                                                ? "text-green-400"
-                                                : validation.name.includes("short") ||
-                                                    validation.name.includes("quite")
-                                                    ? "text-yellow-400"
-                                                    : "text-white/60"
+                                            validation.name.includes("✓")
+                                            ? "text-green-400"
+                                            : validation.name.includes("short") ||
+                                                validation.name.includes("quite")
+                                                ? "text-yellow-400"
+                                                : "text-white/60"
                                             }`}
                                     >
                                         {validation.name}
@@ -296,7 +283,7 @@ export default function Contact() {
                                         id="email"
                                         name="email"
                                         required
-                                        value={formData.email}
+                                        defaultValue=""
                                         onChange={handleChange}
                                         onFocus={() => handleFocus("email")}
                                         onBlur={handleBlur}
@@ -322,13 +309,13 @@ export default function Contact() {
                                 {validation.email && (
                                     <div
                                         className={`text-xs mt-1 transition-all duration-300 ${validation.email.includes("Looking good") ||
-                                                validation.email.includes("✓")
-                                                ? "text-green-400"
-                                                : validation.email.includes("Missing") ||
-                                                    validation.email.includes("Needs") ||
-                                                    validation.email.includes("format")
-                                                    ? "text-yellow-400"
-                                                    : "text-white/60"
+                                            validation.email.includes("✓")
+                                            ? "text-green-400"
+                                            : validation.email.includes("Missing") ||
+                                                validation.email.includes("Needs") ||
+                                                validation.email.includes("format")
+                                                ? "text-yellow-400"
+                                                : "text-white/60"
                                             }`}
                                     >
                                         {validation.email}
@@ -343,7 +330,7 @@ export default function Contact() {
                                     type="text"
                                     id="company"
                                     name="company"
-                                    value={formData.company}
+                                    defaultValue=""
                                     onChange={handleChange}
                                     onFocus={() => handleFocus("company")}
                                     onBlur={handleBlur}
@@ -375,7 +362,7 @@ export default function Contact() {
                                     name="message"
                                     required
                                     rows={2}
-                                    value={formData.message}
+                                    defaultValue=""
                                     onChange={handleChange}
                                     onFocus={() => handleFocus("message")}
                                     onBlur={handleBlur}
@@ -401,11 +388,11 @@ export default function Contact() {
                             {validation.message && (
                                 <div
                                     className={`text-xs mt-1 transition-all duration-300 ${validation.message.includes("brilliance")
-                                            ? "text-green-400"
-                                            : validation.message.includes("more") ||
-                                                validation.message.includes("detailed")
-                                                ? "text-yellow-400"
-                                                : "text-white/60"
+                                        ? "text-green-400"
+                                        : validation.message.includes("more") ||
+                                            validation.message.includes("detailed")
+                                            ? "text-yellow-400"
+                                            : "text-white/60"
                                         }`}
                                 >
                                     {validation.message}
@@ -427,7 +414,8 @@ export default function Contact() {
                                 "Send"
                             )}
                         </motion.button>
-                    </motion.form>
+                        </form>
+                    </motion.div>
                 </div>
             </div>
 
