@@ -150,7 +150,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     // Simulate form submission - replace with actual email service
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsSubmitted(true);
     setIsSubmitting(false);
