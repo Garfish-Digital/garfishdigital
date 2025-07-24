@@ -9,7 +9,7 @@ import "./contact.css";
 
 export default function Contact() {
     const { isClientAuthenticated } = useClientAuth();
-    const [formData, setFormData] = useState({
+    const [fieldValues, setFieldValues] = useState({
         name: "",
         email: "",
         company: "",
@@ -160,7 +160,7 @@ export default function Contact() {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
+        setFieldValues((prev) => ({
             ...prev,
             [name]: value,
         }));
@@ -245,7 +245,7 @@ export default function Contact() {
                                             }`}
                                         placeholder=" "
                                     />
-                                    {!formData.name && (
+                                    {!fieldValues.name && (
                                         <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                             <motion.div
                                                 key={placeholderKeys.name}
@@ -291,7 +291,7 @@ export default function Contact() {
                                             }`}
                                         placeholder=" "
                                     />
-                                    {!formData.email && (
+                                    {!fieldValues.email && (
                                         <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                             <motion.div
                                                 key={placeholderKeys.email}
@@ -338,7 +338,7 @@ export default function Contact() {
                                         }`}
                                     placeholder=" "
                                 />
-                                {!formData.company && (
+                                {!fieldValues.company && (
                                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                         <motion.div
                                             key={placeholderKeys.company}
@@ -370,7 +370,7 @@ export default function Contact() {
                                         }`}
                                     placeholder=" "
                                 />
-                                {!formData.message && (
+                                {!fieldValues.message && (
                                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                                         <motion.div
                                             key={placeholderKeys.message}
