@@ -208,37 +208,7 @@ export default function Contact() {
 
     return (
         <div className="h-screen overflow-hidden text-black contact-page-container">
-
-
-            {/* Static Logo - Upper Left */}
-            <motion.div
-                className="fixed top-8 left-8 z-20"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-                <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-                    Garfish Digital
-                </div>
-            </motion.div>
-
             <div className="flex items-start justify-center h-screen px-4 pt-24">
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                    {/* <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
-                  Welcome Back
-                </h2> */}
-                    <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                        Welcome to your client dashboard. Navigate through your
-                        project materials, review contracts, and process payments
-                        using the icons in the bottom right corner.
-                    </p>
-                </motion.div>
-
                 <div className="w-full max-w-lg contact-form-container">
                     <motion.form
                         onSubmit={handleSubmit}
@@ -246,8 +216,8 @@ export default function Contact() {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        name="contact"           {/* ADD THIS LINE */}
-                        data-netlify="true"      {/* ADD THIS LINE */}
+                        name="contact"
+                        data-netlify="true"
                     >
 
                         <input type="hidden" name="form-name" value="contact" />
@@ -443,6 +413,18 @@ export default function Contact() {
                     </motion.form>
                 </div>
             </div>
+
+            {/* Static Logo - Upper Left */}
+            <motion.div
+                className="fixed top-8 left-8 z-20"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+                <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
+                    Garfish Digital
+                </div>
+            </motion.div>
 
             {/* Legal Links - Bottom Left */}
             <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">

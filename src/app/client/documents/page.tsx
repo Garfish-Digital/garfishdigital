@@ -11,11 +11,6 @@ import Navigation from "@/components/Navigation";
 import { useClientAuth } from "@/hooks/useClientAuth";
 import "./documents.css";
 
-// src/app/client/project/page.tsx
-import clientData from '@/data/clients.json';
-
-// Or if you need dynamic imports
-const clientData = await import('@/data/clients.json');
 
 export default function Documents() {
   const { isClientAuthenticated } = useClientAuth();
