@@ -1,12 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFileContract,
-  faWindow,
-  faEnvelopeOpenDollar,
-} from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "@/components/Navigation";
 import { useClientAuth } from "@/hooks/useClientAuth";
 import "./documents.css";
