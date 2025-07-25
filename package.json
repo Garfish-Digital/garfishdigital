@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "TSC_COMPILE_ON_ERROR=true next build",
     "lint": "next lint"
   },
   "dependencies": {

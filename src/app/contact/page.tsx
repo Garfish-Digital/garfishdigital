@@ -156,36 +156,64 @@ export default function Contact() {
     //     setIsSubmitting(false);
     // };
 
+    // const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     setIsSubmitting(true);
+    //     setValidation({});
+
+    //     // Define formElement once for clarity and correct typing
+    //     const formElement = e.currentTarget as HTMLFormElement;
+
+    //     const encodedData = Array.from(formElement.entries())
+    //         .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+    //         .join('&');
+
+    //     try {
+    //         const response = await fetch(formElement.action, {
+    //             method: formElement.method,
+    //             headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //             body: encodedData,
+    //         });
+
+    //         if (response.ok) {
+    //             setIsSubmitted(true);
+    //             setFormData({ name: "", email: "", company: "", message: "" });
+    //         } else {
+    //             alert("Failed to send message. Please try again.");
+    //             console.error("Form submission failed:", response.status, response.statusText);
+    //             setIsSubmitting(false);
+    //         }
+    //     } catch (error) {
+    //         alert("An error occurred. Please check your internet connection and try again.");
+    //         console.error("Error submitting form:", error);
+    //         setIsSubmitting(false);
+    //     }
+    // };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setValidation({});
 
-        // Define formElement once for clarity and correct typing
-        const formElement = e.currentTarget as HTMLFormElement; // <--- ADD/CONFIRM THIS LINE
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const encodedData = new URLSearchParams(formElement as any).toString(); // <--- USE formElement HERE
+        const formElement = e.currentTarget as HTMLFormElement;
+        const formData = new FormData(formElement);
 
         try {
-            // CHANGE THESE TWO LINES to use 'formElement.action' and 'formElement.method'
-            const response = await fetch(formElement.action, {
-                method: formElement.method,
+            const response = await fetch("/", {
+                method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: encodedData,
+                body: new URLSearchParams(formData as any).toString()
             });
 
             if (response.ok) {
                 setIsSubmitted(true);
                 setFormData({ name: "", email: "", company: "", message: "" });
             } else {
-                alert("Failed to send message. Please try again.");
-                console.error("Form submission failed:", response.status, response.statusText);
-                setIsSubmitting(false);
+                throw new Error(`Server responded with ${response.status}`);
             }
         } catch (error) {
-            alert("An error occurred. Please check your internet connection and try again.");
-            console.error("Error submitting form:", error);
+            console.error("Submission error:", error);
+            alert("Failed to send message. Please try again.");
+        } finally {
             setIsSubmitting(false);
         }
     };
