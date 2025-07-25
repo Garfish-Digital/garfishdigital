@@ -145,15 +145,48 @@ export default function Contact() {
         }
     };
 
+    // const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     setIsSubmitting(true);
+
+    //     // Simulate form submission - replace with actual email service
+    //     await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    //     setIsSubmitted(true);
+    //     setIsSubmitting(false);
+    // };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setValidation({}); // Clear any previous validation messages on submit attempt
 
-        // Simulate form submission - replace with actual email service
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        // Convert form data to URL-encoded format
+        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        const encodedData = new URLSearchParams(formData as any).toString();
 
-        setIsSubmitted(true);
-        setIsSubmitting(false);
+        try {
+            const response = await fetch(e.currentTarget.action, {
+                method: e.currentTarget.method,
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: encodedData,
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true); // Show success message
+                setFormData({ name: "", email: "", company: "", message: "" }); // Clear form fields
+            } else {
+                // If Netlify returns an error (e.g., misconfigured form)
+                alert("Failed to send message. Please try again.");
+                console.error("Form submission failed:", response.status, response.statusText);
+                setIsSubmitting(false); // Allow re-submission
+            }
+        } catch (error) {
+            // If there's a network error
+            alert("An error occurred. Please check your internet connection and try again.");
+            console.error("Error submitting form:", error);
+            setIsSubmitting(false); // Allow re-submission
+        }
     };
 
     const handleChange = (
