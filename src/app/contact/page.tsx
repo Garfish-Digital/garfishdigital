@@ -163,6 +163,7 @@ export default function Contact() {
 
         // Convert form data to URL-encoded format
         const formData = new FormData(e.currentTarget as HTMLFormElement);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const encodedData = new URLSearchParams(formData as any).toString();
 
         try {
