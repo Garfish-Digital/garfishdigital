@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-
+  
   --white: oklch(99.487% 0.00833 146.145);
   --gray-light-transparent: oklch(73.033% 0.01807 145.601 / 0.5);
   --gray-light: oklch(73.033% 0.01807 145.601);
@@ -40,7 +38,7 @@
 }
 
 .font-mono {
-  font-family: "Courier New", "Cutive Mono", monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 
