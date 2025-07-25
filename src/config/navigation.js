@@ -14,21 +14,21 @@ import {
 
 } from '@fortawesome/pro-regular-svg-icons';
 
-export interface NavigationItem {
-  id: string;
-  title: string;
-  href?: string;
-  icon: IconDefinition;
-  enabled: boolean;
-  enabledOnPages?: string[]; // Pages where this icon should be enabled
-  disabledOnPages?: string[]; // Pages where this icon should be disabled
-  onClick?: () => void;
-  order: number;
-}
+// export interface NavigationItem {
+//   id: string;
+//   title: string;
+//   href?: string;
+//   icon: IconDefinition;
+//   enabled: boolean;
+//   enabledOnPages?: string[]; // Pages where this icon should be enabled
+//   disabledOnPages?: string[]; // Pages where this icon should be disabled
+//   onClick?: () => void;
+//   order: number;
+// }
 
-export type PageId = 'home' | 'gallery' | 'contact' | 'client' | 'project' | 'documents' | 'payment';
+export const PageId = 'home' | 'gallery' | 'contact' | 'client' | 'project' | 'documents' | 'payment';
 
-export const navigationItems: NavigationItem[] = [
+export const navigationItems = [
   {
     id: 'home',
     title: 'Home',
@@ -107,17 +107,17 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 // Helper function to get navigation items sorted by order
-export const getSortedNavigationItems = (): NavigationItem[] => {
+export const getSortedNavigationItems = () => {
   return [...navigationItems].sort((a, b) => a.order - b.order);
 };
 
 // Helper function to determine if an icon should be enabled based on current page
 export const getIconEnabledState = (
-  item: NavigationItem, 
-  currentPage: PageId,
-  galleryCurrentPage?: string,
-  isClientAuthenticated?: boolean
-): boolean => {
+  item, 
+  currentPage,
+  galleryCurrentPage,
+  isClientAuthenticated
+) => {
   // Handle client-only icons (project, documents, payment)
   if (['project', 'documents', 'payment'].includes(item.id)) {
     return isClientAuthenticated === true;
@@ -146,8 +146,8 @@ export const getIconEnabledState = (
 };
 
 // Helper function to get active navigation item based on current page
-export const getActiveNavigationItem = (currentPage: PageId): string | null => {
-  const pageToNavMap: Record<PageId, string> = {
+export const getActiveNavigationItem = (currentPage) => {
+  const pageToNavMap = {
     'home': 'home',
     'gallery': 'gallery', 
     'contact': 'contact',

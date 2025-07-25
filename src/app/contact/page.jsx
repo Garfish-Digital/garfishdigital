@@ -3,8 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Navigation from "@/components/Navigation";
-import { useClientAuth } from "@/hooks/useClientAuth";
+import Navigation from "../../components/Navigation";
+import { useClientAuth } from "../../hooks/useClientAuth";
 import "./contact.css";
 
 export default function Contact() {
@@ -17,8 +17,8 @@ export default function Contact() {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [focusedField, setFocusedField] = useState<string | null>(null);
-    const [validation, setValidation] = useState<Record<string, string>>({});
+    const [focusedField, setFocusedField] = useState(null);
+    const [validation, setValidation] = useState({});
     const [placeholders, setPlaceholders] = useState({
         name: "Your name",
         email: "your@email.com",
@@ -31,7 +31,7 @@ export default function Contact() {
         company: 0,
         message: 0,
     });
-    const [showModal, setShowModal] = useState<"privacy" | "terms" | null>(null);
+    const [showModal, setShowModal] = useState(null);
 
     // Separate cycling for each field with staggered timing
     useEffect(() => {
@@ -110,7 +110,7 @@ export default function Contact() {
 
     // Handle ESC key to close modal
     useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
+        const handleEsc = (e) => {
             if (e.key === "Escape") setShowModal(null);
         };
         document.addEventListener("keydown", handleEsc);
@@ -118,7 +118,7 @@ export default function Contact() {
     }, []);
 
     // Smart validation
-    const validateField = (name: string, value: string) => {
+    const validateField = (name, value) => {
         switch (name) {
             case "name":
                 if (!value) return "";
@@ -190,18 +190,19 @@ export default function Contact() {
     //     }
     // };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        const formElement = e.currentTarget as HTMLFormElement;
+        const formElement = e.currentTarget;
         const formData = new FormData(formElement);
 
         try {
             const response = await fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData as any).toString()
+                // @ts-ignore
+                body: new URLSearchParams(formData).toString()
             });
 
             if (response.ok) {
@@ -219,7 +220,7 @@ export default function Contact() {
     };
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e
     ) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -235,7 +236,7 @@ export default function Contact() {
         }));
     };
 
-    const handleFocus = (fieldName: string) => {
+    const handleFocus = (fieldName) => {
         setFocusedField(fieldName);
     };
 

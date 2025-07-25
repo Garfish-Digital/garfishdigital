@@ -2,21 +2,21 @@
 
 import { motion } from 'framer-motion';
 
-interface Page {
-  id: string;
-  title: string;
-  gridColumn: string;
-  gridRow: string;
-  color: string;
-}
+// interface Page {
+//   id: string;
+//   title: string;
+//   gridColumn: string;
+//   gridRow: string;
+//   color: string;
+// }
 
-interface MinimapProps {
-  currentPage: string;
-  onPageClick: (pageId: string) => void;
-  pages: Page[];
-}
+// interface MinimapProps {
+//   currentPage: string;
+//   onPageClick: (pageId: string) => void;
+//   pages: Page[];
+// }
 
-export default function Minimap({ currentPage, onPageClick, pages }: MinimapProps) {
+export default function Minimap({ currentPage, onPageClick, pages }) {
 
   // Fixed positioning logic - minimap always in upper right corner
   const getMinimapPosition = () => {
@@ -26,7 +26,7 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
   };
 
   // Map page IDs to their 3x3 grid positions
-  const getGridPosition = (pageId: string) => {
+  const getGridPosition = (pageId) => {
     const positions = {
       'cell1': { row: 1, col: 1 },
       'cell2': { row: 1, col: 2 },
@@ -38,7 +38,7 @@ export default function Minimap({ currentPage, onPageClick, pages }: MinimapProp
       'cell8': { row: 3, col: 2 },
       'cell9': { row: 3, col: 3 },
     };
-    return positions[pageId as keyof typeof positions] || { row: 2, col: 2 };
+    return positions[pageId] || { row: 2, col: 2 };
   };
 
   const position = getMinimapPosition();

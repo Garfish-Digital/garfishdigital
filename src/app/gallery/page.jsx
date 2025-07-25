@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Minimap from '@/components/Minimap';
+import Minimap from '../../components/Minimap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faWindow } from '@fortawesome/pro-regular-svg-icons';
-import Navigation from '@/components/Navigation';
-import { useClientAuth } from '@/hooks/useClientAuth';
+import Navigation from '../../components/Navigation';
+import { useClientAuth } from '../../hooks/useClientAuth';
 import './gallery.css';
 
 const pages = [
@@ -133,7 +133,7 @@ export default function Gallery() {
     const [currentPage, setCurrentPage] = useState('cell5');
     const [showTechCard, setShowTechCard] = useState(false);
 
-    const scrollToPage = (pageId: string) => {
+    const scrollToPage = (pageId) => {
         const page = pages.find(p => p.id === pageId);
         if (!page) return;
 
@@ -144,14 +144,14 @@ export default function Gallery() {
     // No initialization needed - CSS handles default positioning
 
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+        const handleKeyDown = (e) => {
             // Close tech card modal with ESC
             if (e.key === 'Escape' && showTechCard) {
                 setShowTechCard(false);
                 return;
             }
 
-            const keyMap: { [key: string]: string } = {
+            const keyMap = {
                 '1': 'cell1',
                 '2': 'cell2',
                 '3': 'cell3',
@@ -173,7 +173,7 @@ export default function Gallery() {
     }, [showTechCard]);
 
     // Tech card data for each cell
-    const getTechCardData = (cellId: string) => {
+    const getTechCardData = (cellId) => {
         const techData = {
             cell1: {
                 title: 'Black Lodge Brews',
@@ -208,7 +208,7 @@ export default function Gallery() {
                 items: ['Lorem ipsum dolor', 'Sit amet consectetur', 'Adipiscing elit sed', 'Do eiusmod tempor', 'Incididunt ut labore', 'Et dolore magna', 'Aliqua enim ad', 'Minim veniam quis']
             }
         };
-        return techData[cellId as keyof typeof techData] || null;
+        return techData[cellId] || null;
     };
 
     const handleTechCardOpen = () => {
@@ -232,13 +232,13 @@ export default function Gallery() {
 
     // 3D Tilt Effect using Framer Motion
     const tiltTransition = {
-        type: "spring" as const,
+        type: "spring",
         stiffness: 300,
         damping: 30,
         mass: 0.8
     };
 
-    const renderDemoCard = (cardData: typeof demoCards.cell1) => {
+    const renderDemoCard = (cardData) => {
         return (
             <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center">
                 <motion.a
@@ -289,8 +289,8 @@ export default function Gallery() {
         );
     };
 
-    const getPageContent = (pageId: string) => {
-        const cardData = demoCards[pageId as keyof typeof demoCards];
+    const getPageContent = (pageId) => {
+        const cardData = demoCards[pageId];
         if (cardData) {
             return renderDemoCard(cardData);
         }

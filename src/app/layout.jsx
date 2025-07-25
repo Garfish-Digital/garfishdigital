@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "./globals.css";
 // 1. Import necessary Font Awesome core configuration
 import { config, library } from '@fortawesome/fontawesome-svg-core';
@@ -44,7 +43,7 @@ library.add(
   faEyeSlash,
 );
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Garfish Digital",
   description: "Web Design and Development",
   robots: "noindex, nofollow",
@@ -52,9 +51,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Navigation from "@/components/Navigation";
-import { useClientAuth } from "@/hooks/useClientAuth";
+import Navigation from "../components/Navigation";
+import { useClientAuth } from "../hooks/useClientAuth";
 
 export default function Home() {
   const { isClientAuthenticated } = useClientAuth();

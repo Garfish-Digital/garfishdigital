@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 //   faWindow,
 //   faEnvelopeOpenDollar,
 // } from "@fortawesome/pro-regular-svg-icons";
-import Navigation from "@/components/Navigation";
-import { useClientAuth } from "@/hooks/useClientAuth";
+import Navigation from "../../../components/Navigation";
+import { useClientAuth } from "../../../hooks/useClientAuth";
 import "./documents.css";
 
 // src/app/client/project/page.tsx
@@ -59,7 +59,7 @@ export default function Documents() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <button className="garfish-button font-arial w-full">
+              <button className="garfish-button font-arial w-80">
                 View Project Scope Document
               </button>
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
@@ -72,7 +72,7 @@ export default function Documents() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              <button className="garfish-button font-arial w-full">
+              <button className="garfish-button font-arial w-80">
                 View Project Agreement Document
               </button>
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
@@ -85,7 +85,7 @@ export default function Documents() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
-              <button className="garfish-button font-arial w-full">
+              <button className="garfish-button font-arial w-80">
                 View Project Handoff Document
               </button>
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">

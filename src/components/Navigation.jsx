@@ -8,26 +8,26 @@ import {
   getSortedNavigationItems,
   getIconEnabledState,
   getActiveNavigationItem,
-  type PageId,
-  type NavigationItem 
-} from '@/config/navigation';
+  PageId,
+  NavigationItem 
+} from '../config/navigation';
 
-interface NavigationProps {
-  currentPage?: PageId;
-  galleryCurrentPage?: string; // For gallery-specific logic
-  onBowArrowClick?: () => void; // Custom handler for bow-arrow icon
-  onFlaskGearClick?: () => void; // Custom handler for flask-gear icon
-  isClientAuthenticated?: boolean; // Client authentication state
-  className?: string;
-}
+// interface NavigationProps {
+//   currentPage?: PageId;
+//   galleryCurrentPage?: string; // For gallery-specific logic
+//   onBowArrowClick?: () => void; // Custom handler for bow-arrow icon
+//   onFlaskGearClick?: () => void; // Custom handler for flask-gear icon
+//   isClientAuthenticated?: boolean; // Client authentication state
+//   className?: string;
+// }
 
-interface NavigationIconProps {
-  item: NavigationItem;
-  isActive: boolean;
-  isEnabled: boolean;
-  delay: number;
-  onClick?: () => void;
-}
+// interface NavigationIconProps {
+//   item: NavigationItem;
+//   isActive: boolean;
+//   isEnabled: boolean;
+//   delay: number;
+//   onClick?: () => void;
+// }
 
 const NavigationIconComponent = ({ 
   item, 
@@ -35,7 +35,7 @@ const NavigationIconComponent = ({
   isEnabled, 
   delay,
   onClick 
-}: NavigationIconProps) => {
+}) => {
   // Color mapping based on current design
   const getIconClasses = () => {
     const baseClasses = "drop-shadow-lg nav-icon-offset w-6 h-6 transition-all duration-300";
@@ -54,7 +54,7 @@ const NavigationIconComponent = ({
   const motionProps = {
     initial: { opacity: 0, x: 50 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, ease: "easeOut" as const, delay },
+    transition: { duration: 0.8, ease: "easeOut", delay },
     whileTap: !isActive && isEnabled ? { scale: 0.95 } : {}
   };
 
@@ -115,11 +115,11 @@ const Navigation = ({
   onFlaskGearClick,
   isClientAuthenticated = false,
   className = ''
-}: NavigationProps) => {
+}) => {
   const pathname = usePathname();
   
   // Auto-detect current page from pathname if not provided
-  const detectedPage = (): PageId => {
+  const detectedPage = () => {
     if (pathname === '/') return 'home';
     if (pathname === '/gallery') return 'gallery';
     if (pathname === '/contact') return 'contact';
@@ -143,7 +143,7 @@ const Navigation = ({
           const delay = index * 0.1; // Staggered animation delay
 
           // Handle special click handlers
-          let clickHandler: (() => void) | undefined;
+          let clickHandler;
           if (item.id === 'bow-arrow' && onBowArrowClick) {
             clickHandler = onBowArrowClick;
           } else if (item.id === 'flask-gear' && onFlaskGearClick) {

@@ -11,7 +11,7 @@ export const useClientAuth = () => {
         setIsClientAuthenticated(authStatus === 'true');
     }, []);
 
-    const setClientAuthenticated = (authenticated: boolean) => {
+    const setClientAuthenticated = (authenticated) => {
         localStorage.setItem('isClientAuthenticated', authenticated.toString());
         setIsClientAuthenticated(authenticated);
     };

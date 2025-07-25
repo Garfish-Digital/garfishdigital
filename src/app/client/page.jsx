@@ -9,8 +9,8 @@ import {
   faEnvelopeOpenDollar,
   faFileContract,
 } from "@fortawesome/pro-regular-svg-icons";
-import Navigation from "@/components/Navigation";
-import { useClientAuth } from "@/hooks/useClientAuth";
+import Navigation from "../../components/Navigation";
+import { useClientAuth } from "../../hooks/useClientAuth";
 import "./client.css";
 
 export default function Client() {
@@ -41,14 +41,14 @@ export default function Client() {
     return () => clearInterval(interval);
   }, []);
 
-  const validatePassword = (value: string) => {
+  const validatePassword = (value) => {
     if (!value) return "";
     if (value.length < 3) return "A bit short...";
     if (value === "garfish123") return "Access granted! ✓";
     return "Invalid password";
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== "garfish123") {
       setValidation("Invalid password");
@@ -65,7 +65,7 @@ export default function Client() {
     setIsSubmitting(false);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     const { value } = e.target;
     setPassword(value);
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Navigation from "@/components/Navigation";
-import { useClientAuth } from "@/hooks/useClientAuth";
+import Navigation from "../../../components/Navigation";
+import { useClientAuth } from "../../../hooks/useClientAuth";
 import "./project.css";
 
 export default function Project() {
@@ -52,7 +52,7 @@ export default function Project() {
     { section: "Post-Launch", milestone: "30-Day Support Period", status: "Pending", dateCompleted: "" },
   ];
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case "Completed":
         return "text-green-600 bg-green-50";
