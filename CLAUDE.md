@@ -12,13 +12,12 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
 
 ## Architecture
 
 ### Tech Stack
 - **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
+- **Language**: JavaScript (converted from TypeScript)
 - **Styling**: Tailwind CSS with OKLCH color system
 - **Animations**: Framer Motion
 - **Icons**: Font Awesome Pro+ Classic Regular
@@ -26,21 +25,21 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 
 ### Project Structure
 - `src/app/` - Next.js App Router pages and layouts
-  - `src/app/page.tsx` - Clean, professional landing page
+  - `src/app/page.jsx` - Clean, professional landing page
   - `src/app/gallery/` - Interactive 3x3 grid portfolio showcase
   - `src/app/contact/` - Professional contact form with cycling placeholders
   - `src/app/client/` - Client authentication portal with nested sub-pages
-    - `src/app/client/page.tsx` - Dashboard and authentication form
-    - `src/app/client/project/page.tsx` - Project milestone tracking table
-    - `src/app/client/documents/page.tsx` - Document access center
-    - `src/app/client/payment/page.tsx` - Payment management interface
+    - `src/app/client/page.jsx` - Dashboard and authentication form
+    - `src/app/client/project/page.jsx` - Project milestone tracking table
+    - `src/app/client/documents/page.jsx` - Document access center
+    - `src/app/client/payment/page.jsx` - Payment management interface
 - `src/components/` - Reusable React components
-  - `src/components/Navigation.tsx` - Context-aware navigation system
-  - `src/components/Minimap.tsx` - Gallery grid navigation
+  - `src/components/Navigation.jsx` - Context-aware navigation system
+  - `src/components/Minimap.jsx` - Gallery grid navigation
 - `src/config/` - Configuration files
-  - `src/config/navigation.ts` - Centralized navigation configuration
+  - `src/config/navigation.js` - Centralized navigation configuration
 - `src/hooks/` - Custom React hooks
-  - `src/hooks/useClientAuth.ts` - Client authentication state management
+  - `src/hooks/useClientAuth.js` - Client authentication state management
 
 ### Key Pages
 - **Landing Page**: Brutalist typography with clean hierarchy
@@ -59,7 +58,7 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 - **Context-Aware Navigation**: Icons appear/disappear based on page and authentication state
 
 ### Navigation System
-- **Centralized Configuration**: All navigation items defined in `src/config/navigation.ts`
+- **Centralized Configuration**: All navigation items defined in `src/config/navigation.js`
 - **Dynamic Visibility**: Icons filter based on page context and authentication state
 - **Persistent Authentication**: Client login state persists via localStorage
 - **Font Awesome Integration**: Pro+ icons with global library registration
@@ -87,8 +86,8 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 
 - All client-side components must include `'use client'` directive
 - Framer Motion animations use staggered delays and smooth transitions
-- Font Awesome icons must be imported in `src/app/layout.tsx` and added to library
-- Navigation changes require updates to both `navigation.ts` and `Navigation.tsx`
+- Font Awesome icons must be imported in `src/app/layout.jsx` and added to library
+- Navigation changes require updates to both `navigation.js` and `Navigation.jsx`
 - Client authentication uses localStorage for persistence across sessions
 - OKLCH colors provide better color space than hex/rgb for modern displays
 - Component-specific CSS files used for complex styling (gallery.css, contact.css, client.css)

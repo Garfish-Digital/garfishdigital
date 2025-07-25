@@ -1,4 +1,3 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 // Using Font Awesome Pro+ Classic Regular icons
 import { 
