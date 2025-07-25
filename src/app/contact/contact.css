@@ -5,9 +5,6 @@
 .contact-form-field {
   border: 1px solid #aaaaaa !important;
   border-radius: 5px !important;
-  background: white !important;
-  color: black !important;
-  min-height: 3rem !important;
 }
 
 /* Success page background */
@@ -20,8 +17,7 @@
 
 /* Main contact page container */
 .contact-page-container {
-  background: var(--color-white) !important;
-  min-height: 100vh !important;
+  background: #FFFFFF !important;
 }
 
 /* Modal background */
@@ -34,9 +30,6 @@
 /* Form sizing adjustments for better mobile responsiveness */
 .contact-form-container {
   max-width: 28rem !important; /* Reduced from max-w-2xl (32rem) to max-w-lg (28rem) */
-  background: rgba(255, 255, 255, 0.05) !important; /* Debug: make container visible */
-  border: 1px solid rgba(0, 0, 0, 0.1) !important; /* Debug: container border */
-  padding: 1rem !important; /* Ensure padding */
 }
 
 /* Mobile responsive adjustments */
