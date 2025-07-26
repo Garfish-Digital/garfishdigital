@@ -289,7 +289,7 @@ export default function Contact() {
                     > */}
 
           {/* Bot field outside form */}
-          <div style={{ display: 'none' }}>
+          <div className="bot-field-hidden" style={{ display: 'none' }} tabIndex={-1}>
             <input name="bot-field" />
           </div>
           
