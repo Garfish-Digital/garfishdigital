@@ -306,7 +306,7 @@ export default function Contact() {
                         action="/__forms.html"
                     >
                         <input type="hidden" name="form-name" value="contact" />
-                        <p hidden>
+                        <p className="=hidden">
                             <label>Don’t fill this out: <input name="bot-field" /></label>
                         </p>
 
