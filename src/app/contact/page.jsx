@@ -289,26 +289,16 @@ export default function Contact() {
                     > */}
 
           <form
-            onSubmit={handleSubmit}
             className="space-y-4"
             name="contact"
             data-netlify="true"
-            data-netlify-honeypot="bot-field"
+            data-netlify-recaptcha="true"
             method="POST"
-            action="/__forms.html"
+            action="/contact"
           >
-           
-            <div className="visually-hidden-bot-field" aria-hidden="true">
-              <label htmlFor="bot-field-input">Don’t fill this out:</label>
-              <input
-                type="text"
-                id="bot-field-input"
-                name="bot-field"
-                tabIndex="-1"
-                autoComplete="new-password"
-              />
-            </div>
             <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="_redirect" value="/contact-success" />
+            <input type="hidden" name="_error" value="/contact-error" />
 
             <div className="grid md:grid-cols-2 gap-6 contact-form-grid">
               <div className="relative">
@@ -488,19 +478,16 @@ export default function Contact() {
               )}
             </div>
 
+            {/* reCAPTCHA */}
+            <div className="flex justify-center">
+              <div data-netlify-recaptcha="true"></div>
+            </div>
+
             <motion.button
               type="submit"
-              disabled={isSubmitting}
               className="inline-block garfish-button text-lg transition-all duration-300 transform font-arial"
             >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
-                  Sending Message...
-                </div>
-              ) : (
-                "Send"
-              )}
+              Send Message
             </motion.button>
           </form>
           {/* </motion.form> */}
