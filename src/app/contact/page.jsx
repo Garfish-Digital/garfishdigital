@@ -288,6 +288,11 @@ export default function Contact() {
                         data-netlify="true"
                     > */}
 
+          {/* Bot field outside form */}
+          <div style={{ display: 'none' }}>
+            <input name="bot-field" />
+          </div>
+          
           <form
             onSubmit={handleSubmit}
             className="space-y-4"
@@ -297,11 +302,6 @@ export default function Contact() {
             method="POST"
             action="/__forms.html"
           >
-\            <p className="hidden-field display-none">
-              <label>
-                Don’t fill this out: <input name="bot-field" tabIndex="-1" autoComplete="off" />
-              </label>
-            </p>
             <input type="hidden" name="form-name" value="contact" />
 
             <div className="grid md:grid-cols-2 gap-6 contact-form-grid">
