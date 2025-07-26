@@ -185,33 +185,6 @@ export default function Contact() {
   //     }
   // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const formElement = e.currentTarget;
-    const formData = new FormData(formElement);
-
-    try {
-      const response = await fetch(formElement.action, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", company: "", message: "" });
-      } else {
-        throw new Error(`Server responded with ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert("Failed to send message. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -293,7 +266,6 @@ export default function Contact() {
             data-netlify="true"
             data-netlify-recaptcha="true"
             method="POST"
-            action="/contact"
           >
             <input type="hidden" name="form-name" value="contact" />
             <input type="hidden" name="_redirect" value="/contact-success" />
