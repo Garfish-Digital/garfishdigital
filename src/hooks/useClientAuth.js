@@ -20,6 +20,7 @@ export const useClientAuth = () => {
                 // If parsing fails, clear invalid data
                 localStorage.removeItem('isClientAuthenticated');
                 localStorage.removeItem('authenticatedClient');
+                console.error(error);
             }
         }
     }, []);
