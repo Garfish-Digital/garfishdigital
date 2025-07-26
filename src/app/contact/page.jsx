@@ -15,7 +15,6 @@ export default function Contact() {
     company: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const [validation, setValidation] = useState({});
