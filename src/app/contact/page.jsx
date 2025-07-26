@@ -297,8 +297,7 @@ export default function Contact() {
             method="POST"
             action="/__forms.html"
           >
-            <p className="sr-only" aria-hidden="true">
-            {/* <p className="hidden-field"> */}
+\            <p className="hidden-field display-none">
               <label>
                 Don’t fill this out: <input name="bot-field" tabIndex="-1" autoComplete="off" />
               </label>
