@@ -6,51 +6,10 @@ import { useClientAuth } from "../../../hooks/useClientAuth";
 import "./project.css";
 
 export default function Project() {
-  const { isClientAuthenticated } = useClientAuth();
+  const { isClientAuthenticated, authenticatedClient } = useClientAuth();
   
-  // Sample milestone data
-  const milestones = [
-    { section: "Discovery", milestone: "Requirements Gathering", status: "Completed", dateCompleted: "2024-01-15" },
-    { section: "Discovery", milestone: "Technical Specification", status: "Completed", dateCompleted: "2024-01-22" },
-    { section: "Discovery", milestone: "User Research & Analysis", status: "Completed", dateCompleted: "2024-01-29" },
-    { section: "Discovery", milestone: "Competitive Analysis", status: "Completed", dateCompleted: "2024-02-02" },
-    { section: "Design", milestone: "Information Architecture", status: "Completed", dateCompleted: "2024-02-05" },
-    { section: "Design", milestone: "Wireframes & Mockups", status: "Completed", dateCompleted: "2024-02-12" },
-    { section: "Design", milestone: "Visual Design System", status: "Completed", dateCompleted: "2024-02-19" },
-    { section: "Design", milestone: "UI/UX Review", status: "Completed", dateCompleted: "2024-02-26" },
-    { section: "Design", milestone: "Responsive Design", status: "Completed", dateCompleted: "2024-03-05" },
-    { section: "Design", milestone: "Design System Documentation", status: "Completed", dateCompleted: "2024-03-08" },
-    { section: "Development", milestone: "Project Setup & Architecture", status: "Completed", dateCompleted: "2024-03-12" },
-    { section: "Development", milestone: "Database Schema Design", status: "Completed", dateCompleted: "2024-03-15" },
-    { section: "Development", milestone: "Authentication System", status: "Completed", dateCompleted: "2024-03-22" },
-    { section: "Development", milestone: "Product Catalog Backend", status: "Completed", dateCompleted: "2024-03-29" },
-    { section: "Development", milestone: "Shopping Cart Functionality", status: "Completed", dateCompleted: "2024-04-05" },
-    { section: "Development", milestone: "Payment Gateway Integration", status: "Completed", dateCompleted: "2024-04-12" },
-    { section: "Development", milestone: "Frontend Implementation", status: "In Progress", dateCompleted: "" },
-    { section: "Development", milestone: "Admin Dashboard", status: "In Progress", dateCompleted: "" },
-    { section: "Development", milestone: "Search & Filtering", status: "Pending", dateCompleted: "" },
-    { section: "Development", milestone: "Order Management System", status: "Pending", dateCompleted: "" },
-    { section: "Development", milestone: "Email Notifications", status: "Pending", dateCompleted: "" },
-    { section: "Development", milestone: "Performance Optimization", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "Unit Testing", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "Integration Testing", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "User Acceptance Testing", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "Performance Testing", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "Security Testing", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "Cross-browser Testing", status: "Pending", dateCompleted: "" },
-    { section: "Testing", milestone: "Mobile Responsiveness Testing", status: "Pending", dateCompleted: "" },
-    { section: "Launch", milestone: "Staging Environment Setup", status: "Pending", dateCompleted: "" },
-    { section: "Launch", milestone: "Production Environment Setup", status: "Pending", dateCompleted: "" },
-    { section: "Launch", milestone: "DNS & SSL Configuration", status: "Pending", dateCompleted: "" },
-    { section: "Launch", milestone: "Data Migration", status: "Pending", dateCompleted: "" },
-    { section: "Launch", milestone: "Production Deployment", status: "Pending", dateCompleted: "" },
-    { section: "Launch", milestone: "Go-Live Testing", status: "Pending", dateCompleted: "" },
-    { section: "Post-Launch", milestone: "Performance Monitoring", status: "Pending", dateCompleted: "" },
-    { section: "Post-Launch", milestone: "Bug Fixes & Hotfixes", status: "Pending", dateCompleted: "" },
-    { section: "Post-Launch", milestone: "User Training", status: "Pending", dateCompleted: "" },
-    { section: "Post-Launch", milestone: "Documentation Handover", status: "Pending", dateCompleted: "" },
-    { section: "Post-Launch", milestone: "30-Day Support Period", status: "Pending", dateCompleted: "" },
-  ];
+  // Get milestones from authenticated client data
+  const milestones = authenticatedClient?.milestones || [];
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -88,7 +47,7 @@ export default function Project() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h3 className="text-lg font-bold text-[color:var(--color-gray-faint)] font-arial">
-            E-Commerce Platform Redesign
+            {authenticatedClient?.project || "Project Overview"}
           </h3>
           <button className="garfish-button font-arial">
             View Project
@@ -124,7 +83,14 @@ export default function Project() {
               
               {/* Table Body */}
               <tbody>
-                {milestones.map((milestone, index) => (
+                {milestones.length === 0 ? (
+                  <tr>
+                    <td colSpan="4" className="px-6 py-8 text-center text-[color:var(--color-gray-dark)] font-arial">
+                      No milestones available. Please contact support if you believe this is an error.
+                    </td>
+                  </tr>
+                ) : (
+                  milestones.map((milestone, index) => (
                   <motion.tr
                     key={index}
                     className="hover:bg-[color:var(--color-gray-light)] hover:bg-opacity-10 transition-colors duration-200"
@@ -147,7 +113,8 @@ export default function Project() {
                       {milestone.dateCompleted || "-"}
                     </td>
                   </motion.tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
           </div>

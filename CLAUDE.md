@@ -70,10 +70,13 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 - **Recent Additions**: Green color variants for enhanced UI feedback
 
 ### Authentication Flow
-- **Client Portal**: Password-protected access ("garfish123")
+- **Current System**: JSON-based authentication using `src/data/clients.json`
+- **Test Users**: Two clients configured ("garfish123", "robinson0430") 
+- **Data Structure**: Each client has password, project name, milestones, and document paths
 - **State Persistence**: localStorage-based authentication across sessions
 - **Icon Enablement**: Project/Payment/Contract icons appear after authentication
 - **Cross-Page Consistency**: Authentication state shared via custom hook
+- **Future Migration**: Planned transition to Firebase Auth for production scalability
 
 ### Client Portal Features
 - **Project Tracking**: 40+ milestone entries across 6 project phases (Discovery, Design, Development, Testing, Launch, Post-Launch)
@@ -93,3 +96,33 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 - Component-specific CSS files used for complex styling (gallery.css, contact.css, client.css)
 - Client sub-pages follow nested directory structure under `/client/`
 - Input field styling now includes consistent background colors and placeholder behavior
+
+## Client Authentication System
+
+### Current Implementation
+- **Data Source**: `src/data/clients.json` contains client credentials and project data
+- **Authentication Logic**: Currently hardcoded in `src/app/client/page.jsx` (needs integration)
+- **Client Data Structure**:
+  ```json
+  {
+    "password": "unique_client_password",
+    "project": "Project Name",
+    "milestones": "[]", 
+    "documents": {
+      "scope": "/documents/client-scope.pdf",
+      "agreement": "/documents/client-agreement.pdf", 
+      "handoff": "/documents/client-handoff.pdf"
+    }
+  }
+  ```
+
+### Integration Strategy
+1. **Phase 1**: Replace hardcoded password validation with `clients.json` lookup
+2. **Phase 2**: Store authenticated client object (not just boolean) for personalization
+3. **Phase 3**: Display client-specific project names and documents
+4. **Phase 4**: Migrate to Firebase Auth for production scalability
+
+### Future Enhancements
+- **Firebase Auth**: Real user management with email verification, password reset
+- **Client-Specific Content**: Dynamic project names, milestone tracking, document access
+- **Enhanced Security**: Password hashing, session management, account lockout protection

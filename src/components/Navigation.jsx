@@ -12,23 +12,6 @@ import {
   NavigationItem 
 } from '../config/navigation';
 
-// interface NavigationProps {
-//   currentPage?: PageId;
-//   galleryCurrentPage?: string; // For gallery-specific logic
-//   onBowArrowClick?: () => void; // Custom handler for bow-arrow icon
-//   onFlaskGearClick?: () => void; // Custom handler for flask-gear icon
-//   isClientAuthenticated?: boolean; // Client authentication state
-//   className?: string;
-// }
-
-// interface NavigationIconProps {
-//   item: NavigationItem;
-//   isActive: boolean;
-//   isEnabled: boolean;
-//   delay: number;
-//   onClick?: () => void;
-// }
-
 const NavigationIconComponent = ({ 
   item, 
   isActive, 

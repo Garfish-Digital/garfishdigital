@@ -1,24 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faFileContract,
-//   faWindow,
-//   faEnvelopeOpenDollar,
-// } from "@fortawesome/pro-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFileContract,
+  faFileText,
+  faHandshake,
+} from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "../../../components/Navigation";
 import { useClientAuth } from "../../../hooks/useClientAuth";
 import "./documents.css";
 
-// src/app/client/project/page.tsx
-// import clientData from '@/data/clients.json';
-
-// Or if you need dynamic imports
-// const clientData = await import('@/data/clients.json');
-
 export default function Documents() {
-  const { isClientAuthenticated } = useClientAuth();
+  const { isClientAuthenticated, authenticatedClient } = useClientAuth();
 
   return (
     <div className="min-h-screen text-black documents-success-background">

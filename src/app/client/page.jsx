@@ -11,10 +11,11 @@ import {
 } from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "../../components/Navigation";
 import { useClientAuth } from "../../hooks/useClientAuth";
+import clientsData from "../../data/clients.json";
 import "./client.css";
 
 export default function Client() {
-  const { isClientAuthenticated, setClientAuthenticated } = useClientAuth();
+  const { isClientAuthenticated, authenticatedClient, setClientAuthenticated } = useClientAuth();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,13 +45,20 @@ export default function Client() {
   const validatePassword = (value) => {
     if (!value) return "";
     if (value.length < 3) return "A bit short...";
-    if (value === "garfish123") return "Access granted! ✓";
+    
+    // Check if password matches any client
+    const client = clientsData.find(c => c.password === value);
+    if (client) return "Access granted! ✓";
+    
     return "Invalid password";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== "garfish123") {
+    
+    // Find matching client
+    const client = clientsData.find(c => c.password === password);
+    if (!client) {
       setValidation("Invalid password");
       return;
     }
@@ -58,8 +66,8 @@ export default function Client() {
     setIsSubmitting(true);
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // Set client authentication using hook
-    setClientAuthenticated(true);
+    // Set client authentication with full client object
+    setClientAuthenticated(client);
 
     setShowModal(true);
     setIsSubmitting(false);
@@ -105,7 +113,7 @@ export default function Client() {
                   Welcome Back
                 </h2> */}
                 <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Welcome to your client dashboard. Navigate through your
+                  Welcome to your client dashboard for <strong>{authenticatedClient?.project || 'your project'}</strong>. Navigate through your
                   project materials, review contracts, and process payments
                   using the icons in the bottom right corner.
                 </p>
@@ -116,11 +124,11 @@ export default function Client() {
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <h3 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
-                  <FontAwesomeIcon icon={faWindow} className="mr-2 text-[color:var(--color-gray-faint)]" /> Your Project
+                  <FontAwesomeIcon icon={faWindow} className="mr-2 text-[color:var(--color-gray-faint)]" /> {authenticatedClient?.project || 'Your Project'}
                 </h3>
                 <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
                   Access your project files, review development progress, and
-                  track milestones.
+                  track milestones for {authenticatedClient?.project || 'your project'}.
                 </p>
               </motion.div>
 
@@ -234,7 +242,7 @@ export default function Client() {
 
             <motion.button
               type="submit"
-              disabled={isSubmitting || password !== "garfish123"}
+              disabled={isSubmitting || !clientsData.find(c => c.password === password)}
               className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
             >
               {isSubmitting ? (
@@ -310,7 +318,7 @@ export default function Client() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  Welcome to your client portal. Navigation icons are now
+                  Welcome to your client portal for {authenticatedClient?.project || 'your project'}. Navigation icons are now
                   enabled.
                 </motion.p>
                 <motion.button

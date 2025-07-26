@@ -198,10 +198,9 @@ export default function Contact() {
         const formData = new FormData(formElement);
 
         try {
-            const response = await fetch("/", {
+            const response = await fetch(formElement.action, {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                // @ts-ignore
                 body: new URLSearchParams(formData).toString()
             });
 
@@ -219,9 +218,7 @@ export default function Contact() {
         }
     };
 
-    const handleChange = (
-        e
-    ) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,

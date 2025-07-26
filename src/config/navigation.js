@@ -1,5 +1,3 @@
-
-// Using Font Awesome Pro+ Classic Regular icons
 import { 
   faHouse,
   faGrid,
@@ -12,18 +10,6 @@ import {
   faFileContract,
 
 } from '@fortawesome/pro-regular-svg-icons';
-
-// export interface NavigationItem {
-//   id: string;
-//   title: string;
-//   href?: string;
-//   icon: IconDefinition;
-//   enabled: boolean;
-//   enabledOnPages?: string[]; // Pages where this icon should be enabled
-//   disabledOnPages?: string[]; // Pages where this icon should be disabled
-//   onClick?: () => void;
-//   order: number;
-// }
 
 export const PageId = 'home' | 'gallery' | 'contact' | 'client' | 'project' | 'documents' | 'payment';
 
