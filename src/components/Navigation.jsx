@@ -94,7 +94,6 @@ const NavigationIconComponent = ({
 const Navigation = ({ 
   currentPage = 'home',
   galleryCurrentPage,
-  onBowArrowClick,
   onFlaskGearClick,
   isClientAuthenticated = false,
   className = ''
@@ -127,9 +126,7 @@ const Navigation = ({
 
           // Handle special click handlers
           let clickHandler;
-          if (item.id === 'bow-arrow' && onBowArrowClick) {
-            clickHandler = onBowArrowClick;
-          } else if (item.id === 'flask-gear' && onFlaskGearClick) {
+          if (item.id === 'flask-gear' && onFlaskGearClick) {
             clickHandler = onFlaskGearClick;
           }
 

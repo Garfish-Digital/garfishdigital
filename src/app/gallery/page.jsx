@@ -6,7 +6,7 @@ import Minimap from '../../components/Minimap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faWindow } from '@fortawesome/pro-regular-svg-icons';
 import Navigation from '../../components/Navigation';
-import { useClientAuth } from '../../hooks/useClientAuth';
+import { useClientAuth } from '../../contexts/ClientAuthContext';
 import './gallery.css';
 
 const pages = [
@@ -222,13 +222,6 @@ export default function Gallery() {
         setShowTechCard(false);
     };
 
-    const handleRandomNavigation = () => {
-        // Get all pages except cell5
-        const availablePages = pages.filter(page => page.id !== 'cell5');
-        // Pick a random page
-        const randomPage = availablePages[Math.floor(Math.random() * availablePages.length)];
-        scrollToPage(randomPage.id);
-    };
 
     // 3D Tilt Effect using Framer Motion
     const tiltTransition = {
@@ -327,7 +320,6 @@ export default function Gallery() {
             <Navigation 
                 currentPage="gallery"
                 galleryCurrentPage={currentPage}
-                onBowArrowClick={handleRandomNavigation}
                 onFlaskGearClick={handleTechCardOpen}
                 isClientAuthenticated={isClientAuthenticated}
             />

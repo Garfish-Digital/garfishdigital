@@ -3,6 +3,7 @@
         "id": "client1",
         "password": "garfish123",
         "project": "Inferno Ink Website",
+        "path": "inferno-ink.netlify.app",
         "clientName": "Inferno Ink Studio",
         "milestones": [
             { "section": "Discovery", "milestone": "Requirements Gathering", "status": "Completed", "dateCompleted": "2024-01-15" },
@@ -47,9 +48,9 @@
             { "section": "Post-Launch", "milestone": "30-Day Support Period", "status": "Pending", "dateCompleted": "" }
         ],
         "documents": {
-            "scope": "/documents/client1-scope.pdf",
-            "agreement": "/documents/client1-agreement.pdf",
-            "handoff": "/documents/client1-handoff.pdf"
+            "scope": "/documents/inferno-ink-scope.pdf",
+            "agreement": "/documents/inferno-ink-agreement.pdf",
+            "handoff": "/documents/inferno-ink-handoff.pdf"
         },
         "status": "active",
         "lastLogin": null
@@ -58,6 +59,7 @@
         "id": "client2",
         "password": "robinson0430",
         "project": "Obsidian Peaks Website",
+        "path": "obsidian-peaks.netlify.app",
         "clientName": "Robinson Creative",
         "milestones": [
             { "section": "Discovery", "milestone": "Brand Strategy Workshop", "status": "Completed", "dateCompleted": "2024-02-01" },
@@ -97,9 +99,9 @@
             { "section": "Post-Launch", "milestone": "30-Day Support Period", "status": "Pending", "dateCompleted": "" }
         ],
         "documents": {
-            "scope": "/documents/client2-scope.pdf",
-            "agreement": "/documents/client2-agreement.pdf",
-            "handoff": "/documents/client2-handoff.pdf"
+            "scope": "/documents/obsidian-peaks-scope.pdf",
+            "agreement": "/documents/obsidian-peaks-agreement.pdf",
+            "handoff": "/documents/obsidian-peaks-handoff.pdf"
         },
         "status": "active",
         "lastLogin": null

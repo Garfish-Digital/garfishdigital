@@ -1,7 +1,6 @@
 import { 
   faHouse,
   faGrid,
-  faBowArrow,
   faFlaskGear,
   faMessage,
   faUserGear,
@@ -31,20 +30,12 @@ export const navigationItems = [
     order: 2
   },
   {
-    id: 'bow-arrow',
-    title: 'Explore Random Page',
-    icon: faBowArrow,
-    enabled: false, // Disabled by default
-    enabledOnPages: ['gallery'], // Enable only on gallery page
-    order: 3
-  },
-  {
     id: 'flask-gear',
     title: 'View Techniques', 
     icon: faFlaskGear,
     enabled: false, // Disabled by default
     // Will be enabled based on gallery currentPage logic
-    order: 4
+    order: 3
   },
   {
     id: 'contact',
@@ -52,7 +43,7 @@ export const navigationItems = [
     href: '/contact',
     icon: faMessage,
     enabled: true,
-    order: 5
+    order: 4
   },
   {
     id: 'client',
@@ -60,7 +51,7 @@ export const navigationItems = [
     href: '/client',
     icon: faUserGear,
     enabled: true,
-    order: 6
+    order: 5
   },
   {
     id: 'project',
@@ -69,7 +60,7 @@ export const navigationItems = [
     icon: faWindow,
     enabled: false, // Disabled by default
     // Will be enabled based on client password success
-    order: 7
+    order: 6
   },
   {
       id: 'documents',
@@ -78,7 +69,7 @@ export const navigationItems = [
       icon: faFileContract,
       enabled: false, // Disabled by default
       // Will be enabled based on client password success
-      order: 8
+      order: 7
     },
     {
       id: 'payment',
@@ -87,7 +78,7 @@ export const navigationItems = [
       icon: faEnvelopeOpenDollar,
       enabled: false, // Disabled by default
       // Will be enabled based on client password success
-      order: 9
+      order: 8
     },
 ];
 
@@ -113,10 +104,6 @@ export const getIconEnabledState = (
     return currentPage === 'gallery' && galleryCurrentPage !== 'cell5';
   }
   
-  // Handle bow-arrow special logic
-  if (item.id === 'bow-arrow') {
-    return currentPage === 'gallery';
-  }
   
   // Handle page-specific enable/disable rules
   if (item.enabledOnPages && !item.enabledOnPages.includes(currentPage)) {

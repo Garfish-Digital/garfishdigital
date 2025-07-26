@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Navigation from "../../../components/Navigation";
-import { useClientAuth } from "../../../hooks/useClientAuth";
+import { useClientAuth } from "../../../contexts/ClientAuthContext";
 import "./project.css";
 
 export default function Project() {
@@ -10,6 +10,12 @@ export default function Project() {
   
   // Get milestones from authenticated client data
   const milestones = authenticatedClient?.milestones || [];
+
+  const handleViewProject = () => {
+    if (authenticatedClient && authenticatedClient.path) {
+      window.open(`https://${authenticatedClient.path}`, '_blank');
+    }
+  };
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -49,7 +55,10 @@ export default function Project() {
           <h3 className="text-lg font-bold text-[color:var(--color-gray-faint)] font-arial">
             {authenticatedClient?.project || "Project Overview"}
           </h3>
-          <button className="garfish-button font-arial">
+          <button 
+            className="garfish-button font-arial"
+            onClick={handleViewProject}
+          >
             View Project
           </button>
         </motion.div>

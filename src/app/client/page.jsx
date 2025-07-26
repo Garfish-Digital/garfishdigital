@@ -10,7 +10,7 @@ import {
   faFileContract,
 } from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "../../components/Navigation";
-import { useClientAuth } from "../../hooks/useClientAuth";
+import { useClientAuth } from "../../contexts/ClientAuthContext";
 import clientsData from "../../data/clients.json";
 import "./client.css";
 

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Navigation from "../../components/Navigation";
-import { useClientAuth } from "../../hooks/useClientAuth";
+import { useClientAuth } from "../../contexts/ClientAuthContext";
 
 export default function ContactError() {
   const { isClientAuthenticated } = useClientAuth();

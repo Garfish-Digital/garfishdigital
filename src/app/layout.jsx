@@ -1,4 +1,6 @@
 import "./globals.css";
+import ClientLayout from "../components/ClientLayout";
+import { ClientAuthProvider } from "../contexts/ClientAuthContext";
 // 1. Import necessary Font Awesome core configuration
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 // 2. Import Font Awesome's base CSS. Crucial for proper icon rendering.
@@ -9,7 +11,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import {
   faHouse,             // Example: Home icon
   faGrid,          // Example: For "Books" or "Library"
-  faBowArrow,             // Example: For "Collections" (as discussed for Astro)
   faFlaskGear,              // Example: For "User Profile" or "Account"
   faMessage,              // Example: For "Settings"
   faArrowRightFromBracket,
@@ -32,7 +33,6 @@ config.autoAddCss = false;
 library.add(
   faHouse,
   faGrid,
-  faBowArrow,
   faFlaskGear,
   faMessage,
    faArrowRightFromBracket,
@@ -63,7 +63,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body>
-        {children}
+        <ClientAuthProvider>
+          {children}
+          <ClientLayout />
+        </ClientAuthProvider>
       </body>
     </html>
   );
