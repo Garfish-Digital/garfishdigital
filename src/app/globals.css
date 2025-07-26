@@ -77,6 +77,10 @@
 
 
 /* INPUT FIELDS */
+.hidden-field {
+    display: none !important;
+}
+
 input {
     background-color: var(--color-gray-faint);
 }
