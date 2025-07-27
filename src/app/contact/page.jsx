@@ -301,8 +301,8 @@ export default function Contact() {
             <input type="hidden" name="_error" value="/contact-error" />
 
             <fieldset>
-            <legend>Contact Us Today</legend>
-            <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6">
+            <legend>Contact Us</legend>
+            {/* <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6"> */}
               <div className="relative">
                 <div className="relative">
                   <input
@@ -362,7 +362,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onFocus={() => handleFocus("email")}
                     onBlur={handleBlur}
-                    className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
+                    className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
                       focusedField === "email" ? "focus-bounce" : ""
                     }`}
                     placeholder=" "
@@ -399,9 +399,9 @@ export default function Contact() {
                   </div>
                 )}
               </div>
-            </div>
+            {/* </div> */}
 
-            <div className="relative mb-6">
+            <div className="relative">
               <div className="relative">
                 <input
                   type="text"
@@ -411,7 +411,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus("company")}
                   onBlur={handleBlur}
-                  className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black transition-all duration-300 ${
+                  className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
                     focusedField === "company" ? "focus-bounce" : ""
                   }`}
                   placeholder=" "
@@ -433,7 +433,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="relative mb-6">
+            <div className="relative mb-4">
               <div className="relative">
                 <textarea
                   id="message"
@@ -444,7 +444,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus("message")}
                   onBlur={handleBlur}
-                  className={`w-full px-3 py-3 bg-white contact-form-field focus:outline-none text-black resize-none transition-all duration-300 ${
+                  className={`w-full px-3 py-3 contact-form-field resize-none transition-all duration-300 ${
                     focusedField === "message" ? "focus-bounce" : ""
                   }`}
                   placeholder=" "

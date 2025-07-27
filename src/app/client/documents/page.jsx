@@ -66,7 +66,7 @@ export default function Documents() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -76,7 +76,20 @@ export default function Documents() {
                 specifications, and important documentation through this secure
                 portal.
               </p>
-            </motion.div>
+            </motion.div> */}
+
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+                  Document Center for{" "}
+                  <strong className="text-[var(--color-gray-dark)]">
+                    {authenticatedClient?.project || "your project"}
+                  </strong>.
+                </h2>
+              </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

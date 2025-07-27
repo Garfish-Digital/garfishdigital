@@ -23,14 +23,14 @@ export default function Payment() {
   const invoices = [
     {
       id: "inv_001",
-      description: "Website Development - Phase 1",
+      description: "Phase 1 - Structural & Functional",
       amount: 2500,
       dueDate: "2025-02-15",
       status: "pending",
     },
     {
       id: "inv_002",
-      description: "Design System & Branding",
+      description: "Phase 2 - Branding, SEO, & Deployment",
       amount: 1500,
       dueDate: "2025-03-01",
       status: "pending",
@@ -135,8 +135,22 @@ export default function Payment() {
           Garfish Digital
         </div>
       </motion.div>
-      <div className="flex items-center justify-center h-screen px-4">
+      <div className="flex items-start justify-center h-screen px-4 pt-24">
         <div className="w-full max-w-2xl payment-content-container">
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+                  Payment Gateway for{" "}
+                  <strong className="text-[var(--color-gray-dark)]">
+                    {authenticatedClient?.project || "your project"}
+                  </strong>.
+                </h2>
+              </motion.div>
+
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -157,9 +171,12 @@ export default function Payment() {
               // Invoice List
               <div className="space-y-6">
                 {authenticatedClient && (
-                  <h2 className="text-2xl font-bold mb-6 font-arial text-[var(--color-gray-light)]">
-                    Pending Invoices for {authenticatedClient.clientName}
-                  </h2>
+                    // <>
+                  <h3 className="text-lg font-bold mt-6 mb-6 font-arial text-[var(--color-gray-dark)]">
+                    Pending Invoices
+                  </h3>
+                //   <h3 className="font-bold">{authenticatedClient.project} Project</h3>
+                //     </>
                 )}
                 {invoices.map((invoice) => (
                   <motion.div
@@ -173,10 +190,10 @@ export default function Payment() {
                   >
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="text-lg font-semibold mb-2 font-primary">
+                        <h3 className="text-lg font-semibold mb-2 font-arial">
                           {invoice.description}
                         </h3>
-                        <p className="text-sm text-gray-600 font-primary">
+                        <p className="text-left text-sm text-gray-600 font-arial">
                           Due: {invoice.dueDate}
                         </p>
                       </div>
@@ -194,7 +211,7 @@ export default function Payment() {
 
                 {invoices.length === 0 && (
                   <div className="payment-card p-8 text-center">
-                    <p className="text-gray-600 font-primary">
+                    <p className="text-gray-600 font-arial">
                       No pending invoices at this time.
                     </p>
                   </div>
@@ -204,12 +221,12 @@ export default function Payment() {
               // Payment Form
               <div className="space-y-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold font-primary">
+                  <h2 className="text-2xl font-bold font-arial">
                     Complete Payment
                   </h2>
                   <button
                     onClick={() => setSelectedInvoice(null)}
-                    className="garfish-button font-primary"
+                    className="garfish-button font-arial"
                   >
                     ← Back to Invoices
                   </button>
@@ -232,7 +249,7 @@ export default function Payment() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className="text-red-600 text-sm font-primary">
+                    <p className="text-red-600 text-sm font-arial">
                       {paymentError}
                     </p>
                   </motion.div>

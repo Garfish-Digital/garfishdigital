@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -31,8 +32,8 @@ export default function Client() {
   // Cycling placeholder text
   useEffect(() => {
     const placeholderOptions = [
-      "Your client password",
-      "Access code required",
+      "Client password",
+      "Access code",
       "Key to the city",
     ];
 
@@ -113,18 +114,13 @@ export default function Client() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                {/* <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
-                  Welcome Back
-                </h2> */}
-                <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+                <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
                   Welcome to your client dashboard for{" "}
-                  <strong>
+                  <strong className="text-[var(--color-gray-dark)]">
                     {authenticatedClient?.project || "your project"}
                   </strong>
-                  . Navigate through your project plans, review contracts,
-                  process payments, and even view the progress of your actual
-                  website.
-                </p>
+                  .
+                </h2>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -146,12 +142,13 @@ export default function Client() {
                   className="garfish-button w-80"
                 >
                   <FontAwesomeIcon icon={faWindow} className="mr-2" />
-                  {authenticatedClient?.project || "Your Project"} Website
+                  {/* {authenticatedClient?.project || "Your Project"} Website */}
+                  Project Overview
                 </button>
                 <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Review development progress by tracking milestones and viewing
-                  the actual {authenticatedClient?.project || "your project"}{" "}
-                  website.
+                  Keep an eye on development progress by tracking milestones and
+                  viewing the actual{" "}
+                  {authenticatedClient?.project || "your project"} website.
                 </p>
               </motion.div>
 
@@ -165,7 +162,7 @@ export default function Client() {
                   className="garfish-button w-80"
                 >
                   <FontAwesomeIcon icon={faFileContract} className="mr-2" />
-                  Check the Specs
+                  Document Center
                 </button>
                 <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
                   Review pending contracts and project specifications, all
@@ -186,11 +183,11 @@ export default function Client() {
                     icon={faEnvelopeOpenDollar}
                     className="mr-2"
                   />
-                  Make a Payment
+                  Payment Gateway
                 </button>
                 <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Review your payment plan, view past payments, or submit a new
-                  payment.
+                  Watch over your payment plan, view past payments, or even
+                  submit a new payment.
                 </p>
               </motion.div>
             </motion.div>
@@ -217,82 +214,120 @@ export default function Client() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative">
+            <fieldset>
+              <legend>Enter Your Portal</legend>
               <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  required
-                  value={password}
-                  onChange={handleChange}
-                  className="w-full px-3 py-3 pr-12 bg-white client-form-field focus:outline-none text-black transition-all duration-300"
-                  placeholder=" "
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    required
+                    value={password}
+                    onChange={handleChange}
+                    className="w-full px-3 pr-12 py-3 transition-all duration-300"
+                    placeholder=" "
+                  />
 
-                {/* Password Toggle Button */}
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1.5 garfish-button"
-                >
-                  {showPassword ? (
-                    <FontAwesomeIcon icon={faEye} className={`w-5 h-5`} />
-                  ) : (
-                    <FontAwesomeIcon icon={faEyeSlash} className={`w-5 h-5`} />
+                  {/* Password Toggle Button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1.5 garfish-button"
+                    style={{ padding: "0.5rem 1rem" }}
+                  >
+                    {showPassword ? (
+                      <FontAwesomeIcon icon={faEye} className={`w-4 h-4`} />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faEyeSlash}
+                        className={`w-4 h-4`}
+                      />
+                    )}
+                  </button>
+
+                  {!password && (
+                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
+                      <motion.div
+                        key={placeholderKey}
+                        className="text-[var(--color-gray-faint)] font-arial"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                      >
+                        {placeholder}
+                      </motion.div>
+                    </div>
                   )}
-                </button>
-
-                {!password && (
-                  <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                    <motion.div
-                      key={placeholderKey}
-                      className="text-[#AAAAAA] font-mono"
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -20, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                    >
-                      {placeholder}
-                    </motion.div>
+                </div>
+                {validation && (
+                  <div
+                    className={`text-xs mt-1 transition-all duration-300 ${
+                      validation.includes("✓")
+                        ? "text-user-green"
+                        : validation.includes("short") ||
+                          validation.includes("Invalid")
+                        ? "text-user-red"
+                        : "text-white/60"
+                    }`}
+                  >
+                    {validation}
                   </div>
                 )}
               </div>
-              {validation && (
-                <div
-                  className={`text-xs mt-1 transition-all duration-300 ${
-                    validation.includes("✓")
-                      ? "text-user-green"
-                      : validation.includes("short") ||
-                        validation.includes("Invalid")
-                      ? "text-user-red"
-                      : "text-white/60"
-                  }`}
-                >
-                  {validation}
-                </div>
-              )}
-            </div>
 
-            <motion.button
-              type="submit"
-              disabled={
-                isSubmitting ||
-                !clientsData.find((c) => c.password === password)
-              }
-              className="inline-block garfish-button"
-              //   className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
-            >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin mr-3"></div>
-                  Authenticating...
-                </div>
-              ) : (
-                "Access Client Portal"
-              )}
-            </motion.button>
+              <motion.button
+                type="submit"
+                disabled={isSubmitting || !validation}
+                //   disabled={
+                //     isSubmitting ||
+                //     !clientsData.find((c) => c.password === password)
+                //   }
+                className={`inline-block ${
+                  isSubmitting || !validation ? "disabled-" : ""
+                }garfish-button`}
+                //   className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin mr-3"></div>
+                    Authenticating...
+                  </div>
+                ) : (
+                  "Access Dashboard"
+                )}
+              </motion.button>
+            </fieldset>
           </motion.form>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <h2 className="text-lg font-bold mt-12 mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+              How Can I Get A Client Portal?
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+              Simply send us a message from our{" "}
+              <Link
+                href="/contact"
+                className="text-[var(--color-green-light)] hover:text-[var(--color-gray-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+              >
+                Contact Page
+              </Link>{" "}
+              and you will receive a response within 48 hours. We'll provide you
+              with a password right away so you can enter a client portal and
+              get one step closer to your finished project.
+            </p>
+          </motion.div>
         </div>
       </div>
 

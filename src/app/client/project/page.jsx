@@ -45,6 +45,20 @@ export default function Project() {
       </motion.div>
 
       <div className="flex flex-col h-screen px-8 pt-24 pb-8">
+
+        {/* <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+                  Project Overview for{" "}
+                  <strong className="text-[var(--color-gray-dark)]">
+                    {authenticatedClient?.project || "your project"}
+                  </strong>.
+                </h2>
+              </motion.div> */}
+
         {/* Project Name Row */}
         <motion.div
           className="flex justify-between items-center mb-8"
@@ -52,9 +66,16 @@ export default function Project() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h3 className="text-lg font-bold text-[color:var(--color-gray-faint)] font-arial">
+
+             <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+                  Project Overview for{" "}
+                  <strong className="text-[var(--color-gray-dark)]">
+                    {authenticatedClient?.project || "your project"}
+                  </strong>.
+                </h2>
+          {/* <h3 className="text-lg font-bold text-[color:var(--color-gray-faint)] font-arial">
             {authenticatedClient?.project || "Project Overview"}
-          </h3>
+          </h3> */}
           <button 
             className="garfish-button font-arial"
             onClick={handleViewProject}
@@ -102,7 +123,7 @@ export default function Project() {
                   milestones.map((milestone, index) => (
                   <motion.tr
                     key={index}
-                    className="hover:bg-[color:var(--color-gray-light)] hover:bg-opacity-10 transition-colors duration-200"
+                    className="hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 + (index * 0.05) }}

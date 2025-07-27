@@ -1,10 +1,12 @@
 [
     {
         "id": "client1",
-        "password": "garfish123",
+                "password": "robinson0430",
+
         "project": "Inferno Ink",
         "path": "inferno-ink.netlify.app",
-        "clientName": "Inferno Ink Studio",
+                "clientName": "Robinson Jackworks",
+
         "milestones": [
             { "section": "Discovery", "milestone": "Requirements Gathering", "status": "Completed", "dateCompleted": "2024-01-15" },
             { "section": "Discovery", "milestone": "Technical Specification", "status": "Completed", "dateCompleted": "2024-01-22" },
@@ -57,10 +59,12 @@
     },
     {
         "id": "client2",
-        "password": "robinson0430",
+                "password": "garfish123",
+
         "project": "Obsidian Peaks",
         "path": "obsidian-peaks.netlify.app",
-        "clientName": "Robinson Jackworks",
+                "clientName": "Inferno Ink Studio",
+
         "milestones": [
             { "section": "Discovery", "milestone": "Brand Strategy Workshop", "status": "Completed", "dateCompleted": "2024-02-01" },
             { "section": "Discovery", "milestone": "Target Audience Research", "status": "Completed", "dateCompleted": "2024-02-08" },

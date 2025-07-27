@@ -94,7 +94,7 @@ const NavigationIconComponent = ({
 const Navigation = ({ 
   currentPage = 'home',
   galleryCurrentPage,
-  onFlaskGearClick,
+//   onFlaskGearClick,
   isClientAuthenticated = false,
   className = ''
 }) => {
@@ -125,10 +125,10 @@ const Navigation = ({
           const delay = index * 0.1; // Staggered animation delay
 
           // Handle special click handlers
-          let clickHandler;
-          if (item.id === 'flask-gear' && onFlaskGearClick) {
-            clickHandler = onFlaskGearClick;
-          }
+        //   let clickHandler;
+        //   if (item.id === 'flask-gear' && onFlaskGearClick) {
+        //     clickHandler = onFlaskGearClick;
+        //   }
 
           return (
             <NavigationIconComponent
@@ -137,7 +137,7 @@ const Navigation = ({
               isActive={isActive}
               isEnabled={true} // All filtered items are enabled
               delay={delay}
-              onClick={clickHandler}
+            //   onClick={clickHandler}
             />
           );
         })}

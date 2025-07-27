@@ -100,9 +100,9 @@ export const getIconEnabledState = (
   }
   
   // Handle flask-gear special logic (same as BeakerIcon)
-  if (item.id === 'flask-gear') {
-    return currentPage === 'gallery' && galleryCurrentPage !== 'cell5';
-  }
+//   if (item.id === 'flask-gear') {
+//     return currentPage === 'gallery' && galleryCurrentPage !== 'cell5';
+//   }
   
   
   // Handle page-specific enable/disable rules

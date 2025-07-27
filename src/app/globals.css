@@ -2,7 +2,8 @@
 
 :root {
   
-  --white: oklch(99.487% 0.00833 146.145);
+  /* --white: oklch(99.487% 0.00833 146.145); */
+  --white: oklch(100% 0.00011 271.152);
   --gray-light-transparent: oklch(73.033% 0.01807 145.601 / 0.5);
   --gray-light: oklch(73.033% 0.01807 145.601);
   --gray-dark-transparent: oklch(44.836% 0.02038 145.341 / 0.5);
@@ -75,6 +76,13 @@
     background-color: var(--color-black);
 }
 
+.disabled-garfish-button {
+padding: 0.5rem 2rem;
+  background-color: var(--color-gray-faint);
+  border-radius: 5px;
+  color: var(--color-white);
+}
+
 
 /* USER VALIDATION */
 .text-user-green {
@@ -120,10 +128,15 @@ legend {
 
 input {
     background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 textarea {
     background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+  border-radius: 5px;
 }
 
 /* Odometer-style placeholder transitions */

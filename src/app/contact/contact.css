@@ -1,20 +1,5 @@
 /* Contact Page Styles */
 
-
-/* Contact form styling */
-.contact-form-field {
-  border: 1px solid #aaaaaa !important;
-  border-radius: 5px !important;
-}
-
-/* Success page background */
-.contact-success-background {
-  background: radial-gradient(at 40% 20%, #4A4A4A 0px, transparent 50%),
-              radial-gradient(at 80% 80%, #2F2F2F 0px, transparent 70%),
-              radial-gradient(at 0% 50%, #5A5A5A 0px, transparent 90%),
-              #0A0A0A !important;
-}
-
 /* Main contact page container */
 .contact-page-container {
   background: var(--color-white);
@@ -35,7 +20,7 @@
 /* Mobile responsive adjustments */
 @media (max-width: 540px) {
   .contact-form-container {
-    margin-top: 4rem !important; /* Push form down on mobile */
+    /* margin-top: 4rem !important; Push form down on mobile */
     max-width: 20rem !important; /* Even smaller on mobile */
   }
  
@@ -63,6 +48,6 @@
 /* Large screen adjustments */
 @media (min-width: 940px), (min-height: 940px) {
   .contact-form-container {
-    margin-top: 25vh !important;
+    /* margin-top: 25vh !important; */
   }
 }

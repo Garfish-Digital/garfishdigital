@@ -46,7 +46,8 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
   return (
     <motion.div
       className="fixed z-50 pointer-events-auto"
-      style={position}
+      style={{ top: 'calc(1.25rem + 72px)', right: '2rem' }}
+    //   style={position}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -58,8 +59,8 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
         style={{
           width: '150px',
           height: '150px',
-          backgroundColor: '#ffffff',
-        //   border: '1px solid rgba(170, 170, 170, 0.25)',
+          backgroundColor: 'var(--color-white)',
+          border: '1px solid var(--color-gray-faint)',
         }}
       >
         
@@ -92,15 +93,15 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                   ${isActive ? '' : ''}
                 `}
                 style={{
-                    border : '1px solid rgba(170, 170, 170, 0.5)',
+                    border : '1px solid var(--color-gray-faint)',
                   backgroundColor: isActive 
-                    ? 'rgba(170, 170, 170, 1)'
-                    : 'rgba(255, 255, 255, 1)',
+                    ? 'var(--color-gray-dark)'
+                    : 'var(--color-white)',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'rgba(170, 170, 170, 0.3)',
+                  backgroundColor: 'var(--color-green-light)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >

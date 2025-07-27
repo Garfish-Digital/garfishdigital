@@ -55,7 +55,7 @@ export default function UserProfileCircle({ isLoggedIn, clientName, onSignOut })
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <span className="text-[var(--color-white)] font-arial text-xl font-bold">
+        <span className="text-[var(--color-white)] font-arial text-xl">
           {firstLetter}
         </span>
       </motion.button>
