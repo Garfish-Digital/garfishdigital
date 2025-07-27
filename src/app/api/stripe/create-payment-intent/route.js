@@ -79,9 +79,9 @@ export async function POST(request) {
 }
 
 
-
-
+// ===================================================================================
 // THE FILE BELOW APPLIES AFTER STRIPE ACCOUNT HAS BEEN CREATED AND KEYS ARE AVAILABLE:
+// ===================================================================================
 
 // import Stripe from 'stripe';
 
