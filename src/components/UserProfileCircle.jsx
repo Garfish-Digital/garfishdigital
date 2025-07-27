@@ -48,14 +48,14 @@ export default function UserProfileCircle({ isLoggedIn, clientName, onSignOut })
     <div className="fixed top-8 right-8 z-50" ref={menuRef}>
       {/* Profile Circle */}
       <motion.button
-        className="w-10 h-10 rounded-full bg-[var(--color-gray-dark)] hover:bg-[var(--color-black)] active:bg-[var(--color-black)] flex items-center justify-center transition-colors duration-200"
+        className="w-8 h-8 rounded-full bg-[var(--color-green-light)] hover:bg-[var(--green-dark)] active:bg-[var(--green-dark)] flex items-center justify-center transition-colors duration-200"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <span className="text-[var(--color-white)] font-mono text-lg font-bold">
+        <span className="text-[var(--color-white)] font-arial text-xl font-bold">
           {firstLetter}
         </span>
       </motion.button>
@@ -72,13 +72,14 @@ export default function UserProfileCircle({ isLoggedIn, clientName, onSignOut })
           >
             <button
               onClick={handleEdit}
-              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 transition-colors font-mono"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-black)] transition-colors font-arial font-bold"
             >
               Edit
             </button>
+            <hr className="text-[var(--color-gray-faint)]"></hr>
             <button
               onClick={handleSignOut}
-              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 transition-colors font-mono"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-black)] transition-colors font-arial font-bold"
             >
               Sign out
             </button>

@@ -76,7 +76,33 @@
 }
 
 
+/* USER VALIDATION */
+.text-user-green {
+    color: #48bb78;
+}
+
+.text-user-red {
+    color: #f56565;
+}
+
+.text-user-yellow {
+    color: #ed8936;
+}
+
+
 /* INPUT FIELDS */
+
+fieldset {
+    padding: 2rem;
+    border: 1px solid var(--color-gray-dark);
+    border-radius: 5px;
+}
+legend {
+  color: var(--color-gray-dark);
+  padding: 0 1rem;
+}
+
+
 /* Hide bot field completely */
 .visually-hidden-bot-field {
   position: absolute !important;
@@ -93,11 +119,11 @@
 }
 
 input {
-    background-color: var(--color-gray-faint);
+    background-color: var(--color-white);
 }
 
 textarea {
-    background-color: var(--color-gray-faint);
+    background-color: var(--color-white);
 }
 
 /* Odometer-style placeholder transitions */
@@ -118,7 +144,7 @@ textarea:not(:placeholder-shown)::placeholder {
 /* Placeholder color with smooth transitions */
 input::placeholder,
 textarea::placeholder {
-  color: var(--color-gray-dark);
+  /* color: var(--color-gray-dark); */
 }
 
 input:focus::placeholder,

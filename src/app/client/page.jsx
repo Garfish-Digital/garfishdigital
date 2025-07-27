@@ -2,8 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faEye,
   faEyeSlash,
   faWindow,
   faEnvelopeOpenDollar,
@@ -15,7 +17,9 @@ import clientsData from "../../data/clients.json";
 import "./client.css";
 
 export default function Client() {
-  const { isClientAuthenticated, authenticatedClient, setClientAuthenticated } = useClientAuth();
+  const { isClientAuthenticated, authenticatedClient, setClientAuthenticated } =
+    useClientAuth();
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,19 +49,19 @@ export default function Client() {
   const validatePassword = (value) => {
     if (!value) return "";
     if (value.length < 3) return "A bit short...";
-    
+
     // Check if password matches any client
-    const client = clientsData.find(c => c.password === value);
+    const client = clientsData.find((c) => c.password === value);
     if (client) return "Access granted! ✓";
-    
+
     return "Invalid password";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Find matching client
-    const client = clientsData.find(c => c.password === password);
+    const client = clientsData.find((c) => c.password === password);
     if (!client) {
       setValidation("Invalid password");
       return;
@@ -83,7 +87,7 @@ export default function Client() {
 
   if (isClientAuthenticated && !showModal) {
     return (
-      <div className="min-h-screen text-black client-success-background">
+      <div className="min-h-screen text-black client-success-container">
         {/* Static Logo - Upper Left */}
         <motion.div
           className="fixed top-8 left-8 z-20"
@@ -113,9 +117,13 @@ export default function Client() {
                   Welcome Back
                 </h2> */}
                 <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Welcome to your client dashboard for <strong>{authenticatedClient?.project || 'your project'}</strong>. Navigate through your
-                  project materials, review contracts, and process payments
-                  using the icons in the bottom right corner.
+                  Welcome to your client dashboard for{" "}
+                  <strong>
+                    {authenticatedClient?.project || "your project"}
+                  </strong>
+                  . Navigate through your project plans, review contracts,
+                  process payments, and even view the progress of your actual
+                  website.
                 </p>
               </motion.div>
               <motion.div
@@ -123,12 +131,27 @@ export default function Client() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <h3 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
-                  <FontAwesomeIcon icon={faWindow} className="mr-2 text-[color:var(--color-gray-faint)]" /> {authenticatedClient?.project || 'Your Project'}
-                </h3>
-                <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Access your project files, review development progress, and
-                  track milestones for {authenticatedClient?.project || 'your project'}.
+                {/* <h3 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
+                  <button
+                    onClick={() => router.push("/client/project")}
+                    className="garfish-button w-20"
+                  >
+                    <FontAwesomeIcon icon={faWindow} className="mr-2" />
+                  </button>
+                  {authenticatedClient?.project || "Your Project"} Website
+                </h3> */}
+
+                <button
+                  onClick={() => router.push("/client/project")}
+                  className="garfish-button w-80"
+                >
+                  <FontAwesomeIcon icon={faWindow} className="mr-2" />
+                  {authenticatedClient?.project || "Your Project"} Website
+                </button>
+                <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+                  Review development progress by tracking milestones and viewing
+                  the actual {authenticatedClient?.project || "your project"}{" "}
+                  website.
                 </p>
               </motion.div>
 
@@ -137,11 +160,16 @@ export default function Client() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
               >
-                <h3 className="text-lg font-semibold mb-3 text-[color:var(--color-gray-shadow)] font-arial">
-                  <FontAwesomeIcon icon={faFileContract} className="mr-2 text-[color:var(--color-gray-faint)]" /> Check the Specs
-                </h3>
-                <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Review pending contracts and project specifications, all organized in one place for your convenience.
+                <button
+                  onClick={() => router.push("/client/documents")}
+                  className="garfish-button w-80"
+                >
+                  <FontAwesomeIcon icon={faFileContract} className="mr-2" />
+                  Check the Specs
+                </button>
+                <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+                  Review pending contracts and project specifications, all
+                  organized in one place for your convenience.
                 </p>
               </motion.div>
 
@@ -150,15 +178,22 @@ export default function Client() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <h3 className="text-lg font-semibold mb-3 text-[color:var(--color-gray-shadow)] font-arial">
-                  <FontAwesomeIcon icon={faEnvelopeOpenDollar} className="mr-2 text-[color:var(--color-gray-faint)]" /> Make a Payment
-                </h3>
-                <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Review your payment plan, view past payments, or submit a new payment.
+                <button
+                  onClick={() => router.push("/client/payment")}
+                  className="garfish-button w-80"
+                >
+                  <FontAwesomeIcon
+                    icon={faEnvelopeOpenDollar}
+                    className="mr-2"
+                  />
+                  Make a Payment
+                </button>
+                <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+                  Review your payment plan, view past payments, or submit a new
+                  payment.
                 </p>
               </motion.div>
             </motion.div>
-
           </div>
         </div>
 
@@ -199,14 +234,13 @@ export default function Client() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 garfish-button"
+                  className="absolute right-3 top-1.5 garfish-button"
                 >
-                  <FontAwesomeIcon
-                    icon={faEyeSlash}
-                    className={`w-5 h-5 ${
-                      showPassword ? "opacity-50" : "opacity-100"
-                    }`}
-                  />
+                  {showPassword ? (
+                    <FontAwesomeIcon icon={faEye} className={`w-5 h-5`} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEyeSlash} className={`w-5 h-5`} />
+                  )}
                 </button>
 
                 {!password && (
@@ -228,10 +262,10 @@ export default function Client() {
                 <div
                   className={`text-xs mt-1 transition-all duration-300 ${
                     validation.includes("✓")
-                      ? "text-green-400"
+                      ? "text-user-green"
                       : validation.includes("short") ||
                         validation.includes("Invalid")
-                      ? "text-red-400"
+                      ? "text-user-red"
                       : "text-white/60"
                   }`}
                 >
@@ -242,8 +276,12 @@ export default function Client() {
 
             <motion.button
               type="submit"
-              disabled={isSubmitting || !clientsData.find(c => c.password === password)}
-              className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
+              disabled={
+                isSubmitting ||
+                !clientsData.find((c) => c.password === password)
+              }
+              className="inline-block garfish-button"
+              //   className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center">
@@ -297,7 +335,7 @@ export default function Client() {
             >
               <div className="p-6 text-center">
                 <motion.div
-                  className="text-6xl mb-4"
+                  className="text-6xl mb-4 text-[var(--color-green-light)]"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
@@ -305,7 +343,7 @@ export default function Client() {
                   ✓
                 </motion.div>
                 <motion.h2
-                  className="text-2xl font-bold mb-3 text-white font-mono"
+                  className="text-2xl font-bold mb-3 text-white font-arial"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
@@ -313,17 +351,18 @@ export default function Client() {
                   Access Granted
                 </motion.h2>
                 <motion.p
-                  className="text-white/70 mb-6 font-mono"
+                  className="text-white/70 mb-6 font-arial"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  Welcome to your client portal for {authenticatedClient?.project || 'your project'}. Navigation icons are now
-                  enabled.
+                  Welcome to your client portal for{" "}
+                  {authenticatedClient?.project || "your project"}. All
+                  navigation icons are now enabled.
                 </motion.p>
                 <motion.button
                   onClick={() => setShowModal(false)}
-                  className="px-6 py-2 bg-white/10 hover:bg-white/20 rounded transition-colors font-mono text-white"
+                  className="garfish-button"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.5 }}

@@ -1,15 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import Navigation from "../../../components/Navigation";
 import PaymentForm from "../../../components/PaymentForm";
 import { useClientAuth } from "../../../contexts/ClientAuthContext";
 import "./payment.css";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 
 export default function Payment() {
   const { isClientAuthenticated, authenticatedClient } = useClientAuth();
@@ -20,30 +22,30 @@ export default function Payment() {
   // Sample invoices for demo - replace with real client data
   const invoices = [
     {
-      id: 'inv_001',
-      description: 'Website Development - Phase 1',
+      id: "inv_001",
+      description: "Website Development - Phase 1",
       amount: 2500,
-      dueDate: '2025-02-15',
-      status: 'pending'
+      dueDate: "2025-02-15",
+      status: "pending",
     },
     {
-      id: 'inv_002', 
-      description: 'Design System & Branding',
+      id: "inv_002",
+      description: "Design System & Branding",
       amount: 1500,
-      dueDate: '2025-03-01',
-      status: 'pending'
-    }
+      dueDate: "2025-03-01",
+      status: "pending",
+    },
   ];
 
   const handlePaymentSuccess = (paymentIntent) => {
     setPaymentSuccess(true);
     setSelectedInvoice(null);
-    console.log('Payment successful:', paymentIntent);
+    console.log("Payment successful:", paymentIntent);
   };
 
   const handlePaymentError = (error) => {
     setPaymentError(error.message);
-    console.error('Payment error:', error);
+    console.error("Payment error:", error);
   };
 
   if (!isClientAuthenticated) {
@@ -61,11 +63,18 @@ export default function Payment() {
         </motion.div>
         <div className="flex items-center justify-center h-screen px-4">
           <div className="text-center">
-            <h2 className="text-2xl font-bold mb-4 font-primary">Access Denied</h2>
-            <p className="text-gray-600 font-primary">Please log in to access the payment portal.</p>
+            <h2 className="text-2xl font-bold mb-4 font-primary">
+              Access Denied
+            </h2>
+            <p className="text-gray-600 font-primary">
+              Please log in to access the payment portal.
+            </p>
           </div>
         </div>
-        <Navigation currentPage="payment" isClientAuthenticated={isClientAuthenticated} />
+        <Navigation
+          currentPage="payment"
+          isClientAuthenticated={isClientAuthenticated}
+        />
       </div>
     );
   }
@@ -91,9 +100,12 @@ export default function Payment() {
             transition={{ duration: 0.6 }}
           >
             <div className="text-6xl mb-8">✓</div>
-            <h2 className="text-3xl font-bold mb-4 font-primary">Payment Successful</h2>
+            <h2 className="text-3xl font-bold mb-4 font-primary">
+              Payment Successful
+            </h2>
             <p className="text-gray-600 mb-8 font-primary">
-              Your payment has been processed successfully. You'll receive a confirmation email shortly.
+              Your payment has been processed successfully. You'll receive a
+              confirmation email shortly.
             </p>
             <button
               onClick={() => setPaymentSuccess(false)}
@@ -103,15 +115,17 @@ export default function Payment() {
             </button>
           </motion.div>
         </div>
-        <Navigation currentPage="payment" isClientAuthenticated={isClientAuthenticated} />
+        <Navigation
+          currentPage="payment"
+          isClientAuthenticated={isClientAuthenticated}
+        />
       </div>
     );
   }
-  
+
   return (
     <div className="h-screen overflow-hidden text-black payment-page-container">
-
-         <motion.div
+      <motion.div
         className="fixed top-8 left-8 z-20"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -129,21 +143,24 @@ export default function Payment() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-4xl font-bold mb-8 font-primary">
+            {/* <h1 className="text-4xl font-bold mb-8 font-primary">
               Payment Portal
-            </h1>
-            
-            {authenticatedClient && (
+            </h1> */}
+
+            {/* {authenticatedClient && (
               <p className="text-lg mb-8 text-gray-600 font-primary">
                 Welcome back, {authenticatedClient.clientName}
               </p>
-            )}
+            )} */}
 
             {!selectedInvoice ? (
               // Invoice List
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold mb-6 font-primary">Pending Invoices</h2>
-                
+                {authenticatedClient && (
+                  <h2 className="text-2xl font-bold mb-6 font-arial text-[var(--color-gray-light)]">
+                    Pending Invoices for {authenticatedClient.clientName}
+                  </h2>
+                )}
                 {invoices.map((invoice) => (
                   <motion.div
                     key={invoice.id}
@@ -174,7 +191,7 @@ export default function Payment() {
                     </div>
                   </motion.div>
                 ))}
-                
+
                 {invoices.length === 0 && (
                   <div className="payment-card p-8 text-center">
                     <p className="text-gray-600 font-primary">
@@ -187,7 +204,9 @@ export default function Payment() {
               // Payment Form
               <div className="space-y-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold font-primary">Complete Payment</h2>
+                  <h2 className="text-2xl font-bold font-primary">
+                    Complete Payment
+                  </h2>
                   <button
                     onClick={() => setSelectedInvoice(null)}
                     className="garfish-button font-primary"
@@ -195,17 +214,17 @@ export default function Payment() {
                     ← Back to Invoices
                   </button>
                 </div>
-                
+
                 <Elements stripe={stripePromise}>
                   <PaymentForm
                     amount={selectedInvoice.amount}
                     description={selectedInvoice.description}
-                    clientId={authenticatedClient?.id || 'guest'}
+                    clientId={authenticatedClient?.id || "guest"}
                     onSuccess={handlePaymentSuccess}
                     onError={handlePaymentError}
                   />
                 </Elements>
-                
+
                 {paymentError && (
                   <motion.div
                     className="bg-red-50 border border-red-200 rounded-lg p-4"
@@ -213,7 +232,9 @@ export default function Payment() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className="text-red-600 text-sm font-primary">{paymentError}</p>
+                    <p className="text-red-600 text-sm font-primary">
+                      {paymentError}
+                    </p>
                   </motion.div>
                 )}
               </div>
@@ -222,9 +243,11 @@ export default function Payment() {
         </div>
       </div>
 
-
       {/* Navigation Icons - Bottom Right */}
-      <Navigation currentPage="payment" isClientAuthenticated={isClientAuthenticated} />
+      <Navigation
+        currentPage="payment"
+        isClientAuthenticated={isClientAuthenticated}
+      />
     </div>
   );
 }

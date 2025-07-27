@@ -17,7 +17,7 @@
 
 /* Main contact page container */
 .contact-page-container {
-  background: #FFFFFF !important;
+  background: var(--color-white);
 }
 
 /* Modal background */

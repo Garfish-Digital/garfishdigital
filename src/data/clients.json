@@ -2,7 +2,7 @@
     {
         "id": "client1",
         "password": "garfish123",
-        "project": "Inferno Ink Website",
+        "project": "Inferno Ink",
         "path": "inferno-ink.netlify.app",
         "clientName": "Inferno Ink Studio",
         "milestones": [
@@ -58,9 +58,9 @@
     {
         "id": "client2",
         "password": "robinson0430",
-        "project": "Obsidian Peaks Website",
+        "project": "Obsidian Peaks",
         "path": "obsidian-peaks.netlify.app",
-        "clientName": "Robinson Creative",
+        "clientName": "Robinson Jackworks",
         "milestones": [
             { "section": "Discovery", "milestone": "Brand Strategy Workshop", "status": "Completed", "dateCompleted": "2024-02-01" },
             { "section": "Discovery", "milestone": "Target Audience Research", "status": "Completed", "dateCompleted": "2024-02-08" },

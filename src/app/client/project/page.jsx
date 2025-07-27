@@ -20,11 +20,11 @@ export default function Project() {
   const getStatusColor = (status) => {
     switch (status) {
       case "Completed":
-        return "text-green-600 bg-green-50";
+        return "text-[var(--color-white)] bg-[var(--color-green-dark)]";
       case "In Progress":
-        return "text-blue-600 bg-blue-50";
+        return "text-[var(--color-white)] bg-[var(--color-green-light)]";
       case "Pending":
-        return "text-gray-500 bg-gray-50";
+        return "text-[var(--color-gray-faint)] bg-[var(--color-white)]";
       default:
         return "text-gray-500 bg-gray-50";
     }

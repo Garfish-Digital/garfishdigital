@@ -89,7 +89,7 @@ export default function Documents() {
               >
                 View Project Scope Document
               </button>
-              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+              <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
                 Review the comprehensive project scope document that outlines deliverables, timelines, and technical requirements. This document serves as the foundation for all project work and defines what will be built.
               </p>
             </motion.div>
@@ -105,7 +105,7 @@ export default function Documents() {
               >
                 View Project Agreement Document
               </button>
-              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+              <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
                 Access the formal project agreement document containing contract terms, deliverable specifications, and project timeline commitments. This legal document defines the working relationship and project expectations.
               </p>
             </motion.div>
@@ -121,7 +121,7 @@ export default function Documents() {
               >
                 View Project Handoff Document
               </button>
-              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+              <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
                 Download the complete project handoff documentation including source code access, hosting credentials, maintenance guidelines, and training materials. This comprehensive package ensures smooth project transition and ongoing management.
               </p>
             </motion.div>

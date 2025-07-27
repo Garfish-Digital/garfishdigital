@@ -275,7 +275,7 @@ export default function Contact() {
         </div>
       </motion.div>
 
-      <div className="flex items-start justify-center h-screen px-4 pt-24">
+      <div className="flex items-start justify-center h-screen px-4 pt-8">
         <div className="w-full max-w-lg contact-form-container">
           {/* <motion.form
                         onSubmit={handleSubmit}
@@ -300,7 +300,9 @@ export default function Contact() {
             <input type="hidden" name="_redirect" value="/contact-success" />
             <input type="hidden" name="_error" value="/contact-error" />
 
-            <div className="grid md:grid-cols-2 gap-6 contact-form-grid">
+            <fieldset>
+            <legend>Contact Us Today</legend>
+            <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6">
               <div className="relative">
                 <div className="relative">
                   <input
@@ -321,7 +323,7 @@ export default function Contact() {
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.name}
-                        className="text-[#AAAAAA] font-mono"
+                        className="text-[var(--color-gray-faint)] font-arial"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -337,10 +339,10 @@ export default function Contact() {
                     className={`text-xs mt-1 transition-all duration-300 ${
                       validation.name.includes("Perfect") ||
                       validation.name.includes("✓")
-                        ? "text-green-400"
+                        ? "text-user-green"
                         : validation.name.includes("short") ||
                           validation.name.includes("quite")
-                        ? "text-yellow-400"
+                        ? "text-user-yellow"
                         : "text-white/60"
                     }`}
                   >
@@ -369,7 +371,7 @@ export default function Contact() {
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.email}
-                        className="text-[#AAAAAA] font-mono"
+                        className="text-[var(--color-gray-faint)] font-arial"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -385,11 +387,11 @@ export default function Contact() {
                     className={`text-xs mt-1 transition-all duration-300 ${
                       validation.email.includes("Looking good") ||
                       validation.email.includes("✓")
-                        ? "text-green-400"
+                        ? "text-user-green"
                         : validation.email.includes("Missing") ||
                           validation.email.includes("Needs") ||
                           validation.email.includes("format")
-                        ? "text-yellow-400"
+                        ? "text-user-yellow"
                         : "text-white/60"
                     }`}
                   >
@@ -399,7 +401,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative mb-6">
               <div className="relative">
                 <input
                   type="text"
@@ -418,7 +420,7 @@ export default function Contact() {
                   <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.company}
-                      className="text-[#AAAAAA] font-mono"
+                      className="text-[var(--color-gray-faint)] font-arial"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -431,7 +433,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative mb-6">
               <div className="relative">
                 <textarea
                   id="message"
@@ -451,7 +453,7 @@ export default function Contact() {
                   <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                     <motion.div
                       key={placeholderKeys.message}
-                      className="text-[#AAAAAA] font-mono"
+                      className="text-[var(--color-gray-faint)] font-arial"
                       initial={{ y: 20, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -20, opacity: 0 }}
@@ -466,10 +468,10 @@ export default function Contact() {
                 <div
                   className={`text-xs mt-1 transition-all duration-300 ${
                     validation.message.includes("brilliance")
-                      ? "text-green-400"
+                      ? "text-user-green"
                       : validation.message.includes("more") ||
                         validation.message.includes("detailed")
-                      ? "text-yellow-400"
+                      ? "text-user-yellow"
                       : "text-white/60"
                   }`}
                 >
@@ -480,15 +482,17 @@ export default function Contact() {
 
             {/* reCAPTCHA */}
             <div className="flex justify-center">
-    <div data-netlify-recaptcha="true" className="g-recaptcha"></div>
-  </div>
+              <div data-netlify-recaptcha="true" className="g-recaptcha"></div>
+            </div>
 
             <motion.button
               type="submit"
               className="inline-block garfish-button text-lg transition-all duration-300 transform font-arial"
             >
-              Send Message
+              Send
             </motion.button>
+
+              </fieldset>
           </form>
           {/* </motion.form> */}
         </div>
@@ -498,7 +502,7 @@ export default function Contact() {
       <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">
         <motion.button
           onClick={() => setShowModal("privacy")}
-          className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
@@ -507,7 +511,7 @@ export default function Contact() {
         </motion.button>
         <motion.button
           onClick={() => setShowModal("terms")}
-          className="text-[#aaaaaa] hover:text-[#555555] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
