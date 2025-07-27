@@ -8,6 +8,7 @@ import {
   faHandshake,
 } from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "../../../components/Navigation";
+import Logo from "../../../components/Logo";
 import { useClientAuth } from "../../../contexts/ClientAuthContext";
 import "./documents.css";
 
@@ -23,16 +24,7 @@ export default function Documents() {
   if (!isClientAuthenticated) {
     return (
       <div className="min-h-screen text-black documents-success-background">
-        <motion.div
-          className="fixed top-8 left-8 z-20"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-            Garfish Digital
-          </div>
-        </motion.div>
+        <Logo />
         <div className="flex items-center justify-center h-screen px-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4 font-primary">Access Denied</h2>
@@ -47,36 +39,16 @@ export default function Documents() {
   return (
     <div className="min-h-screen text-black documents-success-background">
       {/* Static Logo - Upper Left */}
-      <motion.div
-        className="fixed top-8 left-8 z-20"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-          Garfish Digital
-        </div>
-      </motion.div>
+      <Logo />
 
-      <div className="flex items-start justify-center h-screen px-4 pt-24">
-        <div className="w-full max-w-lg documents-content-container">
+      <div className="flex items-start justify-center min-h-screen px-4 py-24 documents-page-container">
+        <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] documents-content-container">
           <motion.div
             className="space-y-8"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Welcome to your document center. Access contracts, project
-                specifications, and important documentation through this secure
-                portal.
-              </p>
-            </motion.div> */}
 
              <motion.div
                 initial={{ opacity: 0, y: 20 }}

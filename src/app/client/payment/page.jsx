@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Navigation from "../../../components/Navigation";
 import PaymentForm from "../../../components/PaymentForm";
+import Logo from "../../../components/Logo";
 import { useClientAuth } from "../../../contexts/ClientAuthContext";
 import "./payment.css";
 
@@ -51,16 +52,7 @@ export default function Payment() {
   if (!isClientAuthenticated) {
     return (
       <div className="h-screen overflow-hidden text-black payment-page-container">
-        <motion.div
-          className="fixed top-8 left-8 z-20"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-            Garfish Digital
-          </div>
-        </motion.div>
+        <Logo />
         <div className="flex items-center justify-center h-screen px-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4 font-primary">
@@ -82,16 +74,7 @@ export default function Payment() {
   if (paymentSuccess) {
     return (
       <div className="h-screen overflow-hidden text-black payment-page-container">
-        <motion.div
-          className="fixed top-8 left-8 z-20"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-            Garfish Digital
-          </div>
-        </motion.div>
+        <Logo />
         <div className="flex items-center justify-center h-screen px-4">
           <motion.div
             className="text-center"
@@ -125,16 +108,7 @@ export default function Payment() {
 
   return (
     <div className="h-screen overflow-hidden text-black payment-page-container">
-      <motion.div
-        className="fixed top-8 left-8 z-20"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-          Garfish Digital
-        </div>
-      </motion.div>
+      <Logo />
       <div className="flex items-start justify-center h-screen px-4 pt-24">
         <div className="w-full max-w-2xl payment-content-container">
 
@@ -143,8 +117,8 @@ export default function Payment() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-arial">
-                  Payment Gateway for{" "}
+                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-gray-shadow)] font-arial">
+                  Pending Invoices for{" "}
                   <strong className="text-[var(--color-gray-dark)]">
                     {authenticatedClient?.project || "your project"}
                   </strong>.
@@ -157,27 +131,16 @@ export default function Payment() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* <h1 className="text-4xl font-bold mb-8 font-primary">
-              Payment Portal
-            </h1> */}
-
-            {/* {authenticatedClient && (
-              <p className="text-lg mb-8 text-gray-600 font-primary">
-                Welcome back, {authenticatedClient.clientName}
-              </p>
-            )} */}
+         
 
             {!selectedInvoice ? (
               // Invoice List
               <div className="space-y-6">
-                {authenticatedClient && (
-                    // <>
+                {/* {authenticatedClient && (
                   <h3 className="text-lg font-bold mt-6 mb-6 font-arial text-[var(--color-gray-dark)]">
                     Pending Invoices
                   </h3>
-                //   <h3 className="font-bold">{authenticatedClient.project} Project</h3>
-                //     </>
-                )}
+                )} */}
                 {invoices.map((invoice) => (
                   <motion.div
                     key={invoice.id}

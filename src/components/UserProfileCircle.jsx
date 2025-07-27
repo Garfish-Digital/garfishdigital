@@ -33,9 +33,7 @@ export default function UserProfileCircle({ isLoggedIn, clientName, onSignOut })
   const handleSignOut = () => {
     onSignOut();
     setIsMenuOpen(false);
-    setTimeout(() => {
-      window.location.href = '/';
-    }, 500);
+    window.location.href = '/';
   };
 
   const handleEdit = () => {

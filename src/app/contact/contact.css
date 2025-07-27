@@ -17,6 +17,16 @@
   max-width: 28rem !important; /* Reduced from max-w-2xl (32rem) to max-w-lg (28rem) */
 }
 
+/* Hide scrollbar while maintaining scrollability */
+.contact-form-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+
+.contact-form-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 540px) {
   .contact-form-container {
@@ -27,7 +37,7 @@
 }
 @media (max-width: 540px) and (min-height: 540px) {
   .contact-form-container {
-    margin-top: 6rem !important; /* Push form down on mobile */
+    /* margin-top: 6rem !important; Push form down on mobile */
     max-width: 20rem !important; /* Even smaller on mobile */
   }
 }

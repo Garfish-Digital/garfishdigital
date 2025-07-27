@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Navigation from "../../components/Navigation";
+import Logo from "../../components/Logo";
 import { useClientAuth } from "../../contexts/ClientAuthContext";
 import "./contact.css";
 
@@ -264,19 +265,31 @@ export default function Contact() {
   return (
     <div className="h-screen overflow-hidden text-black contact-page-container">
       {/* Static Logo - Upper Left */}
-      <motion.div
-        className="fixed top-8 left-8 z-20"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-          Garfish Digital
-        </div>
-      </motion.div>
+      <Logo />
 
-      <div className="flex items-start justify-center h-screen px-4 pt-8">
-        <div className="w-full max-w-lg contact-form-container">
+      <div className="flex items-start justify-center min-h-screen px-4 py-24">
+        <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] contact-form-container">
+          <div className="w-80 mt-8 mb-8 sm:w-96 md:w-[420px]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
+                What Do I Do Now?
+              </h2>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+                Use the form below to let us know you're thinking about a website. We'll do the rest.
+              </p>
+            </motion.div>
+          </div>
+
           {/* <motion.form
                         onSubmit={handleSubmit}
                         className="space-y-4"
@@ -301,8 +314,8 @@ export default function Contact() {
             <input type="hidden" name="_error" value="/contact-error" />
 
             <fieldset>
-            <legend>Contact Us</legend>
-            {/* <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6"> */}
+              <legend>Contact Us</legend>
+              {/* <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6"> */}
               <div className="relative">
                 <div className="relative">
                   <input
@@ -399,100 +412,102 @@ export default function Contact() {
                   </div>
                 )}
               </div>
-            {/* </div> */}
+              {/* </div> */}
 
-            <div className="relative">
               <div className="relative">
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus("company")}
-                  onBlur={handleBlur}
-                  className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
-                    focusedField === "company" ? "focus-bounce" : ""
-                  }`}
-                  placeholder=" "
-                />
-                {!formData.company && (
-                  <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                    <motion.div
-                      key={placeholderKeys.company}
-                      className="text-[var(--color-gray-faint)] font-arial"
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -20, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                    >
-                      {placeholders.company}
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="relative mb-4">
-              <div className="relative">
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={2}
-                  value={formData.message}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus("message")}
-                  onBlur={handleBlur}
-                  className={`w-full px-3 py-3 contact-form-field resize-none transition-all duration-300 ${
-                    focusedField === "message" ? "focus-bounce" : ""
-                  }`}
-                  placeholder=" "
-                />
-                {!formData.message && (
-                  <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                    <motion.div
-                      key={placeholderKeys.message}
-                      className="text-[var(--color-gray-faint)] font-arial"
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -20, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                    >
-                      {placeholders.message}
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-              {validation.message && (
-                <div
-                  className={`text-xs mt-1 transition-all duration-300 ${
-                    validation.message.includes("brilliance")
-                      ? "text-user-green"
-                      : validation.message.includes("more") ||
-                        validation.message.includes("detailed")
-                      ? "text-user-yellow"
-                      : "text-white/60"
-                  }`}
-                >
-                  {validation.message}
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    onFocus={() => handleFocus("company")}
+                    onBlur={handleBlur}
+                    className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
+                      focusedField === "company" ? "focus-bounce" : ""
+                    }`}
+                    placeholder=" "
+                  />
+                  {!formData.company && (
+                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
+                      <motion.div
+                        key={placeholderKeys.company}
+                        className="text-[var(--color-gray-faint)] font-arial"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                      >
+                        {placeholders.company}
+                      </motion.div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
 
-            {/* reCAPTCHA */}
-            <div className="flex justify-center">
-              <div data-netlify-recaptcha="true" className="g-recaptcha"></div>
-            </div>
+              <div className="relative mb-4">
+                <div className="relative">
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={2}
+                    value={formData.message}
+                    onChange={handleChange}
+                    onFocus={() => handleFocus("message")}
+                    onBlur={handleBlur}
+                    className={`w-full px-3 py-3 contact-form-field resize-none transition-all duration-300 ${
+                      focusedField === "message" ? "focus-bounce" : ""
+                    }`}
+                    placeholder=" "
+                  />
+                  {!formData.message && (
+                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
+                      <motion.div
+                        key={placeholderKeys.message}
+                        className="text-[var(--color-gray-faint)] font-arial"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -20, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                      >
+                        {placeholders.message}
+                      </motion.div>
+                    </div>
+                  )}
+                </div>
+                {validation.message && (
+                  <div
+                    className={`text-xs mt-1 transition-all duration-300 ${
+                      validation.message.includes("brilliance")
+                        ? "text-user-green"
+                        : validation.message.includes("more") ||
+                          validation.message.includes("detailed")
+                        ? "text-user-yellow"
+                        : "text-white/60"
+                    }`}
+                  >
+                    {validation.message}
+                  </div>
+                )}
+              </div>
 
-            <motion.button
-              type="submit"
-              className="inline-block garfish-button text-lg transition-all duration-300 transform font-arial"
-            >
-              Send
-            </motion.button>
+              {/* reCAPTCHA */}
+              <div className="flex justify-center">
+                <div
+                  data-netlify-recaptcha="true"
+                  className="g-recaptcha"
+                ></div>
+              </div>
 
-              </fieldset>
+              <motion.button
+                type="submit"
+                className="inline-block garfish-button text-lg transition-all duration-300 transform font-arial"
+              >
+                Send
+              </motion.button>
+            </fieldset>
           </form>
           {/* </motion.form> */}
         </div>

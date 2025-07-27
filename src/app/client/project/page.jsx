@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Navigation from "../../../components/Navigation";
+import Logo from "../../../components/Logo";
 import { useClientAuth } from "../../../contexts/ClientAuthContext";
 import "./project.css";
 
@@ -33,16 +34,7 @@ export default function Project() {
   return (
     <div className="min-h-screen text-black project-page-container">
       {/* Static Logo - Upper Left */}
-      <motion.div
-        className="fixed top-8 left-8 z-20"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-          Garfish Digital
-        </div>
-      </motion.div>
+      <Logo />
 
       <div className="flex flex-col h-screen px-8 pt-24 pb-8">
 
@@ -61,7 +53,7 @@ export default function Project() {
 
         {/* Project Name Row */}
         <motion.div
-          className="flex justify-between items-center mb-8"
+          className="flex flex-col justify-between mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -77,7 +69,7 @@ export default function Project() {
             {authenticatedClient?.project || "Project Overview"}
           </h3> */}
           <button 
-            className="garfish-button font-arial"
+            className="garfish-button self-end font-arial w-40"
             onClick={handleViewProject}
           >
             View Project

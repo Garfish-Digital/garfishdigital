@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import Minimap from "../../components/Minimap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,7 @@ import {
   faFlaskGear,
 } from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "../../components/Navigation";
+import Logo from "../../components/Logo";
 import { useClientAuth } from "../../contexts/ClientAuthContext";
 import "./gallery.css";
 
@@ -365,21 +366,16 @@ export default function Gallery() {
   };
 
   const renderDemoCard = (cardData) => {
+    
     return (
       <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center">
         <motion.div
-          className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-all duration-300 ${cardData.hoverColors.border} hover:shadow-lg ${cardData.hoverColors.shadow} w-80 sm:w-96 md:w-[420px]`}
-          style={{ perspective: 1000 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${cardData.hoverColors.border} w-80 sm:w-96 md:w-[420px]`}
+          style={{ boxShadow: "0px 10px 12px rgba(0, 0, 0, 0.3)" }}
           whileHover={{
-            rotateX: 5,
-            rotateY: 5,
-            translateY: -10,
             boxShadow: "0px 20px 25px rgba(0, 0, 0, 0.4)",
-            transition: tiltTransition,
+            transition: { duration: 0.2, ease: "easeOut" },
           }}
-          transition={{ duration: 0.6, delay: 0.2 }}
         >
           {/* Glow effect */}
           <div
@@ -388,33 +384,28 @@ export default function Gallery() {
 
           <div className="relative z-10 flex flex-col h-full">
             <div className="flex items-start justify-between mb-3 sm:mb-4">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-tight font-primary">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--color-white)] leading-tight font-primary">
                 {cardData.title}
               </h3>
-            </div>
-
-            <p
-              className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed font-primary`}
-            >
-              {cardData.subtitle}
-            </p>
-
-            <div className="space-y-2 mb-6 sm:mb-8 flex-1">
-              {/* <p className="text-white/60 text-xs sm:text-sm font-medium font-primary">Features:</p> */}
-              <ul className="text-white/80 text-xs sm:text-sm space-y-1 font-primary">
-                {/* {cardData.effects.map((effect, index) => (
-                                    <li key={index}>• {effect}</li>
-                                ))} */}
-                {cardData.effects}
-              </ul>
-            </div>
 
             <div className="flex justify-end">
               <FontAwesomeIcon
                 icon={faFlaskGear}
                 onClick={handleTechCardOpen}
-                className="w-5 h-5 sm:w-4 sm:h-4 ml-2 text-[var(--color-green-light)] transform group-hover:translate-x-1 transition-transform"
+                className="w-6 h-6 ml-2 text-[var(--color-gray-light)] group-hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
             />
+            </div>
+
+            </div>
+
+            <p className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed font-primary`}>
+              {cardData.subtitle}
+            </p>
+
+            <div className="space-y-2 mb-6 sm:mb-8 flex-1">
+              <ul className="text-white/80 text-xs sm:text-sm space-y-1 font-primary">
+                {cardData.effects}
+              </ul>
             </div>
 
             <a
@@ -423,18 +414,18 @@ export default function Gallery() {
               rel={
                 cardData.url.startsWith("http") ? "noopener noreferrer" : undefined
               }
-              className="flex items-center text-white/70 group-hover:text-white transition-colors mt-auto cursor-pointer"
+              className="flex items-center group-hover:text-white transition-colors mt-auto cursor-pointer"
             >
-              <span className="text-xs sm:text-sm font-medium font-primary">
+              <span className="text-xs sm:text-sm text-[var(--color-white)] font-medium font-primary">
                 {cardData.url.startsWith("http") ? "View Live Demo" : "Explore"}
               </span>
               <FontAwesomeIcon
                 icon={faArrowRightFromBracket}
-                className="w-3 h-3 sm:w-4 sm:h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
+                className="w-6 h-6 ml-2 text-[var(--color-gray-light)] group-hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
               />
               <FontAwesomeIcon
                 icon={faWindow}
-                className="w-3 h-3 sm:w-4 sm:h-4 ml-1 transform group-hover:scale-110 group-hover:translate-x-1 transition-transform delay-500"
+                className="w-6 h-6 ml-1 text-[var(--color-gray-light)] group-hover:text-[var(--color-white)] transform group-hover:scale-110 transition-all duration-500 ease-out delay-200"
               />
             </a>
           </div>
@@ -454,8 +445,8 @@ export default function Gallery() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-12 mb-4 text-[color:var(--color-gray-shadow)] font-arial">
-                How Can I See Your Work?
+              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
+                View Our Work
               </h2>
             </motion.div>
             <motion.div
@@ -464,7 +455,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Use the grid navigator above to zoom to the outer edges of this page where you will find links to our demo sites. The beaker icons will show you detailed information about the technologies used and the effects employed.
+                Use the grid navigator above to slide to the outer edges of this page where you will find links to our demo sites. The flask-gear icons will show you detailed information about each website, and the open-window icons will open a new tab for you to visit the site.
               </p>
             </motion.div>
           </div>
@@ -483,16 +474,7 @@ export default function Gallery() {
   return (
     <>
       {/* Fixed Logo - Always Visible */}
-      <motion.div
-        className="fixed top-8 left-8 z-20"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
-          Garfish Digital
-        </div>
-      </motion.div>
+      <Logo />
 
       {/* Navigation Icons - Bottom Right */}
       <Navigation

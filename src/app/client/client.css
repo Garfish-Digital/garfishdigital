@@ -13,11 +13,25 @@
 .client-form-container {
     position: relative;
     z-index: 10;
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.client-form-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .client-content-container {
     position: relative;
     z-index: 10;
+    /* Hide scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.client-content-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .client-modal-background {

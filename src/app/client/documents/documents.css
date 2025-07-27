@@ -1,0 +1,9 @@
+ /* Hide scrollbar while maintaining scrollability */
+.documents-content-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+
+.documents-content-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
