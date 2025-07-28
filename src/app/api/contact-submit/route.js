@@ -31,22 +31,37 @@ export async function POST(request) {
       timestamp: new Date().toISOString(),
     });
 
-    // TODO: Add email service integration here
-    // Example with Resend:
+    // Force immediate error if no API key
+    if (!process.env.RESEND_API_KEY) {
+      return new Response("RESEND_API_KEY environment variable not found", { status: 500 });
+    }
+    
+    if (!process.env.RESEND_API_KEY.startsWith('re_')) {
+      return new Response("Invalid RESEND_API_KEY format", { status: 500 });
+    }
+    
     const resend = new Resend(process.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: "Garfish Digital <onboarding@resend.dev>",
-      to: "contact@garfishdigital.com",
-      subject: `New contact from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    });
+    
+    try {
+      const emailResult = await resend.emails.send({
+        from: "Garfish Digital <onboarding@resend.dev>",
+        to: "contact@garfishdigital.com",
+        subject: `New contact from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Company:</strong> ${company}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+        `,
+      });
+      
+      console.log("Resend response:", emailResult);
+    } catch (emailError) {
+      console.error("Resend error:", emailError);
+      return new Response(`Email sending failed: ${emailError.message}`, { status: 500 });
+    }
 
     // Return success response
     return new Response("Success", { status: 200 });
