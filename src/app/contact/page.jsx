@@ -189,31 +189,42 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setIsSubmitting(true);
+    console.log("Form submission started");
 
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
+    
+    // Debug: Log form data
+    console.log("Form data:", {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      company: formData.get('company'),
+      message: formData.get('message')
+    });
 
     try {
+      console.log("Sending request to /api/contact-submit");
       const response = await fetch("/api/contact-submit", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
       });
 
+      console.log("Response status:", response.status);
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
+
       if (response.ok) {
+        console.log("Success! Setting submitted state");
         setIsSubmitted(true);
         setFormData({ name: "", email: "", company: "", message: "" });
       } else {
-        throw new Error(`Server responded with ${response.status}`);
+        throw new Error(`Server responded with ${response.status}: ${responseText}`);
       }
     } catch (error) {
       console.error("Submission error:", error);
-      alert("Failed to send message. Please try again.");
+      alert(`Failed to send message: ${error.message}`);
     }
-    // finally {
-    //   setIsSubmitting(false);
-    // }
   };
 
   const handleChange = (e) => {
@@ -304,14 +315,8 @@ export default function Contact() {
 
           <form
             className="space-y-4"
-            name="contact"
-            // data-netlify="true"
-            method="POST"
-            action="/"
             onSubmit={handleSubmit}
           >
-            <input type="hidden" name="form-name" value="contact" className="visually-hidden-bot-field"/>
-            <input type="hidden" name="bot-field" className="visually-hidden-bot-field"/>
             {/* <input type="hidden" name="_redirect" value="/contact-success" /> */}
             {/* <input type="hidden" name="_error" value="/contact-error" /> */}
 
