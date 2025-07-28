@@ -187,34 +187,34 @@ export default function Contact() {
   //     }
   // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // setIsSubmitting(true);
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setIsSubmitting(true);
 
-    const formElement = e.currentTarget;
-    const formData = new FormData(formElement);
+//     const formElement = e.currentTarget;
+//     const formData = new FormData(formElement);
 
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-      });
+//     try {
+//       const response = await fetch("/", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+//         body: new URLSearchParams(formData).toString(),
+//       });
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", company: "", message: "" });
-      } else {
-        throw new Error(`Server responded with ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert("Failed to send message. Please try again.");
-    }
-    // finally {
-    //   setIsSubmitting(false);
-    // }
-  };
+//       if (response.ok) {
+//         setIsSubmitted(true);
+//         setFormData({ name: "", email: "", company: "", message: "" });
+//       } else {
+//         throw new Error(`Server responded with ${response.status}`);
+//       }
+//     } catch (error) {
+//       console.error("Submission error:", error);
+//       alert("Failed to send message. Please try again.");
+//     }
+//     finally {
+//       setIsSubmitting(false);
+//     }
+//   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -306,10 +306,7 @@ export default function Contact() {
             className="space-y-4"
             name="contact"
             data-netlify="true"
-            data-netlify-recaptcha="true"
             method="POST"
-            action="/"
-            onSubmit={handleSubmit}
           >
             <input type="hidden" name="form-name" value="contact" className="visually-hidden-bot-field"/>
             <input type="hidden" name="bot-field" className="visually-hidden-bot-field"/>
