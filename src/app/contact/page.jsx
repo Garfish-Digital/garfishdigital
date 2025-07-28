@@ -17,6 +17,7 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+//   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const [validation, setValidation] = useState({});
   const [placeholders, setPlaceholders] = useState({
@@ -188,13 +189,13 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    // setIsSubmitting(true);
 
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
 
     try {
-      const response = await fetch(formElement.action, {
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
@@ -209,9 +210,10 @@ export default function Contact() {
     } catch (error) {
       console.error("Submission error:", error);
       alert("Failed to send message. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
+    // finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   const handleChange = (e) => {
@@ -276,7 +278,7 @@ export default function Contact() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-                What Do I Do Now?
+                How Do I Get Started?
               </h2>
             </motion.div>
             <motion.div
@@ -306,12 +308,13 @@ export default function Contact() {
             data-netlify="true"
             data-netlify-recaptcha="true"
             method="POST"
-            action="/api/contact-submit"
+            action="/"
+            onSubmit={handleSubmit}
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="bot-field" />
-            <input type="hidden" name="_redirect" value="/contact-success" />
-            <input type="hidden" name="_error" value="/contact-error" />
+            <input type="hidden" name="form-name" value="contact" className="visually-hidden-bot-field"/>
+            <input type="hidden" name="bot-field" className="visually-hidden-bot-field"/>
+            {/* <input type="hidden" name="_redirect" value="/contact-success" /> */}
+            {/* <input type="hidden" name="_error" value="/contact-error" /> */}
 
             <fieldset>
               <legend>Contact Us</legend>
@@ -494,12 +497,12 @@ export default function Contact() {
               </div>
 
               {/* reCAPTCHA */}
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <div
                   data-netlify-recaptcha="true"
                   className="g-recaptcha"
                 ></div>
-              </div>
+              </div> */}
 
               <motion.button
                 type="submit"
