@@ -40,10 +40,20 @@ export default function Home() {
             className="fixed top-60 left-8 z-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
+          >
+            <div className="text-[color:var(--color-gray-dark)] font-arial text-4xl font-normal text-left">
+              design
+            </div>
+          </motion.div>
+          <motion.div 
+            className="fixed top-60 left-37 z-20"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
           >
             <div className="text-[color:var(--color-gray-dark)] font-arial text-4xl font-normal text-left">
-              design &
+               &
             </div>
           </motion.div>
           <motion.div 

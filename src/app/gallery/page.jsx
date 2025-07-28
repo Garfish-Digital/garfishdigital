@@ -88,8 +88,8 @@ const demoCards = {
     effects:
       "A demonstration on particle animation, floating navs, and liquid transitions.",
     hoverColors: {
-      border: "hover:border-blue-500/50",
-      shadow: "hover:shadow-blue-500/20",
+      border: "hover:border-green-500/50",
+      shadow: "hover:shadow-green-500/20",
       gradient: "from-[#3E2723] to-[#FFA000] via-[#1B3A1B]/60",
       text: "text-[#FFD54F]",
     },
@@ -118,8 +118,8 @@ const demoCards = {
     hoverColors: {
       border: "hover:border-red-500/50",
       shadow: "hover:shadow-red-500/20",
-      gradient: "from-red-500/20 to-red-500/10",
-      text: "text-red-500",
+      gradient: "from-[#0A0A0A] to-[#FFD23F] via-[#CC0000]/60",
+      text: "text-[#FF8C42]",
     },
   },
   cell4: {
@@ -392,7 +392,7 @@ export default function Gallery() {
               <FontAwesomeIcon
                 icon={faFlaskGear}
                 onClick={handleTechCardOpen}
-                className="w-6 h-6 ml-2 text-[var(--color-gray-light)] group-hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
+                className="w-6 h-6 ml-2 text-[var(--color-gray-light)] hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
             />
             </div>
 
@@ -425,7 +425,7 @@ export default function Gallery() {
               />
               <FontAwesomeIcon
                 icon={faWindow}
-                className="w-6 h-6 ml-1 text-[var(--color-gray-light)] group-hover:text-[var(--color-white)] transform group-hover:scale-110 transition-all duration-500 ease-out delay-200"
+                className="w-6 h-6 ml-1 text-[var(--color-gray-light)] hover:text-[var(--color-white)] transform group-hover:scale-110 transition-all duration-500 ease-out delay-200"
               />
             </a>
           </div>

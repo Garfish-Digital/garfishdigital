@@ -25,7 +25,7 @@ export default function Client() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+//   const [showModal, setShowModal] = useState(false);
   const [validation, setValidation] = useState("");
   const [placeholder, setPlaceholder] = useState("Your client password");
   const [placeholderKey, setPlaceholderKey] = useState(0);
@@ -75,7 +75,7 @@ export default function Client() {
     // Set client authentication with full client object
     setClientAuthenticated(client);
 
-    setShowModal(true);
+    // setShowModal(true);
     setIsSubmitting(false);
   };
 
@@ -87,7 +87,7 @@ export default function Client() {
     setValidation(validationMessage);
   };
 
-  if (isClientAuthenticated && !showModal) {
+  if (isClientAuthenticated) {
     return (
       <div className="min-h-screen text-black client-success-container">
         <div className="client-success-content">
@@ -308,7 +308,7 @@ export default function Client() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-              How Can I Get A Client Portal?
+              How Can I Get A Portal?
             </h2>
           </motion.div>
           <motion.div
@@ -325,7 +325,7 @@ export default function Client() {
                 Contact Page
               </Link>{" "}
               and you will receive a response within 48 hours. We'll provide you
-              with a password right away so you can enter a client portal that allows you to view your website, project documentation, and payment information.
+              with a password right away so you have access to a client portal that allows you to view your website, project documentation, and payment information.
             </p>
           </motion.div>
         </div>
@@ -341,7 +341,7 @@ export default function Client() {
       />
 
       {/* Success Modal */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showModal && (
           <motion.div
             className="fixed inset-0 z-[100] flex items-center justify-center"
@@ -399,7 +399,7 @@ export default function Client() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </div>
   );
 }
