@@ -52,11 +52,13 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
         }),
       });
 
-      const { clientSecret, error } = await response.json();
-
-      if (error) {
-        throw new Error(error);
+      const responseData = await response.json();
+      
+      if (responseData.error) {
+        throw new Error(responseData.error);
       }
+      
+      const { clientSecret } = responseData;
 
       // Confirm payment
       const cardElement = elements.getElement(CardElement);

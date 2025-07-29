@@ -25,7 +25,7 @@ export default function Client() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [validation, setValidation] = useState("");
   const [placeholder, setPlaceholder] = useState("Your client password");
   const [placeholderKey, setPlaceholderKey] = useState(0);
@@ -72,11 +72,15 @@ export default function Client() {
     setIsSubmitting(true);
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // Set client authentication with full client object
-    setClientAuthenticated(client);
-
-    // setShowModal(true);
+    // Show modal first, then authenticate after timeout
+    setShowModal(true);
     setIsSubmitting(false);
+    
+    // Auto-dismiss modal and authenticate after 1500ms
+    setTimeout(() => {
+      setShowModal(false);
+      setClientAuthenticated(client);
+    }, 1500);
   };
 
   const handleChange = (e) => {
@@ -95,7 +99,7 @@ export default function Client() {
         <Logo />
 
         <div className="flex items-start justify-center h-screen px-4 pt-24">
-          <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] client-content-container">
+          <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] pb-4 client-content-container">
             <motion.div
               className="space-y-8"
               initial={{ opacity: 0, y: 50 }}
@@ -108,7 +112,7 @@ export default function Client() {
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <h2 className="text-lg font-bold mb-6 text-[color:var(--color-gray-shadow)] font-primary">
-                  Welcome to your client dashboard for{" "}
+                  Welcome to your portal dashboard for{" "}
                   <strong className="text-[var(--color-gray-dark)]">
                     {authenticatedClient?.project || "your project"}
                   </strong>
@@ -131,7 +135,7 @@ export default function Client() {
                 </button>
                 <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
                   Keep an eye on development progress by tracking milestones and
-                  viewing the actual{" "}
+                  viewing the current progress on the actual{" "}
                   {authenticatedClient?.project || "your project"} website.
                 </p>
               </motion.div>
@@ -341,7 +345,7 @@ export default function Client() {
       />
 
       {/* Success Modal */}
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {showModal && (
           <motion.div
             className="fixed inset-0 z-[100] flex items-center justify-center"
@@ -349,7 +353,6 @@ export default function Client() {
             animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            onClick={() => setShowModal(false)}
           >
             <motion.div
               className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden client-modal-background"
@@ -368,38 +371,30 @@ export default function Client() {
                 >
                   ✓
                 </motion.div>
-                <motion.h2
+                {/* <motion.h2
                   className="text-2xl font-bold mb-3 text-white font-arial"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
                 >
                   Access Granted
-                </motion.h2>
+                </motion.h2> */}
                 <motion.p
                   className="text-white/70 mb-6 font-arial"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  Welcome to your client portal for{" "}
+                  Welcome!
+                  {/* Welcome to your client portal for{" "}
                   {authenticatedClient?.project || "your project"}. All
-                  navigation icons are now enabled.
+                  navigation icons are now enabled. */}
                 </motion.p>
-                <motion.button
-                  onClick={() => setShowModal(false)}
-                  className="garfish-button"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                >
-                  Continue
-                </motion.button>
               </div>
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
     </div>
   );
 }

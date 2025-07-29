@@ -1,7 +1,7 @@
 [
   {
     "id": "client1",
-    "password": "garfish123",
+    "password": "inferno123",
     "clientName": "Inferno Ink Studio",
     "project": "Inferno Ink",
     "path": "inferno-ink.netlify.app",
@@ -252,6 +252,22 @@
       "agreement": "/documents/inferno-ink-agreement.pdf",
       "handoff": "/documents/inferno-ink-handoff.pdf"
     },
+    "payments": [
+      {
+        "id": "inv_001",
+        "description": "Phase 1 - Structural & Functional",
+        "amount": 2500,
+        "dueDate": "2025-02-15",
+        "status": "paid"
+      },
+      {
+        "id": "inv_002",
+        "description": "Phase 2 - Branding, SEO, & Deployment",
+        "amount": 1500,
+        "dueDate": "2025-03-01",
+        "status": "pending"
+      }
+    ],
     "status": "active",
     "lastLogin": null
   },
@@ -478,6 +494,29 @@
       "agreement": "/documents/obsidian-peaks-agreement.pdf",
       "handoff": "/documents/obsidian-peaks-handoff.pdf"
     },
+    "payments": [
+      {
+        "id": "inv_001",
+        "description": "Phase 1 - Structural & Functional",
+        "amount": 2500,
+        "dueDate": "2025-02-15",
+        "status": "paid"
+      },
+      {
+        "id": "inv_002",
+        "description": "Phase 2 - Branding, SEO, & Deployment",
+        "amount": 1500,
+        "dueDate": "2025-03-01",
+        "status": "pending"
+      },
+      {
+        "id": "inv_003",
+        "description": "Phase 3 - Testing & Maintenance",
+        "amount": 800,
+        "dueDate": "2025-04-01",
+        "status": "pending"
+      }
+    ],
     "status": "active",
     "lastLogin": null
   }

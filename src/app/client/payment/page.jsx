@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Navigation from "../../../components/Navigation";
@@ -10,9 +10,9 @@ import Logo from "../../../components/Logo";
 import { useClientAuth } from "../../../contexts/ClientAuthContext";
 import "./payment.css";
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY 
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : null;
 
 export default function Payment() {
   const { isClientAuthenticated, authenticatedClient } = useClientAuth();
@@ -20,25 +20,47 @@ export default function Payment() {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
 
-  // Sample invoices for demo - replace with real client data
-  const invoices = [
-    {
-      id: "inv_001",
-      description: "Phase 1 - Structural & Functional",
-      amount: 2500,
-      dueDate: "2025-02-15",
-      status: "pending",
-    },
-    {
-      id: "inv_002",
-      description: "Phase 2 - Branding, SEO, & Deployment",
-      amount: 1500,
-      dueDate: "2025-03-01",
-      status: "pending",
-    },
-  ];
+  // Client-specific invoices from clients.json
+  const [invoices, setInvoices] = useState([]);
 
-  const handlePaymentSuccess = (paymentIntent) => {
+  // Load client-specific payment data
+  useEffect(() => {
+    if (authenticatedClient && authenticatedClient.payments) {
+      setInvoices(authenticatedClient.payments);
+    }
+  }, [authenticatedClient]);
+
+  const handlePaymentSuccess = async (paymentIntent) => {
+    const paidDate = new Date().toISOString().split('T')[0];
+    
+    // Update invoice status locally first for immediate UI feedback
+    setInvoices(prevInvoices => 
+      prevInvoices.map(invoice => 
+        invoice.id === selectedInvoice.id 
+          ? { ...invoice, status: "paid", paidDate }
+          : invoice
+      )
+    );
+    
+    // Persist the update to clients.json
+    try {
+      await fetch('/api/stripe/update-invoice-status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          clientId: authenticatedClient?.id,
+          invoiceId: selectedInvoice.id,
+          status: 'paid',
+          paidDate,
+        }),
+      });
+    } catch (error) {
+      console.error('Failed to persist invoice status update:', error);
+      // Note: UI still shows as paid due to local state update
+    }
+    
     setPaymentSuccess(true);
     setSelectedInvoice(null);
     console.log("Payment successful:", paymentIntent);
@@ -125,12 +147,13 @@ export default function Payment() {
                 </h2>
               </motion.div>
 
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <div className="payment-content overflow-y-auto max-h-[calc(100vh-12rem)] scrollbar-hide">
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
          
 
             {!selectedInvoice ? (
@@ -144,11 +167,13 @@ export default function Payment() {
                 {invoices.map((invoice) => (
                   <motion.div
                     key={invoice.id}
-                    className="payment-card p-6 cursor-pointer"
+                    className={`payment-card p-6 ${
+                      invoice.status === 'pending' ? 'cursor-pointer' : 'cursor-not-allowed opacity-75'
+                    }`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    onClick={() => setSelectedInvoice(invoice)}
+                    onClick={() => invoice.status === 'pending' && setSelectedInvoice(invoice)}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex justify-between items-start">
@@ -164,25 +189,46 @@ export default function Payment() {
                         <div className="text-2xl font-bold font-mono">
                           ${invoice.amount.toFixed(2)}
                         </div>
-                        <div className="text-sm text-gray-600 uppercase tracking-wide">
-                          {invoice.status}
+                        <div className={`text-sm uppercase tracking-wide ${
+                          invoice.status === 'paid' 
+                            ? 'text-[color:var(--color-green-dark)] font-bold' 
+                            : 'text-gray-600'
+                        }`}>
+                          {invoice.status === 'paid' ? 'PAID' : 'PENDING'}
                         </div>
+                        {invoice.status === 'paid' && invoice.paidDate && (
+                          <div className="text-xs text-[color:var(--color-gray-shadow)] mt-1">
+                            Paid: {invoice.paidDate}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>
                 ))}
 
-                {invoices.length === 0 && (
+                {invoices.filter(inv => inv.status === 'pending').length === 0 && (
                   <div className="payment-card p-8 text-center">
                     <p className="text-gray-600 font-arial">
                       No pending invoices at this time.
                     </p>
                   </div>
                 )}
+                
+                {/* Stripe Attribution */}
+                <motion.div
+                  className="text-center mt-8 pt-4 border-t border-[color:var(--color-gray-light)] mb-16"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                >
+                  <p className="text-sm text-[color:var(--color-gray-shadow)] pb-2 font-arial">
+                    🔒 Payments powered by <span className="font-bold">Stripe</span>
+                  </p>
+                </motion.div>
               </div>
             ) : (
               // Payment Form
-              <div className="space-y-6">
+              <div className="space-y-6 mb-16">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold font-arial">
                     Complete Payment
@@ -195,15 +241,26 @@ export default function Payment() {
                   </button>
                 </div>
 
-                <Elements stripe={stripePromise}>
-                  <PaymentForm
-                    amount={selectedInvoice.amount}
-                    description={selectedInvoice.description}
-                    clientId={authenticatedClient?.id || "guest"}
-                    onSuccess={handlePaymentSuccess}
-                    onError={handlePaymentError}
-                  />
-                </Elements>
+                {stripePromise ? (
+                  <Elements stripe={stripePromise}>
+                    <PaymentForm
+                      amount={selectedInvoice.amount}
+                      description={selectedInvoice.description}
+                      clientId={authenticatedClient?.id || "guest"}
+                      onSuccess={handlePaymentSuccess}
+                      onError={handlePaymentError}
+                    />
+                  </Elements>
+                ) : (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                    <p className="text-red-600 font-arial mb-2">
+                      ⚠️ Payment Processing Unavailable
+                    </p>
+                    <p className="text-sm text-red-500 font-arial">
+                      Stripe payment configuration is missing. Please contact support.
+                    </p>
+                  </div>
+                )}
 
                 {paymentError && (
                   <motion.div
@@ -219,7 +276,8 @@ export default function Payment() {
                 )}
               </div>
             )}
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
