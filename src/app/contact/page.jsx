@@ -16,8 +16,9 @@ export default function Contact() {
     company: "",
     message: "",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-//   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  //   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const [validation, setValidation] = useState({});
   const [placeholders, setPlaceholders] = useState({
@@ -187,44 +188,38 @@ export default function Contact() {
   //     }
   // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form submission started");
-
-    const formElement = e.currentTarget;
-    const formData = new FormData(formElement);
-    
-    // Debug: Log form data
-    console.log("Form data:", {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      company: formData.get('company'),
-      message: formData.get('message')
-    });
-
-    try {
-      console.log("Sending request to /api/contact-submit");
-      const response = await fetch("/api/contact-submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-      });
-
-      console.log("Response status:", response.status);
-      const responseText = await response.text();
-      console.log("Response text:", responseText);
-
-      if (response.ok) {
-        console.log("Success! Setting submitted state");
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", company: "", message: "" });
-      } else {
-        throw new Error(`Server responded with ${response.status}: ${responseText}`);
+  // Handle success/error from Netlify form submission via URL params or other detection
+  useEffect(() => {
+    const handleFormResult = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('success') === 'true') {
+        setShowSuccessModal(true);
+      } else if (urlParams.get('error') === 'true') {
+        setShowErrorModal(true);
       }
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert(`Failed to send message: ${error.message}`);
+    };
+    
+    handleFormResult();
+  }, []);
+
+  // Success modal timeout and navigation
+  useEffect(() => {
+    if (showSuccessModal) {
+      const timer = setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
+      return () => clearTimeout(timer);
     }
+  }, [showSuccessModal]);
+
+  const resetForm = () => {
+    setFormData({ name: "", email: "", company: "", message: "" });
+    setValidation({});
+  };
+
+  const handleErrorModalClose = () => {
+    setShowErrorModal(false);
+    resetForm();
   };
 
   const handleChange = (e) => {
@@ -250,30 +245,6 @@ export default function Contact() {
     setFocusedField(null);
   };
 
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen text-white flex items-center justify-center contact-success-background">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="text-6xl mb-8">✓</div>
-          <h1 className="text-3xl font-bold mb-4 font-primary">Message Sent</h1>
-          <p className="text-white/70 mb-8 font-primary">
-            We&apos;ll get back to you within 24 hours.
-          </p>
-          <Link
-            href="/"
-            className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors font-primary"
-          >
-            ← Back to Home
-          </Link>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="h-screen overflow-hidden text-black contact-page-container">
@@ -298,7 +269,8 @@ export default function Contact() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Use the form below to let us know you're thinking about a website. We'll do the rest.
+                Use the form below to let us know you're thinking about a
+                website. We'll do the rest.
               </p>
             </motion.div>
           </div>
@@ -318,23 +290,25 @@ export default function Contact() {
             onSubmit={handleSubmit}
           > */}
 
-           <form
-                        onSubmit={handleSubmit}
-                        className="space-y-4"
-                        name="contact"
-                        data-netlify="true"
-                        data-netlify-honeypot="bot-field"
-                        method="POST"
-                        action="/__forms.html"
-                    >
-
+          <form
+            className="space-y-4"
+            name="contact"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            method="POST"
+            action="/contact?success=true"
+            data-netlify-redirect="/contact?success=true"
+            data-netlify-error-redirect="/contact?error=true"
+          >
             {/* <input type="hidden" name="_redirect" value="/contact-success" /> */}
             {/* <input type="hidden" name="_error" value="/contact-error" /> */}
 
-              <input type="visually-hidden-bot-field" name="form-name" value="contact" />
-                        <p className="visually-hidden-bot-field">
-                            <label>Don’t fill this out: <input name="bot-field" /></label>
-                        </p>
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>
+                Don’t fill this out: <input name="bot-field" />
+              </label>
+            </p>
 
             <fieldset>
               <legend>Contact Us</legend>
@@ -377,9 +351,9 @@ export default function Contact() {
                       validation.name.includes("✓")
                         ? "text-user-green"
                         : validation.name.includes("short") ||
-                          validation.name.includes("quite")
-                        ? "text-user-yellow"
-                        : "text-white/60"
+                            validation.name.includes("quite")
+                          ? "text-user-yellow"
+                          : "text-white/60"
                     }`}
                   >
                     {validation.name}
@@ -425,10 +399,10 @@ export default function Contact() {
                       validation.email.includes("✓")
                         ? "text-user-green"
                         : validation.email.includes("Missing") ||
-                          validation.email.includes("Needs") ||
-                          validation.email.includes("format")
-                        ? "text-user-yellow"
-                        : "text-white/60"
+                            validation.email.includes("Needs") ||
+                            validation.email.includes("format")
+                          ? "text-user-yellow"
+                          : "text-white/60"
                     }`}
                   >
                     {validation.email}
@@ -506,9 +480,9 @@ export default function Contact() {
                       validation.message.includes("brilliance")
                         ? "text-user-green"
                         : validation.message.includes("more") ||
-                          validation.message.includes("detailed")
-                        ? "text-user-yellow"
-                        : "text-white/60"
+                            validation.message.includes("detailed")
+                          ? "text-user-yellow"
+                          : "text-white/60"
                     }`}
                   >
                     {validation.message}
@@ -725,6 +699,103 @@ export default function Contact() {
                   Last updated: January 2025
                 </p>
               </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.div
+              className="w-full max-w-md mx-4 bg-[color:var(--color-white)] border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="p-8 text-center">
+                <div className="text-6xl mb-6 text-[color:var(--color-green-dark)]">✓</div>
+                <h2 className="text-2xl font-bold mb-4 text-[color:var(--color-black)] font-mono">
+                  Message Sent
+                </h2>
+                <p className="text-[color:var(--color-gray-dark)] mb-6 font-arial">
+                  We'll get back to you within 24 hours.
+                </p>
+                <p className="text-sm text-[color:var(--color-gray-shadow)] font-arial">
+                  Redirecting to home in 3 seconds...
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Error Modal */}
+      <AnimatePresence>
+        {showErrorModal && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            onClick={handleErrorModalClose}
+          >
+            <motion.div
+              className="w-full max-w-md mx-4 bg-[color:var(--color-white)] border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between p-6 border-b border-[color:var(--color-gray-light)]">
+                <h2 className="text-2xl font-bold text-[color:var(--color-black)] font-mono">
+                  Submission Failed
+                </h2>
+                <motion.button
+                  onClick={handleErrorModalClose}
+                  className="text-[color:var(--color-gray-shadow)] hover:text-[color:var(--color-black)] transition-colors p-2"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M18 6L6 18M6 6l12 12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </motion.button>
+              </div>
+              <div className="p-6">
+                <div className="text-6xl mb-6 text-[color:var(--color-gray-dark)] text-center">⚠️</div>
+                <p className="text-[color:var(--color-gray-dark)] mb-6 font-arial text-center">
+                  There was an error sending your message. Please try again or contact us directly.
+                </p>
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleErrorModalClose}
+                    className="garfish-button font-arial"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}
