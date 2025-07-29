@@ -188,20 +188,6 @@ export default function Contact() {
   //     }
   // };
 
-  // Handle success/error from Netlify form submission via URL params or other detection
-  useEffect(() => {
-    const handleFormResult = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('success') === 'true') {
-        setShowSuccessModal(true);
-      } else if (urlParams.get('error') === 'true') {
-        setShowErrorModal(true);
-      }
-    };
-    
-    handleFormResult();
-  }, []);
-
   // Success modal timeout and navigation
   useEffect(() => {
     if (showSuccessModal) {
@@ -211,6 +197,32 @@ export default function Contact() {
       return () => clearTimeout(timer);
     }
   }, [showSuccessModal]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const formElement = e.currentTarget;
+    const formData = new FormData(formElement);
+
+    try {
+      const response = await fetch(formElement.action || '/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        setShowSuccessModal(true);
+        setFormData({ name: "", email: "", company: "", message: "" });
+        setValidation({});
+      } else {
+        setShowErrorModal(true);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setShowErrorModal(true);
+    }
+  };
 
   const resetForm = () => {
     setFormData({ name: "", email: "", company: "", message: "" });
@@ -291,14 +303,13 @@ export default function Contact() {
           > */}
 
           <form
+            onSubmit={handleSubmit}
             className="space-y-4"
             name="contact"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             method="POST"
-            action="/contact?success=true"
-            data-netlify-redirect="/contact?success=true"
-            data-netlify-error-redirect="/contact?error=true"
+            action="/__forms.html"
           >
             {/* <input type="hidden" name="_redirect" value="/contact-success" /> */}
             {/* <input type="hidden" name="_error" value="/contact-error" /> */}
