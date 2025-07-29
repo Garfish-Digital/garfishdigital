@@ -45,7 +45,7 @@ export async function POST(request) {
     try {
       const emailResult = await resend.emails.send({
         from: "Garfish Digital <onboarding@resend.dev>",
-        to: "contact@garfishdigital.com",
+        to: "services@garfishdigital.com",
         subject: `New contact from ${name}`,
         html: `
           <h2>New Contact Form Submission</h2>

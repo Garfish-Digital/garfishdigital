@@ -313,12 +313,28 @@ export default function Contact() {
                         data-netlify="true"
                     > */}
 
-          <form
+          {/* <form
             className="space-y-4"
             onSubmit={handleSubmit}
-          >
+          > */}
+
+           <form
+                        onSubmit={handleSubmit}
+                        className="space-y-4"
+                        name="contact"
+                        data-netlify="true"
+                        data-netlify-honeypot="bot-field"
+                        method="POST"
+                        action="/__forms.html"
+                    >
+
             {/* <input type="hidden" name="_redirect" value="/contact-success" /> */}
             {/* <input type="hidden" name="_error" value="/contact-error" /> */}
+
+              <input type="visually-hidden-bot-field" name="form-name" value="contact" />
+                        <p className="visually-hidden-bot-field">
+                            <label>Don’t fill this out: <input name="bot-field" /></label>
+                        </p>
 
             <fieldset>
               <legend>Contact Us</legend>
