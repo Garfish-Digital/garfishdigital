@@ -13,7 +13,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
+    business: "",
     message: "",
   });
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -24,13 +24,13 @@ export default function Contact() {
   const [placeholders, setPlaceholders] = useState({
     name: "Your name",
     email: "your@email.com",
-    company: "Your company (optional)",
+    business: "Your business (optional)",
     message: "Tell us about your project...",
   });
   const [placeholderKeys, setPlaceholderKeys] = useState({
     name: 0,
     email: 0,
-    company: 0,
+    business: 0,
     message: 0,
   });
   const [showModal, setShowModal] = useState(null);
@@ -45,8 +45,8 @@ export default function Contact() {
         "Where do you get messages?",
         "How do we reach you?",
       ],
-      company: [
-        "Your company (optional)",
+      business: [
+        "Your business (optional)",
         "What type of work do you do?",
         "Who you bust your a$$ for",
       ],
@@ -59,7 +59,7 @@ export default function Contact() {
 
     let nameIndex = 0;
     let emailIndex = 0;
-    let companyIndex = 0;
+    let businessIndex = 0;
     let messageIndex = 0;
 
     const nameInterval = setInterval(() => {
@@ -80,13 +80,13 @@ export default function Contact() {
       setPlaceholderKeys((prev) => ({ ...prev, email: prev.email + 1 }));
     }, 18000);
 
-    const companyInterval = setInterval(() => {
-      companyIndex = (companyIndex + 1) % placeholderOptions.company.length;
+    const businessInterval = setInterval(() => {
+      businessIndex = (businessIndex + 1) % placeholderOptions.business.length;
       setPlaceholders((prev) => ({
         ...prev,
-        company: placeholderOptions.company[companyIndex],
+        business: placeholderOptions.business[businessIndex],
       }));
-      setPlaceholderKeys((prev) => ({ ...prev, company: prev.company + 1 }));
+      setPlaceholderKeys((prev) => ({ ...prev, business: prev.business + 1 }));
     }, 20500);
 
     const messageInterval = setInterval(() => {
@@ -101,7 +101,7 @@ export default function Contact() {
     return () => {
       clearInterval(nameInterval);
       clearInterval(emailInterval);
-      clearInterval(companyInterval);
+      clearInterval(businessInterval);
       clearInterval(messageInterval);
     };
   }, []);
@@ -144,19 +144,20 @@ export default function Contact() {
   };
 
   // Success modal timeout and navigation
-  useEffect(() => {
-    if (showSuccessModal) {
-      const timer = setTimeout(() => {
-        window.location.href = '/';
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showSuccessModal]);
+//   useEffect(() => {
+//     if (showSuccessModal) {
+//       const timer = setTimeout(() => {
+//         window.location.href = '/';
+//       }, 3000);
+//       return () => clearTimeout(timer);
+//     }
+//   }, [showSuccessModal]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     const formElement = e.currentTarget;
+    console.log('formElement: ', formElement);
     const formData = new FormData(formElement);
     console.log('formData: ', formData);
 
@@ -169,7 +170,7 @@ export default function Contact() {
 
       if (response.ok) {
         setShowSuccessModal(true);
-        setFormData({ name: "", email: "", company: "", message: "" });
+        setFormData({ name: "", email: "", business: "", message: "" });
         setValidation({});
       } else {
         setShowErrorModal(true);
@@ -181,7 +182,7 @@ export default function Contact() {
   };
 
   const resetForm = () => {
-    setFormData({ name: "", email: "", company: "", message: "" });
+    setFormData({ name: "", email: "", business: "", message: "" });
     setValidation({});
   };
 
@@ -192,6 +193,7 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log('name & value: ', name, value);
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -364,29 +366,29 @@ export default function Contact() {
                 <div className="relative">
                   <input
                     type="text"
-                    id="company"
-                    name="company"
+                    id="business"
+                    name="business"
                     required
-                    value={formData.company}
+                    value={formData.business}
                     onChange={handleChange}
-                    onFocus={() => handleFocus("company")}
+                    onFocus={() => handleFocus("business")}
                     onBlur={handleBlur}
                     className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
-                      focusedField === "company" ? "focus-bounce" : ""
+                      focusedField === "business" ? "focus-bounce" : ""
                     }`}
                     placeholder=" "
                   />
-                  {!formData.company && (
+                  {!formData.business && (
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
-                        key={placeholderKeys.company}
+                        key={placeholderKeys.business}
                         className="text-[var(--color-gray-faint)] font-arial"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
                         transition={{ duration: 0.4, ease: "easeInOut" }}
                       >
-                        {placeholders.company}
+                        {placeholders.business}
                       </motion.div>
                     </div>
                   )}
