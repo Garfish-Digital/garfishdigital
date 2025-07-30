@@ -256,18 +256,8 @@ export default function Contact() {
             action="/__forms.html"
                     >
 
-          {/* <form
-            onSubmit={handleSubmit}
-            className="space-y-4"
-            name="contact"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            method="POST"
-            action="/__forms.html"
-          > */}
-
             <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="bot-field" style={{ display: 'none' }} className="visually-hidden-bot-field" />
+            <input type="text" name="bot-field" style={{ display: 'none' }} className="visually-hidden-bot-field" />
 
             <fieldset>
               <legend>Contact Us</legend>

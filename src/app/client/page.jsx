@@ -53,8 +53,8 @@ export default function Client() {
     if (value.length < 5) return "A bit short...";
 
     // Check if password matches any client
-    const client = clientsData.find((c) => c.password === value);
-    if (client) return "Access granted! ✓";
+    // const client = clientsData.find((c) => c.password === value);
+    // if (client) return "Access granted! ✓";
 
     return "Keep on going";
   };
@@ -288,10 +288,8 @@ export default function Client() {
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting || password}
-                className={`inline-block ${
-                  isSubmitting || !validation.includes("✓") ? "disabled-" : ""
-                }garfish-button`}
+                disabled={!password}
+                className={`inline-block ${!password ? "disabled-" : ""}garfish-button`}
                 //   className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
               >
                 {isSubmitting ? (
