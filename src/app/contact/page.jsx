@@ -364,11 +364,11 @@ export default function Contact() {
 
               <div className="relative">
                 <div className="relative">
-                  <input
-                    type="text"
+                  <textarea
                     id="business"
                     name="business"
                     required
+                    rows={2}
                     value={formData.business}
                     onChange={handleChange}
                     onFocus={() => handleFocus("business")}
