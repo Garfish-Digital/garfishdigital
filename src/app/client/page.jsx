@@ -288,7 +288,7 @@ export default function Client() {
 
               <motion.button
                 type="submit"
-                disabled={isSubmitting || !validation.includes("✓")}
+                disabled={isSubmitting || password}
                 className={`inline-block ${
                   isSubmitting || !validation.includes("✓") ? "disabled-" : ""
                 }garfish-button`}

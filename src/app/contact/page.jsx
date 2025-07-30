@@ -267,7 +267,7 @@ export default function Contact() {
           > */}
 
             <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="bot-field" style={{ display: 'none' }} />
+            <input type="hidden" name="bot-field" style={{ display: 'none' }} className="visually-hidden-bot-field" />
 
             <fieldset>
               <legend>Contact Us</legend>
@@ -376,6 +376,7 @@ export default function Contact() {
                     type="text"
                     id="company"
                     name="company"
+                    required
                     value={formData.company}
                     onChange={handleChange}
                     onFocus={() => handleFocus("company")}
