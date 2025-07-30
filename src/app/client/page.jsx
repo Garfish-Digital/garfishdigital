@@ -33,8 +33,8 @@ export default function Client() {
   // Cycling placeholder text
   useEffect(() => {
     const placeholderOptions = [
-      "Client password",
-      "Access code",
+      "Portal code",
+      "Secret access",
       "Key to the city",
     ];
 
@@ -212,7 +212,7 @@ export default function Client() {
             className="mb-8"
           >
             <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-              Enter your password and gain instant access to your portal dashboard. Don't have a password? See below. 
+              Enter your portal code and gain instant access to your dashboard. Don't have a portal code? See below. 
             </p>
           </motion.div>
 
@@ -329,7 +329,7 @@ export default function Client() {
                 Contact Page
               </Link>{" "}
               and you will receive a response within 48 hours. We'll provide you
-              with a password right away so you have access to a client portal that allows you to view your website, project documentation, and payment information.
+              with a code so you have access to a client portal that allows you to view your website, project documentation, and payment information.
             </p>
           </motion.div>
         </div>

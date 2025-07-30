@@ -22,6 +22,8 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 - **Animations**: Framer Motion
 - **Icons**: Font Awesome Pro+ Classic Regular
 - **Fonts**: Cutive Mono (via Google Fonts CDN), Courier New fallback
+- **Payments**: Stripe Elements with secure payment processing
+- **Email**: Netlify Forms with modal-based success/error handling
 
 ### Project Structure
 - `src/app/` - Next.js App Router pages and layouts
@@ -36,6 +38,8 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 - `src/components/` - Reusable React components
   - `src/components/Navigation.jsx` - Context-aware navigation system
   - `src/components/Minimap.jsx` - Gallery grid navigation
+  - `src/components/Logo.jsx` - Reusable logo component with home navigation
+  - `src/components/PaymentForm.jsx` - Stripe Elements payment form component
 - `src/config/` - Configuration files
   - `src/config/navigation.js` - Centralized navigation configuration
 - `src/hooks/` - Custom React hooks
@@ -49,7 +53,7 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
   - **Client Dashboard**: Welcome interface with navigation to sub-pages
   - **Project Page**: Comprehensive milestone tracking with scrollable table
   - **Documents Page**: Document access center with three main document types
-  - **Payment Page**: Payment management interface (structure established)
+  - **Payment Page**: Fully functional Stripe payment gateway with invoice management
 
 ### Design Philosophy
 - **Brutalist Aesthetics**: Bold typography, OKLCH colors, clean geometric layouts
@@ -81,9 +85,11 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 ### Client Portal Features
 - **Project Tracking**: 40+ milestone entries across 6 project phases (Discovery, Design, Development, Testing, Launch, Post-Launch)
 - **Document Management**: Three document types (Scope, Agreement, Handoff) with contextual descriptions
+- **Payment Processing**: Full Stripe integration with invoice management and persistent status updates
 - **Sticky Table Headers**: Optimized scrolling experience for large datasets
 - **Status Indicators**: Color-coded status badges (Completed, In Progress, Pending)
-- **Responsive Design**: Bottom margin spacing to accommodate navigation icons
+- **Modal Systems**: Auto-dismissing success modals and manual error handling
+- **Responsive Design**: Scrollable content areas with hidden scrollbars
 
 ## Development Notes
 
@@ -100,29 +106,76 @@ Garfish Digital is a portfolio website built with Next.js 15, featuring a clean 
 ## Client Authentication System
 
 ### Current Implementation
-- **Data Source**: `src/data/clients.json` contains client credentials and project data
-- **Authentication Logic**: Currently hardcoded in `src/app/client/page.jsx` (needs integration)
+- **Data Source**: `src/data/clients.json` contains client credentials, project data, milestones, and payment information
+- **Authentication Logic**: Fully integrated with `clients.json` lookup and client object storage
 - **Client Data Structure**:
   ```json
   {
+    "id": "client1",
     "password": "unique_client_password",
+    "clientName": "Client Business Name",
     "project": "Project Name",
-    "milestones": "[]", 
+    "path": "project-domain.netlify.app",
+    "milestones": [...], 
     "documents": {
       "scope": "/documents/client-scope.pdf",
       "agreement": "/documents/client-agreement.pdf", 
       "handoff": "/documents/client-handoff.pdf"
-    }
+    },
+    "payments": [
+      {
+        "id": "inv_001",
+        "description": "Phase 1 - Development",
+        "amount": 2500,
+        "dueDate": "2025-02-15",
+        "status": "pending"
+      }
+    ]
   }
   ```
 
-### Integration Strategy
-1. **Phase 1**: Replace hardcoded password validation with `clients.json` lookup
-2. **Phase 2**: Store authenticated client object (not just boolean) for personalization
-3. **Phase 3**: Display client-specific project names and documents
-4. **Phase 4**: Migrate to Firebase Auth for production scalability
+### Integration Strategy ✅ COMPLETED
+1. **Phase 1**: ✅ Replace hardcoded password validation with `clients.json` lookup
+2. **Phase 2**: ✅ Store authenticated client object (not just boolean) for personalization
+3. **Phase 3**: ✅ Display client-specific project names, documents, and payment data
+4. **Phase 4**: Migrate to Firebase Auth for production scalability (future enhancement)
 
-### Future Enhancements
+## Stripe Payment Integration
+
+### Current Implementation ✅ COMPLETED
+- **Payment Gateway**: Full Stripe Elements integration with secure card processing
+- **Invoice Management**: Client-specific invoices loaded from `clients.json`
+- **Payment Flow**: Create payment intent → Process payment → Update invoice status
+- **Persistent Updates**: Invoice status changes persist to file system via API endpoint
+- **Error Handling**: Comprehensive error handling for declined cards and API failures
+- **Environment Variables**: Proper handling of `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_SECRET_KEY`
+- **Test Mode**: Configured for Stripe test mode with test card support
+
+### API Endpoints
+- `/api/stripe/create-payment-intent` - Creates Stripe payment intents
+- `/api/stripe/confirm-payment` - Confirms payment status (unused in current flow)
+- `/api/stripe/update-invoice-status` - Persists invoice status updates to clients.json
+- `/api/stripe/webhook` - Webhook handler for future async events (optional)
+
+### Security Features
+- Graceful degradation when Stripe keys are missing
+- Client-side publishable key validation
+- Server-side secret key protection
+- No sensitive card data touches the server (Stripe Elements handles this)
+
+## Contact Form System
+
+### Current Implementation ✅ COMPLETED
+- **Form Processing**: Netlify Forms with JavaScript submission handling
+- **Modal System**: Success/error modals that remain on contact page
+- **Success Flow**: Auto-dismissing success modal (3000ms) with navigation to home
+- **Error Flow**: Manual dismissal error modal with form reset
+- **Validation**: Real-time field validation with cycling placeholders
+- **Honeypot Protection**: Bot field protection integrated with Netlify
+
+## Future Enhancements
 - **Firebase Auth**: Real user management with email verification, password reset
-- **Client-Specific Content**: Dynamic project names, milestone tracking, document access
+- **Database Migration**: Move from file-based to database storage
 - **Enhanced Security**: Password hashing, session management, account lockout protection
+- **Webhook Integration**: Stripe webhooks for async payment event handling
+- **Email Notifications**: Automated payment confirmations and project updates

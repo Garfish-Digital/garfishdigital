@@ -143,51 +143,6 @@ export default function Contact() {
     }
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //     e.preventDefault();
-  //     setIsSubmitting(true);
-
-  //     // Simulate form submission - replace with actual email service
-  //     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-  //     setIsSubmitted(true);
-  //     setIsSubmitting(false);
-  // };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //     e.preventDefault();
-  //     setIsSubmitting(true);
-  //     setValidation({});
-
-  //     // Define formElement once for clarity and correct typing
-  //     const formElement = e.currentTarget as HTMLFormElement;
-
-  //     const encodedData = Array.from(formElement.entries())
-  //         .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
-  //         .join('&');
-
-  //     try {
-  //         const response = await fetch(formElement.action, {
-  //             method: formElement.method,
-  //             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //             body: encodedData,
-  //         });
-
-  //         if (response.ok) {
-  //             setIsSubmitted(true);
-  //             setFormData({ name: "", email: "", company: "", message: "" });
-  //         } else {
-  //             alert("Failed to send message. Please try again.");
-  //             console.error("Form submission failed:", response.status, response.statusText);
-  //             setIsSubmitting(false);
-  //         }
-  //     } catch (error) {
-  //         alert("An error occurred. Please check your internet connection and try again.");
-  //         console.error("Error submitting form:", error);
-  //         setIsSubmitting(false);
-  //     }
-  // };
-
   // Success modal timeout and navigation
   useEffect(() => {
     if (showSuccessModal) {
@@ -203,6 +158,7 @@ export default function Contact() {
     
     const formElement = e.currentTarget;
     const formData = new FormData(formElement);
+    console.log('formData: ', formData);
 
     try {
       const response = await fetch(formElement.action || '/__forms.html', {
@@ -287,7 +243,7 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* <motion.form
+          <motion.form
                         onSubmit={handleSubmit}
                         className="space-y-4"
                         initial={{ opacity: 0, x: 50 }}
@@ -295,14 +251,12 @@ export default function Contact() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         name="contact"
                         data-netlify="true"
-                    > */}
+                          data-netlify-honeypot="bot-field"
+            method="POST"
+            action="/__forms.html"
+                    >
 
           {/* <form
-            className="space-y-4"
-            onSubmit={handleSubmit}
-          > */}
-
-          <form
             onSubmit={handleSubmit}
             className="space-y-4"
             name="contact"
@@ -310,16 +264,10 @@ export default function Contact() {
             data-netlify-honeypot="bot-field"
             method="POST"
             action="/__forms.html"
-          >
-            {/* <input type="hidden" name="_redirect" value="/contact-success" /> */}
-            {/* <input type="hidden" name="_error" value="/contact-error" /> */}
+          > */}
 
             <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
-              <label>
-                Don’t fill this out: <input name="bot-field" />
-              </label>
-            </p>
+            <input type="hidden" name="bot-field" style={{ display: 'none' }} />
 
             <fieldset>
               <legend>Contact Us</legend>
@@ -355,7 +303,7 @@ export default function Contact() {
                     </div>
                   )}
                 </div>
-                {validation.name && (
+                {/* {validation.name && (
                   <div
                     className={`text-xs mt-1 transition-all duration-300 ${
                       validation.name.includes("Perfect") ||
@@ -369,7 +317,7 @@ export default function Contact() {
                   >
                     {validation.name}
                   </div>
-                )}
+                )} */}
               </div>
 
               <div className="relative">
@@ -405,8 +353,8 @@ export default function Contact() {
                 </div>
                 {validation.email && (
                   <div
-                    className={`text-xs mt-1 transition-all duration-300 ${
-                      validation.email.includes("Looking good") ||
+                    className={`text-xs mb-1 transition-all duration-300 ${
+                      validation.email.includes("Perfect") ||
                       validation.email.includes("✓")
                         ? "text-user-green"
                         : validation.email.includes("Missing") ||
@@ -485,7 +433,7 @@ export default function Contact() {
                     </div>
                   )}
                 </div>
-                {validation.message && (
+                {/* {validation.message && (
                   <div
                     className={`text-xs mt-1 transition-all duration-300 ${
                       validation.message.includes("brilliance")
@@ -498,7 +446,7 @@ export default function Contact() {
                   >
                     {validation.message}
                   </div>
-                )}
+                )} */}
               </div>
 
               {/* reCAPTCHA */}
@@ -516,8 +464,8 @@ export default function Contact() {
                 Send
               </motion.button>
             </fieldset>
-          </form>
-          {/* </motion.form> */}
+          {/* </form> */}
+          </motion.form>
         </div>
       </div>
 
@@ -740,9 +688,9 @@ export default function Contact() {
                 <p className="text-[color:var(--color-gray-dark)] mb-6 font-arial">
                   We'll get back to you within 24 hours.
                 </p>
-                <p className="text-sm text-[color:var(--color-gray-shadow)] font-arial">
+                {/* <p className="text-sm text-[color:var(--color-gray-shadow)] font-arial">
                   Redirecting to home in 3 seconds...
-                </p>
+                </p> */}
               </div>
             </motion.div>
           </motion.div>
