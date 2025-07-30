@@ -11,8 +11,10 @@
   --gray-dark: oklch(44.836% 0.02038 145.341);
   --black: oklch(9.957% 0.03388 142.511);
   
-  --green-light: oklch(70.588% 0.04706 120.000);
-    --green-dark: oklch(30.588% 0.04706 120.000);
+  /* --green-light: rgb(156, 165, 132); */
+  --green-light: rgb(125, 200, 125);
+  /* color: green; */
+    --green-dark: oklch(22.142% 0.01528 119.111);
 }
 
 @theme inline {

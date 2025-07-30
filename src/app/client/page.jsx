@@ -327,7 +327,7 @@ export default function Client() {
                 Contact Page
               </Link>{" "}
               and you will receive a response within 48 hours. We'll provide you
-              with a code so you have access to a client portal that allows you to view your website, project documentation, and payment information.
+              with a code so you have access to a portal that allows you to view your website, project documentation, and payment information.
             </p>
           </motion.div>
         </div>

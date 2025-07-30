@@ -161,6 +161,9 @@ export default function Contact() {
     const formData = new FormData(formElement);
     console.log('formData: ', Object.fromEntries(formData));
 
+  const urlEncodedData = new URLSearchParams(formData).toString();
+  console.log('URL encoded body:', urlEncodedData);
+
     try {
       const response = await fetch(formElement.action || '/__forms.html', {
         method: 'POST',
@@ -674,11 +677,11 @@ export default function Contact() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="p-8 text-center">
-                <div className="text-6xl mb-6 text-[color:var(--color-green-dark)]">✓</div>
-                <h2 className="text-2xl font-bold mb-4 text-[color:var(--color-black)] font-mono">
+                <div className="text-6xl mb-6 text-[color:var(--color-green-light)]">✓</div>
+                <h2 className="text-2xl font-bold mb-4 text-[color:var(--color-white)] font-arial">
                   Message Sent
                 </h2>
-                <p className="text-[color:var(--color-gray-dark)] mb-6 font-arial">
+                <p className="text-[color:var(--color-gray-light)] mb-6 font-arial">
                   We'll get back to you within 24 hours.
                 </p>
                 {/* <p className="text-sm text-[color:var(--color-gray-shadow)] font-arial">
