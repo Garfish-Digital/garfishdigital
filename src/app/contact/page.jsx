@@ -159,7 +159,7 @@ export default function Contact() {
     const formElement = e.currentTarget;
     console.log('formElement: ', formElement);
     const formData = new FormData(formElement);
-    console.log('formData: ', formData);
+    console.log('formData: ', Object.fromEntries(formData));
 
     try {
       const response = await fetch(formElement.action || '/__forms.html', {
@@ -667,7 +667,7 @@ export default function Contact() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-[color:var(--color-white)] border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden"
+              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -702,7 +702,7 @@ export default function Contact() {
             onClick={handleErrorModalClose}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-[color:var(--color-white)] border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden"
+              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}

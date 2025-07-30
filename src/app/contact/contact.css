@@ -12,6 +12,12 @@
               rgba(10, 10, 10, 0.95) !important;
 }
 
+.contact-success-modal-background {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
 /* Form sizing adjustments for better mobile responsiveness */
 .contact-form-container {
   max-width: 28rem !important; /* Reduced from max-w-2xl (32rem) to max-w-lg (28rem) */
