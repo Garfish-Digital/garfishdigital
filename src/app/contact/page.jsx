@@ -160,6 +160,10 @@ export default function Contact() {
     console.log('formElement: ', formElement);
     const formData = new FormData(formElement);
     console.log('formData: ', Object.fromEntries(formData));
+    const businessValue = formData.get('business');
+    const messageValue = formData.get('message');
+    formData.set('message', `${messageValue}\n\nBusiness: ${businessValue}`);
+    console.log('formData after newline addition: ', Object.fromEntries(formData));
 
   const urlEncodedData = new URLSearchParams(formData).toString();
   console.log('URL encoded body:', urlEncodedData);
@@ -367,11 +371,12 @@ export default function Contact() {
 
               <div className="relative">
                 <div className="relative">
-                  <textarea
+                  <input
+                  type="text"
                     id="business"
                     name="business"
                     required
-                    rows={2}
+                    // rows={2}
                     value={formData.business}
                     onChange={handleChange}
                     onFocus={() => handleFocus("business")}

@@ -18,9 +18,9 @@
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 }
 
-/* Form sizing adjustments for better mobile responsiveness */
+/* Form sizing adjustments with fluid responsiveness */
 .contact-form-container {
-  max-width: 28rem !important; /* Reduced from max-w-2xl (32rem) to max-w-lg (28rem) */
+  max-width: clamp(18rem, 85vw, 32rem) !important; /* Fluid form container width */
 }
 
 /* Hide scrollbar while maintaining scrollability */
@@ -33,32 +33,62 @@
   display: none; /* Chrome, Safari, Opera */
 }
 
-/* Mobile responsive adjustments */
-@media (max-width: 540px) {
+/* Fluid mobile responsive adjustments with intermediate breakpoints */
+@media (max-width: 480px) {
   .contact-form-container {
-    /* margin-top: 4rem !important; Push form down on mobile */
-    max-width: 20rem !important; /* Even smaller on mobile */
-  }
- 
-}
-@media (max-width: 540px) and (min-height: 540px) {
-  .contact-form-container {
-    /* margin-top: 6rem !important; Push form down on mobile */
-    max-width: 20rem !important; /* Even smaller on mobile */
-  }
-}
-
-/* Reduce form field height for better mobile experience */
-.contact-form-field {
-  padding: 0.75rem !important; /* Reduced from py-4 (1rem) to 0.75rem */
-}
-
-/* Reduce textarea rows on mobile */
-@media (max-width: 667px) {
-  .contact-form-field textarea {
-    min-height: 4rem !important; /* Smaller textarea on mobile */
+    max-width: clamp(16rem, 90vw, 22rem) !important; /* Fluid width for small screens */
+    padding: clamp(0.5rem, 2vw, 1rem) !important; /* Fluid padding */
   }
   
+  .contact-form-field {
+    padding: clamp(0.5rem, 2vw, 0.75rem) !important; /* Better field sizing */
+    font-size: clamp(0.875rem, 3.5vw, 1rem) !important; /* Prevent iOS zoom */
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .contact-form-container {
+    max-width: clamp(22rem, 80vw, 28rem) !important;
+    padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
+  }
+  
+  .contact-form-field {
+    padding: clamp(0.625rem, 2.5vw, 0.875rem) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .contact-form-container {
+    max-width: clamp(28rem, 70vw, 36rem) !important;
+  }
+}
+
+/* Fluid form field sizing for better mobile experience */
+.contact-form-field {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem) !important; /* Fluid field padding */
+}
+
+/* Improved landscape mode handling */
+@media (orientation: landscape) and (max-height: 600px) {
+  .contact-form-container {
+    transform: scale(clamp(0.75, 0.0015 * 100vh, 0.9)) !important; /* Scale based on viewport height */
+    max-height: 85vh !important; /* Prevent overflow in landscape */
+  }
+  
+  .contact-form-field {
+    padding: clamp(0.375rem, 1vh, 0.625rem) clamp(0.625rem, 1.5vw, 0.875rem) !important;
+  }
+  
+  .contact-form-field textarea {
+    min-height: clamp(2.5rem, 8vh, 4rem) !important; /* Fluid textarea height */
+  }
+}
+
+/* Standard textarea sizing with fluid adjustments */
+@media (max-width: 768px) {
+  .contact-form-field textarea {
+    min-height: clamp(3rem, 12vw, 5rem) !important; /* Fluid textarea sizing */
+  }
 }
 
 /* Large screen adjustments */

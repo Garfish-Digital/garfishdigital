@@ -1,29 +1,33 @@
-/* Payment Page Styles */
+/* Payment Page Styles with Fluid Scaling */
 .payment-page-container {
   background: var(--background);
   position: relative;
   overflow: hidden !important;
-  padding-bottom: 80px; /* Space for navigation */
+  padding-bottom: clamp(60px, 12vh, 100px); /* Fluid navigation space */
 }
 
 .payment-content-container {
   position: relative;
   z-index: 10;
-  max-height: calc(100vh - 160px);
-  overflow: hidden; /* Changed from overflow-y: auto to prevent scrollbars */
+  max-height: clamp(calc(100vh - 120px), calc(100vh - 160px), calc(100vh - 200px)); /* Fluid height */
+  overflow: hidden;
+  padding: clamp(1rem, 3vw, 2rem); /* Fluid content padding */
 }
 
+/* Mobile-first payment cards with fluid sizing */
 .payment-card {
   background: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border-radius: 12px;
+  border-radius: clamp(8px, 2vw, 16px); /* Fluid border radius */
+  padding: clamp(1rem, 4vw, 2rem); /* Fluid card padding */
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem); /* Fluid spacing */
 }
 
 .payment-card:hover {
-  /* transform: translateY(-2px); */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 clamp(3px, 1vw, 6px) clamp(12px, 3vw, 20px) rgba(0, 0, 0, 0.15); /* Fluid shadow */
+  transform: translateY(clamp(-1px, -0.25vw, -3px)); /* Subtle fluid lift */
 }
 
 .payment-feature {
@@ -39,22 +43,25 @@
   /* transform: translateY(-1px); */
 }
 
-/* Stripe Elements Styling */
+/* Responsive Stripe Elements Styling */
 .StripeElement {
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: clamp(6px, 1.5vw, 10px); /* Fluid border radius */
+  padding: clamp(8px, 2.5vw, 16px); /* Fluid padding */
   font-family: "Cutive Mono", "Courier New", monospace;
+  font-size: clamp(0.875rem, 2.5vw, 1rem); /* Fluid font size */
+  min-height: clamp(40px, 8vw, 48px); /* Fluid minimum height for touch targets */
 }
 
 .StripeElement--focus {
   border-color: var(--color-black);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 clamp(1px, 0.5vw, 3px) rgba(0, 0, 0, 0.1); /* Fluid focus ring */
 }
 
 .StripeElement--invalid {
   border-color: #dc2626;
+  box-shadow: 0 0 0 clamp(1px, 0.5vw, 3px) rgba(220, 38, 38, 0.2); /* Fluid error indication */
 }
 
 /* Invoice List Styling */
@@ -70,17 +77,71 @@
 
 /* Remove custom logo styling - use global styles instead */
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Enhanced responsive adjustments with fluid scaling */
+@media (max-width: 480px) {
   .payment-content-container {
-    max-width: 90%;
+    max-width: clamp(95%, 100%, 100%);
+    padding: clamp(0.75rem, 3vw, 1.25rem);
   }
   
   .payment-card {
-    padding: 1.5rem;
+    padding: clamp(1rem, 4vw, 1.5rem);
+    border-radius: clamp(6px, 2vw, 10px);
   }
   
   .payment-page-container h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+  }
+  
+  .StripeElement {
+    padding: clamp(10px, 3vw, 14px);
+    font-size: clamp(0.875rem, 3.5vw, 1rem);
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .payment-content-container {
+    max-width: clamp(85%, 90%, 95%);
+    padding: clamp(1rem, 3vw, 1.75rem);
+  }
+  
+  .payment-card {
+    padding: clamp(1.25rem, 4vw, 1.75rem);
+  }
+  
+  .payment-page-container h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .payment-content-container {
+    max-width: clamp(80%, 85%, 90%);
+  }
+  
+  .payment-page-container h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+  }
+}
+
+/* Landscape orientation optimizations for payment */
+@media (orientation: landscape) and (max-height: 600px) {
+  .payment-page-container {
+    padding-bottom: clamp(40px, 8vh, 80px);
+  }
+  
+  .payment-content-container {
+    max-height: calc(100vh - 80px);
+    padding: clamp(0.5rem, 2vh, 1.5rem);
+  }
+  
+  .payment-card {
+    padding: clamp(0.75rem, 2vh, 1.25rem);
+    margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+  }
+  
+  .StripeElement {
+    padding: clamp(6px, 1.5vh, 12px);
+    min-height: clamp(36px, 6vh, 44px);
   }
 }

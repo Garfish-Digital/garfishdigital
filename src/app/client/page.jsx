@@ -322,7 +322,7 @@ export default function Client() {
               Simply send us a message from our{" "}
               <Link
                 href="/contact"
-                className="text-[var(--color-green-light)] hover:text-[var(--color-gray-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+                className="text-[var(--color-green-light)] hover:text-[var(--color-green-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
               >
                 Contact Page
               </Link>{" "}

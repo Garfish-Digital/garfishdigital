@@ -227,71 +227,102 @@ textarea:focus::placeholder {
 }
 
 
-/* Mobile Portrait - 375px breakpoint */
-@media (max-width: 375px) {
-  
-  /* Gallery showcase heading - 25% decrease */
-  .gallery-showcase-heading {
-    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
-  }
-}
+/* Fluid Scaling System - Progressive breakpoints with clamp() functions */
 
-/* Mobile Landscape - 667px breakpoint */
-@media (max-width: 667px) and (min-width: 376px) {
+/* Extra Small Mobile - 320px to 480px */
+@media (min-width: 320px) {
+  .gallery-showcase-heading {
+    font-size: clamp(3rem, 8vw, 4.5rem) !important; /* Fluid scaling from 48px to 72px */
+  }
   
-  /* Contact form container - 25% decrease in width */
   .contact-form-container {
-    max-width: 36rem !important; /* Decreased from max-w-2xl (48rem) to 75% */
+    max-width: clamp(18rem, 85vw, 24rem) !important; /* Fluid width scaling */
   }
-
-  /* Gallery showcase heading - 25% decrease */
-  .gallery-showcase-heading {
-    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
-  }
-}
-
-/* Tablet Portrait - 768px breakpoint */
-@media (max-width: 768px) and (min-width: 668px) {
- 
-  /* Gallery showcase heading - 25% decrease */
-  .gallery-showcase-heading {
-    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
+  
+  .garfish-button {
+    padding: clamp(0.375rem, 1.5vw, 0.5rem) clamp(1.25rem, 4vw, 2rem);
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
   }
 }
 
-/* Small Desktop - 1280px breakpoint */
-@media (max-width: 1280px) and (min-width: 769px) {
- 
-  /* Gallery showcase heading - 25% decrease */
+/* Small Mobile - 480px to 768px */
+@media (min-width: 480px) {
   .gallery-showcase-heading {
-    font-size: 4.5rem !important; /* Decreased from text-6xl (6rem) */
+    font-size: clamp(4rem, 7vw, 5rem) !important; /* Smoother scaling curve */
+  }
+  
+  .contact-form-container {
+    max-width: clamp(24rem, 75vw, 32rem) !important;
+  }
+  
+  .contact-form-field {
+    padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem);
+  }
+}
+
+/* Medium Tablets - 768px to 1024px */
+@media (min-width: 768px) {
+  .gallery-showcase-heading {
+    font-size: clamp(4.5rem, 6vw, 5.5rem) !important;
+  }
+  
+  .contact-form-container {
+    max-width: clamp(28rem, 65vw, 36rem) !important;
+  }
+}
+
+/* Large Tablets/Small Desktop - 1024px to 1440px */
+@media (min-width: 1024px) {
+  .gallery-showcase-heading {
+    font-size: clamp(5rem, 5vw, 6rem) !important; /* Approaching original 6rem */
+  }
+  
+  .contact-form-container {
+    max-width: clamp(32rem, 55vw, 42rem) !important;
+  }
+}
+
+/* Large Desktop - 1440px and above */
+@media (min-width: 1440px) {
+  .gallery-showcase-heading {
+    font-size: 6rem !important; /* Original size restored */
+  }
+  
+  .contact-form-container {
+    max-width: 48rem !important; /* Original max-w-2xl restored */
   }
 }
 
 /* Landscape orientation override for mobile devices - MUST come after other media queries */
 @media (orientation: landscape) {
   
-  /* Contact form adjustments for landscape */
+  /* Contact form adjustments for landscape with fluid scaling */
   .contact-form-container {
-    max-width: 28rem !important; /* Smaller width in landscape - reduced from 32rem */
-    transform: scale(0.75) !important; /* Further scale reduction */
+    max-width: clamp(20rem, 45vw, 32rem) !important; /* Fluid width based on viewport */
+    transform: scale(clamp(0.7, 0.02 * 100vw, 0.85)) !important; /* Fluid scaling */
     transform-origin: center !important;
   }
 
   /* Force single column layout in landscape on all devices */
   .contact-form-grid {
     grid-template-columns: 1fr !important;
-    gap: 0.75rem !important; /* Reduced gap between name/email fields */
+    gap: clamp(0.5rem, 1.5vw, 1rem) !important; /* Fluid gap scaling */
   }
 
-  /* Reduce form spacing in landscape */
+  /* Reduce form spacing in landscape with fluid values */
   .contact-form-container .space-y-4 {
-    gap: 0.75rem !important; /* Reduce space between all form elements */
+    gap: clamp(0.5rem, 1.5vw, 1rem) !important; /* Fluid gap scaling */
   }
 
-  /* Reduce top padding in landscape only on contact page */
+  /* Fluid top padding in landscape for contact page */
   .contact-page-container .pt-24 {
-    padding-top: 4rem !important; /* Override pt-24 to pt-16 in landscape for contact page only */
+    padding-top: clamp(2rem, 8vh, 6rem) !important; /* Fluid padding based on viewport height */
+  }
+
+  /* Fluid button sizing in landscape */
+  .garfish-button {
+    padding: clamp(0.25rem, 1vh, 0.5rem) clamp(1rem, 3vw, 2rem);
+    font-size: clamp(0.75rem, 2vw, 1rem);
   }
 }
 
@@ -302,18 +333,18 @@ textarea:focus::placeholder {
   }
 }
 
-/* Contact modal size reduction - all devices and orientations */
+/* Contact modal with fluid sizing - all devices and orientations */
 .contact-modal-background {
-  max-width: 28rem !important; /* Reduced from max-w-4xl (56rem) to 28rem */
-  max-height: 70vh !important; /* Limit height to 70% of viewport */
+  max-width: clamp(20rem, 80vw, 48rem) !important; /* Fluid modal width */
+  max-height: clamp(50vh, 75vh, 80vh) !important; /* Fluid modal height */
 }
 
 .contact-modal-background .p-6 {
-  padding: 1rem !important; /* Reduced from p-6 (1.5rem) to 1rem */
+  padding: clamp(0.75rem, 2.5vw, 1.5rem) !important; /* Fluid modal padding */
 }
 
 .contact-modal-background .max-h-\[60vh\] {
-  max-height: 50vh !important; /* Reduced content area height */
+  max-height: clamp(40vh, 55vh, 65vh) !important; /* Fluid content area height */
 }
 
 /* Gallery demo cards sizing - normal size (was previously reduced by 25%) */
