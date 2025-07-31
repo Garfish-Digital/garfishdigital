@@ -162,7 +162,7 @@ export default function Contact() {
     console.log('formData: ', Object.fromEntries(formData));
     const businessValue = formData.get('business');
     const messageValue = formData.get('message');
-    formData.set('message', `${messageValue}\n\nBusiness: ${businessValue}`);
+    formData.set('message', `${messageValue}\n\nBusiness: \n${businessValue}`);
     console.log('formData after newline addition: ', Object.fromEntries(formData));
 
   const urlEncodedData = new URLSearchParams(formData).toString();
@@ -268,7 +268,7 @@ export default function Contact() {
             <input type="hidden" name="form-name" value="contact" />
             <input type="text" name="bot-field" style={{ display: 'none' }} className="visually-hidden-bot-field" />
 
-            <fieldset>
+            <fieldset tabIndex="-1">
               <legend>Contact Us</legend>
               {/* <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6"> */}
               <div className="relative">

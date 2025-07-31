@@ -29,6 +29,7 @@ export default function Client() {
   const [validation, setValidation] = useState("");
   const [placeholder, setPlaceholder] = useState("Your client password");
   const [placeholderKey, setPlaceholderKey] = useState(0);
+  const [focusedField, setFocusedField] = useState(null);
 
   // Cycling placeholder text
   useEffect(() => {
@@ -91,6 +92,14 @@ export default function Client() {
     setValidation(validationMessage);
   };
 
+  const handleFocus = (fieldName) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField(null);
+  };
+
   if (isClientAuthenticated) {
     return (
       <div className="min-h-screen text-black client-success-container">
@@ -112,11 +121,12 @@ export default function Client() {
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <h2 className="text-lg font-bold mb-6 text-[color:var(--color-gray-shadow)] font-primary">
-                  Welcome to your portal dashboard for{" "}
+                  Portal dashboard for {authenticatedClient?.project}
+                  {/* Welcome to your portal dashboard for{" "}
                   <strong className="text-[var(--color-gray-dark)]">
                     {authenticatedClient?.project || "your project"}
                   </strong>
-                  .
+                  . */}
                 </h2>
               </motion.div>
               <motion.div
@@ -127,7 +137,7 @@ export default function Client() {
 
                 <button
                   onClick={() => router.push("/client/project")}
-                  className="garfish-button w-80"
+                  className="garfish-button w-50"
                 >
                   <FontAwesomeIcon icon={faWindow} className="mr-2" />
                   {/* {authenticatedClient?.project || "Your Project"} Website */}
@@ -147,7 +157,7 @@ export default function Client() {
               >
                 <button
                   onClick={() => router.push("/client/documents")}
-                  className="garfish-button w-80"
+                  className="garfish-button w-50"
                 >
                   <FontAwesomeIcon icon={faFileContract} className="mr-2" />
                   Document Center
@@ -165,7 +175,7 @@ export default function Client() {
               >
                 <button
                   onClick={() => router.push("/client/payment")}
-                  className="garfish-button w-80"
+                  className="garfish-button w-50"
                 >
                   <FontAwesomeIcon
                     icon={faEnvelopeOpenDollar}
@@ -223,7 +233,7 @@ export default function Client() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <fieldset>
+            <fieldset tabIndex="-1">
               <legend>See Your Project</legend>
               <div className="relative">
                 <div className="relative">
@@ -234,7 +244,11 @@ export default function Client() {
                     required
                     value={password}
                     onChange={handleChange}
-                    className="w-full px-3 pr-12 py-3 transition-all duration-300"
+                    onFocus={() => handleFocus("password")}
+                    onBlur={handleBlur}
+                    className={`w-full client-form-field transition-all duration-300 ${
+                      focusedField === "password" ? "focus-bounce" : ""
+                    }`}
                     placeholder=" "
                   />
 
@@ -242,8 +256,7 @@ export default function Client() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1.5 garfish-button"
-                    style={{ padding: "0.5rem 1rem" }}
+                    className="absolute right-2 top-2 password-toggle"
                   >
                     {showPassword ? (
                       <FontAwesomeIcon icon={faEye} className={`w-4 h-4`} />
@@ -270,20 +283,22 @@ export default function Client() {
                     </div>
                   )}
                 </div>
-                {validation && (
+                {/* {validation && (
                   <div
-                    className={`text-xs mt-1 transition-all duration-300 ${
+                    className={`client-validation-message ${
                       validation.includes("✓")
-                        ? "text-user-green"
+                        ? "success"
                         : validation.includes("short") ||
                           validation.includes("Invalid")
-                        ? "text-user-red"
-                        : "text-white/60"
+                        ? "error"
+                        : validation.includes("Keep on")
+                        ? "warning"
+                        : ""
                     }`}
                   >
                     {validation}
                   </div>
-                )}
+                )} */}
               </div>
 
               <motion.button
@@ -383,7 +398,7 @@ export default function Client() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  Welcome!
+                  Welcome to the {authenticatedClient?.project} portal.
                   {/* Welcome to your client portal for{" "}
                   {authenticatedClient?.project || "your project"}. All
                   navigation icons are now enabled. */}
