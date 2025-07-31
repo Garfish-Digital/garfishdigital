@@ -195,13 +195,6 @@ export default function Gallery() {
   const { isClientAuthenticated } = useClientAuth();
   const [currentPage, setCurrentPage] = useState("cell5");
   const [showTechCard, setShowTechCard] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [gestureDirection, setGestureDirection] = useState(null);
-  const [momentumAnimation, setMomentumAnimation] = useState(false);
-  const galleryRef = useRef(null);
-  const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
-  const momentumTimeoutRef = useRef(null);
 
   const scrollToPage = (pageId) => {
     const page = pages.find((p) => p.id === pageId);
@@ -251,111 +244,6 @@ export default function Gallery() {
     }
   };
 
-  // Touch/Swipe gesture handlers
-  const handleTouchStart = useCallback((e) => {
-    if (showTechCard) return;
-    const touch = e.touches[0];
-    touchStartRef.current = {
-      x: touch.clientX,
-      y: touch.clientY,
-      time: Date.now()
-    };
-  }, [showTechCard]);
-
-  const handleTouchEnd = useCallback((e) => {
-    if (showTechCard) return;
-    const touch = e.changedTouches[0];
-    const touchEnd = {
-      x: touch.clientX,
-      y: touch.clientY,
-      time: Date.now()
-    };
-
-    const deltaX = touchEnd.x - touchStartRef.current.x;
-    const deltaY = touchEnd.y - touchStartRef.current.y;
-    const deltaTime = touchEnd.time - touchStartRef.current.time;
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    const velocity = distance / deltaTime;
-
-    // Require minimum swipe distance and reasonable velocity
-    if (distance > 50 && velocity > 0.1) {
-      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
-      const direction = isHorizontal 
-        ? (deltaX > 0 ? 'right' : 'left')
-        : (deltaY > 0 ? 'down' : 'up');
-      
-      // Add momentum effect for fast swipes
-      if (velocity > 0.3) {
-        setMomentumAnimation(true);
-        setTimeout(() => setMomentumAnimation(false), 400);
-      }
-      
-      setGestureDirection(direction);
-      setTimeout(() => setGestureDirection(null), 300);
-      navigateByDirection(direction);
-    }
-  }, [showTechCard]);
-
-  // Mouse drag handlers
-  const handleMouseDown = useCallback((e) => {
-    if (showTechCard) return;
-    setIsDragging(true);
-    setDragStart({ x: e.clientX, y: e.clientY });
-    document.body.style.cursor = 'grabbing';
-    e.preventDefault();
-  }, [showTechCard]);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!isDragging || showTechCard) return;
-    e.preventDefault();
-  }, [isDragging, showTechCard]);
-
-  const handleMouseUp = useCallback((e) => {
-    if (!isDragging || showTechCard) return;
-    setIsDragging(false);
-    document.body.style.cursor = '';
-
-    const deltaX = e.clientX - dragStart.x;
-    const deltaY = e.clientY - dragStart.y;
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    // Require minimum drag distance
-    if (distance > 30) {
-      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
-      const direction = isHorizontal 
-        ? (deltaX > 0 ? 'right' : 'left')
-        : (deltaY > 0 ? 'down' : 'up');
-      
-      // Add momentum effect for long drags
-      if (distance > 100) {
-        setMomentumAnimation(true);
-        setTimeout(() => setMomentumAnimation(false), 400);
-      }
-      
-      setGestureDirection(direction);
-      setTimeout(() => setGestureDirection(null), 300);
-      navigateByDirection(direction);
-    }
-  }, [isDragging, dragStart, showTechCard]);
-
-  // Mouse wheel navigation
-  const handleWheel = useCallback((e) => {
-    if (showTechCard) return;
-    e.preventDefault();
-    
-    const isHorizontal = e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
-    const delta = isHorizontal ? e.deltaX : e.deltaY;
-    
-    if (Math.abs(delta) > 10) { // Threshold to prevent accidental navigation
-      const direction = isHorizontal 
-        ? (delta > 0 ? 'right' : 'left')
-        : (delta > 0 ? 'down' : 'up');
-      
-      setGestureDirection(direction);
-      setTimeout(() => setGestureDirection(null), 200);
-      navigateByDirection(direction);
-    }
-  }, [showTechCard]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -389,39 +277,6 @@ export default function Gallery() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [showTechCard]);
 
-  // Setup gesture event listeners
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (!gallery) return;
-
-    // Touch events
-    gallery.addEventListener('touchstart', handleTouchStart, { passive: false });
-    gallery.addEventListener('touchend', handleTouchEnd, { passive: false });
-    
-    // Mouse events
-    gallery.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-    
-    // Wheel events
-    gallery.addEventListener('wheel', handleWheel, { passive: false });
-
-    return () => {
-      gallery.removeEventListener('touchstart', handleTouchStart);
-      gallery.removeEventListener('touchend', handleTouchEnd);
-      gallery.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      gallery.removeEventListener('wheel', handleWheel);
-    };
-  }, [handleTouchStart, handleTouchEnd, handleMouseDown, handleMouseMove, handleMouseUp, handleWheel]);
-
-  // Cleanup cursor on unmount
-  useEffect(() => {
-    return () => {
-      document.body.style.cursor = '';
-    };
-  }, []);
 
   // Tech card data for each cell
   const getTechCardData = (cellId) => {
@@ -672,20 +527,9 @@ export default function Gallery() {
         isClientAuthenticated={isClientAuthenticated}
       />
 
-      <div 
-        ref={galleryRef}
-        className="w-screen h-screen overflow-hidden gallery-wrapper select-none"
-        style={{ 
-          cursor: isDragging ? 'grabbing' : 'grab',
-          touchAction: 'none' // Prevents default touch behaviors
-        }}
-      >
+      <div className="w-screen h-screen overflow-hidden gallery-wrapper">
         <div
-          className={`grid relative gallery-grid gallery-grid-${currentPage} transition-all duration-300 ease-out ${
-            momentumAnimation ? 'animate-pulse' : ''
-          } ${
-            gestureDirection ? `gesture-${gestureDirection}` : ''
-          }`}
+          className={`grid relative gallery-grid gallery-grid-${currentPage}`}
         >
           {pages.map((page) => (
             <div

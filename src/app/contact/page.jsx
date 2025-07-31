@@ -270,7 +270,6 @@ export default function Contact() {
 
             <fieldset tabIndex="-1">
               <legend>Contact Us</legend>
-              {/* <div className="grid md:grid-cols-2 gap-6 contact-form-grid mb-6"> */}
               <div className="relative">
                 <div className="relative">
                   <input
@@ -302,21 +301,6 @@ export default function Contact() {
                     </div>
                   )}
                 </div>
-                {/* {validation.name && (
-                  <div
-                    className={`text-xs mt-1 transition-all duration-300 ${
-                      validation.name.includes("Perfect") ||
-                      validation.name.includes("✓")
-                        ? "text-user-green"
-                        : validation.name.includes("short") ||
-                            validation.name.includes("quite")
-                          ? "text-user-yellow"
-                          : "text-white/60"
-                    }`}
-                  >
-                    {validation.name}
-                  </div>
-                )} */}
               </div>
 
               <div className="relative">
@@ -367,7 +351,6 @@ export default function Contact() {
                   </div>
                 )}
               </div>
-              {/* </div> */}
 
               <div className="relative">
                 <div className="relative">
@@ -376,7 +359,6 @@ export default function Contact() {
                     id="business"
                     name="business"
                     required
-                    // rows={2}
                     value={formData.business}
                     onChange={handleChange}
                     onFocus={() => handleFocus("business")}
@@ -434,29 +416,8 @@ export default function Contact() {
                     </div>
                   )}
                 </div>
-                {/* {validation.message && (
-                  <div
-                    className={`text-xs mt-1 transition-all duration-300 ${
-                      validation.message.includes("brilliance")
-                        ? "text-user-green"
-                        : validation.message.includes("more") ||
-                            validation.message.includes("detailed")
-                          ? "text-user-yellow"
-                          : "text-white/60"
-                    }`}
-                  >
-                    {validation.message}
-                  </div>
-                )} */}
+              
               </div>
-
-              {/* reCAPTCHA */}
-              {/* <div className="flex justify-center">
-                <div
-                  data-netlify-recaptcha="true"
-                  className="g-recaptcha"
-                ></div>
-              </div> */}
 
               <motion.button
                 type="submit"
@@ -465,7 +426,6 @@ export default function Contact() {
                 Send
               </motion.button>
             </fieldset>
-          {/* </form> */}
           </motion.form>
         </div>
       </div>
@@ -474,7 +434,7 @@ export default function Contact() {
       <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">
         <motion.button
           onClick={() => setShowModal("privacy")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
@@ -483,7 +443,7 @@ export default function Contact() {
         </motion.button>
         <motion.button
           onClick={() => setShowModal("terms")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}

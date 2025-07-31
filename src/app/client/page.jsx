@@ -256,7 +256,7 @@ export default function Client() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-2 top-2 password-toggle"
+                    className="absolute right-2 top-1 password-toggle"
                   >
                     {showPassword ? (
                       <FontAwesomeIcon icon={faEye} className={`w-4 h-4`} />
@@ -337,7 +337,7 @@ export default function Client() {
               Simply send us a message from our{" "}
               <Link
                 href="/contact"
-                className="text-[var(--color-green-light)] hover:text-[var(--color-green-dark)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+                className="text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
               >
                 Contact Page
               </Link>{" "}

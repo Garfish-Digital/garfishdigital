@@ -48,15 +48,6 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
     return positions[pageId] || { row: 2, col: 2 };
   };
 
-  // Get background image for specific cells
-  const getMinimapBackground = (pageId) => {
-    const backgroundImages = {
-      'cell1': '/gallery/images/cell1-black-lodge-brews.jpg',
-      'cell3': '/gallery/images/cell3-inferno-ink.jpg',
-      // Add more images as they become available
-    };
-    return backgroundImages[pageId] || null;
-  };
 
   const position = getMinimapPosition();
 
@@ -99,49 +90,33 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
             });
             
             const isActive = page && currentPage === page.id;
-            const backgroundImage = page ? getMinimapBackground(page.id) : null;
             
             return (
               <motion.button
                 key={`${row}-${col}`}
                 className={`
-                  relative cursor-pointer rounded-sm overflow-hidden
-                  flex items-center justify-center transition-all duration-300
-                  ${isActive ? 'ring-2 ring-var(--color-gray-dark)' : ''}
+                  relative cursor-pointer rounded-sm
+                  flex items-center justify-center transition-all duration-50
+                  ${isActive ? '' : ''}
                 `}
                 style={{
-                  border: '1px solid var(--color-gray-faint)',
-                  backgroundColor: backgroundImage 
-                    ? 'transparent'
-                    : isActive 
-                      ? 'var(--color-gray-dark)'
-                      : 'var(--color-white)',
-                  backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
+                    border : '1px solid var(--color-gray-faint)',
+                  backgroundColor: isActive 
+                    ? 'var(--color-green-dark)'
+                    : 'var(--color-white)',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  scale: 1.05,
-                  backgroundColor: backgroundImage ? 'transparent' : 'var(--color-green-light)',
+                  backgroundColor: 'var(--color-green-light)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >
-                {/* Overlay for better visibility when active */}
-                {backgroundImage && isActive && (
-                  <div 
-                    className="absolute inset-0 bg-black bg-opacity-30 rounded-sm"
-                    style={{ zIndex: 1 }}
-                  />
-                )}
-                {/* Active indicator icon for cells with background images */}
-                {backgroundImage && isActive && (
+                {/* Active indicator icon */}
+                {isActive && (
                   <FontAwesomeIcon 
                     icon={faUser}
-                    className="absolute w-3 h-3 text-white"
-                    style={{ zIndex: 2 }}
+                    className="w-3 h-3 text-white"
                   />
                 )}
               </motion.button>

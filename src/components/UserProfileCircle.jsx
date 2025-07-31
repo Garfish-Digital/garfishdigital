@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function UserProfileCircle({ isLoggedIn, clientName, onSignOut }) {
+export default function UserProfileCircle({ isLoggedIn, clientName, clientProject, onSignOut }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -68,16 +68,23 @@ export default function UserProfileCircle({ isLoggedIn, clientName, onSignOut })
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
           >
+            <p
+              onClick={handleEdit}
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-green-dark)] transition-colors font-arial font-bold"
+            >
+              {clientProject}
+            </p>
+            <hr className="text-[var(--color-gray-faint)]"></hr>
             <button
               onClick={handleEdit}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-black)] transition-colors font-arial font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-arial font-bold"
             >
               Edit
             </button>
             <hr className="text-[var(--color-gray-faint)]"></hr>
             <button
               onClick={handleSignOut}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-black)] transition-colors font-arial font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-arial font-bold"
             >
               Sign out
             </button>

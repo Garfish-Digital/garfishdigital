@@ -16,6 +16,7 @@ export default function ClientLayout() {
     <UserProfileCircle 
       isLoggedIn={isClientAuthenticated} 
       clientName={authenticatedClient?.clientName}
+      clientProject={authenticatedClient?.project}
       onSignOut={clearClientAuthentication}
     />
   );
