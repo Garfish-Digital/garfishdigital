@@ -29,7 +29,7 @@
 
 /* Gallery page items */
 .gallery-page-item {
-  /* font-family: "Courier New", "Cutive Mono", monospace; */
+  background-color: var(--color-white);
 }
 
 /* Showcase page positioning */
@@ -39,56 +39,122 @@
 }
 
 /* Individual page backgrounds */
-.gallery-page-portfolio {
+.gallery-page-cell1 {
   grid-column: 1/2 !important;
   grid-row: 1/2 !important;
-  background-color: #ff6b6b !important;
 }
 
 .gallery-page-experiments {
   grid-column: 2/3 !important;
   grid-row: 1/2 !important;
-  background-color: #ffcc5c !important;
 }
 
-.gallery-page-demos {
+.gallery-page-cell3 {
   grid-column: 3/4 !important;
   grid-row: 1/2 !important;
-  background-color: #556270 !important;
 }
 
 .gallery-page-clients {
   grid-column: 1/2 !important;
   grid-row: 2/3 !important;
-  background-color: #4ecdc4 !important;
 }
 
 .gallery-page-showcase {
   grid-column: 2/3 !important;
   grid-row: 2/3 !important;
-  background-color: #FFFFFF !important;
 }
 
 .gallery-page-tools {
   grid-column: 3/4 !important;
   grid-row: 2/3 !important;
-  background-color: #9b59b6 !important;
 }
 
 .gallery-page-about {
   grid-column: 1/2 !important;
   grid-row: 3/4 !important;
-  background-color: #e67e22 !important;
 }
 
 .gallery-page-contact {
   grid-column: 2/3 !important;
   grid-row: 3/4 !important;
-  background-color: #34495e !important;
 }
 
 .gallery-page-blog {
   grid-column: 3/4 !important;
   grid-row: 3/4 !important;
-  background-color: #95a5a6 !important;
+}
+
+/* Gesture feedback animations */
+.gallery-grid.gesture-up {
+  animation: gestureUp 0.3s ease-out;
+}
+
+.gallery-grid.gesture-down {
+  animation: gestureDown 0.3s ease-out;
+}
+
+.gallery-grid.gesture-left {
+  animation: gestureLeft 0.3s ease-out;
+}
+
+.gallery-grid.gesture-right {
+  animation: gestureRight 0.3s ease-out;
+}
+
+@keyframes gestureUp {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.1); transform: scale(1.005); }
+  100% { filter: brightness(1); }
+}
+
+@keyframes gestureDown {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.1); transform: scale(1.005); }
+  100% { filter: brightness(1); }
+}
+
+@keyframes gestureLeft {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.1); transform: scale(1.005) rotate(-0.2deg); }
+  100% { filter: brightness(1); }
+}
+
+@keyframes gestureRight {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.1); transform: scale(1.005) rotate(0.2deg); }
+  100% { filter: brightness(1); }
+}
+
+/* Momentum animation enhancement */
+.gallery-grid.animate-pulse {
+  animation: momentumPulse 0.4s ease-out;
+}
+
+@keyframes momentumPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  25% { transform: scale(1.01); filter: brightness(1.15); }
+  75% { transform: scale(0.995); filter: brightness(1.05); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Enhanced grab cursor states */
+.gallery-wrapper {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.gallery-wrapper:active {
+  cursor: grabbing !important;
+}
+
+/* Disable text selection during gestures */
+.gallery-wrapper * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

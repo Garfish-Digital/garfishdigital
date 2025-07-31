@@ -1,20 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-// interface Page {
-//   id: string;
-//   title: string;
-//   gridColumn: string;
-//   gridRow: string;
-//   color: string;
-// }
-
-// interface MinimapProps {
-//   currentPage: string;
-//   onPageClick: (pageId: string) => void;
-//   pages: Page[];
-// }
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/pro-regular-svg-icons';
 
 export default function Minimap({ currentPage, onPageClick, pages }) {
 
@@ -22,7 +10,26 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
   const getMinimapPosition = () => {
     // Always position in upper right corner regardless of current page
     // return { top: 'calc(2rem + 72px)', right: '2rem' };
-    return currentPage === 'cell5' ? { top: 'calc(50vh - 75px)', right: 'calc(50vw - 75px)' } : { top: 'calc(2rem + 72px)', right: '2rem' };
+    // return currentPage === 'cell5' ? { top: 'calc(50vh - 75px)', right: 'calc(50vw - 75px)' } : { top: 'calc(2rem + 72px)', right: '2rem' };
+    let minimapPosition = null;
+
+    switch (currentPage) {
+        case 'cell1':
+        case 'cell4':
+        case 'cell7':
+            minimapPosition = { bottom: 'calc(30vh - 75px)', left: 'calc(25vw - 75px)' };
+            break;
+        case 'cell3':
+        case 'cell6':
+        case 'cell9':
+            minimapPosition = { bottom: 'calc(30vh - 75px)', right: 'calc(25vw - 75px)' };
+            break;
+        default:
+            minimapPosition = { bottom: 'calc(30vh - 75px)', right: 'calc(50vw - 75px)' };
+            break;
+    }
+
+    return minimapPosition;
   };
 
   // Map page IDs to their 3x3 grid positions
@@ -32,7 +39,7 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
       'cell2': { row: 1, col: 2 },
       'cell3': { row: 1, col: 3 },
       'cell4': { row: 2, col: 1 },
-      'cell5': { row: 2, col: 2 }, // Home in center
+      'cell5': { row: 2, col: 2 },
       'cell6': { row: 2, col: 3 },
       'cell7': { row: 3, col: 1 },
       'cell8': { row: 3, col: 2 },
@@ -41,13 +48,22 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
     return positions[pageId] || { row: 2, col: 2 };
   };
 
+  // Get background image for specific cells
+  const getMinimapBackground = (pageId) => {
+    const backgroundImages = {
+      'cell1': '/gallery/images/cell1-black-lodge-brews.jpg',
+      'cell3': '/gallery/images/cell3-inferno-ink.jpg',
+      // Add more images as they become available
+    };
+    return backgroundImages[pageId] || null;
+  };
+
   const position = getMinimapPosition();
 
   return (
     <motion.div
       className="fixed z-50 pointer-events-auto"
-      style={{ top: 'calc(1.25rem + 72px)', right: '2rem' }}
-    //   style={position}
+      style={position}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -83,29 +99,51 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
             });
             
             const isActive = page && currentPage === page.id;
+            const backgroundImage = page ? getMinimapBackground(page.id) : null;
             
             return (
               <motion.button
                 key={`${row}-${col}`}
                 className={`
-                  relative cursor-pointer rounded-sm
-                  flex items-center justify-center transition-all duration-50
-                  ${isActive ? '' : ''}
+                  relative cursor-pointer rounded-sm overflow-hidden
+                  flex items-center justify-center transition-all duration-300
+                  ${isActive ? 'ring-2 ring-var(--color-gray-dark)' : ''}
                 `}
                 style={{
-                    border : '1px solid var(--color-gray-faint)',
-                  backgroundColor: isActive 
-                    ? 'var(--color-gray-dark)'
-                    : 'var(--color-white)',
+                  border: '1px solid var(--color-gray-faint)',
+                  backgroundColor: backgroundImage 
+                    ? 'transparent'
+                    : isActive 
+                      ? 'var(--color-gray-dark)'
+                      : 'var(--color-white)',
+                  backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'var(--color-green-light)',
+                  scale: 1.05,
+                  backgroundColor: backgroundImage ? 'transparent' : 'var(--color-green-light)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >
-                {/* No text content - just empty buttons */}
+                {/* Overlay for better visibility when active */}
+                {backgroundImage && isActive && (
+                  <div 
+                    className="absolute inset-0 bg-black bg-opacity-30 rounded-sm"
+                    style={{ zIndex: 1 }}
+                  />
+                )}
+                {/* Active indicator icon for cells with background images */}
+                {backgroundImage && isActive && (
+                  <FontAwesomeIcon 
+                    icon={faUser}
+                    className="absolute w-3 h-3 text-white"
+                    style={{ zIndex: 2 }}
+                  />
+                )}
               </motion.button>
             );
           })}

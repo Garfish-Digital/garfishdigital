@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import Minimap from "../../components/Minimap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +20,7 @@ const pages = [
     title: "Portfolio",
     gridColumn: "1/2",
     gridRow: "1/2",
-    color: "#ff6b6b",
+    color: "var(--color-white)",
   },
   {
     id: "cell2",
@@ -195,6 +195,13 @@ export default function Gallery() {
   const { isClientAuthenticated } = useClientAuth();
   const [currentPage, setCurrentPage] = useState("cell5");
   const [showTechCard, setShowTechCard] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [gestureDirection, setGestureDirection] = useState(null);
+  const [momentumAnimation, setMomentumAnimation] = useState(false);
+  const galleryRef = useRef(null);
+  const touchStartRef = useRef({ x: 0, y: 0, time: 0 });
+  const momentumTimeoutRef = useRef(null);
 
   const scrollToPage = (pageId) => {
     const page = pages.find((p) => p.id === pageId);
@@ -204,7 +211,151 @@ export default function Gallery() {
     setCurrentPage(pageId);
   };
 
-  // No initialization needed - CSS handles default positioning
+  // Navigation helper functions
+  const getGridPosition = (cellId) => {
+    const cellMap = {
+      cell1: { row: 0, col: 0 }, cell2: { row: 0, col: 1 }, cell3: { row: 0, col: 2 },
+      cell4: { row: 1, col: 0 }, cell5: { row: 1, col: 1 }, cell6: { row: 1, col: 2 },
+      cell7: { row: 2, col: 0 }, cell8: { row: 2, col: 1 }, cell9: { row: 2, col: 2 }
+    };
+    return cellMap[cellId];
+  };
+
+  const getCellFromPosition = (row, col) => {
+    if (row < 0 || row > 2 || col < 0 || col > 2) return null;
+    const positionMap = {
+      '0,0': 'cell1', '0,1': 'cell2', '0,2': 'cell3',
+      '1,0': 'cell4', '1,1': 'cell5', '1,2': 'cell6',
+      '2,0': 'cell7', '2,1': 'cell8', '2,2': 'cell9'
+    };
+    return positionMap[`${row},${col}`];
+  };
+
+  const navigateByDirection = (direction) => {
+    const currentPos = getGridPosition(currentPage);
+    if (!currentPos) return;
+
+    let newRow = currentPos.row;
+    let newCol = currentPos.col;
+
+    switch (direction) {
+      case 'up': newRow = Math.max(0, currentPos.row - 1); break;
+      case 'down': newRow = Math.min(2, currentPos.row + 1); break;
+      case 'left': newCol = Math.max(0, currentPos.col - 1); break;
+      case 'right': newCol = Math.min(2, currentPos.col + 1); break;
+    }
+
+    const newCell = getCellFromPosition(newRow, newCol);
+    if (newCell && newCell !== currentPage) {
+      scrollToPage(newCell);
+    }
+  };
+
+  // Touch/Swipe gesture handlers
+  const handleTouchStart = useCallback((e) => {
+    if (showTechCard) return;
+    const touch = e.touches[0];
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now()
+    };
+  }, [showTechCard]);
+
+  const handleTouchEnd = useCallback((e) => {
+    if (showTechCard) return;
+    const touch = e.changedTouches[0];
+    const touchEnd = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now()
+    };
+
+    const deltaX = touchEnd.x - touchStartRef.current.x;
+    const deltaY = touchEnd.y - touchStartRef.current.y;
+    const deltaTime = touchEnd.time - touchStartRef.current.time;
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    const velocity = distance / deltaTime;
+
+    // Require minimum swipe distance and reasonable velocity
+    if (distance > 50 && velocity > 0.1) {
+      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
+      const direction = isHorizontal 
+        ? (deltaX > 0 ? 'right' : 'left')
+        : (deltaY > 0 ? 'down' : 'up');
+      
+      // Add momentum effect for fast swipes
+      if (velocity > 0.3) {
+        setMomentumAnimation(true);
+        setTimeout(() => setMomentumAnimation(false), 400);
+      }
+      
+      setGestureDirection(direction);
+      setTimeout(() => setGestureDirection(null), 300);
+      navigateByDirection(direction);
+    }
+  }, [showTechCard]);
+
+  // Mouse drag handlers
+  const handleMouseDown = useCallback((e) => {
+    if (showTechCard) return;
+    setIsDragging(true);
+    setDragStart({ x: e.clientX, y: e.clientY });
+    document.body.style.cursor = 'grabbing';
+    e.preventDefault();
+  }, [showTechCard]);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!isDragging || showTechCard) return;
+    e.preventDefault();
+  }, [isDragging, showTechCard]);
+
+  const handleMouseUp = useCallback((e) => {
+    if (!isDragging || showTechCard) return;
+    setIsDragging(false);
+    document.body.style.cursor = '';
+
+    const deltaX = e.clientX - dragStart.x;
+    const deltaY = e.clientY - dragStart.y;
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    // Require minimum drag distance
+    if (distance > 30) {
+      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
+      const direction = isHorizontal 
+        ? (deltaX > 0 ? 'right' : 'left')
+        : (deltaY > 0 ? 'down' : 'up');
+      
+      // Add momentum effect for long drags
+      if (distance > 100) {
+        setMomentumAnimation(true);
+        setTimeout(() => setMomentumAnimation(false), 400);
+      }
+      
+      setGestureDirection(direction);
+      setTimeout(() => setGestureDirection(null), 300);
+      navigateByDirection(direction);
+    }
+  }, [isDragging, dragStart, showTechCard]);
+
+  // Mouse wheel navigation
+  const handleWheel = useCallback((e) => {
+    if (showTechCard) return;
+    e.preventDefault();
+    
+    const isHorizontal = e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    const delta = isHorizontal ? e.deltaX : e.deltaY;
+    
+    if (Math.abs(delta) > 10) { // Threshold to prevent accidental navigation
+      const direction = isHorizontal 
+        ? (delta > 0 ? 'right' : 'left')
+        : (delta > 0 ? 'down' : 'up');
+      
+      setGestureDirection(direction);
+      setTimeout(() => setGestureDirection(null), 200);
+      navigateByDirection(direction);
+    }
+  }, [showTechCard]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -215,25 +366,62 @@ export default function Gallery() {
       }
 
       const keyMap = {
-        1: "cell1",
-        2: "cell2",
-        3: "cell3",
-        4: "cell4",
-        5: "cell5",
-        6: "cell6",
-        7: "cell7",
-        8: "cell8",
-        9: "cell9",
+        1: "cell1", 2: "cell2", 3: "cell3",
+        4: "cell4", 5: "cell5", 6: "cell6",
+        7: "cell7", 8: "cell8", 9: "cell9",
+      };
+
+      // Arrow key navigation
+      const arrowMap = {
+        ArrowUp: 'up', ArrowDown: 'down',
+        ArrowLeft: 'left', ArrowRight: 'right'
       };
 
       if (keyMap[e.key]) {
         scrollToPage(keyMap[e.key]);
+      } else if (arrowMap[e.key]) {
+        e.preventDefault();
+        navigateByDirection(arrowMap[e.key]);
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [showTechCard]);
+
+  // Setup gesture event listeners
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    // Touch events
+    gallery.addEventListener('touchstart', handleTouchStart, { passive: false });
+    gallery.addEventListener('touchend', handleTouchEnd, { passive: false });
+    
+    // Mouse events
+    gallery.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    
+    // Wheel events
+    gallery.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      gallery.removeEventListener('touchstart', handleTouchStart);
+      gallery.removeEventListener('touchend', handleTouchEnd);
+      gallery.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      gallery.removeEventListener('wheel', handleWheel);
+    };
+  }, [handleTouchStart, handleTouchEnd, handleMouseDown, handleMouseMove, handleMouseUp, handleWheel]);
+
+  // Cleanup cursor on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.cursor = '';
+    };
+  }, []);
 
   // Tech card data for each cell
   const getTechCardData = (cellId) => {
@@ -368,7 +556,7 @@ export default function Gallery() {
   const renderDemoCard = (cardData) => {
     
     return (
-      <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center">
+      <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-64">
         <motion.div
           className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${cardData.hoverColors.border} w-80 sm:w-96 md:w-[420px]`}
           style={{ boxShadow: "0px 10px 12px rgba(0, 0, 0, 0.3)" }}
@@ -438,7 +626,7 @@ export default function Gallery() {
     // Special content for cell5 (Home/Center cell)
     if (pageId === "cell5") {
       return (
-        <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center">
+        <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-24">
           <div className="w-80 sm:w-96 md:w-[420px]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -446,7 +634,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-                View Our Work
+                See For Yourself
               </h2>
             </motion.div>
             <motion.div
@@ -455,7 +643,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Use the grid navigator above to slide to the outer edges of this page where you will find links to our demo sites. The flask-gear icons will show you detailed information about each website, and the open-window icons will open a new tab for you to visit the site.
+                Visit our demo sites to view detailed examples of our work.
               </p>
             </motion.div>
           </div>
@@ -484,9 +672,20 @@ export default function Gallery() {
         isClientAuthenticated={isClientAuthenticated}
       />
 
-      <div className="w-screen h-screen overflow-hidden gallery-wrapper">
+      <div 
+        ref={galleryRef}
+        className="w-screen h-screen overflow-hidden gallery-wrapper select-none"
+        style={{ 
+          cursor: isDragging ? 'grabbing' : 'grab',
+          touchAction: 'none' // Prevents default touch behaviors
+        }}
+      >
         <div
-          className={`grid relative gallery-grid gallery-grid-${currentPage}`}
+          className={`grid relative gallery-grid gallery-grid-${currentPage} transition-all duration-300 ease-out ${
+            momentumAnimation ? 'animate-pulse' : ''
+          } ${
+            gestureDirection ? `gesture-${gestureDirection}` : ''
+          }`}
         >
           {pages.map((page) => (
             <div
