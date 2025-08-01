@@ -8,8 +8,6 @@ import {
   getSortedNavigationItems,
   getIconEnabledState,
   getActiveNavigationItem,
-  PageId,
-  NavigationItem 
 } from '../config/navigation';
 
 const NavigationIconComponent = ({ 
@@ -21,7 +19,7 @@ const NavigationIconComponent = ({
 }) => {
   // Color mapping based on current design
   const getIconClasses = () => {
-    const baseClasses = "drop-shadow-lg nav-icon-offset w-6 h-6 transition-all duration-300";
+    const baseClasses = "drop-shadow-lg nav-icon-offset w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 transition-all duration-300";
     
     if (!isEnabled) {
       return `${baseClasses} text-[color:var(--color-gray-light)] cursor-not-allowed`;
@@ -94,7 +92,6 @@ const NavigationIconComponent = ({
 const Navigation = ({ 
   currentPage = 'home',
   galleryCurrentPage,
-//   onFlaskGearClick,
   isClientAuthenticated = false,
   className = ''
 }) => {
@@ -124,20 +121,13 @@ const Navigation = ({
           const isActive = item.id === activeItemId;
           const delay = index * 0.1; // Staggered animation delay
 
-          // Handle special click handlers
-        //   let clickHandler;
-        //   if (item.id === 'flask-gear' && onFlaskGearClick) {
-        //     clickHandler = onFlaskGearClick;
-        //   }
-
           return (
             <NavigationIconComponent
               key={item.id}
               item={item}
               isActive={isActive}
-              isEnabled={true} // All filtered items are enabled
+              isEnabled={true}
               delay={delay}
-            //   onClick={clickHandler}
             />
           );
         })}

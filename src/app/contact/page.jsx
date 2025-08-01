@@ -246,8 +246,7 @@ export default function Contact() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Use the form below to let us know you're thinking about a
-                website. We'll do the rest.
+                Tell us about your website needs using the form below. We'll take it from here.
               </p>
             </motion.div>
           </div>

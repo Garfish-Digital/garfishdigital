@@ -34,8 +34,8 @@ export default function Client() {
   // Cycling placeholder text
   useEffect(() => {
     const placeholderOptions = [
-      "Portal code",
-      "Secret access",
+      "Portal code here",
+      "Backstage pass",
       "Key to the city",
     ];
 
@@ -49,16 +49,16 @@ export default function Client() {
     return () => clearInterval(interval);
   }, []);
 
-  const validatePassword = (value) => {
-    if (!value) return "";
-    if (value.length < 5) return "A bit short...";
+//   const validatePassword = (value) => {
+//     if (!value) return "";
+//     if (value.length < 5) return "A bit short...";
 
     // Check if password matches any client
     // const client = clientsData.find((c) => c.password === value);
     // if (client) return "Access granted! ✓";
 
-    return "Keep on going";
-  };
+    // return "Keep on going";
+//   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,8 +88,8 @@ export default function Client() {
     const { value } = e.target;
     setPassword(value);
 
-    const validationMessage = validatePassword(value);
-    setValidation(validationMessage);
+    // const validationMessage = validatePassword(value);
+    // setValidation(validationMessage);
   };
 
   const handleFocus = (fieldName) => {
@@ -212,7 +212,7 @@ export default function Client() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-              Go To Your Dashboard
+              Access Your Dashboard
             </h2>
           </motion.div>
           <motion.div
@@ -222,7 +222,7 @@ export default function Client() {
             className="mb-8"
           >
             <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-              Enter your portal code and gain instant access to your dashboard. Don't have a portal code? See below. 
+                Enter your unique portal code to view your project's progress. Don't have a code yet? Find out more below.
             </p>
           </motion.div>
 
@@ -256,7 +256,7 @@ export default function Client() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-2 top-1 password-toggle"
+                    className="absolute right-2 top-2 password-toggle"
                   >
                     {showPassword ? (
                       <FontAwesomeIcon icon={faEye} className={`w-4 h-4`} />
@@ -269,7 +269,7 @@ export default function Client() {
                   </button>
 
                   {!password && (
-                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
+                    <div className="absolute left-3 top-4 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKey}
                         className="text-[var(--color-gray-faint)] font-arial"
@@ -283,33 +283,16 @@ export default function Client() {
                     </div>
                   )}
                 </div>
-                {/* {validation && (
-                  <div
-                    className={`client-validation-message ${
-                      validation.includes("✓")
-                        ? "success"
-                        : validation.includes("short") ||
-                          validation.includes("Invalid")
-                        ? "error"
-                        : validation.includes("Keep on")
-                        ? "warning"
-                        : ""
-                    }`}
-                  >
-                    {validation}
-                  </div>
-                )} */}
               </div>
 
               <motion.button
                 type="submit"
                 disabled={!password}
                 className={`inline-block ${!password ? "disabled-" : ""}garfish-button`}
-                //   className="inline-block bg-white client-form-button disabled:opacity-50 disabled:cursor-not-allowed text-lg text-black transition-all duration-300 font-mono"
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin mr-3"></div>
+                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-sm animate-spin mr-3"></div>
                     Authenticating...
                   </div>
                 ) : (
@@ -325,7 +308,7 @@ export default function Client() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-              How Can I Get A Portal?
+                Ready for Your Project Portal?
             </h2>
           </motion.div>
           <motion.div
@@ -334,15 +317,14 @@ export default function Client() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-              Simply send us a message from our{" "}
+              Simply send us a message through our{" "}
               <Link
                 href="/contact"
                 className="text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
               >
                 Contact Page
               </Link>{" "}
-              and you will receive a response within 48 hours. We'll provide you
-              with a code so you have access to a portal that allows you to view your website, project documentation, and payment information.
+              We'll respond within 48 hours with your unique code, giving you access to view your website, project documentation, and payment information.
             </p>
           </motion.div>
         </div>

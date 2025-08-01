@@ -519,5 +519,266 @@
     ],
     "status": "active",
     "lastLogin": null
+  },
+  {
+    "id": "client3",
+    "password": "gorgeous1105",
+    "clientName": "Ali Carrollton",
+    "project": "Velvet Quill",
+    "path": "velvet-quill.netlify.app",
+    "milestones": [
+      {
+        "section": "Discovery",
+        "milestone": "Initial Consultation & Requirements",
+        "status": "In Progress",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Discovery",
+        "milestone": "Brand Analysis & Positioning",
+        "status": "In Progress",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Discovery",
+        "milestone": "Market Research & Competitor Analysis",
+        "status": "In Progress",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Discovery",
+        "milestone": "Content Strategy & Planning",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Discovery",
+        "milestone": "Technical Architecture Planning",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Design",
+        "milestone": "Brand Identity & Visual Direction",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Design",
+        "milestone": "Information Architecture & Sitemap",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Design",
+        "milestone": "Wireframes & Layout Planning",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Design",
+        "milestone": "Visual Design & Style Guide",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Design",
+        "milestone": "Interactive Prototypes",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Design",
+        "milestone": "Responsive Design System",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Development Environment Setup",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Frontend Framework Implementation",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Content Management System",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Homepage & Landing Pages",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Portfolio & Gallery Features",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Contact Forms & Integrations",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Blog & Content Publishing",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Search & Navigation Features",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Development",
+        "milestone": "Performance & SEO Optimization",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Testing",
+        "milestone": "Functionality Testing",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Testing",
+        "milestone": "Cross-Browser Compatibility",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Testing",
+        "milestone": "Mobile Responsiveness Testing",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Testing",
+        "milestone": "Performance & Speed Testing",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Testing",
+        "milestone": "User Experience Testing",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Testing",
+        "milestone": "Content Review & Quality Assurance",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Launch",
+        "milestone": "Staging Environment Deployment",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Launch",
+        "milestone": "Client Review & Approval",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Launch",
+        "milestone": "Domain & Hosting Configuration",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Launch",
+        "milestone": "SSL Certificate & Security Setup",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Launch",
+        "milestone": "Final Content Migration",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Launch",
+        "milestone": "Production Launch & Go-Live",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Post-Launch",
+        "milestone": "Launch Monitoring & Support",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Post-Launch",
+        "milestone": "Search Engine Optimization",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Post-Launch",
+        "milestone": "Analytics & Tracking Setup",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Post-Launch",
+        "milestone": "Client Training & Documentation",
+        "status": "Pending",
+        "dateCompleted": ""
+      },
+      {
+        "section": "Post-Launch",
+        "milestone": "30-Day Support & Maintenance",
+        "status": "Pending",
+        "dateCompleted": ""
+      }
+    ],
+    "documents": {
+      "scope": "/documents/velvet-quill-scope.pdf",
+      "agreement": "/documents/velvet-quill-agreement.pdf",
+      "handoff": "/documents/velvet-quill-handoff.pdf"
+    },
+    "payments": [
+      {
+        "id": "inv_001",
+        "description": "Phase 1 - Discovery & Design",
+        "amount": 2000,
+        "dueDate": "2025-02-20",
+        "status": "pending"
+      },
+      {
+        "id": "inv_002",
+        "description": "Phase 2 - Development & Implementation",
+        "amount": 3500,
+        "dueDate": "2025-04-15",
+        "status": "pending"
+      },
+      {
+        "id": "inv_003",
+        "description": "Phase 3 - Testing & Launch",
+        "amount": 1200,
+        "dueDate": "2025-05-30",
+        "status": "pending"
+      }
+    ],
+    "status": "active",
+    "lastLogin": null
   }
 ]

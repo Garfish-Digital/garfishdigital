@@ -63,15 +63,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .password-toggle:hover {
-    transform: scale(1.05);
-    background-color: var(--color-gray-shadow);
-}
-
-.password-toggle:active {
-    transform: scale(0.95);
+    color: var(--color-green-light);
 }
 
 /* Enhanced form validation visual feedback */
@@ -124,7 +120,6 @@
     outline: clamp(2px, 0.5vw, 4px) solid var(--color-black);
     outline-offset: clamp(2px, 0.5vw, 4px);
     box-shadow: 0 0 0 clamp(4px, 1vw, 6px) rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px) scale(1.01);
 }
 
 .client-form-container .garfish-button:focus-visible,
@@ -176,20 +171,18 @@ legend {
     min-height: clamp(48px, 8vw, 56px); /* Touch-friendly minimum height */
     padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem); /* Fluid padding */
     font-size: clamp(1rem, 2.5vw, 1.125rem); /* Fluid font size */
-    border-radius: clamp(6px, 1.5vw, 8px); /* Fluid border radius */
+    border-radius: 5px !important; /* Fixed 5px border radius */
     width: clamp(260px, 75vw, 320px) !important; /* Reduced minimum width for 375px screens */
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease; /* Only background color transition */
     touch-action: manipulation; /* Optimize for touch */
 }
 
 .client-success-container .garfish-button:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--color-black); /* Same as globals.css hover effect */
 }
 
 .client-success-container .garfish-button:active {
-    transform: translateY(0) scale(0.98);
-    transition: all 0.1s ease;
+    background-color: var(--color-black);
 }
 
 /* Auth form submit button styling */
@@ -198,18 +191,18 @@ legend {
     min-height: clamp(48px, 8vw, 56px); /* Touch-friendly minimum height */
     padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem); /* Fluid padding */
     font-size: clamp(1rem, 2.5vw, 1.125rem); /* Fluid font size */
-    border-radius: clamp(6px, 1.5vw, 8px); /* Fluid border radius */
+    border-radius: 5px !important; /* Fixed 5px border radius */
     width: 100%; /* Full width for auth form */
     touch-action: manipulation;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease; /* Only background color transition */
 }
 
 .client-form-container .garfish-button:hover:not(:disabled) {
-    transform: translateY(-1px) scale(1.01);
+    background-color: var(--color-black); /* Same as globals.css hover effect */
 }
 
 .client-form-container .garfish-button:active:not(:disabled) {
-    transform: translateY(0) scale(0.99);
+    background-color: var(--color-black);
 }
 
 /* Responsive adjustments with fluid scaling */

@@ -57,6 +57,16 @@
   gap: 1rem !important;
 }
 
+/* Large screen navigation enhancements */
+@media (min-width: 768px) {
+  .bottom-nav-container {
+    top: clamp(2rem, 5vh, 3rem) !important;
+    bottom: auto !important;
+    right: clamp(2rem, 5vw, 10rem) !important;
+    gap: clamp(1.25rem, 3vw, 2rem) !important;
+  }
+}
+
 .nav-icon-offset {
   transform: translateY(-6px);
 }

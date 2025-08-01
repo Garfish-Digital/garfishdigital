@@ -481,7 +481,7 @@ export default function Gallery() {
     // Special content for cell5 (Home/Center cell)
     if (pageId === "cell5") {
       return (
-        <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-24">
+        <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-24 page-content">
           <div className="w-80 sm:w-96 md:w-[420px]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -489,7 +489,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-                See For Yourself
+                Explore our Portfolio
               </h2>
             </motion.div>
             <motion.div
@@ -498,7 +498,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Visit our demo sites to view detailed examples of our work.
+                Visit live demo sites to view detailed examples of our work.
               </p>
             </motion.div>
           </div>
