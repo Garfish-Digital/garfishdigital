@@ -6,11 +6,7 @@ import { faUser } from '@fortawesome/pro-regular-svg-icons';
 
 export default function Minimap({ currentPage, onPageClick, pages }) {
 
-  // Fixed positioning logic - minimap always in upper right corner
   const getMinimapPosition = () => {
-    // Always position in upper right corner regardless of current page
-    // return { top: 'calc(2rem + 72px)', right: '2rem' };
-    // return currentPage === 'cell5' ? { top: 'calc(50vh - 75px)', right: 'calc(50vw - 75px)' } : { top: 'calc(2rem + 72px)', right: '2rem' };
     let minimapPosition = null;
 
     switch (currentPage) {

@@ -98,13 +98,7 @@ export const getIconEnabledState = (
   if (['project', 'documents', 'payment'].includes(item.id)) {
     return isClientAuthenticated === true;
   }
-  
-  // Handle flask-gear special logic (same as BeakerIcon)
-//   if (item.id === 'flask-gear') {
-//     return currentPage === 'gallery' && galleryCurrentPage !== 'cell5';
-//   }
-  
-  
+
   // Handle page-specific enable/disable rules
   if (item.enabledOnPages && !item.enabledOnPages.includes(currentPage)) {
     return false;

@@ -1,14 +1,19 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function UserProfileCircle({ isLoggedIn, clientName, clientProject, onSignOut }) {
+export default function UserProfileCircle({
+  isLoggedIn,
+  clientName,
+  clientProject,
+  onSignOut,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
   // Debug logging
-  console.log('UserProfileCircle render:', { isLoggedIn, clientName });
+  console.log("UserProfileCircle render:", { isLoggedIn, clientName });
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -18,8 +23,8 @@ export default function UserProfileCircle({ isLoggedIn, clientName, clientProjec
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Don't render if not logged in
@@ -28,17 +33,17 @@ export default function UserProfileCircle({ isLoggedIn, clientName, clientProjec
   }
 
   // Get first letter of client name
-  const firstLetter = clientName.charAt(0).toUpperCase() || 'U';
+  const firstLetter = clientName.charAt(0).toUpperCase() || "U";
 
   const handleSignOut = () => {
     onSignOut();
     setIsMenuOpen(false);
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
   const handleEdit = () => {
     // TODO: Implement edit functionality
-    console.log('Edit profile clicked');
+    console.log("Edit profile clicked");
     setIsMenuOpen(false);
   };
 
@@ -53,7 +58,7 @@ export default function UserProfileCircle({ isLoggedIn, clientName, clientProjec
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <span className="text-[var(--color-white)] font-arial text-xl">
+        <span className="text-[var(--color-white)] font-primary text-xl">
           {firstLetter}
         </span>
       </motion.button>
@@ -70,21 +75,21 @@ export default function UserProfileCircle({ isLoggedIn, clientName, clientProjec
           >
             <p
               onClick={handleEdit}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-green-dark)] transition-colors font-arial font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-green-dark)] transition-colors font-primary font-bold"
             >
               {clientProject}
             </p>
             <hr className="text-[var(--color-gray-faint)]"></hr>
             <button
               onClick={handleEdit}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-arial font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
             >
               Edit
             </button>
             <hr className="text-[var(--color-gray-faint)]"></hr>
             <button
               onClick={handleSignOut}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-arial font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
             >
               Sign out
             </button>

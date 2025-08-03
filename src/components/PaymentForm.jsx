@@ -1,32 +1,55 @@
 "use client";
 
-import { useState } from 'react';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { motion } from "framer-motion";
 
+// const CARD_ELEMENT_OPTIONS = {
+//   style: {
+//     base: {
+//       fontSize: "16px",
+//       color: "#424770",
+//       fontFamily: '"Cutive Mono", "Courier New", monospace',
+//       "::placeholder": {
+//         color: "#aab7c4",
+//       },
+//       //   padding: '12px',
+//     },
+//     invalid: {
+//       color: "#9e2146",
+//     },
+//   },
+//   hidePostalCode: false,
+// };
 const CARD_ELEMENT_OPTIONS = {
-  style: {
-    base: {
-      fontSize: '16px',
-      color: '#424770',
-      fontFamily: '"Cutive Mono", "Courier New", monospace',
-      '::placeholder': {
-        color: '#aab7c4',
+    style: {
+      base: {
+        fontSize: "16px", // Keep for accessibility
+        color: "var(--color-gray-dark)", // --color-gray-dark
+        fontFamily: '"Courier Prime", "Courier New", monospace',
+        "::placeholder": {
+          color: "var(--color-gray-light)", // --color-gray-light
+        },
+        padding: '12px',
       },
-    //   padding: '12px',
+      invalid: {
+        color: "#dc2626",
+      },
     },
-    invalid: {
-      color: '#9e2146',
-    },
-  },
-  hidePostalCode: false,
-};
+    hidePostalCode: false, // Keep for fraud protection
+  };
 
-export default function PaymentForm({ amount, description, clientId, onSuccess, onError }) {
+export default function PaymentForm({
+  amount,
+  description,
+  clientId,
+  onSuccess,
+  onError,
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,14 +59,14 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
     }
 
     setIsProcessing(true);
-    setErrorMessage('');
+    setErrorMessage("");
 
     try {
       // Create payment intent
-      const response = await fetch('/api/stripe/create-payment-intent', {
-        method: 'POST',
+      const response = await fetch("/api/stripe/create-payment-intent", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           amount,
@@ -53,32 +76,29 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
       });
 
       const responseData = await response.json();
-      
+
       if (responseData.error) {
         throw new Error(responseData.error);
       }
-      
+
       const { clientSecret } = responseData;
 
       // Confirm payment
       const cardElement = elements.getElement(CardElement);
-      const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(
-        clientSecret,
-        {
+      const { error: confirmError, paymentIntent } =
+        await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
             card: cardElement,
           },
-        }
-      );
+        });
 
       if (confirmError) {
         throw new Error(confirmError.message);
       }
 
-      if (paymentIntent.status === 'succeeded') {
+      if (paymentIntent.status === "succeeded") {
         onSuccess(paymentIntent);
       }
-
     } catch (error) {
       setErrorMessage(error.message);
       onError(error);
@@ -97,7 +117,9 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
     >
       {/* Payment Details */}
       <div className="bg-white/5 rounded-lg p-6 border border-black/10">
-        <h3 className="text-lg font-semibold mb-4 font-primary">Payment Details</h3>
+        <h3 className="text-lg font-semibold mb-4 font-primary">
+          Payment Details
+        </h3>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-600">Description:</span>
@@ -105,14 +127,16 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Amount:</span>
-            <span className="font-mono text-lg font-bold">${amount.toFixed(2)}</span>
+            <span className="font-mono text-lg font-bold">
+              ${amount.toFixed(2)}
+            </span>
           </div>
         </div>
       </div>
 
       {/* Card Element */}
       <div className="bg-[var(--color-gray-faint)] rounded-lg border border-black/20 p-4">
-        <label className="block text-sm font-medium mb-2 font-arial">
+        <label className="block text-sm font-medium mb-2 font-primary">
           Card Information
         </label>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
@@ -135,9 +159,7 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
         type="submit"
         disabled={!stripe || isProcessing}
         className={`w-full garfish-button transition-all duration-300 ${
-          isProcessing
-            ? 'cursor-not-allowed'
-            : 'transform'
+          isProcessing ? "cursor-not-allowed" : "transform"
         }`}
         whileTap={{ scale: 0.98 }}
       >
@@ -153,7 +175,8 @@ export default function PaymentForm({ amount, description, clientId, onSuccess, 
 
       {/* Security Notice */}
       <p className="text-xs text-gray-500 text-center font-primary">
-        Your payment information is secure and encrypted. We never store your card details.
+        Your payment information is secure and encrypted. We never store your
+        card details.
       </p>
     </motion.form>
   );

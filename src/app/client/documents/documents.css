@@ -1,4 +1,6 @@
- /* Hide scrollbar while maintaining scrollability */
+/* Documents Page Styles */
+
+/* Hide scrollbar while maintaining scrollability */
 .documents-content-container {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer/Edge */
@@ -6,4 +8,10 @@
 
 .documents-content-container::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+@media (min-width: 540px) {
+  .documents-content-container {
+    padding-top: 2rem;;
+  }
 }

@@ -1,9 +1,10 @@
+/* Global Styles */
+
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
 
 :root {
   
-  /* --white: oklch(99.487% 0.00833 146.145); */
   --white: oklch(100% 0.00011 271.152);
   --gray-light-transparent: oklch(73.033% 0.01807 145.601 / 0.5);
   --gray-light: oklch(73.033% 0.01807 145.601);
@@ -11,9 +12,7 @@
   --gray-dark: oklch(44.836% 0.02038 145.341);
   --black: oklch(9.957% 0.03388 142.511);
   
-  /* --green-light: rgb(156, 165, 132); */
   --green-light: rgb(125, 200, 125);
-  /* color: green; */
     --green-dark: oklch(22.142% 0.01528 119.111);
 }
 
@@ -36,11 +35,7 @@
   display: none;
 }
 
-/* Reusable Font Family Classes */
-.font-arial {
-  font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif;
-}
-
+/* Reusable Font Family Class */
 .font-mono {
   font-family: "Courier Prime", "Courier New", Courier, monospace;
 }
@@ -58,12 +53,24 @@
 }
 
 /* Large screen navigation enhancements */
-@media (min-width: 768px) {
+@media (min-width: 912px) {
   .bottom-nav-container {
     top: clamp(2rem, 5vh, 3rem) !important;
     bottom: auto !important;
-    right: clamp(2rem, 5vw, 10rem) !important;
-    gap: clamp(1.25rem, 3vw, 2rem) !important;
+    right: clamp(2rem, 3vw, 4rem) !important;
+    gap: clamp(1.25rem, 2vw, 1.5rem) !important;
+  }
+  
+  /* Move UserProfileCircle to bottom-right on large screens */
+  .fixed.top-8.right-8 {
+    top: auto !important;
+    bottom: 2rem !important;
+  }
+  
+  /* Flip dropdown direction to open upward */
+  .fixed.top-8.right-8 .absolute.top-12 {
+    top: auto !important;
+    bottom: 3rem !important;
   }
 }
 
@@ -103,7 +110,7 @@ padding: 0.5rem 2rem;
 }
 
 .text-user-red {
-    color: #f56565;
+    color: #dc2626;
 }
 
 .text-user-yellow {
@@ -112,7 +119,6 @@ padding: 0.5rem 2rem;
 
 
 /* INPUT FIELDS */
-
 fieldset {
     padding: 2rem;
     border: 1px solid var(--color-gray-dark);
@@ -134,9 +140,9 @@ legend {
   clip: rect(0, 0, 0, 0) !important;
   opacity: 0 !important;
   pointer-events: none !important;
-  border: 0 !important; /* Removes any visual border */
-  padding: 0 !important; /* Removes any padding */
-  margin: 0 !important; /* Removes any margin */
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 input {
@@ -168,18 +174,11 @@ textarea:not(:placeholder-shown)::placeholder {
 }
 
 /* Placeholder color with smooth transitions */
-input::placeholder,
-textarea::placeholder {
-  /* color: var(--color-gray-dark); */
-}
-
 input:focus::placeholder,
 textarea:focus::placeholder {
   color: var(--color-gray-faint);
   border: var(--color-green-dark)
 }
-
-
 
 /* HOME PAGE */
 .home-page-container {

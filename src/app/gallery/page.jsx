@@ -1,7 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import Minimap from "../../components/Minimap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,63 +25,54 @@ const pages = [
     title: "Portfolio",
     gridColumn: "1/2",
     gridRow: "1/2",
-    color: "var(--color-white)",
   },
   {
     id: "cell2",
     title: "Experiments",
     gridColumn: "2/3",
     gridRow: "1/2",
-    color: "#ffcc5c",
   },
   {
     id: "cell3",
     title: "Interactive Demos",
     gridColumn: "3/4",
     gridRow: "1/2",
-    color: "#556270",
   },
   {
     id: "cell4",
     title: "Client Work",
     gridColumn: "1/2",
     gridRow: "2/3",
-    color: "#4ecdc4",
   },
   {
     id: "cell5",
     title: "Home",
     gridColumn: "2/3",
     gridRow: "2/3",
-    color: "#88d8b0",
   },
   {
     id: "cell6",
     title: "Tools",
     gridColumn: "3/4",
     gridRow: "2/3",
-    color: "#9b59b6",
   },
   {
     id: "cell7",
     title: "About",
     gridColumn: "1/2",
     gridRow: "3/4",
-    color: "#e67e22",
   },
   {
     id: "cell8",
     title: "Contact",
     gridColumn: "2/3",
     gridRow: "3/4",
-    color: "#34495e",
   },
   {
     id: "cell9",
     title: "Blog",
     gridColumn: "3/4",
     gridRow: "3/4",
-    color: "#95a5a6",
   },
 ];
 
@@ -207,9 +203,15 @@ export default function Gallery() {
   // Navigation helper functions
   const getGridPosition = (cellId) => {
     const cellMap = {
-      cell1: { row: 0, col: 0 }, cell2: { row: 0, col: 1 }, cell3: { row: 0, col: 2 },
-      cell4: { row: 1, col: 0 }, cell5: { row: 1, col: 1 }, cell6: { row: 1, col: 2 },
-      cell7: { row: 2, col: 0 }, cell8: { row: 2, col: 1 }, cell9: { row: 2, col: 2 }
+      cell1: { row: 0, col: 0 },
+      cell2: { row: 0, col: 1 },
+      cell3: { row: 0, col: 2 },
+      cell4: { row: 1, col: 0 },
+      cell5: { row: 1, col: 1 },
+      cell6: { row: 1, col: 2 },
+      cell7: { row: 2, col: 0 },
+      cell8: { row: 2, col: 1 },
+      cell9: { row: 2, col: 2 },
     };
     return cellMap[cellId];
   };
@@ -217,9 +219,15 @@ export default function Gallery() {
   const getCellFromPosition = (row, col) => {
     if (row < 0 || row > 2 || col < 0 || col > 2) return null;
     const positionMap = {
-      '0,0': 'cell1', '0,1': 'cell2', '0,2': 'cell3',
-      '1,0': 'cell4', '1,1': 'cell5', '1,2': 'cell6',
-      '2,0': 'cell7', '2,1': 'cell8', '2,2': 'cell9'
+      "0,0": "cell1",
+      "0,1": "cell2",
+      "0,2": "cell3",
+      "1,0": "cell4",
+      "1,1": "cell5",
+      "1,2": "cell6",
+      "2,0": "cell7",
+      "2,1": "cell8",
+      "2,2": "cell9",
     };
     return positionMap[`${row},${col}`];
   };
@@ -232,10 +240,18 @@ export default function Gallery() {
     let newCol = currentPos.col;
 
     switch (direction) {
-      case 'up': newRow = Math.max(0, currentPos.row - 1); break;
-      case 'down': newRow = Math.min(2, currentPos.row + 1); break;
-      case 'left': newCol = Math.max(0, currentPos.col - 1); break;
-      case 'right': newCol = Math.min(2, currentPos.col + 1); break;
+      case "up":
+        newRow = Math.max(0, currentPos.row - 1);
+        break;
+      case "down":
+        newRow = Math.min(2, currentPos.row + 1);
+        break;
+      case "left":
+        newCol = Math.max(0, currentPos.col - 1);
+        break;
+      case "right":
+        newCol = Math.min(2, currentPos.col + 1);
+        break;
     }
 
     const newCell = getCellFromPosition(newRow, newCol);
@@ -243,7 +259,6 @@ export default function Gallery() {
       scrollToPage(newCell);
     }
   };
-
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -254,15 +269,23 @@ export default function Gallery() {
       }
 
       const keyMap = {
-        1: "cell1", 2: "cell2", 3: "cell3",
-        4: "cell4", 5: "cell5", 6: "cell6",
-        7: "cell7", 8: "cell8", 9: "cell9",
+        1: "cell1",
+        2: "cell2",
+        3: "cell3",
+        4: "cell4",
+        5: "cell5",
+        6: "cell6",
+        7: "cell7",
+        8: "cell8",
+        9: "cell9",
       };
 
       // Arrow key navigation
       const arrowMap = {
-        ArrowUp: 'up', ArrowDown: 'down',
-        ArrowLeft: 'left', ArrowRight: 'right'
+        ArrowUp: "up",
+        ArrowDown: "down",
+        ArrowLeft: "left",
+        ArrowRight: "right",
       };
 
       if (keyMap[e.key]) {
@@ -276,7 +299,6 @@ export default function Gallery() {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [showTechCard]);
-
 
   // Tech card data for each cell
   const getTechCardData = (cellId) => {
@@ -409,7 +431,6 @@ export default function Gallery() {
   };
 
   const renderDemoCard = (cardData) => {
-    
     return (
       <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-64">
         <motion.div
@@ -431,17 +452,18 @@ export default function Gallery() {
                 {cardData.title}
               </h3>
 
-            <div className="flex justify-end">
-              <FontAwesomeIcon
-                icon={faFlaskGear}
-                onClick={handleTechCardOpen}
-                className="w-6 h-6 ml-2 text-[var(--color-gray-light)] hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
-            />
+              <div className="flex justify-end">
+                <FontAwesomeIcon
+                  icon={faFlaskGear}
+                  onClick={handleTechCardOpen}
+                  className="w-6 h-6 ml-2 text-[var(--color-gray-light)] hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
+                />
+              </div>
             </div>
 
-            </div>
-
-            <p className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed font-primary`}>
+            <p
+              className={`${cardData.hoverColors.text} font-medium mb-4 sm:mb-6 italic text-base sm:text-lg leading-relaxed font-primary`}
+            >
               {cardData.subtitle}
             </p>
 
@@ -455,7 +477,9 @@ export default function Gallery() {
               href={cardData.url}
               target={cardData.url.startsWith("http") ? "_blank" : undefined}
               rel={
-                cardData.url.startsWith("http") ? "noopener noreferrer" : undefined
+                cardData.url.startsWith("http")
+                  ? "noopener noreferrer"
+                  : undefined
               }
               className="flex items-center group-hover:text-white transition-colors mt-auto cursor-pointer"
             >
@@ -481,15 +505,15 @@ export default function Gallery() {
     // Special content for cell5 (Home/Center cell)
     if (pageId === "cell5") {
       return (
-        <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-24 page-content">
+        <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-24 gallery-page-content">
           <div className="w-80 sm:w-96 md:w-[420px]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-                Explore our Portfolio
+              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
+                Explore our Gallery
               </h2>
             </motion.div>
             <motion.div
@@ -497,7 +521,7 @@ export default function Gallery() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+              <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
                 Visit live demo sites to view detailed examples of our work.
               </p>
             </motion.div>

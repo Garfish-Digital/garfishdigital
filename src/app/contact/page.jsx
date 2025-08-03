@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import Navigation from "../../components/Navigation";
 import Logo from "../../components/Logo";
@@ -143,35 +142,28 @@ export default function Contact() {
     }
   };
 
-  // Success modal timeout and navigation
-//   useEffect(() => {
-//     if (showSuccessModal) {
-//       const timer = setTimeout(() => {
-//         window.location.href = '/';
-//       }, 3000);
-//       return () => clearTimeout(timer);
-//     }
-//   }, [showSuccessModal]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const formElement = e.currentTarget;
-    console.log('formElement: ', formElement);
-    const formData = new FormData(formElement);
-    console.log('formData: ', Object.fromEntries(formData));
-    const businessValue = formData.get('business');
-    const messageValue = formData.get('message');
-    formData.set('message', `${messageValue}\n\nBusiness: \n${businessValue}`);
-    console.log('formData after newline addition: ', Object.fromEntries(formData));
 
-  const urlEncodedData = new URLSearchParams(formData).toString();
-  console.log('URL encoded body:', urlEncodedData);
+    const formElement = e.currentTarget;
+    console.log("formElement: ", formElement);
+    const formData = new FormData(formElement);
+    console.log("formData: ", Object.fromEntries(formData));
+    const businessValue = formData.get("business");
+    const messageValue = formData.get("message");
+    formData.set("message", `${messageValue}\n\nBusiness: \n${businessValue}`);
+    console.log(
+      "formData after newline addition: ",
+      Object.fromEntries(formData)
+    );
+
+    const urlEncodedData = new URLSearchParams(formData).toString();
+    console.log("URL encoded body:", urlEncodedData);
 
     try {
-      const response = await fetch(formElement.action || '/__forms.html', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      const response = await fetch(formElement.action || "/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
       });
 
@@ -183,7 +175,7 @@ export default function Contact() {
         setShowErrorModal(true);
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error("Form submission error:", error);
       setShowErrorModal(true);
     }
   };
@@ -200,7 +192,7 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log('name & value: ', name, value);
+    console.log("name & value: ", name, value);
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -222,7 +214,6 @@ export default function Contact() {
     setFocusedField(null);
   };
 
-
   return (
     <div className="h-screen overflow-hidden text-black contact-page-container">
       {/* Static Logo - Upper Left */}
@@ -236,7 +227,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
+              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
                 How Do I Get Started?
               </h2>
             </motion.div>
@@ -245,27 +236,32 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Tell us about your website needs using the form below. We'll take it from here.
+              <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                Tell us about your website needs using the form below. We'll
+                take it from here.
               </p>
             </motion.div>
           </div>
 
           <motion.form
-                        onSubmit={handleSubmit}
-                        className="space-y-4"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        name="contact"
-                        data-netlify="true"
-                          data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            name="contact"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
             method="POST"
             action="/__forms.html"
-                    >
-
+          >
             <input type="hidden" name="form-name" value="contact" />
-            <input type="text" name="bot-field" style={{ display: 'none' }} className="visually-hidden-bot-field" />
+            <input
+              type="text"
+              name="bot-field"
+              style={{ display: "none" }}
+              className="visually-hidden-bot-field"
+            />
 
             <fieldset tabIndex="-1">
               <legend>Contact Us</legend>
@@ -289,7 +285,7 @@ export default function Contact() {
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.name}
-                        className="text-[var(--color-gray-faint)] font-arial"
+                        className="text-[var(--color-gray-faint)] font-primary"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -322,7 +318,7 @@ export default function Contact() {
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.email}
-                        className="text-[var(--color-gray-faint)] font-arial"
+                        className="text-[var(--color-gray-faint)] font-primary"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -354,7 +350,7 @@ export default function Contact() {
               <div className="relative">
                 <div className="relative">
                   <input
-                  type="text"
+                    type="text"
                     id="business"
                     name="business"
                     required
@@ -371,7 +367,7 @@ export default function Contact() {
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.business}
-                        className="text-[var(--color-gray-faint)] font-arial"
+                        className="text-[var(--color-gray-faint)] font-primary"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -404,7 +400,7 @@ export default function Contact() {
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.message}
-                        className="text-[var(--color-gray-faint)] font-arial"
+                        className="text-[var(--color-gray-faint)] font-primary"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -415,12 +411,11 @@ export default function Contact() {
                     </div>
                   )}
                 </div>
-              
               </div>
 
               <motion.button
                 type="submit"
-                className="inline-block garfish-button text-lg transition-all duration-300 transform font-arial"
+                className="inline-block garfish-button text-lg transition-all duration-300 transform font-primary"
               >
                 Send
               </motion.button>
@@ -641,16 +636,15 @@ export default function Contact() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="p-8 text-center">
-                <div className="text-6xl mb-6 text-[color:var(--color-green-light)]">✓</div>
-                <h2 className="text-2xl font-bold mb-4 text-[color:var(--color-white)] font-arial">
+                <div className="text-6xl mb-6 text-[color:var(--color-green-light)]">
+                  ✓
+                </div>
+                <h2 className="text-2xl font-bold mb-4 text-[color:var(--color-white)] font-primary">
                   Message Sent
                 </h2>
-                <p className="text-[color:var(--color-gray-light)] mb-6 font-arial">
+                <p className="text-[color:var(--color-gray-light)] mb-6 font-primary">
                   We'll get back to you within 24 hours.
                 </p>
-                {/* <p className="text-sm text-[color:var(--color-gray-shadow)] font-arial">
-                  Redirecting to home in 3 seconds...
-                </p> */}
               </div>
             </motion.div>
           </motion.div>
@@ -702,14 +696,17 @@ export default function Contact() {
                 </motion.button>
               </div>
               <div className="p-6">
-                <div className="text-6xl mb-6 text-[color:var(--color-gray-dark)] text-center">⚠️</div>
-                <p className="text-[color:var(--color-gray-dark)] mb-6 font-arial text-center">
-                  There was an error sending your message. Please try again or contact us directly.
+                <div className="text-6xl mb-6 text-[color:var(--color-gray-dark)] text-center">
+                  ⚠️
+                </div>
+                <p className="text-[color:var(--color-gray-dark)] mb-6 font-primary text-center">
+                  There was an error sending your message. Please try again or
+                  contact us directly.
                 </p>
                 <div className="flex justify-center">
                   <button
                     onClick={handleErrorModalClose}
-                    className="garfish-button font-arial"
+                    className="garfish-button font-primary"
                   >
                     Try Again
                   </button>

@@ -1,27 +1,21 @@
 import "./globals.css";
 import ClientLayout from "../components/ClientLayout";
 import { ClientAuthProvider } from "../contexts/ClientAuthContext";
-// 1. Import necessary Font Awesome core configuration
-import { config, library } from '@fortawesome/fontawesome-svg-core';
-// 2. Import Font Awesome's base CSS. Crucial for proper icon rendering.
-import '@fortawesome/fontawesome-svg-core/styles.css';
 
-// 3. Import the specific Font Awesome Pro Regular icons you plan to use.
-//    These are the icons we discussed for your main site's navigation, etc.
+import { config, library } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
-  faHouse,             // Example: Home icon
-  faGrid,          // Example: For "Books" or "Library"
-  faFlaskGear,              // Example: For "User Profile" or "Account"
-  faMessage,              // Example: For "Settings"
+  faHouse,
+  faGrid,
+  faFlaskGear,
+  faMessage,
   faArrowRightFromBracket,
   faUserGear,
   faWindow,
   faEnvelopeOpenDollar,
   faFileContract,
   faEyeSlash,
-  // Add any other specific Classic Regular icons you expect to use frequently here.
-  // You can find their names on fontawesome.com (e.g., search "home", then look for its `fa` name).
-} from '@fortawesome/pro-regular-svg-icons'; // <--- IMPORTANT: Note 'pro-regular-svg-icons'
+} from "@fortawesome/pro-regular-svg-icons";
 
 // 4. Tell Font Awesome to skip adding the CSS automatically.
 //    We explicitly import the CSS above, which is generally better for Next.js/Tailwind.
@@ -35,12 +29,12 @@ library.add(
   faGrid,
   faFlaskGear,
   faMessage,
-   faArrowRightFromBracket,
+  faArrowRightFromBracket,
   faUserGear,
   faWindow,
   faEnvelopeOpenDollar,
   faFileContract,
-  faEyeSlash,
+  faEyeSlash
 );
 
 export const metadata = {
@@ -49,9 +43,7 @@ export const metadata = {
   robots: "noindex, nofollow",
 };
 
-export default function RootLayout({
-  children,
-}) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>

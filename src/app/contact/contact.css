@@ -90,10 +90,3 @@
     min-height: clamp(3rem, 12vw, 5rem) !important; /* Fluid textarea sizing */
   }
 }
-
-/* Large screen adjustments */
-@media (min-width: 940px), (min-height: 940px) {
-  .contact-form-container {
-    /* margin-top: 25vh !important; */
-  }
-}

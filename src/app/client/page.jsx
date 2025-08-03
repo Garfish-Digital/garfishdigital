@@ -49,17 +49,6 @@ export default function Client() {
     return () => clearInterval(interval);
   }, []);
 
-//   const validatePassword = (value) => {
-//     if (!value) return "";
-//     if (value.length < 5) return "A bit short...";
-
-    // Check if password matches any client
-    // const client = clientsData.find((c) => c.password === value);
-    // if (client) return "Access granted! ✓";
-
-    // return "Keep on going";
-//   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,7 +65,7 @@ export default function Client() {
     // Show modal first, then authenticate after timeout
     setShowModal(true);
     setIsSubmitting(false);
-    
+
     // Auto-dismiss modal and authenticate after 1500ms
     setTimeout(() => {
       setShowModal(false);
@@ -104,99 +93,92 @@ export default function Client() {
     return (
       <div className="min-h-screen text-black client-success-container">
         <div className="client-success-content">
-        {/* Static Logo - Upper Left */}
-        <Logo />
+          {/* Static Logo - Upper Left */}
+          <Logo />
 
-        <div className="flex items-start justify-center h-screen px-4 pt-24">
-          <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] pb-4 client-content-container">
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+          <div className="flex items-start justify-center h-screen px-4 client-content-wrapper">
+            <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] pb-4 client-content-container">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                className="space-y-8"
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h2 className="text-lg font-bold mb-6 text-[color:var(--color-gray-shadow)] font-primary">
-                  Portal dashboard for {authenticatedClient?.project}
-                  {/* Welcome to your portal dashboard for{" "}
-                  <strong className="text-[var(--color-gray-dark)]">
-                    {authenticatedClient?.project || "your project"}
-                  </strong>
-                  . */}
-                </h2>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-
-                <button
-                  onClick={() => router.push("/client/project")}
-                  className="garfish-button w-50"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                  <FontAwesomeIcon icon={faWindow} className="mr-2" />
-                  {/* {authenticatedClient?.project || "Your Project"} Website */}
-                  Project Overview
-                </button>
-                <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Keep an eye on development progress by tracking milestones and
-                  viewing the current progress on the actual{" "}
-                  {authenticatedClient?.project || "your project"} website.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-              >
-                <button
-                  onClick={() => router.push("/client/documents")}
-                  className="garfish-button w-50"
+                  <h2 className="text-lg font-bold mb-6 text-[color:var(--color-gray-shadow)] font-primary">
+                    Portal dashboard for {authenticatedClient?.project}
+                  </h2>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                  <FontAwesomeIcon icon={faFileContract} className="mr-2" />
-                  Document Center
-                </button>
-                <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Review pending contracts and project specifications, all
-                  organized in one place for your convenience.
-                </p>
-              </motion.div>
+                  <button
+                    onClick={() => router.push("/client/project")}
+                    className="garfish-button w-50"
+                  >
+                    <FontAwesomeIcon icon={faWindow} className="mr-2" />
+                    Project Overview
+                  </button>
+                  <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                    Keep an eye on development progress by tracking milestones
+                    and viewing the current progress on the actual{" "}
+                    {authenticatedClient?.project || "your project"} website.
+                  </p>
+                </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              >
-                <button
-                  onClick={() => router.push("/client/payment")}
-                  className="garfish-button w-50"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.6 }}
                 >
-                  <FontAwesomeIcon
-                    icon={faEnvelopeOpenDollar}
-                    className="mr-2"
-                  />
-                  Payment Gateway
-                </button>
-                <p className="pt-2 text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                  Watch over your payment plan, view past payments, or even
-                  submit a new payment.
-                </p>
+                  <button
+                    onClick={() => router.push("/client/documents")}
+                    className="garfish-button w-50"
+                  >
+                    <FontAwesomeIcon icon={faFileContract} className="mr-2" />
+                    Document Center
+                  </button>
+                  <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                    Review pending contracts and project specifications, all
+                    organized in one place for your convenience.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                >
+                  <button
+                    onClick={() => router.push("/client/payment")}
+                    className="garfish-button w-50"
+                  >
+                    <FontAwesomeIcon
+                      icon={faEnvelopeOpenDollar}
+                      className="mr-2"
+                    />
+                    Payment Gateway
+                  </button>
+                  <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                    Watch over your payment plan, view past payments, or even
+                    submit a new payment.
+                  </p>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
-        </div>
 
-        {/* Navigation Icons - Bottom Right */}
-        <Navigation
-          currentPage="client"
-          isClientAuthenticated={isClientAuthenticated}
-        />
+          {/* Navigation Icons - Bottom Right */}
+          <Navigation
+            currentPage="client"
+            isClientAuthenticated={isClientAuthenticated}
+          />
         </div>
       </div>
     );
@@ -211,7 +193,7 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
+            <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
               Access Your Dashboard
             </h2>
           </motion.div>
@@ -221,8 +203,9 @@ export default function Client() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mb-8"
           >
-            <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
-                Enter your unique portal code to view your project's progress. Don't have a code yet? Find out more below.
+            <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+              Enter your unique portal code to view your project's progress.
+              Don't have a code yet? Find out more below.
             </p>
           </motion.div>
 
@@ -272,7 +255,7 @@ export default function Client() {
                     <div className="absolute left-3 top-4 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKey}
-                        className="text-[var(--color-gray-faint)] font-arial"
+                        className="text-[var(--color-gray-faint)] font-primary"
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -20, opacity: 0 }}
@@ -307,8 +290,8 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-arial">
-                Ready for Your Project Portal?
+            <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
+              Ready for Your Project Portal?
             </h2>
           </motion.div>
           <motion.div
@@ -316,7 +299,7 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <p className="text-[color:var(--color-gray-dark)] font-arial leading-relaxed">
+            <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
               Simply send us a message through our{" "}
               <Link
                 href="/contact"
@@ -324,7 +307,9 @@ export default function Client() {
               >
                 Contact Page
               </Link>{" "}
-              We'll respond within 48 hours with your unique code, giving you access to view your website, project documentation, and payment information.
+              We'll respond within 48 hours with your unique code, giving you
+              access to view your website, project documentation, and payment
+              information.
             </p>
           </motion.div>
         </div>
@@ -366,24 +351,13 @@ export default function Client() {
                 >
                   ✓
                 </motion.div>
-                {/* <motion.h2
-                  className="text-2xl font-bold mb-3 text-white font-arial"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
-                  Access Granted
-                </motion.h2> */}
                 <motion.p
-                  className="text-white/70 mb-6 font-arial"
+                  className="text-white/70 mb-6 font-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  Welcome to the {authenticatedClient?.project} portal.
-                  {/* Welcome to your client portal for{" "}
-                  {authenticatedClient?.project || "your project"}. All
-                  navigation icons are now enabled. */}
+                  Welcome to your {authenticatedClient?.project} portal
                 </motion.p>
               </div>
             </motion.div>

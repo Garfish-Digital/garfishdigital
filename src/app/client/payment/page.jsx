@@ -139,11 +139,11 @@ export default function Payment() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-gray-shadow)] font-arial">
+                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-gray-shadow)] font-primary">
                   Pending Invoices for{" "}
-                  <strong className="text-[var(--color-gray-dark)]">
+                  <strong className="text-[var(--color-gray-shadow)]">
                     {authenticatedClient?.project || "your project"}
-                  </strong>.
+                  </strong>
                 </h2>
               </motion.div>
 
@@ -159,11 +159,6 @@ export default function Payment() {
             {!selectedInvoice ? (
               // Invoice List
               <div className="space-y-6">
-                {/* {authenticatedClient && (
-                  <h3 className="text-lg font-bold mt-6 mb-6 font-arial text-[var(--color-gray-dark)]">
-                    Pending Invoices
-                  </h3>
-                )} */}
                 {invoices.map((invoice) => (
                   <motion.div
                     key={invoice.id}
@@ -178,10 +173,10 @@ export default function Payment() {
                   >
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="text-lg font-semibold mb-2 font-arial">
+                        <h3 className="text-lg font-semibold mb-2 font-primary">
                           {invoice.description}
                         </h3>
-                        <p className="text-left text-sm text-gray-600 font-arial">
+                        <p className="text-left text-sm text-gray-600 font-primary">
                           Due: {invoice.dueDate}
                         </p>
                       </div>
@@ -208,7 +203,7 @@ export default function Payment() {
 
                 {invoices.filter(inv => inv.status === 'pending').length === 0 && (
                   <div className="payment-card p-8 text-center">
-                    <p className="text-gray-600 font-arial">
+                    <p className="text-gray-600 font-primary">
                       No pending invoices at this time.
                     </p>
                   </div>
@@ -221,7 +216,7 @@ export default function Payment() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
                 >
-                  <p className="text-sm text-[color:var(--color-gray-shadow)] pb-2 font-arial">
+                  <p className="text-sm text-[color:var(--color-gray-shadow)] pb-2 font-primary">
                     🔒 Payments powered by <span className="font-bold">Stripe</span>
                   </p>
                 </motion.div>
@@ -230,12 +225,12 @@ export default function Payment() {
               // Payment Form
               <div className="space-y-6 mb-16">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold font-arial">
+                  <h2 className="text-2xl font-bold font-primary">
                     Complete Payment
                   </h2>
                   <button
                     onClick={() => setSelectedInvoice(null)}
-                    className="garfish-button font-arial"
+                    className="garfish-button font-primary"
                   >
                     ← Back to Invoices
                   </button>
@@ -253,10 +248,10 @@ export default function Payment() {
                   </Elements>
                 ) : (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-                    <p className="text-red-600 font-arial mb-2">
+                    <p className="text-red-600 font-primary mb-2">
                       ⚠️ Payment Processing Unavailable
                     </p>
-                    <p className="text-sm text-red-500 font-arial">
+                    <p className="text-sm text-red-500 font-primary">
                       Stripe payment configuration is missing. Please contact support.
                     </p>
                   </div>
@@ -269,7 +264,7 @@ export default function Payment() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className="text-red-600 text-sm font-arial">
+                    <p className="text-red-600 text-sm font-primary">
                       {paymentError}
                     </p>
                   </motion.div>

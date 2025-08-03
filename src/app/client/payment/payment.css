@@ -1,3 +1,5 @@
+/* Payment Page Styles */
+
 /* Payment Page Styles with Fluid Scaling */
 .payment-page-container {
   background: var(--background);
@@ -40,7 +42,6 @@
 
 .payment-feature:hover {
   background: rgba(0, 0, 0, 0.04);
-  /* transform: translateY(-1px); */
 }
 
 /* Responsive Stripe Elements Styling */
