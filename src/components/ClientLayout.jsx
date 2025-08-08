@@ -17,6 +17,7 @@ export default function ClientLayout() {
       isLoggedIn={isClientAuthenticated} 
       clientName={authenticatedClient?.clientName}
       clientProject={authenticatedClient?.project}
+      clientPath={authenticatedClient?.path}
       onSignOut={clearClientAuthentication}
     />
   );

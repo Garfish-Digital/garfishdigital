@@ -7,6 +7,7 @@ export default function UserProfileCircle({
   isLoggedIn,
   clientName,
   clientProject,
+  clientPath,
   onSignOut,
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,6 +42,12 @@ export default function UserProfileCircle({
     window.location.href = "/";
   };
 
+  const handleViewProject = () => {
+    if (clientPath) {
+      window.open(`https://${clientPath}`, "_blank");
+    }
+  };
+
   const handleEdit = () => {
     // TODO: Implement edit functionality
     console.log("Edit profile clicked");
@@ -67,7 +74,7 @@ export default function UserProfileCircle({
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="absolute top-12 right-0 bg-white rounded-lg shadow-lg border border-gray-200 py-2 min-w-[120px]"
+            className="absolute top-12 right-0 bg-white rounded-lg shadow-lg border border-gray-200 py-2 min-w-[130px]"
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -80,11 +87,17 @@ export default function UserProfileCircle({
               {clientProject}
             </p>
             <hr className="text-[var(--color-gray-faint)]"></hr>
-            <button
+            {/* <button
               onClick={handleEdit}
               className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
             >
               Edit
+            </button> */}
+            <button
+              onClick={handleViewProject}
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
+            >
+              View Project
             </button>
             <hr className="text-[var(--color-gray-faint)]"></hr>
             <button

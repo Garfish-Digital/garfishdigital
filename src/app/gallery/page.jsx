@@ -175,7 +175,7 @@ const demoCards = {
   cell9: {
     title: "The Scrap Pit",
     subtitle: "Divination Supplies",
-    url: "https://thescrappit-demo.netlify.app",
+    url: "https://the-scrap-pit.netlify.app",
     effects: "Blurbs goes here.",
     // effects: ['Technical deep-dives', 'Industry trends', 'Best practices'],
     hoverColors: {

@@ -12,6 +12,7 @@ import {
   faArrowRightFromBracket,
   faUserGear,
   faWindow,
+  
   faEnvelopeOpenDollar,
   faFileContract,
   faEyeSlash,
@@ -41,6 +42,27 @@ export const metadata = {
   title: "Garfish Digital",
   description: "Web Design and Development",
   robots: "noindex, nofollow",
+  openGraph: {
+    title: "Garfish Digital",
+    description: "Web Design and Development",
+    url: "https://garfishdigital.com",
+    siteName: "Garfish Digital",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Garfish Digital - Web Design and Development",
+      }
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Garfish Digital",
+    description: "Web Design and Development",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({ children }) {

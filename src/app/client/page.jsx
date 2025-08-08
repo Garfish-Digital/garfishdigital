@@ -275,7 +275,7 @@ export default function Client() {
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-sm animate-spin mr-3"></div>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
                     Authenticating...
                   </div>
                 ) : (

@@ -1,9 +1,9 @@
 [
   {
     "id": "client1",
-    "password": "inferno123",
-    "clientName": "Inferno Ink Studio",
-    "project": "Inferno Ink",
+    "password": "garfish-init",
+    "clientName": "Your Name Here",
+    "project": "Your Project Name",
     "path": "inferno-ink.netlify.app",
     "milestones": [
       {
@@ -256,15 +256,15 @@
       {
         "id": "inv_001",
         "description": "Phase 1 - Structural & Functional",
-        "amount": 2500,
-        "dueDate": "2025-02-15",
+        "amount": 1500,
+        "dueDate": "2025-05-17",
         "status": "paid"
       },
       {
         "id": "inv_002",
         "description": "Phase 2 - Branding, SEO, & Deployment",
-        "amount": 1500,
-        "dueDate": "2025-03-01",
+        "amount": 1000,
+        "dueDate": "2025-08-12",
         "status": "pending"
       }
     ],
@@ -273,8 +273,8 @@
   },
   {
     "id": "client2",
-    "password": "robinson0430",
-    "clientName": "Robinson Jackworks",
+    "password": "SRAE_9496rc",
+    "clientName": "Robert Chambers",
     "project": "Obsidian Peaks",
     "path": "obsidian-peaks.netlify.app",
     "milestones": [
@@ -497,22 +497,22 @@
     "payments": [
       {
         "id": "inv_001",
-        "description": "Phase 1 - Structural & Functional",
-        "amount": 2500,
+        "description": "TEST Phase 1 - Structural & Functional consult",
+        "amount": 1,
         "dueDate": "2025-02-15",
-        "status": "paid"
+        "status": "pending"
       },
       {
         "id": "inv_002",
-        "description": "Phase 2 - Branding, SEO, & Deployment",
-        "amount": 1500,
+        "description": "TEST Phase 2 - Branding, SEO, & Deployment consult",
+        "amount": 1,
         "dueDate": "2025-03-01",
         "status": "pending"
       },
       {
         "id": "inv_003",
-        "description": "Phase 3 - Testing & Maintenance",
-        "amount": 800,
+        "description": "TEST Phase 3 - Testing & Maintenance consult",
+        "amount": 1,
         "dueDate": "2025-04-01",
         "status": "pending"
       }
