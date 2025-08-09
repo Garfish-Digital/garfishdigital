@@ -181,9 +181,17 @@ export default function Payment() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold font-mono">
+                        <div className={`text-2xl ${
+                            invoice.status === 'paid'
+                                ? 'text-[color:var(--color-gray-light)] font-normal'
+                                : 'text-[color:var(--color-green-dark)] font-bold'
+                        } font-bold font-primary`}>
                           ${invoice.amount.toFixed(2)}
                         </div>
+                        {/* <div className="text-2xl font-bold font-primary">
+                          <span className="text-[color:var(--color-black)]">$</span>
+                          <span className="text-[color:var(--color-gray-dark)]">{invoice.amount.toFixed(2)}</span>
+                        </div> */}
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
                             ? 'text-[color:var(--color-green-dark)] font-bold' 

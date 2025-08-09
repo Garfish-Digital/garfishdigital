@@ -61,7 +61,7 @@ export default function Project() {
 
         {/* Scrollable Table Container */}
         <motion.div
-          className="flex-1 overflow-hidden rounded-lg border border-[color:var(--color-gray-light)] mb-16"
+          className="flex-1 overflow-hidden rounded-lg border border-[color:var(--color-gray-light)] mb-16 [@media(width:393px)_and_(height:852px)]:mb-20 [@media(width:430px)_and_(height:932px)]:mb-20 [@media(width:402px)_and_(height:874px)]:mb-20 [@media(width:440px)_and_(height:956px)]:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -102,7 +102,7 @@ export default function Project() {
                   milestones.map((milestone, index) => (
                     <motion.tr
                       key={index}
-                      className="hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200"
+                      className={`${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-light)]' : ''} hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}

@@ -162,7 +162,7 @@ const demoCards = {
   cell8: {
     title: "Velvet Quill",
     subtitle: "Start Your Project",
-    url: "/",
+    url: "https://velvet-quill.netlify.app",
     effects: "Blurbs goes here.",
     // effects: ['Free consultation', 'Project planning', 'Custom solutions'],
     hoverColors: {

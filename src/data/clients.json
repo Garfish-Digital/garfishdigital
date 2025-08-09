@@ -4,7 +4,7 @@
     "password": "garfish-init",
     "clientName": "Your Name Here",
     "project": "Your Project Name",
-    "path": "inferno-ink.netlify.app",
+    "path": "garfish-client-init.netlify.app",
     "milestones": [
       {
         "section": "Discovery",
