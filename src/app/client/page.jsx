@@ -26,6 +26,7 @@ export default function Client() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [validation, setValidation] = useState("");
   const [placeholder, setPlaceholder] = useState("Your client password");
   const [placeholderKey, setPlaceholderKey] = useState(0);
@@ -52,19 +53,27 @@ export default function Client() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+
     // Find matching client
     const client = clientsData.find((c) => c.password === password);
+    
     if (!client) {
-      setValidation("Invalid password");
+      // Show error modal for unsuccessful login
+      setShowErrorModal(true);
+      setPassword(""); // Clear password field
+      
+      // Auto-dismiss error modal after 1500ms
+      setTimeout(() => {
+        setShowErrorModal(false);
+      }, 1500);
       return;
     }
 
-    setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Show modal first, then authenticate after timeout
+    // Show success modal first, then authenticate after timeout
     setShowModal(true);
-    setIsSubmitting(false);
 
     // Auto-dismiss modal and authenticate after 1500ms
     setTimeout(() => {
@@ -358,6 +367,47 @@ export default function Client() {
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
                   Welcome to your {authenticatedClient?.project} portal
+                </motion.p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Error Modal */}
+      <AnimatePresence>
+        {showErrorModal && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.div
+              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden client-modal-background"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 text-center">
+                <motion.div
+                  className="text-6xl mb-4 text-red-500"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
+                >
+                  ✕
+                </motion.div>
+                <motion.p
+                  className="text-white/70 mb-6 font-primary"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  Sorry, please try your access code again
                 </motion.p>
               </div>
             </motion.div>
