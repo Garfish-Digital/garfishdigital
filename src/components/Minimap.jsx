@@ -97,13 +97,13 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                 style={{
                     border : '1px solid var(--color-gray-faint)',
                   backgroundColor: isActive 
-                    ? 'var(--color-black)'
-                    : 'var(--color-white)',
+                    ? 'var(--color-animated-black)'
+                    : 'var(--color-animated-white)',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'var(--color-green-light)',
+                  backgroundColor: 'rgb(50, 205, 50)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >

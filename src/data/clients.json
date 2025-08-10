@@ -3,7 +3,7 @@
     "id": "client1",
     "password": "garfish-init",
     "clientName": "Your Name Here",
-    "project": "Your Project Name",
+    "project": "Your Future Project",
     "path": "garfish-client-init.netlify.app",
     "milestones": [
       {
@@ -265,7 +265,7 @@
         "description": "Phase 2 - Branding, SEO, & Deployment",
         "amount": 1000,
         "dueDate": "2025-08-12",
-        "status": "pending"
+        "status": "paid"
       }
     ],
     "status": "active",

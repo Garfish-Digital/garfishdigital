@@ -87,22 +87,16 @@ export default function UserProfileCircle({
               {clientProject}
             </p>
             <hr className="text-[var(--color-gray-faint)]"></hr>
-            {/* <button
-              onClick={handleEdit}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
-            >
-              Edit
-            </button> */}
             <button
               onClick={handleViewProject}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-green-dark)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
             >
               View Project
             </button>
             <hr className="text-[var(--color-gray-faint)]"></hr>
             <button
               onClick={handleSignOut}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-green-dark)] hover:text-[var(--color-green-light)] transition-colors font-primary font-bold"
             >
               Sign out
             </button>

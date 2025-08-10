@@ -102,7 +102,7 @@ export default function Project() {
                   milestones.map((milestone, index) => (
                     <motion.tr
                       key={index}
-                      className={`${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-light)]' : ''} hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
+                      className={`${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-half-light)]' : ''} hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}

@@ -86,7 +86,8 @@ const demoCards = {
     hoverColors: {
       border: "hover:border-green-500/50",
       shadow: "hover:shadow-green-500/20",
-      gradient: "from-[#3E2723]/30 to-[#FFA000] via-[#1B3A1B]/80",
+    //   gradient: "from-[#3E2723]/30 to-[#FFA000] via-[#1B3A1B]/80",
+      gradient: "from-[var(--color-black)] to-[#FFA000]/90 via-[#1B3A1B]/60",
       text: "text-[#FFD54F]",
     },
   },
@@ -96,9 +97,9 @@ const demoCards = {
     url: "https://obsidian-peaks.netlify.app",
     effects: "A demonstration on glassmorphism, CSS filters, and lively zoom animation.",
     hoverColors: {
-      border: "hover:border-blue-500/50",
-      shadow: "hover:shadow-blue-500/20",
-      gradient: "from-[#3b82f6] to-[#ff6e1e] via-[#93c5fd]",
+      border: "hover:border-[#87CEEB]/70",
+      shadow: "hover:shadow-[#87CEEB]",
+      gradient: "from-[var(--color-black)] to-[#93c5fd]/90 via-[#3b82f6]/60",
       text: "text-[#87CEEB]",
     },
   },
@@ -110,9 +111,9 @@ const demoCards = {
     effects:
       "A demonstration on scroll animations, cursor visuals, and fiery gradient effects.",
     hoverColors: {
-      border: "hover:border-red-500/50",
-      shadow: "hover:shadow-red-500/20",
-      gradient: "from-[#0A0A0A] to-[#FFD23F] via-[#CC0000]/60",
+      border: "hover:border-[#FF8C42]/70",
+      shadow: "hover:shadow-[#FF8C42]",
+      gradient: "from-[var(--color-black)] to-[#FFD23F]/90 via-[#CC0000]/60",
       text: "text-[#FF8C42]",
     },
   },
@@ -123,9 +124,12 @@ const demoCards = {
     effects:
       "A demonstration on skeleton screens, layered textures, and vapor effects.",
     hoverColors: {
-      border: "hover:border-teal-500/70",
-      shadow: "hover:shadow-teal-500/20",
-      gradient: "from-[#2D1810] to-[#2F3349] via-[#E8E2D5]/30",
+      border: "hover:border-[#D4A574]/70",
+      shadow: "hover:shadow-[#D4A574]",
+    //   gradient: "from-[#2D1810] to-[#2F3349] via-[#E8E2D5]/30",
+    //   gradient: "from-[var(--color-black)] to-[#5a4b41]/90 via-[#2D1810]/60",
+    //   gradient: "from-[var(--color-black)] to-[#2D1810]/90 via-[#D4A574]/60",
+      gradient: "from-[var(--color-black)] to-[#B8B8B8]/90 via-[#D4A574]/60",
       text: "text-[#D4A574]",
     },
   },
@@ -136,9 +140,9 @@ const demoCards = {
     effects:
       "A demonstration on Bento boxes, flowing animation, and playful visuals.",
     hoverColors: {
-      border: "hover:border-orange-500/70",
-      shadow: "hover:shadow-orange-500/40",
-      gradient: "from-[#A855F7]/80 to-[#22C55E] via-[#FEFEFE]",
+      border: "hover:border-[#A855F7]/70",
+      shadow: "hover:shadow-[#A855F7]",
+      gradient: "from-[var(--color-black)] to-[#22C55E]/90 via-[#A855F7]/60",
       text: "text-[#A855F7]",
     },
   },
@@ -148,9 +152,9 @@ const demoCards = {
     url: "https://via-mortis.netlify.app",
     effects: "A demonstration on glitches, displacement, and broken grid.",
     hoverColors: {
-      border: "hover:border-[#bbff00]/60",
-      shadow: "hover:shadow-[#bbff00]/30",
-      gradient: "from-[#490000]/30 to-[#4b4b01] via-[#e90000]/40",
+      border: "hover:border-[#bbff00]/70",
+      shadow: "hover:shadow-[#bbff00]",
+      gradient: "from-[var(--color-black)] to-[#e90000]/90 via-[#4b4b01]/60",
       text: "text-[#bbff00]",
     },
   },
@@ -160,9 +164,9 @@ const demoCards = {
     url: "https://velvet-quill.netlify.app",
     effects: "A demonstration on layered textures, subtle animation, and interactive reveals.",
     hoverColors: {
-      border: "hover:border-yellow-500/70",
-      shadow: "hover:shadow-yellow-500/40",
-      gradient: "from-[#4A0E4E] to-[#D4A5A5] via-[#8B0000]/60",
+      border: "hover:border-[#D4A5A5]/70",
+      shadow: "hover:shadow-[#D4A5A5]",
+      gradient: "from-[var(--color-black)] to-[#8B0000]/90 via-[#4A0E4E]/60",
       text: "text-[#D4A5A5]",
     },
   },
@@ -172,10 +176,10 @@ const demoCards = {
     url: "https://the-scrap-pit.netlify.app",
     effects: "A demonstration on brutalist aesthetics and CSS color manipulation.",
     hoverColors: {
-      border: "hover:border-yellow/60",
-      shadow: "hover:shadow-red/30",
-      gradient: "from-[#E00000] to-[#1A1A1A] via-[#F8F8FF]/80",
-      text: "text-[#CC9900]",
+    border: "hover:border-[#CC9900]/70",
+    shadow: "hover:shadow-[#CC9900]",
+    gradient: "from-[var(--color-black)] to-[#F8F8FF]/90 via-[#E00000]/60",
+    text: "text-[#CC9900]",
     },
   },
 };
@@ -449,7 +453,7 @@ export default function Gallery() {
                 <FontAwesomeIcon
                   icon={faFlaskGear}
                   onClick={handleTechCardOpen}
-                  className="!w-8 !h-8 ml-2 cursor-pointer text-[var(--color-white)] hover:text-[var(--color-green-light)] transition-colors duration-200"
+                  className="!w-8 !h-8 ml-2 cursor-pointer text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200"
                 />
               </div>
             </div>
@@ -476,7 +480,7 @@ export default function Gallery() {
               }
               className="group/link flex items-center transition-colors duration-200 mt-auto cursor-pointer"
             >
-              <span className="text-xs sm:text-sm text-[var(--color-white)] group-hover/link:text-[var(--color-green-light)] font-medium font-primary">
+              <span className="text-xs sm:text-sm text-[var(--color-gray-light)] group-hover/link:text-[var(--color-white)] font-medium font-primary">
                 {cardData.url.startsWith("http") ? "View Live Demo" : "Explore"}
               </span>
               <motion.div
@@ -492,7 +496,7 @@ export default function Gallery() {
               >
                 <FontAwesomeIcon
                   icon={faArrowRightFromBracket}
-                  className="w-6 h-6 ml-2 text-[var(--color-white)] group-hover/link:text-[var(--color-green-light)]"
+                  className="w-6 h-6 ml-2 text-[var(--color-gray-light)] group-hover/link:text-[var(--color-white)]"
                 />
               </motion.div>
               <motion.div
@@ -508,7 +512,7 @@ export default function Gallery() {
               >
                 <FontAwesomeIcon
                   icon={faWindow}
-                  className="w-6 h-6 ml-1 text-[var(--color-white)] group-hover/link:text-[var(--color-green-light)]"
+                  className="w-6 h-6 ml-1 text-[var(--color-gray-light)] group-hover/link:text-[var(--color-white)]"
                 />
               </motion.div>
             </a>
@@ -676,7 +680,7 @@ export default function Gallery() {
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
                 <p className="text-white/50 text-sm font-primary">
-                  Technical implementation details
+                  Technical details of site features and animations
                 </p>
               </motion.div>
             </motion.div>

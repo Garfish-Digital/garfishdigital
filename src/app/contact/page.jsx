@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Navigation from "../../components/Navigation";
 import Logo from "../../components/Logo";
 import { useClientAuth } from "../../contexts/ClientAuthContext";
@@ -9,6 +10,7 @@ import "./contact.css";
 
 export default function Contact() {
   const { isClientAuthenticated } = useClientAuth();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -171,6 +173,12 @@ export default function Contact() {
         setShowSuccessModal(true);
         setFormData({ name: "", email: "", business: "", message: "" });
         setValidation({});
+        
+        // Auto-dismiss modal and navigate to home after 3000ms
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          router.push("/");
+        }, 3000);
       } else {
         setShowErrorModal(true);
       }
@@ -663,20 +671,17 @@ export default function Contact() {
             onClick={handleErrorModalClose}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden contact-success-modal-background"
+              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between p-6 border-b border-[color:var(--color-gray-light)]">
-                <h2 className="text-2xl font-bold text-[color:var(--color-black)] font-mono">
-                  Submission Failed
-                </h2>
+              <div className="flex justify-end p-6 ">
                 <motion.button
                   onClick={handleErrorModalClose}
-                  className="text-[color:var(--color-gray-shadow)] hover:text-[color:var(--color-black)] transition-colors p-2"
+                  className="text-white/70 hover:text-white transition-colors p-2"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -696,12 +701,11 @@ export default function Contact() {
                 </motion.button>
               </div>
               <div className="p-6">
-                <div className="text-6xl mb-6 text-[color:var(--color-gray-dark)] text-center">
+                <div className="text-6xl mb-6 text-center">
                   ⚠️
                 </div>
-                <p className="text-[color:var(--color-gray-dark)] mb-6 font-primary text-center">
-                  There was an error sending your message. Please try again or
-                  contact us directly.
+                <p className="text-white/70 mb-6 font-primary text-center">
+                  There was an error sending your message.<br/>Please try again.
                 </p>
                 <div className="flex justify-center">
                   <button

@@ -44,11 +44,11 @@ export const metadata = {
   openGraph: {
     title: "Garfish Digital",
     description: "Web Design and Development",
-    url: "https://garfishdigital.com",
+    url: "https://garfishdigital.netlify.app",
     siteName: "Garfish Digital",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://garfishdigital.netlify.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Garfish Digital - Web Design and Development",
@@ -60,7 +60,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Garfish Digital",
     description: "Web Design and Development",
-    images: ["/og-image.jpg"],
+    images: ["https://garfishdigital.netlify.app/og-image.jpg"],
   },
 };
 

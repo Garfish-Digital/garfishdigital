@@ -11,9 +11,12 @@
   --gray-dark-transparent: oklch(44.836% 0.02038 145.341 / 0.5);
   --gray-dark: oklch(44.836% 0.02038 145.341);
   --black: oklch(9.957% 0.03388 142.511);
+
+  --animated-white: #ffffff;
+  --animated-black: #000000;
   
   --green-light: rgb(125, 200, 125);
-  /* --green-light: oklab(76.497% -0.10466 0.07543); */
+  /* --green-light: oklab(76.497% -0.10466 0.07543); 
     --green-dark: oklch(22.142% 0.01528 119.111);
 
 
@@ -24,6 +27,8 @@
     --bright-neon: rgb(124, 252, 0);
     --electric-neon: rgb(57, 255, 20);
 
+    
+    --green-half-neon: rgb(127, 255, 0, .5);
     --terminal-green: rgb(50, 205, 50);
     /* --terminal-green: #32cd32; */
     --common-green: rgb(0, 102, 0);
@@ -53,6 +58,10 @@
   --color-gray-dark: var(--gray-dark);
   --color-black: var(--black);
 
+  --color-animated-white: var(--animated-white);
+  --color-animated-black: var(--animated-black);
+
+  --color-green-half-light: var(--green-half-neon);
   --color-green-light: var(--terminal-green);
   /* --color-green-light: var(--green-light); */
   --color-green-dark: var(--common-green);

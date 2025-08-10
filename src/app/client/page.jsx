@@ -27,10 +27,12 @@ export default function Client() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [validation, setValidation] = useState("");
   const [placeholder, setPlaceholder] = useState("Your client password");
   const [placeholderKey, setPlaceholderKey] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
+  console.log("Authenticated Client:", authenticatedClient);
 
   // Cycling placeholder text
   useEffect(() => {
@@ -68,17 +70,24 @@ export default function Client() {
       // Auto-dismiss error modal after 1500ms
       setTimeout(() => {
         setShowErrorModal(false);
-      }, 1500);
+      }, 2000);
       return;
     }
 
     // Show success modal first, then authenticate after timeout
     setShowModal(true);
 
-    // Auto-dismiss modal and authenticate after 1500ms
+    // Auto-dismiss success modal and authenticate after 1500ms
     setTimeout(() => {
       setShowModal(false);
       setClientAuthenticated(client);
+      
+      // Show welcome modal 750ms after success modal closes - only for garfish-init
+      if (client.password === "garfish-init") {
+          setTimeout(() => {
+            setShowWelcomeModal(true);
+          }, 750);
+      }
     }, 1500);
   };
 
@@ -98,7 +107,7 @@ export default function Client() {
     setFocusedField(null);
   };
 
-  if (isClientAuthenticated) {
+  if (isClientAuthenticated && !showWelcomeModal) {
     return (
       <div className="min-h-screen text-black client-success-container">
         <div className="client-success-content">
@@ -399,7 +408,7 @@ export default function Client() {
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
                 >
-                  ✕
+                  ⚠️
                 </motion.div>
                 <motion.p
                   className="text-white/70 mb-6 font-primary"
@@ -408,6 +417,75 @@ export default function Client() {
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
                   Sorry, please try your access code again
+                </motion.p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Welcome Modal */}
+      <AnimatePresence>
+        {showWelcomeModal && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.div
+              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden client-modal-background"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header with close button */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <motion.h2
+                  className="text-2xl font-bold text-white font-primary"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  Welcome!
+                </motion.h2>
+                <motion.button
+                  onClick={() => setShowWelcomeModal(false)}
+                  className="text-white/60 hover:text-white transition-colors p-2"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M18 6L6 18M6 6l12 12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </motion.button>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <motion.p
+                  className="text-white/70 leading-relaxed font-primary"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  This client dashboard would be your future home base for monitoring project progress, reviewing documents, and managing your payments. Feel free to explore your project's details by clicking any of the buttons or newly-added icons.
                 </motion.p>
               </div>
             </motion.div>
