@@ -82,7 +82,7 @@ export default function UserProfileCircle({
           >
             <p
               onClick={handleEdit}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-green-dark)] transition-colors font-primary font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-black)] transition-colors font-primary font-bold"
             >
               {clientProject}
             </p>

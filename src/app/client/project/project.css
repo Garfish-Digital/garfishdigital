@@ -9,3 +9,32 @@
 .project-page-container .overflow-y-auto::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+.iphone-16-spacing {
+    margin-bottom: 4rem !important; /* mb-16 equivalent */
+}
+
+/* iPhone 16 model spacing adjustments */
+@media screen and (width: 393px) and (height: 852px) {
+  .iphone-16-spacing {
+    margin-bottom: 5rem !important; /* mb-20 equivalent */
+  }
+}
+
+@media screen and (width: 430px) and (height: 932px) {
+  .iphone-16-spacing {
+    margin-bottom: 5rem !important; /* mb-20 equivalent */
+  }
+}
+
+@media screen and (width: 402px) and (height: 874px) {
+  .iphone-16-spacing {
+    margin-bottom: 5rem !important; /* mb-20 equivalent */
+  }
+}
+
+@media screen and (width: 440px) and (height: 956px) {
+  .iphone-16-spacing {
+    margin-bottom: 5rem !important; /* mb-20 equivalent */
+  }
+}

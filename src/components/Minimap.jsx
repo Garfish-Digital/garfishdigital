@@ -92,13 +92,12 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                 key={`${row}-${col}`}
                 className={`
                   relative cursor-pointer rounded-sm
-                  flex items-center justify-center transition-all duration-50
-                  ${isActive ? '' : ''}
+                  flex items-center justify-center
                 `}
                 style={{
                     border : '1px solid var(--color-gray-faint)',
                   backgroundColor: isActive 
-                    ? 'var(--color-green-dark)'
+                    ? 'var(--color-black)'
                     : 'var(--color-white)',
                 }}
                 onClick={() => page && onPageClick(page.id)}

@@ -13,7 +13,33 @@
   --black: oklch(9.957% 0.03388 142.511);
   
   --green-light: rgb(125, 200, 125);
+  /* --green-light: oklab(76.497% -0.10466 0.07543); */
     --green-dark: oklch(22.142% 0.01528 119.111);
+
+
+    --classic-neon: rgb(127, 255, 0);
+    --pastel-neon: rgb(118, 239, 137);
+    --tech-neon: rgb(0, 250, 154);
+    --fresh-neon: rgb(0, 255, 127);
+    --bright-neon: rgb(124, 252, 0);
+    --electric-neon: rgb(57, 255, 20);
+
+    --terminal-green: rgb(50, 205, 50);
+    /* --terminal-green: #32cd32; */
+    --common-green: rgb(0, 102, 0);
+    /* --common-green: #006600; */
+
+/* BLACK LODGE COLORS */
+    --tech-card-gradient1: #3E2723;
+    --tech-card-gradient2: #FFA000;
+    --tech-card-gradient3: #1B3A1B;
+    --tech-card-text: #FFD54F;
+
+
+    --tech-card-gradient1: #2D1810;
+    --tech-card-gradient2: #3b82f6;
+    --tech-card-gradient3: #93c5fd;
+    --tech-card-text: #F97316;
 }
 
 @theme inline {
@@ -27,8 +53,10 @@
   --color-gray-dark: var(--gray-dark);
   --color-black: var(--black);
 
-  --color-green-light: var(--green-light);
-  --color-green-dark: var(--green-dark);
+  --color-green-light: var(--terminal-green);
+  /* --color-green-light: var(--green-light); */
+  --color-green-dark: var(--common-green);
+  /* --color-green-dark: var(--green-dark); */
 }
 
 .scrollbar-hide::-webkit-scrollbar {

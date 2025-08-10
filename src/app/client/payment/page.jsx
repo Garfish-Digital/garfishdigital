@@ -183,8 +183,8 @@ export default function Payment() {
                       <div className="text-right">
                         <div className={`text-2xl ${
                             invoice.status === 'paid'
-                                ? 'text-[color:var(--color-gray-light)] font-normal'
-                                : 'text-[color:var(--color-green-dark)] font-bold'
+                                ? 'text-[color:var(--color-gray-light)]'
+                                : 'text-[color:var(--color-green-dark)]'
                         } font-bold font-primary`}>
                           ${invoice.amount.toFixed(2)}
                         </div>
@@ -194,8 +194,8 @@ export default function Payment() {
                         </div> */}
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
-                            ? 'text-[color:var(--color-green-dark)] font-bold' 
-                            : 'text-gray-600'
+                            ? 'text-gray-dark'
+                            : 'text-[color:var(--color-black)]' 
                         }`}>
                           {invoice.status === 'paid' ? 'PAID' : 'PENDING'}
                         </div>

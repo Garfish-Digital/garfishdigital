@@ -61,7 +61,7 @@ export default function Project() {
 
         {/* Scrollable Table Container */}
         <motion.div
-          className="flex-1 overflow-hidden rounded-lg border border-[color:var(--color-gray-light)] mb-16 [@media(width:393px)_and_(height:852px)]:mb-20 [@media(width:430px)_and_(height:932px)]:mb-20 [@media(width:402px)_and_(height:874px)]:mb-20 [@media(width:440px)_and_(height:956px)]:mb-20"
+          className="flex-1 overflow-hidden rounded-lg border border-[color:var(--color-gray-light)] iphone-16-spacing"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}

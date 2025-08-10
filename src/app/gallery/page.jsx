@@ -86,7 +86,7 @@ const demoCards = {
     hoverColors: {
       border: "hover:border-green-500/50",
       shadow: "hover:shadow-green-500/20",
-      gradient: "from-[#3E2723] to-[#FFA000] via-[#1B3A1B]/60",
+      gradient: "from-[#3E2723]/30 to-[#FFA000] via-[#1B3A1B]/80",
       text: "text-[#FFD54F]",
     },
   },
@@ -94,23 +94,21 @@ const demoCards = {
     title: "Obsidian Peaks",
     subtitle: "Snowboarding Lessons & Tours",
     url: "https://obsidian-peaks.netlify.app",
-    effects: "Blurbs goes here.",
-    // effects: ['CLI automation', 'Code generation', 'Testing frameworks'],
+    effects: "A demonstration on glassmorphism, CSS filters, and lively zoom animation.",
     hoverColors: {
-      border: "hover:border-purple-500/50",
-      shadow: "hover:shadow-purple-500/20",
-      gradient: "from-purple-500/20 to-purple-500/10",
-      text: "text-purple-500",
+      border: "hover:border-blue-500/50",
+      shadow: "hover:shadow-blue-500/20",
+      gradient: "from-[#3b82f6] to-[#ff6e1e] via-[#93c5fd]",
+      text: "text-[#87CEEB]",
     },
   },
 
   cell3: {
     title: "Inferno Ink",
-    subtitle: "Hell Hath No Fury",
+    subtitle: "Tattoo & Body Modification Shop",
     url: "https://inferno-ink.netlify.app",
     effects:
-      "A demonstration on scroll animations, cursor visuals, and fiery effects.",
-    // effects: ['Fire particles', 'Custom cursor', 'Animated scrolling'],
+      "A demonstration on scroll animations, cursor visuals, and fiery gradient effects.",
     hoverColors: {
       border: "hover:border-red-500/50",
       shadow: "hover:shadow-red-500/20",
@@ -120,16 +118,15 @@ const demoCards = {
   },
   cell4: {
     title: "Cryptic Elixir",
-    subtitle: "Rare and Ancient Occult Literature",
+    subtitle: "Rare & Ancient Occult Literature",
     url: "https://cryptic-elixir.netlify.app",
     effects:
-      "A demonstration on skeleton screens, layered, textures, and vapor effects.",
-    // effects: ['Custom frameworks', 'Enterprise scale', 'Security focused'],
+      "A demonstration on skeleton screens, layered textures, and vapor effects.",
     hoverColors: {
-      border: "hover:border-teal-500/50",
+      border: "hover:border-teal-500/70",
       shadow: "hover:shadow-teal-500/20",
-      gradient: "from-teal-500/20 to-teal-500/10",
-      text: "text-teal-500",
+      gradient: "from-[#2D1810] to-[#2F3349] via-[#E8E2D5]/30",
+      text: "text-[#D4A574]",
     },
   },
   cell6: {
@@ -137,52 +134,48 @@ const demoCards = {
     subtitle: "Divination Tools & Supplies",
     url: "https://hearth-and-harrow.netlify.app",
     effects:
-      "A demonstration on Bento boxes, flowing animation, and noise effects.",
-    // effects: ['WebGL shaders', 'AI integration', 'Real-time effects'],
+      "A demonstration on Bento boxes, flowing animation, and playful visuals.",
     hoverColors: {
-      border: "hover:border-yellow-500/50",
-      shadow: "hover:shadow-yellow-500/20",
-      gradient: "from-yellow-500/20 to-yellow-500/10",
-      text: "text-yellow-500",
+      border: "hover:border-orange-500/70",
+      shadow: "hover:shadow-orange-500/40",
+      gradient: "from-[#A855F7]/80 to-[#22C55E] via-[#FEFEFE]",
+      text: "text-[#A855F7]",
     },
   },
   cell7: {
     title: "Via Mortis",
-    subtitle: "Digital Craftsmen",
+    subtitle: "Morbid Tours & Haunted Attractions",
     url: "https://via-mortis.netlify.app",
-    effects: "Blurbs goes here.",
-    // effects: ['User-centered design', 'Agile methodology', 'Continuous learning'],
+    effects: "A demonstration on glitches, displacement, and broken grid.",
     hoverColors: {
-      border: "hover:border-orange-500/50",
-      shadow: "hover:shadow-orange-500/20",
-      gradient: "from-orange-500/20 to-orange-500/10",
-      text: "text-orange-500",
+      border: "hover:border-[#bbff00]/60",
+      shadow: "hover:shadow-[#bbff00]/30",
+      gradient: "from-[#490000]/30 to-[#4b4b01] via-[#e90000]/40",
+      text: "text-[#bbff00]",
     },
   },
   cell8: {
     title: "Velvet Quill",
-    subtitle: "Start Your Project",
+    subtitle: "Romance & Erotica Literary Collective",
     url: "https://velvet-quill.netlify.app",
-    effects: "Blurbs goes here.",
-    // effects: ['Free consultation', 'Project planning', 'Custom solutions'],
+    effects: "A demonstration on layered textures, subtle animation, and interactive reveals.",
     hoverColors: {
-      border: "hover:border-slate-500/50",
-      shadow: "hover:shadow-slate-500/20",
-      gradient: "from-slate-500/20 to-slate-500/10",
-      text: "text-slate-500",
+      border: "hover:border-yellow-500/70",
+      shadow: "hover:shadow-yellow-500/40",
+      gradient: "from-[#4A0E4E] to-[#D4A5A5] via-[#8B0000]/60",
+      text: "text-[#D4A5A5]",
     },
   },
   cell9: {
     title: "The Scrap Pit",
-    subtitle: "Divination Supplies",
+    subtitle: "MMA Gym & Fighter Training Program",
     url: "https://the-scrap-pit.netlify.app",
-    effects: "Blurbs goes here.",
-    // effects: ['Technical deep-dives', 'Industry trends', 'Best practices'],
+    effects: "A demonstration on brutalist aesthetics and CSS color manipulation.",
     hoverColors: {
-      border: "hover:border-gray-500/50",
-      shadow: "hover:shadow-gray-500/20",
-      gradient: "from-gray-500/20 to-gray-500/10",
-      text: "text-gray-500",
+      border: "hover:border-yellow/60",
+      shadow: "hover:shadow-red/30",
+      gradient: "from-[#E00000] to-[#1A1A1A] via-[#F8F8FF]/80",
+      text: "text-[#CC9900]",
     },
   },
 };
@@ -306,8 +299,8 @@ export default function Gallery() {
       cell1: {
         title: "Black Lodge Brews",
         items: [
+          "Gradient beer and woods-themed palette",
           "Floating navigation with smooth scroll triggers",
-          "Gradient colors on backgrounds and hero font",
           "Particle system for fireflies and beer & foam fizz",
           "Animated beer-fill elements",
           "Scroll-triggered data updates",
@@ -317,94 +310,94 @@ export default function Gallery() {
         ],
       },
       cell2: {
-        title: "Experiment Techniques",
+        title: "Obsidian Peaks",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "Mountain and snow-inspired palette",
+          "Glassmorphic cards and navigation",
+          "Scroll-triggered card animations",
+          "Lively zoom animation",
+          "Hover shimmers on navigation",
+          "Floating cursor orb",
+          "Background image CSS filtration",
+          "Text shadow embossment effects",
         ],
       },
       cell3: {
-        title: "Interactive Demo Techniques",
+        title: "Inferno Ink",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "fire/metal color palette",
+          "Random fire particle system",
+          "Custom fire trail cursor",
+          "Animated ember gradient buttons",
+          "Staggered scroll animations",
+          "Particle spark explosions on click/tap",
+          "Animated flicker hero",
+          "Explosive mobile menu trigger",
         ],
       },
       cell4: {
-        title: "Client Work Techniques",
+        title: "Cryptic Elixir",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "Antique library-themed palette",
+          "WebGL vapor mist",
+          "Skeleton load screen",
+          "Libary cards with stacked animations",
+          "Interactive item filtering",
+          "Shopping satchel functionality",
+          "Unfurled scroll and typed text form animation",
+          "Mystic form cursor and wax imprint submit",
         ],
       },
       cell6: {
-        title: "Tools Techniques",
+        title: "Hearth & Harrow",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "Crayola-inspired color palette",
+          "Scroll animations with staggered effects",
+          "Element motion animations",
+          "Advanced Bento Box CSS architecture",
+          "Modern breadcrumb navigation",
+          "Interactive UX with sparkles and gradient borders",
+          "Category filtration",
+          "Shopping cart functionality",
         ],
       },
       cell7: {
-        title: "About Techniques",
+        title: "Via Mortis",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "Horror themed palette for maximum atmospheric impact",
+          "Broken monitor load screen and CT-animated scan lines",
+          "SVG displacement mapping",
+          "Sophisticated random ambient glitch system",
+          "Color channel separation glitch transitions",
+          "Screech glitches and broken card hover effects",
+          "Dripping blood stream effects and blood-filled cards on hover",
+          "Full destruction animation on user interaction",
         ],
       },
       cell8: {
-        title: "Contact Techniques",
+        title: "Velvet Quill",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "Sensual velvet and ink theme with neotenic styling",
+          "Ink bleed transitions",
+          "Secret content reveals",
+          "Typewriter text animation",
+          "Interactive author cards",
+          "Candlelight hover effects",
+          "Paper texture overlay effects",
+          "Scroll-triggered animations",
         ],
       },
       cell9: {
-        title: "Blog Techniques",
+        title: "The Scrap Pit",
         items: [
-          "Lorem ipsum dolor",
-          "Sit amet consectetur",
-          "Adipiscing elit sed",
-          "Do eiusmod tempor",
-          "Incididunt ut labore",
-          "Et dolore magna",
-          "Aliqua enim ad",
-          "Minim veniam quis",
+          "Brutalist aesthetic with big text, big content, big spaces",
+          "Chromatic displacement glitches",
+          "Duotone/tritone image filter activation on click/tap",
+          "Monochrome-to-color scroll reveal",
+          "Impact flash button effects",
+          "Grit cursor with impact particles",
+          "Dynamic cursor hover awareness",
+          "Scroll-triggered navigation states",
         ],
       },
     };
@@ -456,7 +449,7 @@ export default function Gallery() {
                 <FontAwesomeIcon
                   icon={faFlaskGear}
                   onClick={handleTechCardOpen}
-                  className="w-6 h-6 ml-2 text-[var(--color-gray-light)] hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
+                  className="!w-8 !h-8 ml-2 cursor-pointer text-[var(--color-white)] hover:text-[var(--color-green-light)] transition-colors duration-200"
                 />
               </div>
             </div>
@@ -481,19 +474,43 @@ export default function Gallery() {
                   ? "noopener noreferrer"
                   : undefined
               }
-              className="flex items-center group-hover:text-white transition-colors mt-auto cursor-pointer"
+              className="group/link flex items-center transition-colors duration-200 mt-auto cursor-pointer"
             >
-              <span className="text-xs sm:text-sm text-[var(--color-white)] font-medium font-primary">
+              <span className="text-xs sm:text-sm text-[var(--color-white)] group-hover/link:text-[var(--color-green-light)] font-medium font-primary">
                 {cardData.url.startsWith("http") ? "View Live Demo" : "Explore"}
               </span>
-              <FontAwesomeIcon
-                icon={faArrowRightFromBracket}
-                className="w-6 h-6 ml-2 text-[var(--color-gray-light)] group-hover:text-[var(--color-white)] transform group-hover:translate-x-1 transition-all duration-300"
-              />
-              <FontAwesomeIcon
-                icon={faWindow}
-                className="w-6 h-6 ml-1 text-[var(--color-gray-light)] hover:text-[var(--color-white)] transform group-hover:scale-110 transition-all duration-500 ease-out delay-200"
-              />
+              <motion.div
+                animate={{
+                  x: [0, 4, 4, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  times: [0, 0.05, 0.1, 1],
+                  ease: "easeIn",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faArrowRightFromBracket}
+                  className="w-6 h-6 ml-2 text-[var(--color-white)] group-hover/link:text-[var(--color-green-light)]"
+                />
+              </motion.div>
+              <motion.div
+                animate={{
+                  scale: [1, 1, 1.3, 1],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  times: [0, 0.05, 0.15, 1],
+                  ease: "easeOut",
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faWindow}
+                  className="w-6 h-6 ml-1 text-[var(--color-white)] group-hover/link:text-[var(--color-green-light)]"
+                />
+              </motion.div>
             </a>
           </div>
         </motion.div>

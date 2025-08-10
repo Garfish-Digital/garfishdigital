@@ -12,7 +12,6 @@ import {
   faArrowRightFromBracket,
   faUserGear,
   faWindow,
-  
   faEnvelopeOpenDollar,
   faFileContract,
   faEyeSlash,
@@ -53,7 +52,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: "Garfish Digital - Web Design and Development",
-      }
+      },
     ],
     type: "website",
   },
@@ -75,6 +74,23 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="oklch(99.487% 0.00833 146.145)" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        {/* Favicons */}
+        <link
+          rel="icon"
+          type="image/png"
+          href="/public/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+        <link rel="shortcut icon" href="/public/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/public/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+        <link rel="manifest" href="/public/site.webmanifest" />
       </head>
       <body>
         <ClientAuthProvider>
