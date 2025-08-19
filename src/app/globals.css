@@ -16,7 +16,7 @@
   --animated-black: #000000;
   
   --green-light: rgb(125, 200, 125);
-  /* --green-light: oklab(76.497% -0.10466 0.07543); 
+   /* --green-light: oklab(76.497% -0.10466 0.07543); 
     --green-dark: oklch(22.142% 0.01528 119.111);
 
 
@@ -25,12 +25,12 @@
     --tech-neon: rgb(0, 250, 154);
     --fresh-neon: rgb(0, 255, 127);
     --bright-neon: rgb(124, 252, 0);
-    --electric-neon: rgb(57, 255, 20);
+    --electric-neon: rgb(57, 255, 20); */
 
     
+    /* --terminal-green: #32cd32; */
     --green-half-neon: rgb(127, 255, 0, .5);
     --terminal-green: rgb(50, 205, 50);
-    /* --terminal-green: #32cd32; */
     --common-green: rgb(0, 102, 0);
     /* --common-green: #006600; */
 
@@ -79,40 +79,16 @@
 
 
 /* NAVIGATION */
-/* Fixed navigation container - position: fixed is intentional for persistent navigation */
-.bottom-nav-container {
-  position: fixed !important;
+/* UserProfileCircle positioning - bottom-right for all viewport sizes */
+.user-profile-circle {
+  top: auto !important;
   bottom: 2rem !important;
-  right: 2rem !important;
-  z-index: 50 !important;
-  display: flex !important;
-  gap: 1rem !important;
 }
 
-/* Large screen navigation enhancements */
-@media (min-width: 912px) {
-  .bottom-nav-container {
-    top: clamp(2rem, 5vh, 3rem) !important;
-    bottom: auto !important;
-    right: clamp(2rem, 3vw, 4rem) !important;
-    gap: clamp(1.25rem, 2vw, 1.5rem) !important;
-  }
-  
-  /* Move UserProfileCircle to bottom-right on large screens */
-  .fixed.top-8.right-8 {
-    top: auto !important;
-    bottom: 2rem !important;
-  }
-  
-  /* Flip dropdown direction to open upward */
-  .fixed.top-8.right-8 .absolute.top-12 {
-    top: auto !important;
-    bottom: 3rem !important;
-  }
-}
-
-.nav-icon-offset {
-  transform: translateY(-6px);
+/* Flip dropdown direction to open upward for all viewport sizes */
+.user-profile-circle .absolute.top-12 {
+  top: auto !important;
+  bottom: 3rem !important;
 }
 
 

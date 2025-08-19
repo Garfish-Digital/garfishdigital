@@ -3,23 +3,21 @@
 .client-page-container {
   background: var(--color-white);
   position: relative;
+  min-height: 100vh; /* Allow full page height */
+  overflow-y: auto; /* Enable page-level scrolling */
 }
 
 .client-success-container {
   background: var(--color-white);
   position: relative;
+  min-height: 100vh; /* Allow full page height */
+  overflow-y: auto; /* Enable page-level scrolling */
 }
 
 .client-form-container {
   position: relative;
   z-index: 10;
-  /* Hide scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.client-form-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  /* Removed scrollbar hiding - using page-level scrolling now */
 }
 
 .client-content-wrapper {
@@ -29,13 +27,7 @@
 .client-content-container {
   position: relative;
   z-index: 10;
-  /* Hide scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.client-content-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  /* Removed scrollbar hiding - using page-level scrolling now */
 }
 
 .client-modal-background {

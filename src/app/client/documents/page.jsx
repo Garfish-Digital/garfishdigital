@@ -17,9 +17,9 @@ export default function Documents() {
 
   if (!isClientAuthenticated) {
     return (
-      <div className="min-h-screen text-black documents-success-background">
+      <div className="text-black documents-success-background">
         <Logo />
-        <div className="flex items-center justify-center h-screen px-4">
+        <div className="flex items-center justify-center min-h-screen px-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4 font-primary">
               Access Denied
@@ -38,12 +38,12 @@ export default function Documents() {
   }
 
   return (
-    <div className="min-h-screen text-black documents-success-background">
+    <div className="text-black documents-success-background">
       {/* Static Logo - Upper Left */}
       <Logo />
 
       <div className="flex items-start justify-center min-h-screen px-4 py-24 documents-page-container">
-        <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] px-4 documents-content-container">
+        <div className="w-full max-w-lg px-4 documents-content-container">
           <motion.div
             className="space-y-8"
             initial={{ opacity: 0, y: 50 }}

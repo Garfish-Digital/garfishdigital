@@ -32,11 +32,11 @@ export default function Project() {
   };
 
   return (
-    <div className="min-h-screen text-black project-page-container">
+    <div className="text-black project-page-container">
       {/* Static Logo - Upper Left */}
       <Logo />
 
-      <div className="flex flex-col h-screen px-8 pt-24 pb-8">
+      <div className="flex flex-col min-h-screen px-8 pt-24 pb-8">
     
         {/* Project Name Row */}
         <motion.div
@@ -59,14 +59,14 @@ export default function Project() {
           </button>
         </motion.div>
 
-        {/* Scrollable Table Container */}
+        {/* Table Container */}
         <motion.div
-          className="flex-1 overflow-hidden rounded-lg border border-[color:var(--color-gray-light)] iphone-16-spacing"
+          className="flex-1 rounded-lg border border-[color:var(--color-gray-light)] iphone-16-spacing"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="h-full overflow-y-auto">
+          <div>
             <table className="w-full">
               {/* Sticky Header */}
               <thead className="sticky top-0 bg-[color:var(--color-gray-light)] bg-opacity-20 backdrop-blur-sm z-10">

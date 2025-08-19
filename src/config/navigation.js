@@ -16,6 +16,7 @@ export const navigationItems = [
   {
     id: 'home',
     title: 'Home',
+    label: 'Home',
     href: '/',
     icon: faHouse,
     enabled: true,
@@ -24,6 +25,7 @@ export const navigationItems = [
   {
     id: 'gallery', 
     title: 'Gallery',
+    label: 'Gallery',
     href: '/gallery',
     icon: faGrid,
     enabled: true,
@@ -31,7 +33,8 @@ export const navigationItems = [
   },
   {
     id: 'flask-gear',
-    title: 'View Techniques', 
+    title: 'View Techniques',
+    label: 'Techniques', 
     icon: faFlaskGear,
     enabled: false, // Disabled by default
     // Will be enabled based on gallery currentPage logic
@@ -40,6 +43,7 @@ export const navigationItems = [
   {
     id: 'contact',
     title: 'Contact',
+    label: 'Contact',
     href: '/contact',
     icon: faMessage,
     enabled: true,
@@ -47,7 +51,8 @@ export const navigationItems = [
   },
   {
     id: 'client',
-    title: 'Client',
+    title: 'Portal',
+    label: 'Portal',
     href: '/client',
     icon: faUserGear,
     enabled: true,
@@ -55,7 +60,8 @@ export const navigationItems = [
   },
   {
     id: 'project',
-    title: 'View Project',
+    title: 'Project',
+    label: 'Project',
     href: '/client/project',
     icon: faWindow,
     enabled: false, // Disabled by default
@@ -64,7 +70,8 @@ export const navigationItems = [
   },
   {
       id: 'documents',
-      title: 'View Documents',
+      title: 'Documents',
+      label: 'Documents',
       href: '/client/documents',
       icon: faFileContract,
       enabled: false, // Disabled by default
@@ -73,7 +80,8 @@ export const navigationItems = [
     },
     {
       id: 'payment',
-      title: 'Make Payment',
+      title: 'Payment',
+      label: 'Payment',
       href: '/client/payment',
       icon: faEnvelopeOpenDollar,
       enabled: false, // Disabled by default

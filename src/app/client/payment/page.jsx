@@ -73,9 +73,9 @@ export default function Payment() {
 
   if (!isClientAuthenticated) {
     return (
-      <div className="h-screen overflow-hidden text-black payment-page-container">
+      <div className="text-black payment-page-container">
         <Logo />
-        <div className="flex items-center justify-center h-screen px-4">
+        <div className="flex items-center justify-center min-h-screen px-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4 font-primary">
               Access Denied
@@ -95,9 +95,9 @@ export default function Payment() {
 
   if (paymentSuccess) {
     return (
-      <div className="h-screen overflow-hidden text-black payment-page-container">
+      <div className="text-black payment-page-container">
         <Logo />
-        <div className="flex items-center justify-center h-screen px-4">
+        <div className="flex items-center justify-center min-h-screen px-4">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -129,9 +129,9 @@ export default function Payment() {
   }
 
   return (
-    <div className="h-screen overflow-hidden text-black payment-page-container">
+    <div className="text-black payment-page-container">
       <Logo />
-      <div className="flex items-start justify-center h-screen px-4 pt-24">
+      <div className="flex items-start justify-center min-h-screen px-4 pt-24">
         <div className="w-full max-w-2xl payment-content-container">
 
             <motion.div
@@ -147,7 +147,7 @@ export default function Payment() {
                 </h2>
               </motion.div>
 
-          <div className="payment-content overflow-y-auto max-h-[calc(100vh-12rem)] scrollbar-hide">
+          <div className="payment-content">
             <motion.div
               className="text-center"
               initial={{ opacity: 0, y: 20 }}

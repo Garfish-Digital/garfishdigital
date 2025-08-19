@@ -1,6 +1,7 @@
 "use client";
 
 import UserProfileCircle from "./UserProfileCircle";
+import Header from "./Header";
 import { useClientAuth } from "../contexts/ClientAuthContext";
 
 export default function ClientLayout() {
@@ -9,16 +10,20 @@ export default function ClientLayout() {
   // Debug logging
   console.log('ClientLayout render:', { 
     isClientAuthenticated, 
-    authenticatedClient: authenticatedClient?.clientName 
+    authenticatedClient,
+    clientName: authenticatedClient?.clientName 
   });
   
   return (
-    <UserProfileCircle 
-      isLoggedIn={isClientAuthenticated} 
-      clientName={authenticatedClient?.clientName}
-      clientProject={authenticatedClient?.project}
-      clientPath={authenticatedClient?.path}
-      onSignOut={clearClientAuthentication}
-    />
+    <>
+      <Header />
+      <UserProfileCircle 
+        isLoggedIn={isClientAuthenticated} 
+        clientName={authenticatedClient?.clientName}
+        clientProject={authenticatedClient?.project}
+        clientPath={authenticatedClient?.path}
+        onSignOut={clearClientAuthentication}
+      />
+    </>
   );
 }

@@ -55,10 +55,10 @@ export default function UserProfileCircle({
   };
 
   return (
-    <div className="fixed top-8 right-8 z-50" ref={menuRef}>
+    <div className="fixed top-8 right-8 z-50 user-profile-circle" ref={menuRef}>
       {/* Profile Circle */}
       <motion.button
-        className="w-8 h-8 rounded-full bg-[var(--color-green-light)] hover:bg-[var(--green-dark)] active:bg-[var(--green-dark)] flex items-center justify-center transition-colors duration-200"
+        className="w-8 h-8 rounded-full bg-[var(--color-green-dark)] hover:bg-[var(--color-green-light)] active:bg-[var(--color-green-light)] flex items-center justify-center transition-colors duration-200"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0.8 }}

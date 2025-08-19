@@ -1,18 +1,18 @@
 /* Payment Page Styles */
 
-/* Payment Page Styles with Fluid Scaling */
+/* Payment Page Styles with Fluid Scaling - Updated for page-level scrolling */
 .payment-page-container {
   background: var(--background);
   position: relative;
-  overflow: hidden !important;
+  min-height: 100vh; /* Allow full page height */
+  overflow-y: auto; /* Enable page-level scrolling */
   padding-bottom: clamp(60px, 12vh, 100px); /* Fluid navigation space */
 }
 
 .payment-content-container {
   position: relative;
   z-index: 10;
-  max-height: clamp(calc(100vh - 120px), calc(100vh - 160px), calc(100vh - 200px)); /* Fluid height */
-  overflow: hidden;
+  /* Removed height constraints - using page-level scrolling now */
   padding: clamp(1rem, 3vw, 2rem); /* Fluid content padding */
 }
 

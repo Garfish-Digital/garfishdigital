@@ -37,75 +37,75 @@ export default function Contact() {
   const [showModal, setShowModal] = useState(null);
 
   // Separate cycling for each field with staggered timing
-  useEffect(() => {
-    // Cycling placeholder text
-    const placeholderOptions = {
-      name: [`What\'s your name`, "A nickname?", "Who are you?"],
-      email: [
-        "your@email.com",
-        "Where do you get messages?",
-        "How do we reach you?",
-      ],
-      business: [
-        "Your business (optional)",
-        "What type of work do you do?",
-        "Who you bust your a$$ for",
-      ],
-      message: [
-        "What are you building?",
-        "Do you have wild ideas?",
-        "What can we do?",
-      ],
-    };
+//   useEffect(() => {
+//     // Cycling placeholder text
+//     const placeholderOptions = {
+//       name: [`What\'s your name`, "A nickname?", "Who are you?"],
+//       email: [
+//         "your@email.com",
+//         "Where do you get messages?",
+//         "How do we reach you?",
+//       ],
+//       business: [
+//         "Your business (optional)",
+//         "What type of work do you do?",
+//         "Who you bust your a$$ for",
+//       ],
+//       message: [
+//         "What are you building?",
+//         "Do you have wild ideas?",
+//         "What can we do?",
+//       ],
+//     };
 
-    let nameIndex = 0;
-    let emailIndex = 0;
-    let businessIndex = 0;
-    let messageIndex = 0;
+//     let nameIndex = 0;
+//     let emailIndex = 0;
+//     let businessIndex = 0;
+//     let messageIndex = 0;
 
-    const nameInterval = setInterval(() => {
-      nameIndex = (nameIndex + 1) % placeholderOptions.name.length;
-      setPlaceholders((prev) => ({
-        ...prev,
-        name: placeholderOptions.name[nameIndex],
-      }));
-      setPlaceholderKeys((prev) => ({ ...prev, name: prev.name + 1 }));
-    }, 12600);
+//     const nameInterval = setInterval(() => {
+//       nameIndex = (nameIndex + 1) % placeholderOptions.name.length;
+//       setPlaceholders((prev) => ({
+//         ...prev,
+//         name: placeholderOptions.name[nameIndex],
+//       }));
+//       setPlaceholderKeys((prev) => ({ ...prev, name: prev.name + 1 }));
+//     }, 12600);
 
-    const emailInterval = setInterval(() => {
-      emailIndex = (emailIndex + 1) % placeholderOptions.email.length;
-      setPlaceholders((prev) => ({
-        ...prev,
-        email: placeholderOptions.email[emailIndex],
-      }));
-      setPlaceholderKeys((prev) => ({ ...prev, email: prev.email + 1 }));
-    }, 18000);
+//     const emailInterval = setInterval(() => {
+//       emailIndex = (emailIndex + 1) % placeholderOptions.email.length;
+//       setPlaceholders((prev) => ({
+//         ...prev,
+//         email: placeholderOptions.email[emailIndex],
+//       }));
+//       setPlaceholderKeys((prev) => ({ ...prev, email: prev.email + 1 }));
+//     }, 18000);
 
-    const businessInterval = setInterval(() => {
-      businessIndex = (businessIndex + 1) % placeholderOptions.business.length;
-      setPlaceholders((prev) => ({
-        ...prev,
-        business: placeholderOptions.business[businessIndex],
-      }));
-      setPlaceholderKeys((prev) => ({ ...prev, business: prev.business + 1 }));
-    }, 20500);
+//     const businessInterval = setInterval(() => {
+//       businessIndex = (businessIndex + 1) % placeholderOptions.business.length;
+//       setPlaceholders((prev) => ({
+//         ...prev,
+//         business: placeholderOptions.business[businessIndex],
+//       }));
+//       setPlaceholderKeys((prev) => ({ ...prev, business: prev.business + 1 }));
+//     }, 20500);
 
-    const messageInterval = setInterval(() => {
-      messageIndex = (messageIndex + 1) % placeholderOptions.message.length;
-      setPlaceholders((prev) => ({
-        ...prev,
-        message: placeholderOptions.message[messageIndex],
-      }));
-      setPlaceholderKeys((prev) => ({ ...prev, message: prev.message + 1 }));
-    }, 15000);
+//     const messageInterval = setInterval(() => {
+//       messageIndex = (messageIndex + 1) % placeholderOptions.message.length;
+//       setPlaceholders((prev) => ({
+//         ...prev,
+//         message: placeholderOptions.message[messageIndex],
+//       }));
+//       setPlaceholderKeys((prev) => ({ ...prev, message: prev.message + 1 }));
+//     }, 15000);
 
-    return () => {
-      clearInterval(nameInterval);
-      clearInterval(emailInterval);
-      clearInterval(businessInterval);
-      clearInterval(messageInterval);
-    };
-  }, []);
+//     return () => {
+//       clearInterval(nameInterval);
+//       clearInterval(emailInterval);
+//       clearInterval(businessInterval);
+//       clearInterval(messageInterval);
+//     };
+//   }, []);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -223,12 +223,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-screen overflow-hidden text-black contact-page-container">
+    <div className="text-black contact-page-container">
       {/* Static Logo - Upper Left */}
       <Logo />
 
       <div className="flex items-start justify-center min-h-screen px-4 py-24">
-        <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] contact-form-container">
+        <div className="w-full max-w-lg contact-form-container">
           <div className="w-80 mt-8 mb-8 sm:w-96 md:w-[420px]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -287,9 +287,9 @@ export default function Contact() {
                     className={`w-full px-3 py-3 contact-form-field text-black transition-all duration-300 ${
                       focusedField === "name" ? "focus-bounce" : ""
                     }`}
-                    placeholder=" "
+                    placeholder="Your name"
                   />
-                  {!formData.name && (
+                  {/* {!formData.name && (
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.name}
@@ -302,7 +302,7 @@ export default function Contact() {
                         {placeholders.name}
                       </motion.div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -320,9 +320,9 @@ export default function Contact() {
                     className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
                       focusedField === "email" ? "focus-bounce" : ""
                     }`}
-                    placeholder=" "
+                    placeholder="your@email.com"
                   />
-                  {!formData.email && (
+                  {/* {!formData.email && (
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.email}
@@ -335,9 +335,9 @@ export default function Contact() {
                         {placeholders.email}
                       </motion.div>
                     </div>
-                  )}
+                  )} */}
                 </div>
-                {validation.email && (
+                {/* {validation.email && (
                   <div
                     className={`text-xs mb-1 transition-all duration-300 ${
                       validation.email.includes("Perfect") ||
@@ -352,7 +352,7 @@ export default function Contact() {
                   >
                     {validation.email}
                   </div>
-                )}
+                )} */}
               </div>
 
               <div className="relative">
@@ -369,9 +369,9 @@ export default function Contact() {
                     className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
                       focusedField === "business" ? "focus-bounce" : ""
                     }`}
-                    placeholder=" "
+                    placeholder="Your business (optional)"
                   />
-                  {!formData.business && (
+                  {/* {!formData.business && (
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.business}
@@ -384,7 +384,7 @@ export default function Contact() {
                         {placeholders.business}
                       </motion.div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -402,9 +402,9 @@ export default function Contact() {
                     className={`w-full px-3 py-3 contact-form-field resize-none transition-all duration-300 ${
                       focusedField === "message" ? "focus-bounce" : ""
                     }`}
-                    placeholder=" "
+                    placeholder="Tell us about your project..."
                   />
-                  {!formData.message && (
+                  {/* {!formData.message && (
                     <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKeys.message}
@@ -417,7 +417,7 @@ export default function Contact() {
                         {placeholders.message}
                       </motion.div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -441,7 +441,7 @@ export default function Contact() {
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
         >
-          Privacy
+          Privacy Policy
         </motion.button>
         <motion.button
           onClick={() => setShowModal("terms")}
@@ -450,7 +450,7 @@ export default function Contact() {
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
         >
-          Terms
+          Terms of Service
         </motion.button>
       </div>
 

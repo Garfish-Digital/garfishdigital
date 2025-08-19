@@ -1,8 +1,10 @@
 /* Contact Page Styles */
 
-/* Main contact page container */
+/* Main contact page container - allow full page scrolling */
 .contact-page-container {
   background: var(--color-white);
+  min-height: 100vh; /* Use min-height instead of h-screen to allow scrolling */
+  overflow-y: auto; /* Allow page-level scrolling */
 }
 
 /* Modal background */
@@ -21,16 +23,7 @@
 /* Form sizing adjustments with fluid responsiveness */
 .contact-form-container {
   max-width: clamp(18rem, 85vw, 32rem) !important; /* Fluid form container width */
-}
-
-/* Hide scrollbar while maintaining scrollability */
-.contact-form-container {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer/Edge */
-}
-
-.contact-form-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  /* Removed scrollbar hiding and overflow constraints - page-level scrolling now */
 }
 
 /* Fluid mobile responsive adjustments with intermediate breakpoints */

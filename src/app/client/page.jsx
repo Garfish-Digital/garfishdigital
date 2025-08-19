@@ -29,28 +29,28 @@ export default function Client() {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [validation, setValidation] = useState("");
-  const [placeholder, setPlaceholder] = useState("Your client password");
-  const [placeholderKey, setPlaceholderKey] = useState(0);
+//   const [placeholder, setPlaceholder] = useState("Your client password");
+//   const [placeholderKey, setPlaceholderKey] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
   console.log("Authenticated Client:", authenticatedClient);
 
   // Cycling placeholder text
-  useEffect(() => {
-    const placeholderOptions = [
-      "Portal code here",
-      "Backstage pass",
-      "Key to the city",
-    ];
+//   useEffect(() => {
+//     const placeholderOptions = [
+//       "Portal code here",
+//       "Backstage pass",
+//       "Key to the city",
+//     ];
 
-    let index = 0;
-    const interval = setInterval(() => {
-      index = (index + 1) % placeholderOptions.length;
-      setPlaceholder(placeholderOptions[index]);
-      setPlaceholderKey((prev) => prev + 1);
-    }, 8000);
+//     let index = 0;
+//     const interval = setInterval(() => {
+//       index = (index + 1) % placeholderOptions.length;
+//       setPlaceholder(placeholderOptions[index]);
+//       setPlaceholderKey((prev) => prev + 1);
+//     }, 8000);
 
-    return () => clearInterval(interval);
-  }, []);
+//     return () => clearInterval(interval);
+//   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -109,13 +109,13 @@ export default function Client() {
 
   if (isClientAuthenticated && !showWelcomeModal) {
     return (
-      <div className="min-h-screen text-black client-success-container">
+      <div className="text-black client-success-container">
         <div className="client-success-content">
           {/* Static Logo - Upper Left */}
           <Logo />
 
-          <div className="flex items-start justify-center h-screen px-4 client-content-wrapper">
-            <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] pb-4 client-content-container">
+          <div className="flex items-start justify-center min-h-screen px-4 client-content-wrapper">
+            <div className="w-full max-w-lg pb-4 client-content-container">
               <motion.div
                 className="space-y-8"
                 initial={{ opacity: 0, y: 50 }}
@@ -203,9 +203,9 @@ export default function Client() {
   }
 
   return (
-    <div className="h-screen overflow-hidden text-black client-page-container">
-      <div className="flex items-start justify-center h-screen px-4 pt-24 client-page-content">
-        <div className="w-full max-w-lg overflow-y-auto max-h-[calc(100vh-12rem)] client-form-container">
+    <div className="text-black client-page-container">
+      <div className="flex items-start justify-center min-h-screen px-4 pt-24 client-page-content">
+        <div className="w-full max-w-lg client-form-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -250,7 +250,7 @@ export default function Client() {
                     className={`w-full client-form-field transition-all duration-300 ${
                       focusedField === "password" ? "focus-bounce" : ""
                     }`}
-                    placeholder=" "
+                    placeholder="Enter your portal code"
                   />
 
                   {/* Password Toggle Button */}
@@ -269,7 +269,7 @@ export default function Client() {
                     )}
                   </button>
 
-                  {!password && (
+                  {/* {!password && (
                     <div className="absolute left-3 top-4 pointer-events-none overflow-hidden h-6">
                       <motion.div
                         key={placeholderKey}
@@ -282,7 +282,7 @@ export default function Client() {
                         {placeholder}
                       </motion.div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
 

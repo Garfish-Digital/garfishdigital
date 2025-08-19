@@ -1,13 +1,13 @@
 /* Documents Page Styles */
 
-/* Hide scrollbar while maintaining scrollability */
-.documents-content-container {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer/Edge */
+.documents-success-background {
+  min-height: 100vh; /* Allow full page height */
+  overflow-y: auto; /* Enable page-level scrolling */
 }
 
-.documents-content-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* Removed scrollbar hiding - using page-level scrolling now */
+.documents-content-container {
+  /* No longer needs overflow constraints */
 }
 
 @media (min-width: 540px) {

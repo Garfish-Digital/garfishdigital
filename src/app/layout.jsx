@@ -15,6 +15,7 @@ import {
   faEnvelopeOpenDollar,
   faFileContract,
   faEyeSlash,
+  faBars,
 } from "@fortawesome/pro-regular-svg-icons";
 
 // 4. Tell Font Awesome to skip adding the CSS automatically.
@@ -34,7 +35,8 @@ library.add(
   faWindow,
   faEnvelopeOpenDollar,
   faFileContract,
-  faEyeSlash
+  faEyeSlash,
+  faBars
 );
 
 export const metadata = {
