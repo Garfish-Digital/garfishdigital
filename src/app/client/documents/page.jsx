@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import Navigation from "../../../components/Navigation";
 import Logo from "../../../components/Logo";
 import { useClientAuth } from "../../../contexts/ClientAuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLightbulbOn,
+  faFolderCheck,
+  faClipboardList,
+  faHandHoldingBox,
+} from "@fortawesome/pro-regular-svg-icons";
 import "./documents.css";
 
 export default function Documents() {
@@ -17,14 +24,14 @@ export default function Documents() {
 
   if (!isClientAuthenticated) {
     return (
-      <div className="text-black documents-success-background">
+      <div className="text-[color:var(--color-white)] documents-success-background bg-[color:var(--color-black)]">
         <Logo />
         <div className="flex items-center justify-center min-h-screen px-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4 font-primary">
               Access Denied
             </h2>
-            <p className="text-gray-600 font-primary">
+            <p className="text-[color:var(--color-gray-dark)] font-primary">
               Please log in to access documents.
             </p>
           </div>
@@ -38,7 +45,7 @@ export default function Documents() {
   }
 
   return (
-    <div className="text-black documents-success-background">
+    <div className="text-[color:var(--color-white)] documents-success-background bg-[color:var(--color-black)]">
       {/* Static Logo - Upper Left */}
       <Logo />
 
@@ -55,9 +62,9 @@ export default function Documents() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-primary">
+              <h2 className="text-lg font-bold mb-4 text-[color:var(--color-cyan-dark)] font-primary">
                 Document Center for{" "}
-                <strong className="text-[var(--color-gray-shadow)]">
+                <strong className="text-[var(--color-white)]">
                   {authenticatedClient?.project || "your project"}
                 </strong>
               </h2>
@@ -72,9 +79,13 @@ export default function Documents() {
                 className="garfish-button font-primary w-75"
                 onClick={() => handleDocumentClick("scope")}
               >
+                <FontAwesomeIcon
+                    icon={faLightbulbOn}
+                    className="mr-2"
+                />
                 Review Project Scope
               </button>
-              <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+              <p className="pt-2 text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                 See what we'll build and when. This document is your guide to
                 the project's features, timelines, and technical details, laying
                 the groundwork for our work together.{" "}
@@ -90,9 +101,13 @@ export default function Documents() {
                 className="garfish-button font-primary w-75"
                 onClick={() => handleDocumentClick("agreement")}
               >
+                <FontAwesomeIcon
+                    icon={faFolderCheck}
+                    className="mr-2"
+                />
                 View Project Agreement
               </button>
-              <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+              <p className="pt-2 text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                 Access your formal project contract. This legal document details
                 our terms, what we'll deliver, and key project dates, clearly
                 defining our partnership.{" "}
@@ -108,9 +123,13 @@ export default function Documents() {
                 className="garfish-button font-primary w-75"
                 onClick={() => handleDocumentClick("handoff")}
               >
+                <FontAwesomeIcon
+                    icon={faHandHoldingBox}
+                    className="mr-2"
+                />
                 Project Handoff Package
               </button>
-              <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+              <p className="pt-2 text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                 This document outlines your complete project handoff package.
                 Upon completion, you'll receive all source code, hosting
                 credentials, maintenance guidelines, and training materials for

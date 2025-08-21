@@ -223,7 +223,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="text-black contact-page-container">
+    <div className="text-[color:var(--color-white)] contact-page-container bg-[color:var(--color-black)]">
       {/* Static Logo - Upper Left */}
       <Logo />
 
@@ -235,7 +235,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
+              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
                 How Do I Get Started?
               </h2>
             </motion.div>
@@ -244,7 +244,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+              <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                 Tell us about your website needs using the form below. We'll
                 take it from here.
               </p>
@@ -284,25 +284,11 @@ export default function Contact() {
                     onChange={handleChange}
                     onFocus={() => handleFocus("name")}
                     onBlur={handleBlur}
-                    className={`w-full px-3 py-3 contact-form-field text-black transition-all duration-300 ${
+                    className={`w-full px-3 py-3 contact-form-field text-[color:var(--color-white)] transition-all duration-300 ${
                       focusedField === "name" ? "focus-bounce" : ""
                     }`}
                     placeholder="Your name"
                   />
-                  {/* {!formData.name && (
-                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                      <motion.div
-                        key={placeholderKeys.name}
-                        className="text-[var(--color-gray-faint)] font-primary"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                      >
-                        {placeholders.name}
-                      </motion.div>
-                    </div>
-                  )} */}
                 </div>
               </div>
 
@@ -322,37 +308,7 @@ export default function Contact() {
                     }`}
                     placeholder="your@email.com"
                   />
-                  {/* {!formData.email && (
-                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                      <motion.div
-                        key={placeholderKeys.email}
-                        className="text-[var(--color-gray-faint)] font-primary"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                      >
-                        {placeholders.email}
-                      </motion.div>
-                    </div>
-                  )} */}
                 </div>
-                {/* {validation.email && (
-                  <div
-                    className={`text-xs mb-1 transition-all duration-300 ${
-                      validation.email.includes("Perfect") ||
-                      validation.email.includes("✓")
-                        ? "text-user-green"
-                        : validation.email.includes("Missing") ||
-                            validation.email.includes("Needs") ||
-                            validation.email.includes("format")
-                          ? "text-user-yellow"
-                          : "text-white/60"
-                    }`}
-                  >
-                    {validation.email}
-                  </div>
-                )} */}
               </div>
 
               <div className="relative">
@@ -371,20 +327,6 @@ export default function Contact() {
                     }`}
                     placeholder="Your business (optional)"
                   />
-                  {/* {!formData.business && (
-                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                      <motion.div
-                        key={placeholderKeys.business}
-                        className="text-[var(--color-gray-faint)] font-primary"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                      >
-                        {placeholders.business}
-                      </motion.div>
-                    </div>
-                  )} */}
                 </div>
               </div>
 
@@ -404,20 +346,6 @@ export default function Contact() {
                     }`}
                     placeholder="Tell us about your project..."
                   />
-                  {/* {!formData.message && (
-                    <div className="absolute left-3 top-3 pointer-events-none overflow-hidden h-6">
-                      <motion.div
-                        key={placeholderKeys.message}
-                        className="text-[var(--color-gray-faint)] font-primary"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                      >
-                        {placeholders.message}
-                      </motion.div>
-                    </div>
-                  )} */}
                 </div>
               </div>
 
@@ -436,7 +364,7 @@ export default function Contact() {
       <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">
         <motion.button
           onClick={() => setShowModal("privacy")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
@@ -445,7 +373,7 @@ export default function Contact() {
         </motion.button>
         <motion.button
           onClick={() => setShowModal("terms")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -472,7 +400,7 @@ export default function Contact() {
             onClick={() => setShowModal(null)}
           >
             <motion.div
-              className="w-full max-w-4xl mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden contact-modal-background"
+              className="w-full max-w-4xl mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-green-dark)]/20 rounded-lg overflow-hidden contact-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -1 }}
               animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20, rotate: 1 }}
@@ -481,19 +409,19 @@ export default function Contact() {
             >
               {/* Header */}
               <motion.div
-                className="flex items-center justify-between p-6 border-b border-white/10"
+                className="flex items-center justify-between p-6 border-b border-[color:var(--color-black)]/10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
-                <h2 className="text-2xl font-bold text-white font-primary">
+                <h2 className="text-2xl font-bold text-[color:var(--color-white)] font-primary">
                   {showModal === "privacy"
                     ? "Privacy Policy"
                     : "Terms of Service"}
                 </h2>
                 <motion.button
                   onClick={() => setShowModal(null)}
-                  className="text-white/60 hover:text-white transition-colors p-2"
+                  className="text-[color:var(--color-white)]/60 hover:text-[color:var(--color-black)] transition-colors p-2"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
@@ -518,7 +446,7 @@ export default function Contact() {
 
               {/* Content */}
               <motion.div
-                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed font-primary"
+                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-white)]/80 leading-relaxed font-primary"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -558,7 +486,7 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                       >
-                        <h3 className="text-lg font-semibold text-white">
+                        <h3 className="text-lg font-semibold text-[color:var(--color-cyan-dark)]">
                           {section.title}
                         </h3>
                         <p>{section.content}</p>
@@ -600,7 +528,7 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                       >
-                        <h3 className="text-lg font-semibold text-white">
+                        <h3 className="text-lg font-semibold text-[color:var(--color-white)]">
                           {section.title}
                         </h3>
                         <p>{section.content}</p>
@@ -612,12 +540,12 @@ export default function Contact() {
 
               {/* Footer */}
               <motion.div
-                className="p-6 border-t border-white/10 text-center"
+                className="p-6 border-t border-[color:var(--color-black)]/10 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
-                <p className="text-white/50 text-sm font-primary">
+                <p className="text-[color:var(--color-white)]/50 text-sm font-primary">
                   Last updated: January 2025
                 </p>
               </motion.div>
@@ -637,7 +565,7 @@ export default function Contact() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-[color:var(--color-gray-light)] rounded-lg overflow-hidden contact-success-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)] rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -650,7 +578,7 @@ export default function Contact() {
                 <h2 className="text-2xl font-bold mb-4 text-[color:var(--color-white)] font-primary">
                   Message Sent
                 </h2>
-                <p className="text-[color:var(--color-gray-light)] mb-6 font-primary">
+                <p className="text-[color:var(--color-gray-dark)] mb-6 font-primary">
                   We'll get back to you within 24 hours.
                 </p>
               </div>
@@ -671,7 +599,7 @@ export default function Contact() {
             onClick={handleErrorModalClose}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden contact-success-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/20 rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -681,7 +609,7 @@ export default function Contact() {
               <div className="flex justify-end p-6 ">
                 <motion.button
                   onClick={handleErrorModalClose}
-                  className="text-white/70 hover:text-white transition-colors p-2"
+                  className="text-[color:var(--color-white)]/70 hover:text-[color:var(--color-white)] transition-colors p-2"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -704,7 +632,7 @@ export default function Contact() {
                 <div className="text-6xl mb-6 text-center">
                   ⚠️
                 </div>
-                <p className="text-white/70 mb-6 font-primary text-center">
+                <p className="text-[color:var(--color-white)]/70 mb-6 font-primary text-center">
                   There was an error sending your message.<br/>Please try again.
                 </p>
                 <div className="flex justify-center">

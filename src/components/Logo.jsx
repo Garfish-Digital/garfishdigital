@@ -12,7 +12,7 @@ export default function Logo() {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <Link href="/" className="block">
-        <div className="text-[color:var(--color-black)] font-mono text-3xl font-bold text-left">
+        <div className="text-[color:var(--color-white)] font-mono text-3xl font-bold text-left">
           Garfish Digital
         </div>
       </Link>

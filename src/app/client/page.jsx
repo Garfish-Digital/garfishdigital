@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
   faEyeSlash,
-  faWindow,
+  faChartColumn,
   faEnvelopeOpenDollar,
   faFileContract,
 } from "@fortawesome/pro-regular-svg-icons";
@@ -28,29 +28,8 @@ export default function Client() {
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
-  const [validation, setValidation] = useState("");
-//   const [placeholder, setPlaceholder] = useState("Your client password");
-//   const [placeholderKey, setPlaceholderKey] = useState(0);
   const [focusedField, setFocusedField] = useState(null);
   console.log("Authenticated Client:", authenticatedClient);
-
-  // Cycling placeholder text
-//   useEffect(() => {
-//     const placeholderOptions = [
-//       "Portal code here",
-//       "Backstage pass",
-//       "Key to the city",
-//     ];
-
-//     let index = 0;
-//     const interval = setInterval(() => {
-//       index = (index + 1) % placeholderOptions.length;
-//       setPlaceholder(placeholderOptions[index]);
-//       setPlaceholderKey((prev) => prev + 1);
-//     }, 8000);
-
-//     return () => clearInterval(interval);
-//   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,12 +40,12 @@ export default function Client() {
 
     // Find matching client
     const client = clientsData.find((c) => c.password === password);
-    
+
     if (!client) {
       // Show error modal for unsuccessful login
       setShowErrorModal(true);
       setPassword(""); // Clear password field
-      
+
       // Auto-dismiss error modal after 1500ms
       setTimeout(() => {
         setShowErrorModal(false);
@@ -81,12 +60,12 @@ export default function Client() {
     setTimeout(() => {
       setShowModal(false);
       setClientAuthenticated(client);
-      
+
       // Show welcome modal 750ms after success modal closes - only for garfish-init
       if (client.password === "garfish-init") {
-          setTimeout(() => {
-            setShowWelcomeModal(true);
-          }, 750);
+        setTimeout(() => {
+          setShowWelcomeModal(true);
+        }, 750);
       }
     }, 1500);
   };
@@ -109,7 +88,7 @@ export default function Client() {
 
   if (isClientAuthenticated && !showWelcomeModal) {
     return (
-      <div className="text-black client-success-container">
+      <div className="text-[color:var(--color-white)] client-success-container bg-[color:var(--color-black)]">
         <div className="client-success-content">
           {/* Static Logo - Upper Left */}
           <Logo />
@@ -127,8 +106,11 @@ export default function Client() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                  <h2 className="text-lg font-bold mb-6 text-[color:var(--color-gray-shadow)] font-primary">
-                    Portal dashboard for {authenticatedClient?.project}
+                  <h2 className="text-lg font-bold mb-6 text-[color:var(--color-cyan-dark)] font-primary">
+                    Portal dashboard for{" "}
+                    <strong className="text-[var(--color-white)]">
+                      {authenticatedClient?.project || "your project"}
+                    </strong>
                   </h2>
                 </motion.div>
                 <motion.div
@@ -140,10 +122,10 @@ export default function Client() {
                     onClick={() => router.push("/client/project")}
                     className="garfish-button w-50"
                   >
-                    <FontAwesomeIcon icon={faWindow} className="mr-2" />
+                    <FontAwesomeIcon icon={faChartColumn} className="mr-2" />
                     Project Overview
                   </button>
-                  <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                  <p className="pt-2 text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                     Keep an eye on development progress by tracking milestones
                     and viewing the current progress on the actual{" "}
                     {authenticatedClient?.project || "your project"} website.
@@ -162,7 +144,7 @@ export default function Client() {
                     <FontAwesomeIcon icon={faFileContract} className="mr-2" />
                     Document Center
                   </button>
-                  <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                  <p className="pt-2 text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                     Review pending contracts and project specifications, all
                     organized in one place for your convenience.
                   </p>
@@ -183,7 +165,7 @@ export default function Client() {
                     />
                     Payment Gateway
                   </button>
-                  <p className="pt-2 text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+                  <p className="pt-2 text-[color:var(--color-gray-light)] font-primary leading-relaxed">
                     Watch over your payment plan, view past payments, or even
                     submit a new payment.
                   </p>
@@ -203,7 +185,7 @@ export default function Client() {
   }
 
   return (
-    <div className="text-black client-page-container">
+    <div className="text-[color:var(--color-white)] client-page-container bg-[color:var(--color-black)]">
       <div className="flex items-start justify-center min-h-screen px-4 pt-24 client-page-content">
         <div className="w-full max-w-lg client-form-container">
           <motion.div
@@ -211,7 +193,7 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
+            <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
               Access Your Dashboard
             </h2>
           </motion.div>
@@ -221,7 +203,7 @@ export default function Client() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mb-8"
           >
-            <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+            <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
               Enter your unique portal code to view your project's progress.
               Don't have a code yet? Find out more below.
             </p>
@@ -268,21 +250,6 @@ export default function Client() {
                       />
                     )}
                   </button>
-
-                  {/* {!password && (
-                    <div className="absolute left-3 top-4 pointer-events-none overflow-hidden h-6">
-                      <motion.div
-                        key={placeholderKey}
-                        className="text-[var(--color-gray-faint)] font-primary"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                      >
-                        {placeholder}
-                      </motion.div>
-                    </div>
-                  )} */}
                 </div>
               </div>
 
@@ -293,7 +260,7 @@ export default function Client() {
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3"></div>
+                    <div className="w-5 h-5 border-2 border-[color:var(--color-black)]/30 border-t-[color:var(--color-black)] rounded-full animate-spin mr-3"></div>
                     Authenticating...
                   </div>
                 ) : (
@@ -308,7 +275,7 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
+            <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
               Ready for Your Project Portal?
             </h2>
           </motion.div>
@@ -317,11 +284,11 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
+            <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
               Simply send us a message through our{" "}
               <Link
                 href="/contact"
-                className="text-[var(--color-gray-light)] hover:text-[var(--color-green-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+                className="text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
               >
                 Contact Page
               </Link>{" "}
@@ -353,7 +320,7 @@ export default function Client() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden client-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/20 rounded-lg overflow-hidden client-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -370,7 +337,7 @@ export default function Client() {
                   ✓
                 </motion.div>
                 <motion.p
-                  className="text-white/70 mb-6 font-primary"
+                  className="text-[color:var(--color-white)]/70 mb-6 font-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
@@ -394,7 +361,7 @@ export default function Client() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden client-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/20 rounded-lg overflow-hidden client-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -411,7 +378,7 @@ export default function Client() {
                   ⚠️
                 </motion.div>
                 <motion.p
-                  className="text-white/70 mb-6 font-primary"
+                  className="text-[color:var(--color-white)]/70 mb-6 font-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
@@ -435,7 +402,7 @@ export default function Client() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden client-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/20 rounded-lg overflow-hidden client-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -443,9 +410,9 @@ export default function Client() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header with close button */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
+              <div className="flex items-center justify-between p-6 border-b border-[color:var(--color-white)]/10">
                 <motion.h2
-                  className="text-2xl font-bold text-white font-primary"
+                  className="text-2xl font-bold text-[color:var(--color-white)] font-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -454,7 +421,7 @@ export default function Client() {
                 </motion.h2>
                 <motion.button
                   onClick={() => setShowWelcomeModal(false)}
-                  className="text-white/60 hover:text-white transition-colors p-2"
+                  className="text-[color:var(--color-white)]/60 hover:text-[color:var(--color-white)] transition-colors p-2"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
@@ -480,12 +447,15 @@ export default function Client() {
               {/* Content */}
               <div className="p-6">
                 <motion.p
-                  className="text-white/70 leading-relaxed font-primary"
+                  className="text-[color:var(--color-white)]/70 leading-relaxed font-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  This client dashboard would be your future home base for monitoring project progress, reviewing documents, and managing your payments. Feel free to explore your project's details by clicking any of the buttons or newly-added icons.
+                  This client dashboard would be your future home base for
+                  monitoring project progress, reviewing documents, and managing
+                  your payments. Feel free to explore your project's details by
+                  clicking any of the buttons or newly-added icons.
                 </motion.p>
               </div>
             </motion.div>

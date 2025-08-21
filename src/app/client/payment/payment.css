@@ -2,7 +2,7 @@
 
 /* Payment Page Styles with Fluid Scaling - Updated for page-level scrolling */
 .payment-page-container {
-  background: var(--background);
+  /* background: var(--background); */
   position: relative;
   min-height: 100vh; /* Allow full page height */
   overflow-y: auto; /* Enable page-level scrolling */
@@ -19,7 +19,7 @@
 /* Mobile-first payment cards with fluid sizing */
 .payment-card {
   background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-cyan-dark);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border-radius: clamp(8px, 2vw, 16px); /* Fluid border radius */
@@ -29,7 +29,7 @@
 
 .payment-card:hover {
   box-shadow: 0 clamp(3px, 1vw, 6px) clamp(12px, 3vw, 20px) rgba(0, 0, 0, 0.15); /* Fluid shadow */
-  transform: translateY(clamp(-1px, -0.25vw, -3px)); /* Subtle fluid lift */
+  /* transform: translateY(clamp(-1px, -0.25vw, -3px)); Subtle fluid lift */
 }
 
 .payment-feature {
@@ -46,7 +46,7 @@
 
 /* Responsive Stripe Elements Styling */
 .StripeElement {
-  background: white;
+  background: var(--color-white);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: clamp(6px, 1.5vw, 10px); /* Fluid border radius */
   padding: clamp(8px, 2.5vw, 16px); /* Fluid padding */

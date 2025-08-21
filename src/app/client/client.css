@@ -1,14 +1,14 @@
 /* Client Page Styles */
 
 .client-page-container {
-  background: var(--color-white);
+  background: var(--color-black);
   position: relative;
   min-height: 100vh; /* Allow full page height */
   overflow-y: auto; /* Enable page-level scrolling */
 }
 
 .client-success-container {
-  background: var(--color-white);
+  background: var(--color-black);
   position: relative;
   min-height: 100vh; /* Allow full page height */
   overflow-y: auto; /* Enable page-level scrolling */
@@ -67,13 +67,13 @@
 }
 
 .password-toggle:hover {
-  color: var(--color-green-light);
+  color: var(--color-cyan-light);
 }
 
 /* Enhanced form validation visual feedback */
 .client-form-field:focus {
   outline: none;
-  border-color: var(--color-black);
+  border-color: var(--color-cyan-dark);
   box-shadow: 0 0 0 clamp(2px, 0.5vw, 4px) rgba(0, 0, 0, 0.1); /* Fluid focus ring */
   transform: translateY(-1px);
 }
@@ -184,12 +184,12 @@ legend {
 
 .client-success-container .garfish-button:hover,
 .documents-success-background .garfish-button:hover {
-  background-color: var(--color-black); /* Same as globals.css hover effect */
+  background-color: var(--color-cyan-light); /* Match globals.css hover effect */
 }
 
 .client-success-container .garfish-button:active,
 .documents-success-background .garfish-button:active {
-  background-color: var(--color-black);
+  background-color: var(--color-green-light);
 }
 
 /* Auth form submit button styling */
@@ -205,11 +205,11 @@ legend {
 }
 
 .client-form-container .garfish-button:hover:not(:disabled) {
-  background-color: var(--color-black); /* Same as globals.css hover effect */
+  background-color: var(--color-cyan-light); /* Match globals.css hover effect */
 }
 
 .client-form-container .garfish-button:active:not(:disabled) {
-  background-color: var(--color-black);
+  background-color: var(--color-green-light);
 }
 
 /* Responsive adjustments with fluid scaling */

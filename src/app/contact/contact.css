@@ -2,7 +2,7 @@
 
 /* Main contact page container - allow full page scrolling */
 .contact-page-container {
-  background: var(--color-white);
+  background: var(--color-black);
   min-height: 100vh; /* Use min-height instead of h-screen to allow scrolling */
   overflow-y: auto; /* Allow page-level scrolling */
 }

@@ -73,14 +73,14 @@ export default function Payment() {
 
   if (!isClientAuthenticated) {
     return (
-      <div className="text-black payment-page-container">
+      <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)]">
         <Logo />
         <div className="flex items-center justify-center min-h-screen px-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4 font-primary">
               Access Denied
             </h2>
-            <p className="text-gray-600 font-primary">
+            <p className="text-[color:var(--color-gray-dark)] font-primary">
               Please log in to access the payment portal.
             </p>
           </div>
@@ -95,7 +95,7 @@ export default function Payment() {
 
   if (paymentSuccess) {
     return (
-      <div className="text-black payment-page-container">
+      <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)]">
         <Logo />
         <div className="flex items-center justify-center min-h-screen px-4">
           <motion.div
@@ -108,13 +108,13 @@ export default function Payment() {
             <h2 className="text-3xl font-bold mb-4 font-primary">
               Payment Successful
             </h2>
-            <p className="text-gray-600 mb-8 font-primary">
+            <p className="text-[color:var(--color-gray-light)] mb-8 font-primary">
               Your payment has been processed successfully. You'll receive a
               confirmation email shortly.
             </p>
             <button
               onClick={() => setPaymentSuccess(false)}
-              className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-primary"
+              className="garfish-button transition-colors font-primary"
             >
               Return to Payments
             </button>
@@ -129,7 +129,7 @@ export default function Payment() {
   }
 
   return (
-    <div className="text-black payment-page-container">
+    <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)]">
       <Logo />
       <div className="flex items-start justify-center min-h-screen px-4 pt-24">
         <div className="w-full max-w-2xl payment-content-container">
@@ -139,9 +139,9 @@ export default function Payment() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-gray-shadow)] font-primary">
+                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-cyan-dark)] font-primary">
                   Pending Invoices for{" "}
-                  <strong className="text-[var(--color-gray-shadow)]">
+                  <strong className="text-[var(--white)]">
                     {authenticatedClient?.project || "your project"}
                   </strong>
                 </h2>
@@ -173,34 +173,35 @@ export default function Payment() {
                   >
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="text-lg font-semibold mb-2 font-primary">
+                        <h3 className="text-lg text-[color:var(--color-gray-light)] font-semibold mb-2 font-primary">
                           {invoice.description}
                         </h3>
-                        <p className="text-left text-sm text-gray-600 font-primary">
+                        <p className={`text-left text-sm text-[color:var(--color-gray-faint)] font-primary ${
+                            invoice.status === 'paid' ? 'line-through' : ''}`}>
                           Due: {invoice.dueDate}
                         </p>
                       </div>
                       <div className="text-right">
                         <div className={`text-2xl ${
                             invoice.status === 'paid'
-                                ? 'text-[color:var(--color-gray-light)]'
-                                : 'text-[color:var(--color-green-dark)]'
-                        } font-bold font-primary`}>
+                                ? 'text-[color:var(--color-gray-faint)] font-semibold'
+                                : 'text-[color:var(--color-green-light)] font-bold'
+                        } font-primary`}>
                           ${invoice.amount.toFixed(2)}
                         </div>
                         {/* <div className="text-2xl font-bold font-primary">
                           <span className="text-[color:var(--color-black)]">$</span>
-                          <span className="text-[color:var(--color-gray-dark)]">{invoice.amount.toFixed(2)}</span>
+                          <span className="text-[color:var(--color-gray-faint)]">{invoice.amount.toFixed(2)}</span>
                         </div> */}
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
-                            ? 'text-gray-dark'
-                            : 'text-[color:var(--color-black)]' 
+                            ? 'text-[color:var(--color-cyan-dark)]'
+                            : 'text-[color:var(--color-cyan-light)]' 
                         }`}>
                           {invoice.status === 'paid' ? 'PAID' : 'PENDING'}
                         </div>
                         {invoice.status === 'paid' && invoice.paidDate && (
-                          <div className="text-xs text-[color:var(--color-gray-shadow)] mt-1">
+                          <div className="text-xs text-[color:var(--color-cyan-dark)] mt-1">
                             Paid: {invoice.paidDate}
                           </div>
                         )}
@@ -211,7 +212,7 @@ export default function Payment() {
 
                 {invoices.filter(inv => inv.status === 'pending').length === 0 && (
                   <div className="payment-card p-8 text-center">
-                    <p className="text-gray-600 font-primary">
+                    <p className="text-[color:var(--color-gray-faint)] font-primary">
                       No pending invoices at this time.
                     </p>
                   </div>
@@ -219,12 +220,12 @@ export default function Payment() {
                 
                 {/* Stripe Attribution */}
                 <motion.div
-                  className="text-center mt-8 pt-4 border-t border-[color:var(--color-gray-light)] mb-16"
+                  className="text-center mt-8 pt-4 border-t border-[color:var(--color-gray-faint)] mb-16"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
                 >
-                  <p className="text-sm text-[color:var(--color-gray-shadow)] pb-2 font-primary">
+                  <p className="text-sm text-[color:var(--color-gray-light)] pb-2 font-primary">
                     🔒 Payments powered by <span className="font-bold">Stripe</span>
                   </p>
                 </motion.div>
@@ -255,11 +256,11 @@ export default function Payment() {
                     />
                   </Elements>
                 ) : (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-                    <p className="text-red-600 font-primary mb-2">
+                  <div className="bg-[color:var(--color-gray-faint)] border border-[color:var(--color-gray-light)] rounded-lg p-6 text-center">
+                    <p className="text-[color:var(--color-black)] font-primary mb-2">
                       ⚠️ Payment Processing Unavailable
                     </p>
-                    <p className="text-sm text-red-500 font-primary">
+                    <p className="text-sm text-[color:var(--color-gray-faint)] font-primary">
                       Stripe payment configuration is missing. Please contact support.
                     </p>
                   </div>
@@ -267,12 +268,12 @@ export default function Payment() {
 
                 {paymentError && (
                   <motion.div
-                    className="bg-red-50 border border-red-200 rounded-lg p-4"
+                    className="bg-[color:var(--color-gray-faint)] border border-[color:var(--color-gray-light)] rounded-lg p-4"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className="text-red-600 text-sm font-primary">
+                    <p className="text-[color:var(--color-black)] text-sm font-primary">
                       {paymentError}
                     </p>
                   </motion.div>

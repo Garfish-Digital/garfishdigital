@@ -35,3 +35,7 @@
     margin-bottom: 5rem !important; /* mb-20 equivalent */
   }
 }
+
+.table-border-bottom {
+  border-bottom: 1px solid var(--color-gray-light) !important;
+}

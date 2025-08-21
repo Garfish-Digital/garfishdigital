@@ -23,16 +23,16 @@ export default function Project() {
       case "Completed":
         return "text-[var(--color-white)] bg-[var(--color-green-dark)]";
       case "In Progress":
-        return "text-[var(--color-white)] bg-[var(--color-green-light)]";
+        return "text-[var(--color-white)] bg-[var(--soft-orange)]";
       case "Pending":
-        return "text-[var(--color-gray-faint)] bg-[var(--color-white)]";
+        return "text-[var(--color-gray-light)] bg-[var(--color-black)]";
       default:
-        return "text-gray-500 bg-gray-50";
+        return "text-[color:var(--color-gray-dark)] bg-[color:var(--color-gray-faint)]";
     }
   };
 
   return (
-    <div className="text-black project-page-container">
+    <div className="text-[color:var(--color-white)] project-page-container bg-[color:var(--color-black)]">
       {/* Static Logo - Upper Left */}
       <Logo />
 
@@ -45,9 +45,9 @@ export default function Project() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h2 className="text-lg font-bold mb-4 text-[color:var(--color-gray-shadow)] font-primary">
+          <h2 className="text-lg font-bold mb-4 text-[color:var(--color-cyan-dark)] font-primary">
             Project Overview for{" "}
-            <strong className="text-[var(--color-gray-shadow)]">
+            <strong className="text-[var(--color-white)]">
               {authenticatedClient?.project || "your project"}
             </strong>
           </h2>
@@ -61,7 +61,7 @@ export default function Project() {
 
         {/* Table Container */}
         <motion.div
-          className="flex-1 rounded-lg border border-[color:var(--color-gray-light)] iphone-16-spacing"
+          className="flex-1 rounded-lg iphone-16-spacing"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -69,18 +69,18 @@ export default function Project() {
           <div>
             <table className="w-full">
               {/* Sticky Header */}
-              <thead className="sticky top-0 bg-[color:var(--color-gray-light)] bg-opacity-20 backdrop-blur-sm z-10">
+              <thead className="sticky top-0 bg-[color:var(--color-cyan-dark)] backdrop-blur-sm text-[color:var(--color-gray-light)] z-10">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-[color:var(--color-black)] font-primary border-b border-[color:var(--color-gray-light)]">
+                  <th className="px-6 py-4 text-left text-sm font-semibold font-primary first:rounded-tl-lg last:rounded-tr-lg">
                     Section
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-[color:var(--color-black)] font-primary border-b border-[color:var(--color-gray-light)]">
+                  <th className="px-6 py-4 text-left text-sm font-semibold font-primary first:rounded-tl-lg last:rounded-tr-lg">
                     Milestone
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-[color:var(--color-black)] font-primary border-b border-[color:var(--color-gray-light)]">
+                  <th className="px-6 py-4 text-left text-sm font-semibold font-primary first:rounded-tl-lg last:rounded-tr-lg">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-[color:var(--color-black)] font-primary border-b border-[color:var(--color-gray-light)]">
+                  <th className="px-6 py-4 text-left text-sm font-semibold font-primary first:rounded-tl-lg last:rounded-tr-lg">
                     Date Completed
                   </th>
                 </tr>
@@ -92,7 +92,7 @@ export default function Project() {
                   <tr>
                     <td
                       colSpan="4"
-                      className="px-6 py-8 text-center text-[color:var(--color-gray-dark)] font-primary"
+                      className="px-6 py-8 text-center font-primary table-border-bottom text-[color:var(--color-gray-light)]"
                     >
                       No milestones available. Please contact support if you
                       believe this is an error.
@@ -102,25 +102,28 @@ export default function Project() {
                   milestones.map((milestone, index) => (
                     <motion.tr
                       key={index}
-                      className={`${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-half-light)]' : ''} hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
+                      className={`
+                        ${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-dark)]' : ''} 
+                        hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
+                      style={{ borderBottom: "1px solid var(--color-gray-shadow)" }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
                     >
-                      <td className="px-6 py-4 text-sm text-[color:var(--color-gray-dark)] font-primary border-b border-[color:var(--color-gray-light)] border-opacity-30">
+                      <td className="px-6 py-4 text-sm text-[color:var(--color-gray-light)] font-primary">
                         {milestone.section}
                       </td>
-                      <td className="px-6 py-4 text-sm text-[color:var(--color-black)] font-primary border-b border-[color:var(--color-gray-light)] border-opacity-30">
+                      <td className="px-6 py-4 text-sm text-[color:var(--color-white)] font-primary">
                         {milestone.milestone}
                       </td>
-                      <td className="px-6 py-4 text-sm border-b border-[color:var(--color-gray-light)] border-opacity-30">
+                      <td className="px-6 py-4 text-sm">
                         <span
                           className={`inline-flex px-2 py-1 text-xs text-center font-medium rounded-full ${getStatusColor(milestone.status)}`}
                         >
                           {milestone.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-[color:var(--color-gray-dark)] font-primary border-b border-[color:var(--color-gray-light)] border-opacity-30">
+                      <td className="px-6 py-4 text-sm text-[color:var(--color-gray-light)] font-primary">
                         {milestone.dateCompleted || "-"}
                       </td>
                     </motion.tr>

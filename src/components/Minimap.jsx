@@ -58,12 +58,12 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
     >
       {/* 3x3 Grid Container */}
       <div 
-        className="relative p-2 rounded-lg backdrop-blur-sm"
+        className="relative p-1 rounded-lg backdrop-blur-sm"
         style={{
           width: '150px',
           height: '150px',
-          backgroundColor: 'var(--color-white)',
-          border: '1px solid var(--color-gray-faint)',
+          backgroundColor: 'var(--color-gray-shadow)',
+          border: '1px solid var(--color-cyan-dark)',
         }}
       >
         
@@ -95,15 +95,15 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                   flex items-center justify-center
                 `}
                 style={{
-                    border : '1px solid var(--color-gray-faint)',
+                    border : '1px solid var(--color-cyan-dark)',
                   backgroundColor: isActive 
-                    ? 'var(--color-animated-black)'
-                    : 'var(--color-animated-white)',
+                    ? 'var(--color-cyan-light)'
+                    : 'var(--color-black)',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'rgb(50, 205, 50)',
+                  backgroundColor: 'var(--gray-light)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >
@@ -111,7 +111,7 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                 {isActive && (
                   <FontAwesomeIcon 
                     icon={faUser}
-                    className="w-3 h-3 text-white"
+                    className="w-4 h-4 text-[var(--color-gray-dark)]"
                   />
                 )}
               </motion.button>

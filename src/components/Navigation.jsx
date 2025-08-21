@@ -11,6 +11,17 @@ import {
   getActiveNavigationItem,
 } from "../config/navigation";
 
+// Shared function for generating link classes
+function getLinkClasses(isActive) {
+  return `
+      ${isActive ? 'hover:text-[color:var(--color-cyan-light)]' : 'hover:text-[color:var(--color-gray-light)]'} 
+      active:text-[color:var(--color-green-light)]
+      transition-all duration-300 
+      font-primary font-normal text-lg
+      ${isActive ? 'text-[color:var(--color-cyan-light)]' : 'text-[color:var(--color-gray-faint)]'}
+  `;
+}
+
 const DesktopNavigation = ({
   currentPage,
   galleryCurrentPage,
@@ -35,14 +46,7 @@ const DesktopNavigation = ({
           const isActive = item.id === activeItemId;
           const delay = index * 0.1;
 
-          const linkClasses = `
-            text-[color:var(--color-black)] 
-            ${isActive ? 'hover:text-[color:var(--color-green-light)]' : 'hover:text-[color:var(--color-green-dark)]'} 
-            active:text-[color:var(--color-green-light)]
-            transition-all duration-300 
-            font-primary font-normal text-lg
-            ${isActive ? 'text-[color:var(--color-green-light)]' : ''}
-          `;
+          const linkClasses = getLinkClasses(isActive);
 
           return (
             <motion.div
@@ -121,7 +125,7 @@ const MobileNavigation = ({
         <div className="absolute inset-0 flex flex-col justify-center items-center">
           {/* Top line */}
           <motion.div
-            className="w-6 h-0.5 bg-[color:var(--color-black)] group-hover:bg-[color:var(--color-green-half-light)] transition-colors duration-200"
+            className="w-8 h-1 mb-1 bg-[color:var(--color-gray-faint)] group-hover:bg-[color:var(--color-cyan-light)] transition-colors duration-200 rounded-full"
             animate={{
               rotate: isMenuOpen ? 45 : 0,
               y: isMenuOpen ? 2 : -2,
@@ -130,7 +134,7 @@ const MobileNavigation = ({
           />
           {/* Middle line */}
           <motion.div
-            className="w-6 h-0.5 bg-[color:var(--color-black)] group-hover:bg-[color:var(--color-green-half-light)] transition-colors duration-200"
+            className="w-8 h-1 mb-1 bg-[color:var(--color-gray-faint)] group-hover:bg-[color:var(--color-cyan-light)] transition-colors duration-200 rounded-full"
             animate={{
               opacity: isMenuOpen ? 0 : 1,
               scale: isMenuOpen ? 0 : 1,
@@ -139,7 +143,7 @@ const MobileNavigation = ({
           />
           {/* Bottom line */}
           <motion.div
-            className="w-6 h-0.5 bg-[color:var(--color-black)] group-hover:bg-[color:var(--color-green-half-light)] transition-colors duration-200"
+            className="w-8 h-1 mb-1 bg-[color:var(--color-gray-faint)] group-hover:bg-[color:var(--color-cyan-light)] transition-colors duration-200 rounded-full"
             animate={{
               rotate: isMenuOpen ? -45 : 0,
               y: isMenuOpen ? -2 : 2,
@@ -155,14 +159,14 @@ const MobileNavigation = ({
           <>
             {/* Connecting line for visual continuity */}
             <motion.div
-              className="absolute top-8 right-4 w-0.5 h-4 bg-[color:var(--color-green-half-light)]"
+              className="absolute top-8 right-4 w-0.5 h-4 bg-[color:var(--color-black)]"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 0.6, height: 16 }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             />
             <motion.div
-              className="absolute top-12 right-0 bg-white rounded-lg shadow-lg border border-gray-200 py-2 min-w-[140px] z-50"
+              className="absolute top-12 right-0 bg-[var(--color-black)] rounded-lg shadow-lg border border-[var(--color-cyan-dark)] py-2 min-w-[140px] z-50"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -186,17 +190,10 @@ const MobileNavigation = ({
               .map((item, index) => {
                 const isActive = item.id === activeItemId;
 
-                const linkClasses = `
-                  w-full px-4 py-2 text-left text-sm 
-                  transition-colors font-primary font-normal
-                  text-[color:var(--color-black)]
-                  hover:text-[color:var(--color-green-dark)]
-                  active:text-[color:var(--color-green-light)]
-                  ${isActive ? "text-[color:var(--color-green-light)]" : ""}
-                `;
+                const linkClasses = getLinkClasses(isActive);
 
                 return (
-                  <div key={item.id}>
+                  <div key={item.id} className="ps-2">
                     {item.href ? (
                       <Link
                         href={item.href}
@@ -223,7 +220,7 @@ const MobileNavigation = ({
                         isClientAuthenticated
                       )
                     ).length - 1 && (
-                      <hr className="border-[color:var(--color-gray-faint)]" />
+                      <hr className="border-[color:var(--color-gray-shadow)]" />
                     )}
                   </div>
                 );

@@ -5,51 +5,52 @@
 
 :root {
   
-  --white: oklch(100% 0.00011 271.152);
-  --gray-light-transparent: oklch(73.033% 0.01807 145.601 / 0.5);
-  --gray-light: oklch(73.033% 0.01807 145.601);
-  --gray-dark-transparent: oklch(44.836% 0.02038 145.341 / 0.5);
-  --gray-dark: oklch(44.836% 0.02038 145.341);
-  --black: oklch(9.957% 0.03388 142.511);
+  --white: rgb(255, 255, 255);
+  --gray-light-transparent: rgba(161, 171, 161, 0.5);
+  --gray-light: rgb(161, 171, 161);
+  --gray-dark-transparent: rgba(78, 88, 78, 0.5);
+  --gray-dark: rgb(78, 88, 78);
+  --black: rgb(0, 5, 0);
 
   --animated-white: #ffffff;
   --animated-black: #000000;
   
-  --green-light: rgb(125, 200, 125);
-   /* --green-light: oklab(76.497% -0.10466 0.07543); 
-    --green-dark: oklch(22.142% 0.01528 119.111);
-
-
-    --classic-neon: rgb(127, 255, 0);
-    --pastel-neon: rgb(118, 239, 137);
-    --tech-neon: rgb(0, 250, 154);
-    --fresh-neon: rgb(0, 255, 127);
-    --bright-neon: rgb(124, 252, 0);
-    --electric-neon: rgb(57, 255, 20); */
-
-    
-    /* --terminal-green: #32cd32; */
-    --green-half-neon: rgb(127, 255, 0, .5);
+  /* GREENS */
+  --green-half-neon: rgb(127, 255, 0, .5);
+  /* --green-light: rgb(125, 200, 125); */
     --terminal-green: rgb(50, 205, 50);
     --common-green: rgb(0, 102, 0);
-    /* --common-green: #006600; */
 
-/* BLACK LODGE COLORS */
-    --tech-card-gradient1: #3E2723;
-    --tech-card-gradient2: #FFA000;
-    --tech-card-gradient3: #1B3A1B;
-    --tech-card-text: #FFD54F;
+/* BLUES */
+  --navy-blue: rgb(0, 0, 51);
+  --deep-azure: rgb(0, 71, 150);
+  --midnight-cyan: rgb(0, 102, 102);
+    --vibrant-cyan: rgb(0, 204, 204);
 
+    /* ORANGES */
+    --pale-tan: rgb(240, 220, 190);
+  --camel-tan: rgb(185, 133, 93);
+  --deep-sand: rgb(214, 186, 159);
+    --soft-orange: rgb(255, 150, 0);
+  --burnt-orange: rgb(175, 85, 0);
 
-    --tech-card-gradient1: #2D1810;
-    --tech-card-gradient2: #3b82f6;
-    --tech-card-gradient3: #93c5fd;
-    --tech-card-text: #F97316;
+  /* MAGENTA-LIKE */
+  --rich-black: rgb(10, 10, 10);
+  --space-gray: rgb(30, 30, 30);
+  --dark-plum: rgb(50, 0, 50);
+  --my-dark-plum: rgb(75, 0, 100);
+  --electric-pink: rgb(255, 0, 153);
+  --vibrant-violet: rgb(102, 0, 153);
+  --my-vibrant-violet: rgb(160, 0, 255);
+
+  /* MUTED GREENS */
+  --parchment-cream: rgb(250, 245, 230);
+  --warm-sand: rgb(245, 222, 179);
+    --moss-green: rgb(75, 83, 32);
+  --olive-drab: rgb(107, 142, 35);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   
   --color-white: var(--white);
   --color-gray-faint: var(--gray-light-transparent);
@@ -57,15 +58,13 @@
   --color-gray-shadow: var(--gray-dark-transparent);
   --color-gray-dark: var(--gray-dark);
   --color-black: var(--black);
-
-  --color-animated-white: var(--animated-white);
-  --color-animated-black: var(--animated-black);
-
+  --color-animated-white: var(--animated-black);
+  --color-animated-black: var(--animated-white);
   --color-green-half-light: var(--green-half-neon);
   --color-green-light: var(--terminal-green);
-  /* --color-green-light: var(--green-light); */
   --color-green-dark: var(--common-green);
-  /* --color-green-dark: var(--green-dark); */
+  --color-cyan-light: var(--vibrant-cyan);
+  --color-cyan-dark: var(--midnight-cyan);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -95,18 +94,21 @@
 /* BUTTONS */
 .garfish-button {
   padding: 0.5rem 2rem;
-  background-color: var(--color-gray-dark);
+  background-color: var(--color-cyan-dark);
   border-radius: 5px;
   color: var(--color-white);
   transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Light shadow for dark theme */
 }
 
 .garfish-button:hover {
-    background-color: var(--color-black);
+    background-color: var(--color-cyan-light);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
 }
 
 .garfish-button:active {
-    background-color: var(--color-black);
+    background-color: var(--color-green-light);
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
 .disabled-garfish-button {
@@ -134,11 +136,11 @@ padding: 0.5rem 2rem;
 /* INPUT FIELDS */
 fieldset {
     padding: 2rem;
-    border: 1px solid var(--color-gray-dark);
+    border: 1px solid var(--color-cyan-dark);
     border-radius: 5px;
 }
 legend {
-  color: var(--color-gray-dark);
+  color: var(--color-cyan-dark);
   padding: 0 1rem;
 }
 
@@ -159,16 +161,18 @@ legend {
 }
 
 input {
-    background-color: var(--color-white);
+    background-color: var(--color-gray-shadow);
     border: 1px solid var(--color-gray-light);
   border-radius: 5px;
   margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05); /* Subtle light shadow */
 }
 
 textarea {
-    background-color: var(--color-white);
+    background-color: var(--color-gray-shadow);
     border: 1px solid var(--color-gray-light);
   border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05); /* Subtle light shadow */
 }
 
 /* Odometer-style placeholder transitions */

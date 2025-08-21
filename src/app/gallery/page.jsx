@@ -86,7 +86,6 @@ const demoCards = {
     hoverColors: {
       border: "hover:border-green-500/50",
       shadow: "hover:shadow-green-500/20",
-    //   gradient: "from-[#3E2723]/30 to-[#FFA000] via-[#1B3A1B]/80",
       gradient: "from-[var(--color-black)] to-[#FFA000]/90 via-[#1B3A1B]/60",
       text: "text-[#FFD54F]",
     },
@@ -97,7 +96,7 @@ const demoCards = {
     url: "https://obsidian-peaks.netlify.app",
     effects: "A demonstration on glassmorphism, CSS filters, and lively zoom animation.",
     hoverColors: {
-      border: "hover:border-[#87CEEB]/70",
+      border: "hover:border-[#87CEEB]/50",
       shadow: "hover:shadow-[#87CEEB]",
       gradient: "from-[var(--color-black)] to-[#93c5fd]/90 via-[#3b82f6]/60",
       text: "text-[#87CEEB]",
@@ -111,7 +110,7 @@ const demoCards = {
     effects:
       "A demonstration on scroll animations, cursor visuals, and fiery gradient effects.",
     hoverColors: {
-      border: "hover:border-[#FF8C42]/70",
+      border: "hover:border-[#FF8C42]/50",
       shadow: "hover:shadow-[#FF8C42]",
       gradient: "from-[var(--color-black)] to-[#FFD23F]/90 via-[#CC0000]/60",
       text: "text-[#FF8C42]",
@@ -124,7 +123,7 @@ const demoCards = {
     effects:
       "A demonstration on skeleton screens, layered textures, and vapor effects.",
     hoverColors: {
-      border: "hover:border-[#D4A574]/70",
+      border: "hover:border-[#D4A574]/50",
       shadow: "hover:shadow-[#D4A574]",
     //   gradient: "from-[#2D1810] to-[#2F3349] via-[#E8E2D5]/30",
     //   gradient: "from-[var(--color-black)] to-[#5a4b41]/90 via-[#2D1810]/60",
@@ -140,7 +139,7 @@ const demoCards = {
     effects:
       "A demonstration on Bento boxes, flowing animation, and playful visuals.",
     hoverColors: {
-      border: "hover:border-[#A855F7]/70",
+      border: "hover:border-[#A855F7]/50",
       shadow: "hover:shadow-[#A855F7]",
       gradient: "from-[var(--color-black)] to-[#22C55E]/90 via-[#A855F7]/60",
       text: "text-[#A855F7]",
@@ -152,7 +151,7 @@ const demoCards = {
     url: "https://via-mortis.netlify.app",
     effects: "A demonstration on glitches, displacement, and broken grid.",
     hoverColors: {
-      border: "hover:border-[#bbff00]/70",
+      border: "hover:border-[#bbff00]/50",
       shadow: "hover:shadow-[#bbff00]",
       gradient: "from-[var(--color-black)] to-[#e90000]/90 via-[#4b4b01]/60",
       text: "text-[#bbff00]",
@@ -164,7 +163,7 @@ const demoCards = {
     url: "https://velvet-quill.netlify.app",
     effects: "A demonstration on layered textures, subtle animation, and interactive reveals.",
     hoverColors: {
-      border: "hover:border-[#D4A5A5]/70",
+      border: "hover:border-[#D4A5A5]/50",
       shadow: "hover:shadow-[#D4A5A5]",
       gradient: "from-[var(--color-black)] to-[#8B0000]/90 via-[#4A0E4E]/60",
       text: "text-[#D4A5A5]",
@@ -176,7 +175,7 @@ const demoCards = {
     url: "https://the-scrap-pit.netlify.app",
     effects: "A demonstration on brutalist aesthetics and CSS color manipulation.",
     hoverColors: {
-    border: "hover:border-[#CC9900]/70",
+    border: "hover:border-[#CC9900]/50",
     shadow: "hover:shadow-[#CC9900]",
     gradient: "from-[var(--color-black)] to-[#F8F8FF]/90 via-[#E00000]/60",
     text: "text-[#CC9900]",
@@ -432,9 +431,9 @@ export default function Gallery() {
       <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-64">
         <motion.div
           className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${cardData.hoverColors.border} w-80 sm:w-96 md:w-[420px]`}
-          style={{ boxShadow: "0px 10px 12px rgba(0, 0, 0, 0.3)" }}
+        //   style={{ boxShadow: "0px 5px 6px var(--color-gray-shadow)" }}
           whileHover={{
-            boxShadow: "0px 20px 25px rgba(0, 0, 0, 0.4)",
+            boxShadow: "0px 20px 25px var(--color-gray-shadow)",
             transition: { duration: 0.2, ease: "easeOut" },
           }}
         >
@@ -533,7 +532,7 @@ export default function Gallery() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-gray-shadow)] font-primary">
+              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
                 Explore our Gallery
               </h2>
             </motion.div>
@@ -542,8 +541,8 @@ export default function Gallery() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <p className="text-[color:var(--color-gray-dark)] font-primary leading-relaxed">
-                Visit live demo sites to view detailed examples of our work.
+              <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
+                Use the minimap below to visit live demo sites to view detailed examples of our work.
               </p>
             </motion.div>
           </div>
@@ -572,14 +571,14 @@ export default function Gallery() {
         isClientAuthenticated={isClientAuthenticated}
       />
 
-      <div className="w-screen h-screen overflow-hidden gallery-wrapper">
+      <div className="w-screen h-screen overflow-hidden gallery-wrapper bg-[color:var(--color-black)]">
         <div
           className={`grid relative gallery-grid gallery-grid-${currentPage}`}
         >
           {pages.map((page) => (
             <div
               key={page.id}
-              className={`flex items-center justify-center text-black gallery-page-item gallery-page-${page.id}`}
+              className={`flex items-center justify-center text-[color:var(--color-white)] gallery-page-item gallery-page-${page.id}`}
             >
               {getPageContent(page.id)}
             </div>
@@ -605,7 +604,7 @@ export default function Gallery() {
             onClick={handleTechCardClose}
           >
             <motion.div
-              className="w-full max-w-4xl mx-4 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg overflow-hidden"
+              className="w-full max-w-4xl mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/20 rounded-lg overflow-hidden"
               initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -1 }}
               animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20, rotate: 1 }}
@@ -614,17 +613,17 @@ export default function Gallery() {
             >
               {/* Header */}
               <motion.div
-                className="flex items-center justify-between p-6 border-b border-white/10"
+                className="flex items-center justify-between p-6 border-b border-[color:var(--color-black)]/10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
-                <h2 className="text-2xl font-bold text-white font-primary">
+                <h2 className="text-2xl font-bold text-[color:var(--color-white)] font-primary">
                   {getTechCardData(currentPage)?.title || "Techniques Involved"}
                 </h2>
                 <motion.button
                   onClick={handleTechCardClose}
-                  className="text-white/60 hover:text-white transition-colors p-2"
+                  className="text-[color:var(--color-white)]/60 hover:text-[color:var(--color-white)] transition-colors p-2"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
@@ -649,13 +648,13 @@ export default function Gallery() {
 
               {/* Content */}
               <motion.div
-                className="p-6 max-h-[60vh] overflow-y-auto text-white/80 leading-relaxed font-primary"
+                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-white)]/80 leading-relaxed font-primary"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
               >
                 <div className="space-y-4">
-                  <ul className="text-white space-y-3">
+                  <ul className="text-[color:var(--color-white)] space-y-3">
                     {getTechCardData(currentPage)?.items.map((item, index) => (
                       <motion.li
                         key={index}
@@ -664,7 +663,7 @@ export default function Gallery() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                       >
-                        <span className="text-white/60 mr-3">•</span>
+                        <span className="text-[color:var(--color-white)]/60 mr-3">•</span>
                         <span>{item}</span>
                       </motion.li>
                     ))}
@@ -674,12 +673,12 @@ export default function Gallery() {
 
               {/* Footer */}
               <motion.div
-                className="p-6 border-t border-white/10 text-center"
+                className="p-6 border-t border-[color:var(--color-white)]/10 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
-                <p className="text-white/50 text-sm font-primary">
+                <p className="text-[color:var(--color-white)]/50 text-sm font-primary">
                   Technical details of site features and animations
                 </p>
               </motion.div>

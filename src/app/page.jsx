@@ -8,7 +8,7 @@ export default function Home() {
   const { isClientAuthenticated } = useClientAuth();
 
   return (
-    <div className="home-page-container">
+    <div className="home-page-container bg-[color:var(--color-black)]">
       <div className="home-page-layout">
         {/* Logo and Byline */}
         <div>
@@ -18,10 +18,10 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="text-[color:var(--color-black)] font-mono text-6xl font-bold text-left">
+            <div className="text-[color:var(--color-white)] font-mono text-6xl font-bold text-left">
               Garfish
             </div>
-            <div className="text-[color:var(--color-black)] font-mono text-6xl font-bold text-left">
+            <div className="text-[color:var(--color-white)] font-mono text-6xl font-bold text-left">
               Digital
             </div>
           </motion.div>
@@ -32,7 +32,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            <div className="text-[color:var(--color-gray-dark)] font-primary text-4xl font-normal text-left">
+            <div className="text-[color:var(--color-gray-light)] font-primary text-4xl font-normal text-left">
               web
             </div>
           </motion.div>
@@ -42,7 +42,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
           >
-            <div className="text-[color:var(--color-gray-dark)] font-primary text-4xl font-normal text-left">
+            <div className="text-[color:var(--color-gray-light)] font-primary text-4xl font-normal text-left">
               design
             </div>
           </motion.div>
@@ -52,7 +52,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
           >
-            <div className="text-[color:var(--color-gray-dark)] font-primary text-4xl font-normal text-left">
+            <div className="text-[color:var(--color-gray-light)] font-primary text-4xl font-normal text-left">
               &
             </div>
           </motion.div>
@@ -62,7 +62,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
           >
-            <div className="text-[color:var(--color-gray-dark)] font-primary text-4xl font-normal text-left">
+            <div className="text-[color:var(--color-gray-light)] font-primary text-4xl font-normal text-left">
               development
             </div>
           </motion.div>
@@ -77,7 +77,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
         >
-          <p className="home-copyright text-[color:var(--color-gray-dark)] font-mono font-normal text-left ps-8">
+          <p className="home-copyright text-[color:var(--color-gray-light)] font-mono font-normal text-left ps-8">
             <small>© 2024 Garfish Digital. All rights reserved.</small>
           </p>
         </motion.div>
