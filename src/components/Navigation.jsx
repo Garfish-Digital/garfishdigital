@@ -166,7 +166,7 @@ const MobileNavigation = ({
               transition={{ duration: 0.2, ease: "easeOut" }}
             />
             <motion.div
-              className="absolute top-12 right-0 bg-[var(--color-black)] rounded-lg shadow-lg border border-[var(--color-cyan-dark)] py-2 min-w-[140px] z-50"
+              className="absolute top-12 right-0 bg-[var(--color-black)] rounded-lg shadow-lg border border-[var(--color-cyan-dark)] py-2 min-w-[120px] z-50"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -256,7 +256,7 @@ const Navigation = ({
   const actualCurrentPage = currentPage || detectedPage();
 
   return (
-    <div className={`fixed top-8 right-8 z-40 ${className}`}>
+    <div className={`fixed top-8 right-8 z-50 ${className}`}>
       <DesktopNavigation
         currentPage={actualCurrentPage}
         galleryCurrentPage={galleryCurrentPage}

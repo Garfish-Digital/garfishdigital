@@ -16,7 +16,7 @@
   --animated-black: #000000;
   
   /* GREENS */
-  --green-half-neon: rgb(127, 255, 0, .5);
+  --green-half-neon: rgb(50, 255, 0, .15);
   /* --green-light: rgb(125, 200, 125); */
     --terminal-green: rgb(50, 205, 50);
     --common-green: rgb(0, 102, 0);
@@ -26,6 +26,7 @@
   --deep-azure: rgb(0, 71, 150);
   --midnight-cyan: rgb(0, 102, 102);
     --vibrant-cyan: rgb(0, 204, 204);
+    --vibrant-half-cyan: rgb(0, 204, 204, .2);
 
     /* ORANGES */
     --pale-tan: rgb(240, 220, 190);
@@ -60,14 +61,42 @@
   --color-black: var(--black);
   --color-animated-white: var(--animated-black);
   --color-animated-black: var(--animated-white);
-  --color-green-half-light: var(--green-half-neon);
+  /* --color-green-half-light: var(--green-half-neon); */
+  --color-green-half-light: var(--vibrant-half-cyan);
   --color-green-light: var(--terminal-green);
+  /* --color-green-dark: var(--moss-green); */
   --color-green-dark: var(--common-green);
   --color-cyan-light: var(--vibrant-cyan);
   --color-cyan-dark: var(--midnight-cyan);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars but maintain functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Client page scrollbar hiding */
+.client-scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.client-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Modal scrollbar hiding */
+.modal-scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modal-scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
@@ -379,4 +408,33 @@ textarea:focus::placeholder {
     1
   ) !important; /* Restore to normal size (25% increase from previous 0.75) */
   transform-origin: center !important;
+}
+
+/* Edge browser specific fix for Minimap positioning */
+@supports (-ms-ime-align: auto) {
+  .minimap-edge-fix {
+    bottom: 50px !important;
+  }
+}
+
+/* Force hide scrollbars on body for client pages */
+body:has(.client-scrollbar-hide) {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+body:has(.client-scrollbar-hide)::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Alternative approach using global override */
+.force-hide-scrollbars,
+.force-hide-scrollbars * {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.force-hide-scrollbars::-webkit-scrollbar,
+.force-hide-scrollbars *::-webkit-scrollbar {
+  display: none !important;
 }

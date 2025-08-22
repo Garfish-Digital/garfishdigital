@@ -24,7 +24,7 @@ export default function Documents() {
 
   if (!isClientAuthenticated) {
     return (
-      <div className="text-[color:var(--color-white)] documents-success-background bg-[color:var(--color-black)]">
+      <div className="text-[color:var(--color-white)] documents-success-background bg-[color:var(--color-black)] client-scrollbar-hide">
         <Logo />
         <div className="flex items-center justify-center min-h-screen px-4">
           <div className="text-center">
@@ -45,7 +45,7 @@ export default function Documents() {
   }
 
   return (
-    <div className="text-[color:var(--color-white)] documents-success-background bg-[color:var(--color-black)]">
+    <div className="text-[color:var(--color-white)] documents-success-background bg-[color:var(--color-black)] client-scrollbar-hide">
       {/* Static Logo - Upper Left */}
       <Logo />
 

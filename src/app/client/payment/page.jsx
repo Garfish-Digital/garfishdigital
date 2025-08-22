@@ -73,7 +73,7 @@ export default function Payment() {
 
   if (!isClientAuthenticated) {
     return (
-      <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)]">
+      <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)] client-scrollbar-hide">
         <Logo />
         <div className="flex items-center justify-center min-h-screen px-4">
           <div className="text-center">
@@ -95,7 +95,7 @@ export default function Payment() {
 
   if (paymentSuccess) {
     return (
-      <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)]">
+      <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)] client-scrollbar-hide">
         <Logo />
         <div className="flex items-center justify-center min-h-screen px-4">
           <motion.div
@@ -129,7 +129,7 @@ export default function Payment() {
   }
 
   return (
-    <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)]">
+    <div className="text-[color:var(--color-white)] payment-page-container bg-[color:var(--color-black)] client-scrollbar-hide force-hide-scrollbars">
       <Logo />
       <div className="flex items-start justify-center min-h-screen px-4 pt-24">
         <div className="w-full max-w-2xl payment-content-container">
@@ -189,10 +189,6 @@ export default function Payment() {
                         } font-primary`}>
                           ${invoice.amount.toFixed(2)}
                         </div>
-                        {/* <div className="text-2xl font-bold font-primary">
-                          <span className="text-[color:var(--color-black)]">$</span>
-                          <span className="text-[color:var(--color-gray-faint)]">{invoice.amount.toFixed(2)}</span>
-                        </div> */}
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
                             ? 'text-[color:var(--color-cyan-dark)]'
@@ -220,7 +216,7 @@ export default function Payment() {
                 
                 {/* Stripe Attribution */}
                 <motion.div
-                  className="text-center mt-8 pt-4 border-t border-[color:var(--color-gray-faint)] mb-16"
+                  className="text-center mt-8 pt-4 border-t border-[color:var(--color-gray-faint)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
@@ -232,7 +228,7 @@ export default function Payment() {
               </div>
             ) : (
               // Payment Form
-              <div className="space-y-6 mb-16">
+              <div className="space-y-6">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-2xl font-bold font-primary">
                     Complete Payment

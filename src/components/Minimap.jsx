@@ -49,7 +49,7 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
 
   return (
     <motion.div
-      className="fixed z-50 pointer-events-auto"
+      className="fixed z-50 pointer-events-auto minimap-edge-fix"
       style={position}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -103,7 +103,7 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'var(--gray-light)',
+                  backgroundColor: 'var(--color-green-half-light)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >

@@ -421,7 +421,7 @@ export default function Contact() {
                 </h2>
                 <motion.button
                   onClick={() => setShowModal(null)}
-                  className="text-[color:var(--color-white)]/60 hover:text-[color:var(--color-black)] transition-colors p-2"
+                  className="text-[color:var(--color-white)]/60 hover:text-[color:var(--color-white)] transition-colors p-2"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
@@ -446,7 +446,7 @@ export default function Contact() {
 
               {/* Content */}
               <motion.div
-                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-white)]/80 leading-relaxed font-primary"
+                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-white)]/80 leading-relaxed font-primary modal-scrollbar-hide"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}

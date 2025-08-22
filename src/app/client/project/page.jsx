@@ -32,11 +32,22 @@ export default function Project() {
   };
 
   return (
-    <div className="text-[color:var(--color-white)] project-page-container bg-[color:var(--color-black)]">
+    <>
       {/* Static Logo - Upper Left */}
       <Logo />
-
-      <div className="flex flex-col min-h-screen px-8 pt-24 pb-8">
+      
+      {/* Navigation Icons - Bottom Right */}
+      <Navigation
+        currentPage="project"
+        isClientAuthenticated={isClientAuthenticated}
+      />
+      
+      <div className="fixed inset-0 overflow-hidden bg-[color:var(--color-black)]">
+        <div className="text-[color:var(--color-white)] project-page-container bg-[color:var(--color-black)] h-full overflow-y-auto" style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }}>
+          <div className="flex flex-col min-h-screen px-8 pt-24 pb-8">
     
         {/* Project Name Row */}
         <motion.div
@@ -61,7 +72,7 @@ export default function Project() {
 
         {/* Table Container */}
         <motion.div
-          className="flex-1 rounded-lg iphone-16-spacing"
+          className="flex-1 rounded-lg"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -69,7 +80,7 @@ export default function Project() {
           <div>
             <table className="w-full">
               {/* Sticky Header */}
-              <thead className="sticky top-0 bg-[color:var(--color-cyan-dark)] backdrop-blur-sm text-[color:var(--color-gray-light)] z-10">
+              <thead className="sticky top-0 bg-[color:var(--color-gray-shadow)] backdrop-blur-sm text-[color:var(--color-gray-light)] z-10">
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-semibold font-primary first:rounded-tl-lg last:rounded-tr-lg">
                     Section
@@ -103,7 +114,7 @@ export default function Project() {
                     <motion.tr
                       key={index}
                       className={`
-                        ${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-dark)]' : ''} 
+                        ${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-half-light)]' : ''} 
                         hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
                       style={{ borderBottom: "1px solid var(--color-gray-shadow)" }}
                       initial={{ opacity: 0, y: 20 }}
@@ -133,13 +144,9 @@ export default function Project() {
             </table>
           </div>
         </motion.div>
+          </div>
+        </div>
       </div>
-
-      {/* Navigation Icons - Bottom Right */}
-      <Navigation
-        currentPage="project"
-        isClientAuthenticated={isClientAuthenticated}
-      />
-    </div>
+    </>
   );
 }

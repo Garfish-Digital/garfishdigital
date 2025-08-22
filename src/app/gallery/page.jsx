@@ -125,9 +125,6 @@ const demoCards = {
     hoverColors: {
       border: "hover:border-[#D4A574]/50",
       shadow: "hover:shadow-[#D4A574]",
-    //   gradient: "from-[#2D1810] to-[#2F3349] via-[#E8E2D5]/30",
-    //   gradient: "from-[var(--color-black)] to-[#5a4b41]/90 via-[#2D1810]/60",
-    //   gradient: "from-[var(--color-black)] to-[#2D1810]/90 via-[#D4A574]/60",
       gradient: "from-[var(--color-black)] to-[#B8B8B8]/90 via-[#D4A574]/60",
       text: "text-[#D4A574]",
     },
@@ -187,6 +184,19 @@ export default function Gallery() {
   const { isClientAuthenticated } = useClientAuth();
   const [currentPage, setCurrentPage] = useState("cell5");
   const [showTechCard, setShowTechCard] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+  // Detect mobile/small screen devices
+  useEffect(() => {
+    const checkDevice = () => {
+      const isMobile = window.innerWidth < 1024 || window.innerHeight < 900;
+      setIsMobileDevice(isMobile);
+    };
+    
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   const scrollToPage = (pageId) => {
     const page = pages.find((p) => p.id === pageId);
@@ -427,11 +437,17 @@ export default function Gallery() {
   };
 
   const renderDemoCard = (cardData) => {
+    // Force hover state classes on mobile devices
+    const mobileHoverClasses = isMobileDevice ? 'mobile-force-hover' : '';
+    const borderClass = isMobileDevice ? 
+      cardData.hoverColors.border.replace('hover:', '') : 
+      cardData.hoverColors.border;
+
     return (
       <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-64">
         <motion.div
-          className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${cardData.hoverColors.border} w-80 sm:w-96 md:w-[420px]`}
-        //   style={{ boxShadow: "0px 5px 6px var(--color-gray-shadow)" }}
+          className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${borderClass} ${mobileHoverClasses} w-80 sm:w-96 md:w-[420px]`}
+          style={isMobileDevice ? { boxShadow: "0px 20px 25px var(--color-gray-shadow)" } : {}}
           whileHover={{
             boxShadow: "0px 20px 25px var(--color-gray-shadow)",
             transition: { duration: 0.2, ease: "easeOut" },
@@ -439,7 +455,7 @@ export default function Gallery() {
         >
           {/* Glow effect */}
           <div
-            className={`absolute inset-0 bg-gradient-to-br ${cardData.hoverColors.gradient} rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+            className={`absolute inset-0 bg-gradient-to-br ${cardData.hoverColors.gradient} rounded-lg ${isMobileDevice ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-300`}
           />
 
           <div className="relative z-10 flex flex-col h-full">

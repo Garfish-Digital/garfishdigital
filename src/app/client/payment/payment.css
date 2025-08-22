@@ -6,7 +6,13 @@
   position: relative;
   min-height: 100vh; /* Allow full page height */
   overflow-y: auto; /* Enable page-level scrolling */
-  padding-bottom: clamp(60px, 12vh, 100px); /* Fluid navigation space */
+  /* padding-bottom: clamp(60px, 12vh, 100px); Fluid navigation space */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.payment-page-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .payment-content-container {

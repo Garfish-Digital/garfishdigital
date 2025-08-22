@@ -3,6 +3,12 @@
 .documents-success-background {
   min-height: 100vh; /* Allow full page height */
   overflow-y: auto; /* Enable page-level scrolling */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.documents-success-background::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* Removed scrollbar hiding - using page-level scrolling now */
