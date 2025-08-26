@@ -103,7 +103,7 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'var(--color-green-half-light)',
+                  backgroundColor: 'var(--color-white)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >

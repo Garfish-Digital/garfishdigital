@@ -4,23 +4,7 @@ import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { motion } from "framer-motion";
 
-// const CARD_ELEMENT_OPTIONS = {
-//   style: {
-//     base: {
-//       fontSize: "16px",
-//       color: "#424770",
-//       fontFamily: '"Cutive Mono", "Courier New", monospace',
-//       "::placeholder": {
-//         color: "#aab7c4",
-//       },
-//       //   padding: '12px',
-//     },
-//     invalid: {
-//       color: "#9e2146",
-//     },
-//   },
-//   hidePostalCode: false,
-// };
+
 const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {

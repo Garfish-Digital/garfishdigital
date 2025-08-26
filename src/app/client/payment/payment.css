@@ -2,11 +2,9 @@
 
 /* Payment Page Styles with Fluid Scaling - Updated for page-level scrolling */
 .payment-page-container {
-  /* background: var(--background); */
   position: relative;
   min-height: 100vh; /* Allow full page height */
   overflow-y: auto; /* Enable page-level scrolling */
-  /* padding-bottom: clamp(60px, 12vh, 100px); Fluid navigation space */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -18,7 +16,6 @@
 .payment-content-container {
   position: relative;
   z-index: 10;
-  /* Removed height constraints - using page-level scrolling now */
   padding: clamp(1rem, 3vw, 2rem); /* Fluid content padding */
 }
 
@@ -35,7 +32,6 @@
 
 .payment-card:hover {
   box-shadow: 0 clamp(3px, 1vw, 6px) clamp(12px, 3vw, 20px) rgba(0, 0, 0, 0.15); /* Fluid shadow */
-  /* transform: translateY(clamp(-1px, -0.25vw, -3px)); Subtle fluid lift */
 }
 
 .payment-feature {
@@ -82,7 +78,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* Remove custom logo styling - use global styles instead */
 
 /* Enhanced responsive adjustments with fluid scaling */
 @media (max-width: 480px) {

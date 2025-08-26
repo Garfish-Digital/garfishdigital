@@ -11,11 +11,6 @@
   display: none; /* Chrome, Safari, Opera */
 }
 
-/* Removed scrollbar hiding - using page-level scrolling now */
-.documents-content-container {
-  /* No longer needs overflow constraints */
-}
-
 @media (min-width: 540px) {
   .documents-content-container {
     padding-top: 2rem;;

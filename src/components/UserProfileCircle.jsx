@@ -58,7 +58,7 @@ export default function UserProfileCircle({
     <div className="fixed top-8 right-8 z-50 user-profile-circle" ref={menuRef}>
       {/* Profile Circle */}
       <motion.button
-        className="w-8 h-8 rounded-full bg-[var(--burnt-orange)] hover:bg-[var(--soft-orange)] active:bg-[var(--color-green-light)] flex items-center justify-center transition-colors duration-200"
+        className="w-8 h-8 rounded-full bg-[var(--vibrant-violet)] hover:bg-[var(--my-vibrant-violet)] active:bg-[var(--my-vibrant-violet)] flex items-center justify-center transition-colors duration-200"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0.8 }}
@@ -89,14 +89,14 @@ export default function UserProfileCircle({
             <hr className="text-[var(--color-gray-shadow)]"></hr>
             <button
               onClick={handleViewProject}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-faint)] hover:text-[var(--color-gray-light)] transition-colors font-primary font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-faint)] hover:text-[var(--color-white)] transition-colors font-primary font-bold"
             >
               View Project
             </button>
             <hr className="text-[var(--color-gray-shadow)]"></hr>
             <button
               onClick={handleSignOut}
-              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-faint)] hover:text-[var(--color-gray-light)] transition-colors font-primary font-bold"
+              className="w-full px-4 py-2 text-left text-sm text-[var(--color-gray-faint)] hover:text-[var(--color-white)] transition-colors font-primary font-bold"
             >
               Sign out
             </button>

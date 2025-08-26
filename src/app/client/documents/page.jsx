@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulbOn,
   faFolderCheck,
-  faClipboardList,
   faHandHoldingBox,
 } from "@fortawesome/pro-regular-svg-icons";
 import "./documents.css";

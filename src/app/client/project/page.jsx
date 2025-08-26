@@ -21,9 +21,10 @@ export default function Project() {
   const getStatusColor = (status) => {
     switch (status) {
       case "Completed":
-        return "text-[var(--color-white)] bg-[var(--color-green-dark)]";
+        // return "text-[var(--color-black)] bg-[var(--color-cyan-light)]";
+        return "text-[var(--color-white)] bg-[var(--color-green-half-light)]";
       case "In Progress":
-        return "text-[var(--color-white)] bg-[var(--soft-orange)]";
+        return "text-[var(--color-white)] bg-[var(--my-vibrant-violet)]";
       case "Pending":
         return "text-[var(--color-gray-light)] bg-[var(--color-black)]";
       default:
@@ -114,7 +115,7 @@ export default function Project() {
                     <motion.tr
                       key={index}
                       className={`
-                        ${milestone.status === 'In Progress' ? 'bg-[color:var(--color-green-half-light)]' : ''} 
+                        ${milestone.status === 'In Progress' ? 'bg-[color:var(--vibrant-half-cyan)]' : ''} 
                         hover:bg-[color:var(--color-gray-faint)] hover:bg-opacity-10 transition-colors duration-200`}
                       style={{ borderBottom: "1px solid var(--color-gray-shadow)" }}
                       initial={{ opacity: 0, y: 20 }}

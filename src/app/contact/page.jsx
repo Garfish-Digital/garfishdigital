@@ -19,93 +19,8 @@ export default function Contact() {
   });
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
-  //   const [isSubmitting, setIsSubmitting] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
-  const [validation, setValidation] = useState({});
-  const [placeholders, setPlaceholders] = useState({
-    name: "Your name",
-    email: "your@email.com",
-    business: "Your business (optional)",
-    message: "Tell us about your project...",
-  });
-  const [placeholderKeys, setPlaceholderKeys] = useState({
-    name: 0,
-    email: 0,
-    business: 0,
-    message: 0,
-  });
   const [showModal, setShowModal] = useState(null);
-
-  // Separate cycling for each field with staggered timing
-//   useEffect(() => {
-//     // Cycling placeholder text
-//     const placeholderOptions = {
-//       name: [`What\'s your name`, "A nickname?", "Who are you?"],
-//       email: [
-//         "your@email.com",
-//         "Where do you get messages?",
-//         "How do we reach you?",
-//       ],
-//       business: [
-//         "Your business (optional)",
-//         "What type of work do you do?",
-//         "Who you bust your a$$ for",
-//       ],
-//       message: [
-//         "What are you building?",
-//         "Do you have wild ideas?",
-//         "What can we do?",
-//       ],
-//     };
-
-//     let nameIndex = 0;
-//     let emailIndex = 0;
-//     let businessIndex = 0;
-//     let messageIndex = 0;
-
-//     const nameInterval = setInterval(() => {
-//       nameIndex = (nameIndex + 1) % placeholderOptions.name.length;
-//       setPlaceholders((prev) => ({
-//         ...prev,
-//         name: placeholderOptions.name[nameIndex],
-//       }));
-//       setPlaceholderKeys((prev) => ({ ...prev, name: prev.name + 1 }));
-//     }, 12600);
-
-//     const emailInterval = setInterval(() => {
-//       emailIndex = (emailIndex + 1) % placeholderOptions.email.length;
-//       setPlaceholders((prev) => ({
-//         ...prev,
-//         email: placeholderOptions.email[emailIndex],
-//       }));
-//       setPlaceholderKeys((prev) => ({ ...prev, email: prev.email + 1 }));
-//     }, 18000);
-
-//     const businessInterval = setInterval(() => {
-//       businessIndex = (businessIndex + 1) % placeholderOptions.business.length;
-//       setPlaceholders((prev) => ({
-//         ...prev,
-//         business: placeholderOptions.business[businessIndex],
-//       }));
-//       setPlaceholderKeys((prev) => ({ ...prev, business: prev.business + 1 }));
-//     }, 20500);
-
-//     const messageInterval = setInterval(() => {
-//       messageIndex = (messageIndex + 1) % placeholderOptions.message.length;
-//       setPlaceholders((prev) => ({
-//         ...prev,
-//         message: placeholderOptions.message[messageIndex],
-//       }));
-//       setPlaceholderKeys((prev) => ({ ...prev, message: prev.message + 1 }));
-//     }, 15000);
-
-//     return () => {
-//       clearInterval(nameInterval);
-//       clearInterval(emailInterval);
-//       clearInterval(businessInterval);
-//       clearInterval(messageInterval);
-//     };
-//   }, []);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -172,7 +87,6 @@ export default function Contact() {
       if (response.ok) {
         setShowSuccessModal(true);
         setFormData({ name: "", email: "", business: "", message: "" });
-        setValidation({});
         
         // Auto-dismiss modal and navigate to home after 3000ms
         setTimeout(() => {
@@ -190,7 +104,6 @@ export default function Contact() {
 
   const resetForm = () => {
     setFormData({ name: "", email: "", business: "", message: "" });
-    setValidation({});
   };
 
   const handleErrorModalClose = () => {
@@ -204,13 +117,6 @@ export default function Contact() {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }));
-
-    // Real-time validation
-    const validationMessage = validateField(name, value);
-    setValidation((prev) => ({
-      ...prev,
-      [name]: validationMessage,
     }));
   };
 
@@ -364,7 +270,7 @@ export default function Contact() {
       <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">
         <motion.button
           onClick={() => setShowModal("privacy")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
@@ -373,7 +279,7 @@ export default function Contact() {
         </motion.button>
         <motion.button
           onClick={() => setShowModal("terms")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-gray-light)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-faint)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
@@ -392,7 +298,7 @@ export default function Contact() {
       <AnimatePresence>
         {showModal && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center"
+            className="fixed inset-0 z-[100] flex items-center justify-center contact-modal-backdrop"
             initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
             animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
@@ -400,7 +306,7 @@ export default function Contact() {
             onClick={() => setShowModal(null)}
           >
             <motion.div
-              className="w-full max-w-4xl mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-green-dark)]/20 rounded-lg overflow-hidden contact-modal-background"
+              className="w-full max-w-4xl mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm rounded-lg overflow-hidden contact-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -1 }}
               animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20, rotate: 1 }}
@@ -409,7 +315,7 @@ export default function Contact() {
             >
               {/* Header */}
               <motion.div
-                className="flex items-center justify-between p-6 border-b border-[color:var(--color-black)]/10"
+                className="flex items-center justify-between p-6 contact-modal-background-header"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
@@ -446,7 +352,7 @@ export default function Contact() {
 
               {/* Content */}
               <motion.div
-                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-white)]/80 leading-relaxed font-primary modal-scrollbar-hide"
+                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-gray-light)] leading-relaxed font-primary modal-scrollbar-hide"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
@@ -486,7 +392,7 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                       >
-                        <h3 className="text-lg font-semibold text-[color:var(--color-cyan-dark)]">
+                        <h3 className="text-lg font-semibold text-[color:var(--color-white)]">
                           {section.title}
                         </h3>
                         <p>{section.content}</p>
@@ -540,12 +446,12 @@ export default function Contact() {
 
               {/* Footer */}
               <motion.div
-                className="p-6 border-t border-[color:var(--color-black)]/10 text-center"
+                className="p-6 border-t border-[color:var(--color-gray-faint)] text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
-                <p className="text-[color:var(--color-white)]/50 text-sm font-primary">
+                <p className="text-[color:var(--color-gray-faint)] text-sm font-primary">
                   Last updated: January 2025
                 </p>
               </motion.div>

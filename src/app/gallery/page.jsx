@@ -1,12 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Minimap from "../../components/Minimap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -189,7 +184,7 @@ export default function Gallery() {
   // Detect mobile/small screen devices
   useEffect(() => {
     const checkDevice = () => {
-      const isMobile = window.innerWidth < 1024 || window.innerHeight < 900;
+      const isMobile = window.innerWidth < 768;
       setIsMobileDevice(isMobile);
     };
     
@@ -428,15 +423,8 @@ export default function Gallery() {
     setShowTechCard(false);
   };
 
-  // 3D Tilt Effect using Framer Motion
-  const tiltTransition = {
-    type: "spring",
-    stiffness: 300,
-    damping: 30,
-    mass: 0.8,
-  };
-
   const renderDemoCard = (cardData) => {
+    console.log('isMobileDevice:', isMobileDevice);
     // Force hover state classes on mobile devices
     const mobileHoverClasses = isMobileDevice ? 'mobile-force-hover' : '';
     const borderClass = isMobileDevice ? 

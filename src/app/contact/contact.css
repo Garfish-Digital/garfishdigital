@@ -9,9 +9,16 @@
 
 /* Modal background */
 .contact-modal-background {
-  background: radial-gradient(at 20% 30%, rgba(67, 105, 91, 0.1) 0px, transparent 50%),
-              radial-gradient(at 80% 70%, rgba(47, 69, 56, 0.1) 0px, transparent 60%),
-              rgba(10, 10, 10, 0.95) !important;
+  background: rgba(10, 10, 10, 0.95) !important;
+  border: 1px solid var(--color-gray-shadow) !important;
+}
+
+.contact-modal-background-header {
+  border-bottom: 1px solid var(--color-gray-faint) !important;
+}
+
+.contact-modal-backdrop {
+  border: none !important;
 }
 
 .contact-success-modal-background {

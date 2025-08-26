@@ -176,8 +176,8 @@ export default function Payment() {
                         <h3 className="text-lg text-[color:var(--color-gray-light)] font-semibold mb-2 font-primary">
                           {invoice.description}
                         </h3>
-                        <p className={`text-left text-sm text-[color:var(--color-gray-faint)] font-primary ${
-                            invoice.status === 'paid' ? 'line-through' : ''}`}>
+                        <p className={`text-left text-sm font-primary ${
+                            invoice.status === 'paid' ? 'text-[color:var(--color-gray-faint)] line-through' : 'text-[color:var(--color-cyan-light)] '}`}>
                           Due: {invoice.dueDate}
                         </p>
                       </div>
@@ -191,8 +191,8 @@ export default function Payment() {
                         </div>
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
-                            ? 'text-[color:var(--color-cyan-dark)]'
-                            : 'text-[color:var(--color-cyan-light)]' 
+                            ? 'text-[color:var(--color-gray-faint)]'
+                            : 'text-[color:var(--color-gray-light)]' 
                         }`}>
                           {invoice.status === 'paid' ? 'PAID' : 'PENDING'}
                         </div>
