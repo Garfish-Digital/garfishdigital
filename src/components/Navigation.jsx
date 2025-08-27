@@ -14,7 +14,7 @@ import {
 function getLinkClasses(isActive) {
   return `
       ${isActive ? 'hover:text-[color:var(--color-cyan-light)]' : 'hover:text-[color:var(--color-white)]'} 
-      active:text-[color:var(--color-green-light)]
+      active:text-[color:var(--color-cyan-light)]
       transition-all duration-300 
       font-primary font-normal text-lg
       ${isActive ? 'text-[color:var(--color-cyan-light)]' : 'text-[color:var(--color-gray-faint)]'}
@@ -165,7 +165,7 @@ const MobileNavigation = ({
               transition={{ duration: 0.2, ease: "easeOut" }}
             />
             <motion.div
-              className="absolute top-12 right-0 bg-[var(--color-black)] rounded-lg shadow-lg border border-[var(--color-cyan-dark)] py-2 min-w-[100px] z-50"
+              className="absolute top-12 right-0 bg-[var(--color-black)] rounded-lg shadow-lg border border-[var(--color-gray-faint)] py-2 min-w-[110px] z-50"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -196,7 +196,7 @@ const MobileNavigation = ({
                     {item.href ? (
                       <Link
                         href={item.href}
-                        className={linkClasses}
+                        className={`${linkClasses} text-md`}
                         onClick={handleMenuItemClick}
                         title={item.title}
                       >
@@ -204,7 +204,7 @@ const MobileNavigation = ({
                       </Link>
                     ) : (
                       <button
-                        className={linkClasses}
+                        className={`${linkClasses} text-md`}
                         onClick={handleMenuItemClick}
                         title={item.title}
                       >

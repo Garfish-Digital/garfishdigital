@@ -84,7 +84,7 @@
 }
 
 .client-form-field:valid:not(:focus):not(:placeholder-shown) {
-  border-color: var(--color-green-light);
+  border-color: var(--color-cyan-light);
   box-shadow: 0 0 0 clamp(2px, 0.5vw, 4px) rgba(125, 200, 125, 0.15);
 }
 
@@ -99,7 +99,7 @@
 
 .client-validation-message.success {
   background-color: rgba(125, 200, 125, 0.1);
-  border-left: clamp(3px, 0.75vw, 5px) solid var(--color-green-light);
+  border-left: clamp(3px, 0.75vw, 5px) solid var(--color-cyan-light);
   color: var(--color-green-dark);
 }
 
@@ -145,7 +145,7 @@
 
 /* Link focus states for keyboard navigation */
 a:focus-visible {
-  outline: clamp(2px, 0.5vw, 3px) solid var(--color-green-light);
+  outline: clamp(2px, 0.5vw, 3px) solid var(--color-cyan-light);
   outline-offset: clamp(2px, 0.5vw, 3px);
   border-radius: clamp(2px, 0.5vw, 4px);
   background-color: rgba(125, 200, 125, 0.1);
@@ -189,7 +189,7 @@ legend {
 
 .client-success-container .garfish-button:active,
 .documents-success-background .garfish-button:active {
-  background-color: var(--color-green-light);
+  background-color: var(--color-cyan-light);
 }
 
 /* Auth form submit button styling */
@@ -209,7 +209,7 @@ legend {
 }
 
 .client-form-container .garfish-button:active:not(:disabled) {
-  background-color: var(--color-green-light);
+  background-color: var(--color-cyan-light);
 }
 
 /* Responsive adjustments with fluid scaling */

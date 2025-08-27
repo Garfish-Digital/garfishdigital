@@ -617,7 +617,7 @@ export default function Gallery() {
             >
               {/* Header */}
               <motion.div
-                className="flex items-center justify-between p-6 border-b border-[color:var(--color-black)]/10"
+                className="flex items-center justify-between p-6 border-b border-[color:var(--color-white)]/10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
@@ -652,13 +652,13 @@ export default function Gallery() {
 
               {/* Content */}
               <motion.div
-                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-white)]/80 leading-relaxed font-primary"
+                className="p-6 max-h-[60vh] overflow-y-auto text-[color:var(--color-gray-light)] leading-relaxed font-primary"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
               >
                 <div className="space-y-4">
-                  <ul className="text-[color:var(--color-white)] space-y-3">
+                  <ul className="text-[color:var(--color-gray-light)] space-y-3">
                     {getTechCardData(currentPage)?.items.map((item, index) => (
                       <motion.li
                         key={index}
@@ -682,7 +682,7 @@ export default function Gallery() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
-                <p className="text-[color:var(--color-white)]/50 text-sm font-primary">
+                <p className="text-[color:var(--color-gray-faint)] text-sm font-primary">
                   Technical details of site features and animations
                 </p>
               </motion.div>

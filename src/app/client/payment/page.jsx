@@ -185,7 +185,7 @@ export default function Payment() {
                         <div className={`text-2xl ${
                             invoice.status === 'paid'
                                 ? 'text-[color:var(--color-gray-faint)] font-semibold'
-                                : 'text-[color:var(--color-green-light)] font-bold'
+                                : 'text-[color:var(--color-green-light)] font-semibold'
                         } font-primary`}>
                           ${invoice.amount.toFixed(2)}
                         </div>

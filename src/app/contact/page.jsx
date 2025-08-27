@@ -306,7 +306,7 @@ export default function Contact() {
             onClick={() => setShowModal(null)}
           >
             <motion.div
-              className="w-full max-w-4xl mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm rounded-lg overflow-hidden contact-modal-background"
+              className="w-full max-w-4xl mx-4 border border-[color:var(--color-white)]/10 bg-[color:var(--color-black)]/90 backdrop-blur-sm rounded-lg overflow-hidden contact-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -1 }}
               animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20, rotate: 1 }}
@@ -315,7 +315,7 @@ export default function Contact() {
             >
               {/* Header */}
               <motion.div
-                className="flex items-center justify-between p-6 contact-modal-background-header"
+                className="flex items-center justify-between p-6 contact-modal-background-header border-b border-[color:var(--color-white)]/10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
@@ -446,7 +446,7 @@ export default function Contact() {
 
               {/* Footer */}
               <motion.div
-                className="p-6 border-t border-[color:var(--color-gray-faint)] text-center"
+                className="p-6 border-t border-[color:var(--color-white)]/10 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
@@ -471,7 +471,7 @@ export default function Contact() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)] rounded-lg overflow-hidden contact-success-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/10 rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
@@ -505,7 +505,7 @@ export default function Contact() {
             onClick={handleErrorModalClose}
           >
             <motion.div
-              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/20 rounded-lg overflow-hidden contact-success-modal-background"
+              className="w-full max-w-md mx-4 bg-[color:var(--color-black)]/90 backdrop-blur-sm border border-[color:var(--color-white)]/10 rounded-lg overflow-hidden contact-success-modal-background"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}

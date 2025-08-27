@@ -7,23 +7,13 @@
   overflow-y: auto; /* Allow page-level scrolling */
 }
 
-/* Modal background */
-.contact-modal-background {
-  background: rgba(10, 10, 10, 0.95) !important;
-  border: 1px solid var(--color-gray-shadow) !important;
-}
-
-.contact-modal-background-header {
-  border-bottom: 1px solid var(--color-gray-faint) !important;
-}
-
 .contact-modal-backdrop {
   border: none !important;
 }
 
 .contact-success-modal-background {
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
 }
 
