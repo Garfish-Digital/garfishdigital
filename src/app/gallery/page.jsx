@@ -89,7 +89,8 @@ const demoCards = {
     title: "Obsidian Peaks",
     subtitle: "Snowboarding Lessons & Tours",
     url: "https://obsidian-peaks.netlify.app",
-    effects: "A demonstration on glassmorphism, CSS filters, and lively zoom animation.",
+    effects:
+      "A demonstration on glassmorphism, CSS filters, and lively zoom animation.",
     hoverColors: {
       border: "hover:border-[#87CEEB]/50",
       shadow: "hover:shadow-[#87CEEB]",
@@ -153,7 +154,8 @@ const demoCards = {
     title: "Velvet Quill",
     subtitle: "Romance & Erotica Literary Collective",
     url: "https://velvet-quill.netlify.app",
-    effects: "A demonstration on layered textures, subtle animation, and interactive reveals.",
+    effects:
+      "A demonstration on layered textures, subtle animation, and interactive reveals.",
     hoverColors: {
       border: "hover:border-[#D4A5A5]/50",
       shadow: "hover:shadow-[#D4A5A5]",
@@ -165,12 +167,13 @@ const demoCards = {
     title: "The Scrap Pit",
     subtitle: "MMA Gym & Fighter Training Program",
     url: "https://the-scrap-pit.netlify.app",
-    effects: "A demonstration on brutalist aesthetics and CSS color manipulation.",
+    effects:
+      "A demonstration on brutalist aesthetics and CSS color manipulation.",
     hoverColors: {
-    border: "hover:border-[#CC9900]/50",
-    shadow: "hover:shadow-[#CC9900]",
-    gradient: "from-[var(--color-black)] to-[#F8F8FF]/90 via-[#E00000]/60",
-    text: "text-[#CC9900]",
+      border: "hover:border-[#CC9900]/50",
+      shadow: "hover:shadow-[#CC9900]",
+      gradient: "from-[var(--color-black)] to-[#F8F8FF]/90 via-[#E00000]/60",
+      text: "text-[#CC9900]",
     },
   },
 };
@@ -189,10 +192,10 @@ export default function Gallery() {
       const isMobile = window.innerWidth < 768;
       setIsMobileDevice(isMobile);
     };
-    
+
     checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   // Viewport height measurement and positioning calculations
@@ -200,22 +203,25 @@ export default function Gallery() {
     const updateViewportHeight = () => {
       const height = window.innerHeight;
       setViewportHeight(height);
-      
+
       // Calculate positioning values
       const headerHeight = 100;
       const availableSpace = height - headerHeight;
-      
+
       // Simple top-based positioning
-      const demoCardTop = headerHeight + (0.3 * availableSpace);
-      const calculatedMinimapTop = headerHeight + (0.55 * availableSpace);
+      const demoCardTop = headerHeight + 0.3 * availableSpace;
+      const calculatedMinimapTop = headerHeight + 0.55 * availableSpace;
       setMinimapTopPosition(calculatedMinimapTop);
       // Set CSS custom properties
-      document.documentElement.style.setProperty('--demo-card-top', `${demoCardTop}px`);
+      document.documentElement.style.setProperty(
+        "--demo-card-top",
+        `${demoCardTop}px`
+      );
     };
-    
+
     updateViewportHeight();
-    window.addEventListener('resize', updateViewportHeight);
-    return () => window.removeEventListener('resize', updateViewportHeight);
+    window.addEventListener("resize", updateViewportHeight);
+    return () => window.removeEventListener("resize", updateViewportHeight);
   }, []);
 
   const scrollToPage = (pageId) => {
@@ -449,18 +455,25 @@ export default function Gallery() {
   };
 
   const renderDemoCard = (cardData) => {
-    console.log('isMobileDevice:', isMobileDevice);
+    console.log("isMobileDevice:", isMobileDevice);
     // Force hover state classes on mobile devices
-    const mobileHoverClasses = isMobileDevice ? 'mobile-force-hover' : '';
-    // const borderClass = isMobileDevice ? 
-    //   cardData.hoverColors.border.replace('hover:', '') : 
+    const mobileHoverClasses = isMobileDevice ? "mobile-force-hover" : "";
+    // const borderClass = isMobileDevice ?
+    //   cardData.hoverColors.border.replace('hover:', '') :
     //   cardData.hoverColors.border;
 
     return (
-      <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start" style={{ marginTop: 'var(--demo-card-top, 264px)' }}>
+      <div
+        className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start"
+        style={{ marginTop: "var(--demo-card-top, 264px)" }}
+      >
         <motion.div
           className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${cardData.hoverColors.border} ${mobileHoverClasses} w-80 sm:w-96 md:w-[420px]`}
-          style={isMobileDevice ? { boxShadow: "0px 7px 10px var(--color-gray-shadow)" } : {}}
+          style={
+            isMobileDevice
+              ? { boxShadow: "0px 7px 10px var(--color-gray-shadow)" }
+              : {}
+          }
           whileHover={{
             boxShadow: "0px 20px 25px var(--color-gray-shadow)",
             transition: { duration: 0.2, ease: "easeOut" },
@@ -514,9 +527,14 @@ export default function Gallery() {
               <motion.div
                 animate={{
                   x: [0, 4, 4, 0],
-                  color: ['var(--color-white)', 'var(--color-gray-light)', 'var(--color-gray-light)', 'var(--color-white)']
+                  color: [
+                    "var(--color-gray-light)",
+                    "var(--color-white)",
+                    "var(--color-white)",
+                    "var(--color-gray-light)",
+                  ],
                 }}
-                style={{ color: 'var(--color-gray-light)' }}
+                style={{ color: "var(--color-white)" }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
@@ -532,9 +550,9 @@ export default function Gallery() {
               <motion.div
                 animate={{
                   scale: [1, 1, 1.3, 1],
-                  color: [ 'var(--color-white)', 'var(--color-gray-light)', 'var(--color-gray-light)', 'var(--color-white)']
+                  //   color: [ 'var(--color-white)', 'var(--color-gray-light)', 'var(--color-white)', 'var(--color-white)']
                 }}
-                style={{ color: 'var(--color-gray-light)' }}
+                style={{ color: "var(--color-white)" }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
@@ -575,7 +593,8 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
-                Use the minimap below to visit live demo sites to view detailed examples of our work.
+                Use the minimap below to visit live demo sites to view detailed
+                examples of our work.
               </p>
             </motion.div>
           </div>
@@ -697,7 +716,9 @@ export default function Gallery() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + index * 0.1, duration: 0.4 }}
                       >
-                        <span className="text-[color:var(--color-white)]/60 mr-3">•</span>
+                        <span className="text-[color:var(--color-white)]/60 mr-3">
+                          •
+                        </span>
                         <span>{item}</span>
                       </motion.li>
                     ))}
