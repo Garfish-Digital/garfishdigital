@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/pro-regular-svg-icons';
 
-export default function Minimap({ currentPage, onPageClick, pages }) {
+export default function Minimap({ currentPage, onPageClick, pages, minimapTop }) {
 
   const getMinimapPosition = () => {
     let minimapPosition = null;
@@ -13,15 +13,15 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
         case 'cell1':
         case 'cell4':
         case 'cell7':
-            minimapPosition = { bottom: 'calc(30vh - 75px)', left: 'calc(25vw - 75px)' };
+            minimapPosition = { top: `${minimapTop}px`, left: 'calc(25vw - 75px)' };
             break;
         case 'cell3':
         case 'cell6':
         case 'cell9':
-            minimapPosition = { bottom: 'calc(30vh - 75px)', right: 'calc(25vw - 75px)' };
+            minimapPosition = { top: `${minimapTop}px`, right: 'calc(25vw - 75px)' };
             break;
         default:
-            minimapPosition = { bottom: 'calc(30vh - 75px)', right: 'calc(50vw - 75px)' };
+            minimapPosition = { top: `${minimapTop}px`, right: 'calc(50vw - 75px)' };
             break;
     }
 
@@ -49,7 +49,7 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
 
   return (
     <motion.div
-      className="fixed z-50 pointer-events-auto minimap-edge-fix"
+      className="fixed z-50 pointer-events-auto"
       style={position}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -97,13 +97,13 @@ export default function Minimap({ currentPage, onPageClick, pages }) {
                 style={{
                     border : '1px solid var(--color-cyan-dark)',
                   backgroundColor: isActive 
-                    ? 'var(--color-cyan-light)'
+                    ? 'var(--color-white)'
                     : 'var(--color-black)',
                 }}
                 onClick={() => page && onPageClick(page.id)}
                 disabled={!page}
                 whileHover={page && !isActive ? { 
-                  backgroundColor: 'var(--color-white)',
+                  backgroundColor: 'var(--color-cyan-light)',
                 } : {}}
                 whileTap={page ? { scale: 0.9 } : {}}
               >

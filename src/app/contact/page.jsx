@@ -141,7 +141,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
+              <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-white)] font-primary">
                 How Do I Get Started?
               </h2>
             </motion.div>
@@ -270,7 +270,7 @@ export default function Contact() {
       <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">
         <motion.button
           onClick={() => setShowModal("privacy")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
@@ -279,7 +279,7 @@ export default function Contact() {
         </motion.button>
         <motion.button
           onClick={() => setShowModal("terms")}
-          className="text-[var(--color-gray-faint)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
+          className="text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2 font-primary"
           initial={{ opacity: 0, x: -30, y: 30 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}

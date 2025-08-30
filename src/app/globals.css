@@ -410,27 +410,6 @@ textarea:focus::placeholder {
   transform-origin: center !important;
 }
 
-/* Edge browser specific fix for Minimap positioning */
-@supports (-webkit-appearance: none) and (not (-moz-appearance: none)) and (not (-webkit-touch-callout: none)) {
-  .minimap-edge-fix {
-    bottom: 50px !important;
-  }
-}
-
-/* Alternative Edge detection using CSS Grid support */
-@supports ((-ms-ime-align: auto) or (-ms-accelerator: true) or (-ms-wrap-flow: auto)) {
-  .minimap-edge-fix {
-    bottom: 50px !important;
-  }
-}
-
-/* Chromium-based Edge fallback */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .minimap-edge-fix {
-    bottom: 50px !important;
-  }
-}
-
 /* Force hide scrollbars on body for client pages */
 body:has(.client-scrollbar-hide) {
   -ms-overflow-style: none !important;

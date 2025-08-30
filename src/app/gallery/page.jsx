@@ -180,6 +180,8 @@ export default function Gallery() {
   const [currentPage, setCurrentPage] = useState("cell5");
   const [showTechCard, setShowTechCard] = useState(false);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(0);
+  const [minimapTopPosition, setMinimapTopPosition] = useState(0);
 
   // Detect mobile/small screen devices
   useEffect(() => {
@@ -191,6 +193,29 @@ export default function Gallery() {
     checkDevice();
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
+  }, []);
+
+  // Viewport height measurement and positioning calculations
+  useEffect(() => {
+    const updateViewportHeight = () => {
+      const height = window.innerHeight;
+      setViewportHeight(height);
+      
+      // Calculate positioning values
+      const headerHeight = 100;
+      const availableSpace = height - headerHeight;
+      
+      // Simple top-based positioning
+      const demoCardTop = headerHeight + (0.3 * availableSpace);
+      const calculatedMinimapTop = headerHeight + (0.55 * availableSpace);
+      setMinimapTopPosition(calculatedMinimapTop);
+      // Set CSS custom properties
+      document.documentElement.style.setProperty('--demo-card-top', `${demoCardTop}px`);
+    };
+    
+    updateViewportHeight();
+    window.addEventListener('resize', updateViewportHeight);
+    return () => window.removeEventListener('resize', updateViewportHeight);
   }, []);
 
   const scrollToPage = (pageId) => {
@@ -427,15 +452,15 @@ export default function Gallery() {
     console.log('isMobileDevice:', isMobileDevice);
     // Force hover state classes on mobile devices
     const mobileHoverClasses = isMobileDevice ? 'mobile-force-hover' : '';
-    const borderClass = isMobileDevice ? 
-      cardData.hoverColors.border.replace('hover:', '') : 
-      cardData.hoverColors.border;
+    // const borderClass = isMobileDevice ? 
+    //   cardData.hoverColors.border.replace('hover:', '') : 
+    //   cardData.hoverColors.border;
 
     return (
-      <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start mt-64">
+      <div className="h-full p-4 sm:p-6 md:p-8 flex flex-col items-center justify-start" style={{ marginTop: 'var(--demo-card-top, 264px)' }}>
         <motion.div
-          className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${borderClass} ${mobileHoverClasses} w-80 sm:w-96 md:w-[420px]`}
-          style={isMobileDevice ? { boxShadow: "0px 20px 25px var(--color-gray-shadow)" } : {}}
+          className={`group relative bg-black backdrop-blur-sm rounded-lg border border-white/10 p-4 sm:p-6 md:p-8 transition-colors duration-300 ${cardData.hoverColors.border} ${mobileHoverClasses} w-80 sm:w-96 md:w-[420px]`}
+          style={isMobileDevice ? { boxShadow: "0px 7px 10px var(--color-gray-shadow)" } : {}}
           whileHover={{
             boxShadow: "0px 20px 25px var(--color-gray-shadow)",
             transition: { duration: 0.2, ease: "easeOut" },
@@ -443,7 +468,7 @@ export default function Gallery() {
         >
           {/* Glow effect */}
           <div
-            className={`absolute inset-0 bg-gradient-to-br ${cardData.hoverColors.gradient} rounded-lg ${isMobileDevice ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-300`}
+            className={`absolute inset-0 bg-gradient-to-br ${cardData.hoverColors.gradient} rounded-lg opacity-100 group-hover:opacity-100 transition-opacity duration-300`}
           />
 
           <div className="relative z-10 flex flex-col h-full">
@@ -536,7 +561,7 @@ export default function Gallery() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
+              <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-white)] font-primary">
                 Explore our Gallery
               </h2>
             </motion.div>
@@ -594,6 +619,7 @@ export default function Gallery() {
         currentPage={currentPage}
         onPageClick={scrollToPage}
         pages={pages}
+        minimapTop={minimapTopPosition}
       />
 
       {/* Hip & Soothing Tech Card Modal */}

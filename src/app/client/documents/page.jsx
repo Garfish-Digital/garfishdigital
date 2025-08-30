@@ -61,9 +61,9 @@ export default function Documents() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <h2 className="text-lg font-bold mb-4 text-[color:var(--color-cyan-dark)] font-primary">
+              <h2 className="text-lg font-bold mb-4 text-[color:var(--color-white)] font-primary">
                 Document Center for{" "}
-                <strong className="text-[var(--color-white)]">
+                <strong className="text-[var(--color-white)] italic">
                   {authenticatedClient?.project || "your project"}
                 </strong>
               </h2>

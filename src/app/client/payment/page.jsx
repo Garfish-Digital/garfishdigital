@@ -139,9 +139,9 @@ export default function Payment() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-cyan-dark)] font-primary">
+                <h2 className="text-lg font-bold mt-4 mb-8 text-[color:var(--color-white)] font-primary">
                   Pending Invoices for{" "}
-                  <strong className="text-[var(--white)]">
+                  <strong className="text-[var(--white)] italic">
                     {authenticatedClient?.project || "your project"}
                   </strong>
                 </h2>
@@ -191,7 +191,7 @@ export default function Payment() {
                         </div>
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
-                            ? 'text-[color:var(--color-gray-faint)]'
+                            ? 'text-[color:var(--color-cyan-light)]'
                             : 'text-[color:var(--color-gray-light)]' 
                         }`}>
                           {invoice.status === 'paid' ? 'PAID' : 'PENDING'}

@@ -57,9 +57,9 @@ export default function Project() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h2 className="text-lg font-bold mb-4 text-[color:var(--color-cyan-dark)] font-primary">
+          <h2 className="text-lg font-bold mb-4 text-[color:var(--color-white)] font-primary">
             Project Overview for{" "}
-            <strong className="text-[var(--color-white)]">
+            <strong className="text-[var(--color-white)] italic">
               {authenticatedClient?.project || "your project"}
             </strong>
           </h2>

@@ -13,11 +13,11 @@ import {
 // Shared function for generating link classes
 function getLinkClasses(isActive) {
   return `
-      ${isActive ? 'hover:text-[color:var(--color-cyan-light)]' : 'hover:text-[color:var(--color-white)]'} 
-      active:text-[color:var(--color-cyan-light)]
+      ${isActive ? 'hover:text-[color:var(--color-white)]' : 'hover:text-[color:var(--color-cyan-light)]'} 
+      active:text-[color:var(--color-white)]
       transition-all duration-300 
       font-primary font-normal text-lg
-      ${isActive ? 'text-[color:var(--color-cyan-light)]' : 'text-[color:var(--color-gray-faint)]'}
+      ${isActive ? 'text-[color:var(--color-white)]' : 'text-[color:var(--color-gray-light)]'}
   `;
 }
 
