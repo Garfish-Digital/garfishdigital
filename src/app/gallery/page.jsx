@@ -514,7 +514,9 @@ export default function Gallery() {
               <motion.div
                 animate={{
                   x: [0, 4, 4, 0],
+                  color: ['var(--color-white)', 'var(--color-gray-light)', 'var(--color-gray-light)', 'var(--color-white)']
                 }}
+                style={{ color: 'var(--color-gray-light)' }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
@@ -524,13 +526,15 @@ export default function Gallery() {
               >
                 <FontAwesomeIcon
                   icon={faArrowRightFromBracket}
-                  className="w-6 h-6 ml-2 text-[var(--color-gray-light)] group-hover/link:text-[var(--color-white)]"
+                  className="w-6 h-6 ml-2 group-hover/link:text-[var(--color-white)]"
                 />
               </motion.div>
               <motion.div
                 animate={{
                   scale: [1, 1, 1.3, 1],
+                  color: [ 'var(--color-white)', 'var(--color-gray-light)', 'var(--color-gray-light)', 'var(--color-white)']
                 }}
+                style={{ color: 'var(--color-gray-light)' }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
@@ -540,7 +544,7 @@ export default function Gallery() {
               >
                 <FontAwesomeIcon
                   icon={faWindow}
-                  className="w-6 h-6 ml-1 text-[var(--color-gray-light)] group-hover/link:text-[var(--color-white)]"
+                  className="w-6 h-6 ml-1 group-hover/link:text-[var(--color-white)]"
                 />
               </motion.div>
             </a>

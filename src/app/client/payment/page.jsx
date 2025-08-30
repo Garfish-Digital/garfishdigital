@@ -173,16 +173,16 @@ export default function Payment() {
                   >
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="text-lg text-[color:var(--color-gray-light)] font-semibold mb-2 font-primary">
+                        <h3 className="text-lg text-[color:var(--color-gray-light)] text-left font-semibold mb-2 font-primary">
                           {invoice.description}
                         </h3>
                         <p className={`text-left text-sm font-primary ${
-                            invoice.status === 'paid' ? 'text-[color:var(--color-gray-faint)] line-through' : 'text-[color:var(--color-cyan-light)] '}`}>
+                            invoice.status === 'paid' ? 'text-[color:var(--color-gray-faint)] line-through' : 'text-[color:var(--color-white)] '}`}>
                           Due: {invoice.dueDate}
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className={`text-2xl ${
+                        <div className={`text-xl ${
                             invoice.status === 'paid'
                                 ? 'text-[color:var(--color-gray-faint)] font-semibold'
                                 : 'text-[color:var(--color-green-light)] font-semibold'
@@ -192,7 +192,7 @@ export default function Payment() {
                         <div className={`text-sm uppercase tracking-wide ${
                           invoice.status === 'paid' 
                             ? 'text-[color:var(--color-cyan-light)]'
-                            : 'text-[color:var(--color-gray-light)]' 
+                            : 'text-[color:var(--color-cyan-light)]' 
                         }`}>
                           {invoice.status === 'paid' ? 'PAID' : 'PENDING'}
                         </div>

@@ -193,7 +193,7 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
+            <h2 className="text-lg font-bold mt-6 mb-2 text-[color:var(--color-white)] font-primary">
               Access Your Dashboard
             </h2>
           </motion.div>
@@ -275,7 +275,7 @@ export default function Client() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-cyan-dark)] font-primary">
+            <h2 className="text-lg font-bold mt-12 mb-2 text-[color:var(--color-white)] font-primary">
               Ready for Your Project Portal?
             </h2>
           </motion.div>

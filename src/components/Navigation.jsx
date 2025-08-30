@@ -124,7 +124,7 @@ const MobileNavigation = ({
         <div className="absolute inset-0 flex flex-col justify-center items-center">
           {/* Top line */}
           <motion.div
-            className="w-8 h-1 mb-1 bg-[color:var(--color-gray-faint)] group-hover:bg-[color:var(--color-cyan-light)] transition-colors duration-200 rounded-full"
+            className="w-8 h-1 mb-1 bg-[color:var(--color-cyan-dark)] group-hover:bg-[color:var(--color-white)] transition-colors duration-200 rounded-full"
             animate={{
               rotate: isMenuOpen ? 45 : 0,
               y: isMenuOpen ? 2 : -2,
@@ -133,7 +133,7 @@ const MobileNavigation = ({
           />
           {/* Middle line */}
           <motion.div
-            className="w-8 h-1 mb-1 bg-[color:var(--color-gray-faint)] group-hover:bg-[color:var(--color-cyan-light)] transition-colors duration-200 rounded-full"
+            className="w-8 h-1 mb-1 bg-[color:var(--color-cyan-dark)] group-hover:bg-[color:var(--color-white)] transition-colors duration-200 rounded-full"
             animate={{
               opacity: isMenuOpen ? 0 : 1,
               scale: isMenuOpen ? 0 : 1,
@@ -142,7 +142,7 @@ const MobileNavigation = ({
           />
           {/* Bottom line */}
           <motion.div
-            className="w-8 h-1 mb-1 bg-[color:var(--color-gray-faint)] group-hover:bg-[color:var(--color-cyan-light)] transition-colors duration-200 rounded-full"
+            className="w-8 h-1 mb-1 bg-[color:var(--color-cyan-dark)] group-hover:bg-[color:var(--color-white)] transition-colors duration-200 rounded-full"
             animate={{
               rotate: isMenuOpen ? -45 : 0,
               y: isMenuOpen ? -2 : 2,
