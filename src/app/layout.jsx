@@ -42,7 +42,7 @@ library.add(
 export const metadata = {
   title: "Garfish Digital",
   description: "Web Design and Development",
-  robots: "noindex, nofollow",
+  robots: "index, follow",
   openGraph: {
     title: "Garfish Digital",
     description: "Web Design and Development",

@@ -6,7 +6,7 @@
 - Basic meta tags (title, description, viewport, charset)
 - Theme color meta tag
 - Favicon and apple-touch-icon
-- **  Development blocker**: `robots: "noindex, nofollow"`
+- **ï¿½ Development blocker**: `robots: "noindex, nofollow"`
 
 **Missing Critical Elements:**
 - Open Graph & Twitter Card meta tags
@@ -20,7 +20,7 @@
 
 ## Step-by-Step Implementation Plan
 
-### **Phase 1: Foundation & Meta Tags** <¯
+### **Phase 1: Foundation & Meta Tags** <ï¿½
 
 **Step 1.1: Update Root Layout Metadata**
 - [ ] Remove `noindex, nofollow` for production
@@ -36,7 +36,7 @@
   - Contact: "web design services", "contact web developer"
   - Client portal: `noindex` (private content)
 
-### **Phase 2: Structured Data & Schema** =Ê
+### **Phase 2: Structured Data & Schema** =ï¿½
 
 **Step 2.1: Business Schema (Home Page)**
 - [ ] Add LocalBusiness or ProfessionalService schema
@@ -53,7 +53,7 @@
 - [ ] Include business hours, contact methods
 - [ ] Add postal address (if applicable)
 
-### **Phase 3: Technical SEO** ™
+### **Phase 3: Technical SEO** ï¿½
 
 **Step 3.1: Site Infrastructure**
 - [ ] Create `robots.txt` in public folder
@@ -71,7 +71,7 @@
 
 **Step 4.1: WCAG 2.1 AA Compliance**
 - [ ] Add semantic HTML structure (`main`, `nav`, `section`, `article`)
-- [ ] Implement proper heading hierarchy (h1 ’ h6)
+- [ ] Implement proper heading hierarchy (h1 ï¿½ h6)
 - [ ] Add ARIA labels for interactive elements
 - [ ] Ensure keyboard navigation support
 
@@ -87,7 +87,7 @@
 - [ ] Add focus trapping in modals
 - [ ] Test with screen readers
 
-### **Phase 5: Content Optimization** =Ý
+### **Phase 5: Content Optimization** =ï¿½
 
 **Step 5.1: SEO Content Structure**
 - [ ] Add descriptive page headings (h1 tags)
@@ -101,7 +101,7 @@
 - [ ] Implement responsive images
 - [ ] Create image sitemaps
 
-### **Phase 6: Monitoring & Analytics** =È
+### **Phase 6: Monitoring & Analytics** =ï¿½
 
 **Step 6.1: SEO Tools Setup**
 - [ ] Google Search Console verification
@@ -125,7 +125,7 @@
 3. Implement semantic HTML structure
 4. Add basic accessibility attributes
 
-### **¡ Medium Priority (Week 2)**
+### **ï¿½ Medium Priority (Week 2)**
 1. Create robots.txt and sitemap.xml
 2. Add structured data schemas
 3. Optimize images with alt text
@@ -194,3 +194,68 @@ export const metadata = {
   },
 };
 ```
+
+
+
+RECOMMENDED LAUNCH STRATEGY
+
+  Phase 1: Critical Blockers (Must Fix)
+  1. Update robots meta tag from noindex to index, follow
+  2. Replace placeholder Stripe keys with real values (or disable payment feature)
+  3. Fix webhook route file structure inconsistency
+  4. Address file-based persistence issue (either migrate to database or remove feature)
+  5. Add missing Velvet Quill documents or remove that client from clients.json
+
+  Phase 2: Production Cleanup (Strongly Recommended)
+  1. Remove all console.log statements (especially gallery.jsx:458)
+  2. Clean up commented code blocks in API routes
+  3. Verify all 9 external demo site links are live
+  4. Add netlify.toml for deployment configuration
+
+  Phase 3: Security Hardening (Before Client Use)
+  1. Implement password hashing for client credentials
+  2. Move to proper authentication system (Firebase/Auth0)
+  3. Migrate from file-based to database storage
+  4. Add rate limiting to API routes
+
+
+How to Test OG Image:
+
+  1. Social Media Debugger Tools (Best Method):
+
+  Facebook/Meta:
+  - URL: https://developers.facebook.com/tools/debug/
+  - Paste: https://garfishdigital.netlify.app
+  - Click "Scrape Again" to refresh cache
+  - Shows preview exactly as Facebook sees it
+
+  Twitter/X:
+  - URL: https://cards-dev.twitter.com/validator
+  - Paste your URL
+  - Shows card preview
+
+  LinkedIn:
+  - URL: https://www.linkedin.com/post-inspector/
+  - Paste your URL
+
+  2. Open Graph Preview Tool:
+
+  - URL: https://www.opengraph.xyz/
+  - Enter: https://garfishdigital.netlify.app
+  - Shows all OG tags and image preview
+
+  3. Local Testing:
+
+  curl -I http://localhost:3000/og-image.jpg
+  Should return 200 OK and Content-Type: image/jpeg
+
+  4. Browser DevTools:
+
+  - Open your deployed site
+  - View page source (Cmd+U)
+  - Search for og:image
+  - Click the URL to verify image loads
+
+
+  After deploying, verify:
+  1. Image is publicly accessible: Visit https://garfishdigital.netlify.app/og-image.jpg directly

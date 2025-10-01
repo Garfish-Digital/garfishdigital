@@ -455,7 +455,6 @@ export default function Gallery() {
   };
 
   const renderDemoCard = (cardData) => {
-    console.log("isMobileDevice:", isMobileDevice);
     // Force hover state classes on mobile devices
     const mobileHoverClasses = isMobileDevice ? "mobile-force-hover" : "";
     // const borderClass = isMobileDevice ?
@@ -550,7 +549,6 @@ export default function Gallery() {
               <motion.div
                 animate={{
                   scale: [1, 1, 1.3, 1],
-                  //   color: [ 'var(--color-white)', 'var(--color-gray-light)', 'var(--color-white)', 'var(--color-white)']
                 }}
                 style={{ color: "var(--color-white)" }}
                 transition={{
@@ -619,7 +617,6 @@ export default function Gallery() {
       <Navigation
         currentPage="gallery"
         galleryCurrentPage={currentPage}
-        // onFlaskGearClick={handleTechCardOpen}
         isClientAuthenticated={isClientAuthenticated}
       />
 
