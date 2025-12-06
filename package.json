@@ -17,7 +17,7 @@
     "@stripe/react-stripe-js": "^3.8.0",
     "@stripe/stripe-js": "^7.6.1",
     "framer-motion": "^12.19.2",
-    "next": "15.3.4",
+    "next": "^15.3.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^4.7.0",

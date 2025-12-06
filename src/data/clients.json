@@ -5,6 +5,29 @@
     "clientName": "Your Name Here",
     "project": "Your Future Project",
     "path": "garfish-client-init.netlify.app",
+      "documents": {
+      "scope": "/documents/garfish-init-Document-1-Project-Scope.pdf",
+      "agreement": "/documents/garfish-init-Document-2-Project-Agreement.pdf",
+      "handoff": "/documents/garfish-init-Document-3-Project-Handoff.pdf"
+    },
+    "payments": [
+      {
+        "id": "inv_001",
+        "description": "Phase 1 - Structural & Functional",
+        "amount": 1500,
+        "dueDate": "2025-05-17",
+        "status": "paid"
+      },
+      {
+        "id": "inv_002",
+        "description": "Phase 2 - Branding, SEO, & Deployment",
+        "amount": 1000,
+        "dueDate": "2025-08-12",
+        "status": "paid"
+      }
+    ],
+    "status": "active",
+    "lastLogin": null,
     "milestones": [
       {
         "section": "Discovery",
@@ -246,29 +269,6 @@
         "status": "Pending",
         "dateCompleted": ""
       }
-    ],
-    "documents": {
-      "scope": "/documents/garfish-init-Document-1-Project-Scope.pdf",
-      "agreement": "/documents/garfish-init-Document-2-Project-Agreement.pdf",
-      "handoff": "/documents/garfish-init-Document-3-Project-Handoff.pdf"
-    },
-    "payments": [
-      {
-        "id": "inv_001",
-        "description": "Phase 1 - Structural & Functional",
-        "amount": 1500,
-        "dueDate": "2025-05-17",
-        "status": "paid"
-      },
-      {
-        "id": "inv_002",
-        "description": "Phase 2 - Branding, SEO, & Deployment",
-        "amount": 1000,
-        "dueDate": "2025-08-12",
-        "status": "paid"
-      }
-    ],
-    "status": "active",
-    "lastLogin": null
+    ]
   }
 ]
