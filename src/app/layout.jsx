@@ -1,6 +1,5 @@
 import "./globals.css";
-import ClientLayout from "../components/ClientLayout";
-import { ClientAuthProvider } from "../contexts/ClientAuthContext";
+import Header from "../components/Header";
 
 import { config, library } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -10,11 +9,7 @@ import {
   faFlaskGear,
   faMessage,
   faArrowRightFromBracket,
-  faUserGear,
   faWindow,
-  faEnvelopeOpenDollar,
-  faFileContract,
-  faEyeSlash,
   faBars,
 } from "@fortawesome/pro-regular-svg-icons";
 
@@ -31,11 +26,7 @@ library.add(
   faFlaskGear,
   faMessage,
   faArrowRightFromBracket,
-  faUserGear,
   faWindow,
-  faEnvelopeOpenDollar,
-  faFileContract,
-  faEyeSlash,
   faBars
 );
 
@@ -84,10 +75,8 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body>
-        <ClientAuthProvider>
-          {children}
-          <ClientLayout />
-        </ClientAuthProvider>
+        {children}
+        <Header />
       </body>
     </html>
   );

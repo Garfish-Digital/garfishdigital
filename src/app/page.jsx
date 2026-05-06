@@ -2,11 +2,8 @@
 
 import { motion } from "framer-motion";
 import Navigation from "../components/Navigation";
-import { useClientAuth } from "../contexts/ClientAuthContext";
 
 export default function Home() {
-  const { isClientAuthenticated } = useClientAuth();
-
   return (
     <div className="home-page-container bg-[color:var(--color-black)]">
       <div className="home-page-layout">
@@ -82,10 +79,7 @@ export default function Home() {
       </div>
 
       {/* Navigation Icons - Bottom Right */}
-      <Navigation
-        currentPage="home"
-        isClientAuthenticated={isClientAuthenticated}
-      />
+      <Navigation currentPage="home" />
     </div>
   );
 }

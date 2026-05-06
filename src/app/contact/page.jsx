@@ -5,17 +5,14 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navigation from "../../components/Navigation";
 import Logo from "../../components/Logo";
-import { useClientAuth } from "../../contexts/ClientAuthContext";
 import "./contact.css";
 
 export default function Contact() {
-  const { isClientAuthenticated } = useClientAuth();
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     business: "",
-    message: "",
   });
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -48,12 +45,6 @@ export default function Contact() {
           return "Email format seems off";
         return "Looking good ✓";
 
-      case "message":
-        if (!value) return "";
-        if (value.length < 10) return "Can you give us a bit more...?";
-        if (value.length > 1000) return "Whoa, that's detailed!";
-        return `${value.length} characters of brilliance!`;
-
       default:
         return "";
     }
@@ -66,13 +57,6 @@ export default function Contact() {
     console.log("formElement: ", formElement);
     const formData = new FormData(formElement);
     console.log("formData: ", Object.fromEntries(formData));
-    const businessValue = formData.get("business");
-    const messageValue = formData.get("message");
-    formData.set("message", `${messageValue}\n\nBusiness: \n${businessValue}`);
-    console.log(
-      "formData after newline addition: ",
-      Object.fromEntries(formData)
-    );
 
     const urlEncodedData = new URLSearchParams(formData).toString();
     console.log("URL encoded body:", urlEncodedData);
@@ -86,7 +70,7 @@ export default function Contact() {
 
       if (response.ok) {
         setShowSuccessModal(true);
-        setFormData({ name: "", email: "", business: "", message: "" });
+        setFormData({ name: "", email: "", business: "" });
         
         // Auto-dismiss modal and navigate to home after 3000ms
         setTimeout(() => {
@@ -103,7 +87,7 @@ export default function Contact() {
   };
 
   const resetForm = () => {
-    setFormData({ name: "", email: "", business: "", message: "" });
+    setFormData({ name: "", email: "", business: "" });
   };
 
   const handleErrorModalClose = () => {
@@ -142,7 +126,7 @@ export default function Contact() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <h2 className="text-lg font-bold mt-4 mb-2 text-[color:var(--color-white)] font-primary">
-                How Do I Get Started?
+                Let's Get Started
               </h2>
             </motion.div>
             <motion.div
@@ -151,8 +135,7 @@ export default function Contact() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
-                Tell us about your website needs using the form below. We'll
-                take it from here.
+                Tell us how to reach you
               </p>
             </motion.div>
           </div>
@@ -223,7 +206,6 @@ export default function Contact() {
                     type="text"
                     id="business"
                     name="business"
-                    required
                     value={formData.business}
                     onChange={handleChange}
                     onFocus={() => handleFocus("business")}
@@ -232,25 +214,6 @@ export default function Contact() {
                       focusedField === "business" ? "focus-bounce" : ""
                     }`}
                     placeholder="Your business (optional)"
-                  />
-                </div>
-              </div>
-
-              <div className="relative mb-4">
-                <div className="relative">
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={2}
-                    value={formData.message}
-                    onChange={handleChange}
-                    onFocus={() => handleFocus("message")}
-                    onBlur={handleBlur}
-                    className={`w-full px-3 py-3 contact-form-field resize-none transition-all duration-300 ${
-                      focusedField === "message" ? "focus-bounce" : ""
-                    }`}
-                    placeholder="Tell us about your project..."
                   />
                 </div>
               </div>
@@ -289,10 +252,7 @@ export default function Contact() {
       </div>
 
       {/* Navigation Icons - Bottom Right */}
-      <Navigation
-        currentPage="contact"
-        isClientAuthenticated={isClientAuthenticated}
-      />
+      <Navigation currentPage="contact" />
 
       {/* Hip & Soothing Modal for Privacy/Terms */}
       <AnimatePresence>

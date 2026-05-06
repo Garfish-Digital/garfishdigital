@@ -24,7 +24,6 @@ function getLinkClasses(isActive) {
 const DesktopNavigation = ({
   currentPage,
   galleryCurrentPage,
-  isClientAuthenticated,
   className,
 }) => {
   const activeItemId = getActiveNavigationItem(currentPage);
@@ -37,8 +36,7 @@ const DesktopNavigation = ({
           getIconEnabledState(
             item,
             currentPage,
-            galleryCurrentPage,
-            isClientAuthenticated
+            galleryCurrentPage
           )
         )
         .map((item, index) => {
@@ -73,7 +71,6 @@ const DesktopNavigation = ({
 const MobileNavigation = ({
   currentPage,
   galleryCurrentPage,
-  isClientAuthenticated,
   className,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -182,8 +179,7 @@ const MobileNavigation = ({
                 getIconEnabledState(
                   item,
                   currentPage,
-                  galleryCurrentPage,
-                  isClientAuthenticated
+                  galleryCurrentPage
                 )
               )
               .map((item, index) => {
@@ -215,8 +211,7 @@ const MobileNavigation = ({
                       getIconEnabledState(
                         item,
                         currentPage,
-                        galleryCurrentPage,
-                        isClientAuthenticated
+                        galleryCurrentPage
                       )
                     ).length - 1 && (
                       <hr className="border-[color:var(--color-gray-shadow)]" />
@@ -235,7 +230,6 @@ const MobileNavigation = ({
 const Navigation = ({
   currentPage = "home",
   galleryCurrentPage,
-  isClientAuthenticated = false,
   className = "",
 }) => {
   const pathname = usePathname();
@@ -245,10 +239,6 @@ const Navigation = ({
     if (pathname === "/") return "home";
     if (pathname === "/gallery") return "gallery";
     if (pathname === "/contact") return "contact";
-    if (pathname === "/client") return "client";
-    if (pathname === "/client/project") return "project";
-    if (pathname === "/client/documents") return "documents";
-    if (pathname === "/client/payment") return "payment";
     return currentPage;
   };
 
@@ -259,12 +249,10 @@ const Navigation = ({
       <DesktopNavigation
         currentPage={actualCurrentPage}
         galleryCurrentPage={galleryCurrentPage}
-        isClientAuthenticated={isClientAuthenticated}
       />
       <MobileNavigation
         currentPage={actualCurrentPage}
         galleryCurrentPage={galleryCurrentPage}
-        isClientAuthenticated={isClientAuthenticated}
       />
     </div>
   );

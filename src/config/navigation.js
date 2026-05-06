@@ -1,16 +1,12 @@
-import { 
+import {
   faHouse,
   faGrid,
   faFlaskGear,
   faMessage,
-  faUserGear,
-  faWindow,
-  faEnvelopeOpenDollar,
-  faFileContract,
 
 } from '@fortawesome/pro-regular-svg-icons';
 
-export const PageId = 'home' | 'gallery' | 'contact' | 'client' | 'project' | 'documents' | 'payment';
+export const PageId = 'home' | 'gallery' | 'contact';
 
 export const navigationItems = [
   {
@@ -23,7 +19,7 @@ export const navigationItems = [
     order: 1
   },
   {
-    id: 'gallery', 
+    id: 'gallery',
     title: 'Gallery',
     label: 'Gallery',
     href: '/gallery',
@@ -34,7 +30,7 @@ export const navigationItems = [
   {
     id: 'flask-gear',
     title: 'View Techniques',
-    label: 'Techniques', 
+    label: 'Techniques',
     icon: faFlaskGear,
     enabled: false, // Disabled by default
     // Will be enabled based on gallery currentPage logic
@@ -49,45 +45,6 @@ export const navigationItems = [
     enabled: true,
     order: 4
   },
-  {
-    id: 'client',
-    title: 'Portal',
-    label: 'Portal',
-    href: '/client',
-    icon: faUserGear,
-    enabled: true,
-    order: 5
-  },
-  {
-    id: 'project',
-    title: 'Project',
-    label: 'Project',
-    href: '/client/project',
-    icon: faWindow,
-    enabled: false, // Disabled by default
-    // Will be enabled based on client password success
-    order: 6
-  },
-  {
-      id: 'documents',
-      title: 'Documents',
-      label: 'Documents',
-      href: '/client/documents',
-      icon: faFileContract,
-      enabled: false, // Disabled by default
-      // Will be enabled based on client password success
-      order: 7
-    },
-    {
-      id: 'payment',
-      title: 'Payment',
-      label: 'Payment',
-      href: '/client/payment',
-      icon: faEnvelopeOpenDollar,
-      enabled: false, // Disabled by default
-      // Will be enabled based on client password success
-      order: 8
-    },
 ];
 
 // Helper function to get navigation items sorted by order
@@ -97,25 +54,19 @@ export const getSortedNavigationItems = () => {
 
 // Helper function to determine if an icon should be enabled based on current page
 export const getIconEnabledState = (
-  item, 
+  item,
   currentPage,
-  galleryCurrentPage,
-  isClientAuthenticated
+  galleryCurrentPage
 ) => {
-  // Handle client-only icons (project, documents, payment)
-  if (['project', 'documents', 'payment'].includes(item.id)) {
-    return isClientAuthenticated === true;
-  }
-
   // Handle page-specific enable/disable rules
   if (item.enabledOnPages && !item.enabledOnPages.includes(currentPage)) {
     return false;
   }
-  
+
   if (item.disabledOnPages && item.disabledOnPages.includes(currentPage)) {
     return false;
   }
-  
+
   return item.enabled;
 };
 
@@ -123,13 +74,9 @@ export const getIconEnabledState = (
 export const getActiveNavigationItem = (currentPage) => {
   const pageToNavMap = {
     'home': 'home',
-    'gallery': 'gallery', 
-    'contact': 'contact',
-    'client': 'client',
-    'project': 'project',
-    'documents': 'documents',
-    'payment': 'payment'
+    'gallery': 'gallery',
+    'contact': 'contact'
   };
-  
+
   return pageToNavMap[currentPage] || null;
 };

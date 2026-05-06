@@ -11,7 +11,6 @@ import {
 } from "@fortawesome/pro-regular-svg-icons";
 import Navigation from "../../components/Navigation";
 import Logo from "../../components/Logo";
-import { useClientAuth } from "../../contexts/ClientAuthContext";
 import "./gallery.css";
 
 const pages = [
@@ -179,7 +178,6 @@ const demoCards = {
 };
 
 export default function Gallery() {
-  const { isClientAuthenticated } = useClientAuth();
   const [currentPage, setCurrentPage] = useState("cell5");
   const [showTechCard, setShowTechCard] = useState(false);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
@@ -617,7 +615,6 @@ export default function Gallery() {
       <Navigation
         currentPage="gallery"
         galleryCurrentPage={currentPage}
-        isClientAuthenticated={isClientAuthenticated}
       />
 
       <div className="w-screen h-screen overflow-hidden gallery-wrapper bg-[color:var(--color-black)]">
