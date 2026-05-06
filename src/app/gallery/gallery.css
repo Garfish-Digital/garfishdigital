@@ -14,73 +14,24 @@
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-/* Transform positions for each cell */
-.gallery-grid-cell1 { transform: translate(0vw, 0vh) !important; }
-.gallery-grid-cell2 { transform: translate(-100vw, 0vh) !important; }
-.gallery-grid-cell3 { transform: translate(-200vw, 0vh) !important; }
-.gallery-grid-cell4 { transform: translate(0vw, -100vh) !important; }
-.gallery-grid-cell5 { transform: translate(-100vw, -100vh) !important; }
-.gallery-grid-cell6 { transform: translate(-200vw, -100vh) !important; }
-.gallery-grid-cell7 { transform: translate(0vw, -200vh) !important; }
-.gallery-grid-cell8 { transform: translate(-100vw, -200vh) !important; }
-.gallery-grid-cell9 { transform: translate(-200vw, -200vh) !important; }
+/* Transform positions for each navigable cell */
+.gallery-grid-upperLeft  { transform: translate(0vw,    0vh)    !important; }
+.gallery-grid-upperRight { transform: translate(-200vw, 0vh)    !important; }
+.gallery-grid-center     { transform: translate(-100vw, -100vh) !important; }
+.gallery-grid-lowerLeft  { transform: translate(0vw,    -200vh) !important; }
+.gallery-grid-lowerRight { transform: translate(-200vw, -200vh) !important; }
 
 /* Gallery page items */
 .gallery-page-item {
   background-color: var(--color-black);
 }
 
-/* Showcase page positioning */
-.gallery-showcase-position {
-  right: 23.6vw !important;
-  bottom: 23.6vh !important;
-}
-
-/* Individual page backgrounds */
-.gallery-page-cell1 {
-  grid-column: 1/2 !important;
-  grid-row: 1/2 !important;
-}
-
-.gallery-page-experiments {
-  grid-column: 2/3 !important;
-  grid-row: 1/2 !important;
-}
-
-.gallery-page-cell3 {
-  grid-column: 3/4 !important;
-  grid-row: 1/2 !important;
-}
-
-.gallery-page-clients {
-  grid-column: 1/2 !important;
-  grid-row: 2/3 !important;
-}
-
-.gallery-page-showcase {
-  grid-column: 2/3 !important;
-  grid-row: 2/3 !important;
-}
-
-.gallery-page-tools {
-  grid-column: 3/4 !important;
-  grid-row: 2/3 !important;
-}
-
-.gallery-page-about {
-  grid-column: 1/2 !important;
-  grid-row: 3/4 !important;
-}
-
-.gallery-page-contact {
-  grid-column: 2/3 !important;
-  grid-row: 3/4 !important;
-}
-
-.gallery-page-blog {
-  grid-column: 3/4 !important;
-  grid-row: 3/4 !important;
-}
+/* Individual page positioning within the 3x3 grid */
+.gallery-page-upperLeft  { grid-column: 1/2 !important; grid-row: 1/2 !important; }
+.gallery-page-upperRight { grid-column: 3/4 !important; grid-row: 1/2 !important; }
+.gallery-page-center     { grid-column: 2/3 !important; grid-row: 2/3 !important; }
+.gallery-page-lowerLeft  { grid-column: 1/2 !important; grid-row: 3/4 !important; }
+.gallery-page-lowerRight { grid-column: 3/4 !important; grid-row: 3/4 !important; }
 
 @media (min-width: 540px) {
   .gallery-page-content {

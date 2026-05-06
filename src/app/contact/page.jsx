@@ -54,12 +54,7 @@ export default function Contact() {
     e.preventDefault();
 
     const formElement = e.currentTarget;
-    console.log("formElement: ", formElement);
     const formData = new FormData(formElement);
-    console.log("formData: ", Object.fromEntries(formData));
-
-    const urlEncodedData = new URLSearchParams(formData).toString();
-    console.log("URL encoded body:", urlEncodedData);
 
     try {
       const response = await fetch(formElement.action || "/__forms.html", {
@@ -97,7 +92,6 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("name & value: ", name, value);
     setFormData((prev) => ({
       ...prev,
       [name]: value,

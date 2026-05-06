@@ -1,12 +1,8 @@
 import {
   faHouse,
   faGrid,
-  faFlaskGear,
   faMessage,
-
 } from '@fortawesome/pro-regular-svg-icons';
-
-export const PageId = 'home' | 'gallery' | 'contact';
 
 export const navigationItems = [
   {
@@ -28,22 +24,13 @@ export const navigationItems = [
     order: 2
   },
   {
-    id: 'flask-gear',
-    title: 'View Techniques',
-    label: 'Techniques',
-    icon: faFlaskGear,
-    enabled: false, // Disabled by default
-    // Will be enabled based on gallery currentPage logic
-    order: 3
-  },
-  {
     id: 'contact',
     title: 'Contact',
     label: 'Contact',
     href: '/contact',
     icon: faMessage,
     enabled: true,
-    order: 4
+    order: 3
   },
 ];
 
