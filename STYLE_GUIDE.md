@@ -180,3 +180,5 @@ Since you are using Tailwind, you can easily integrate Phosphor Icons. I recomme
 Weight: Thin (1px or 2px stroke).
 
 Color: Use text-tarnish for the icon and text-altar only when the user hovers over the parent element.
+
+

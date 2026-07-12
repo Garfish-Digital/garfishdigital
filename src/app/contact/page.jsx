@@ -81,13 +81,8 @@ export default function Contact() {
     }
   };
 
-  const resetForm = () => {
-    setFormData({ name: "", email: "", business: "" });
-  };
-
   const handleErrorModalClose = () => {
     setShowErrorModal(false);
-    resetForm();
   };
 
   const handleChange = (e) => {
@@ -207,7 +202,7 @@ export default function Contact() {
                     className={`w-full px-3 py-3 contact-form-field transition-all duration-300 ${
                       focusedField === "business" ? "focus-bounce" : ""
                     }`}
-                    placeholder="Your business (optional)"
+                    placeholder="Your project (optional)"
                   />
                 </div>
               </div>
@@ -337,7 +332,7 @@ export default function Contact() {
                       {
                         title: "Contact Us",
                         content:
-                          "If you have questions about this Privacy Policy, please contact us through our contact form.",
+                          "If you have questions about this Privacy Policy, please contact us through our contact form or at contact@garfishdigital.com.",
                       },
                     ].map((section, index) => (
                       <motion.div
@@ -406,7 +401,7 @@ export default function Contact() {
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
                 <p className="text-[color:var(--color-gray-faint)] text-sm font-primary">
-                  Last updated: January 2025
+                  Last updated: July 2026
                 </p>
               </motion.div>
             </motion.div>
@@ -494,6 +489,14 @@ export default function Contact() {
                 </div>
                 <p className="text-[color:var(--color-white)]/70 mb-6 font-primary text-center">
                   There was an error sending your message.<br/>Please try again.
+                </p>
+                <p className="mb-6 text-center">
+                  <a
+                    href="mailto:contact@garfishdigital.com"
+                    className="font-primary text-sm text-[color:var(--color-gray-light)] hover:text-[color:var(--color-white)] transition-colors duration-200 underline decoration-dotted underline-offset-2"
+                  >
+                    or email us — contact@garfishdigital.com
+                  </a>
                 </p>
                 <div className="flex justify-center">
                   <button

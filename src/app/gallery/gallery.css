@@ -38,3 +38,12 @@
     padding-top: 5rem;
   }
 }
+
+/* Visitors whose OS requests reduced motion get an instant jump instead of
+   the full-field slide — the 300vw translation is the one animation on the
+   site large enough to trigger vestibular symptoms. */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-grid {
+    transition: none !important;
+  }
+}

@@ -1,15 +1,29 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const cornerButtons = [
-  { id: 'upperLeft',  position: { top: 5, left: 5 } },
-  { id: 'upperRight', position: { top: 5, right: 5 } },
-  { id: 'lowerLeft',  position: { bottom: 5, left: 5 } },
-  { id: 'lowerRight', position: { bottom: 5, right: 5 } },
+  { id: 'upperLeft',  label: 'Black Lodge Brews', position: { top: 5, left: 5 } },
+  { id: 'upperRight', label: 'Inferno Ink',       position: { top: 5, right: 5 } },
+  { id: 'lowerLeft',  label: 'Veilburner',        position: { bottom: 5, left: 5 } },
+  { id: 'lowerRight', label: 'The Scrap Pit',     position: { bottom: 5, right: 5 } },
 ];
 
+/* Visited corners dim toward green — feedback that a demo has been seen */
+const visitedGreen = 'color-mix(in oklab, var(--color-cyan-light) 75%, var(--color-black) 40%)';
+
 export default function Minimap({ currentPage, onPageClick, minimapTop }) {
+  const [visitedPages, setVisitedPages] = useState(() => new Set());
+
+  useEffect(() => {
+    if (currentPage !== 'center') {
+      setVisitedPages((prev) =>
+        prev.has(currentPage) ? prev : new Set(prev).add(currentPage)
+      );
+    }
+  }, [currentPage]);
+
   const getMinimapPosition = () => {
     switch (currentPage) {
       case 'upperLeft':
@@ -46,12 +60,17 @@ export default function Minimap({ currentPage, onPageClick, minimapTop }) {
           return (
             <motion.button
               key={corner.id}
-              className="absolute cursor-pointer"
+              className="absolute cursor-pointer minimap-button"
+              aria-label={corner.label}
               style={{
                 ...corner.position,
                 width: 67,
                 height: 67,
-                backgroundColor: isActive ? 'var(--color-white)' : 'var(--color-black)',
+                backgroundColor: isActive
+                  ? 'var(--color-white)'
+                  : visitedPages.has(corner.id)
+                    ? visitedGreen
+                    : 'var(--color-black)',
               }}
               onClick={() => onPageClick(corner.id)}
               whileHover={!isActive ? { backgroundColor: 'var(--color-cyan-light)' } : {}}
@@ -76,7 +95,8 @@ export default function Minimap({ currentPage, onPageClick, minimapTop }) {
 
         {/* Center button */}
         <motion.button
-          className="absolute cursor-pointer"
+          className="absolute cursor-pointer minimap-button"
+          aria-label="Gallery home"
           style={{
             top: 47,
             left: 47,

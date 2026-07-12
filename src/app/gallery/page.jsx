@@ -17,7 +17,7 @@ const pages = [
   { id: "upperLeft",  title: "Black Lodge Brews", gridColumn: "1/2", gridRow: "1/2" },
   { id: "upperRight", title: "Inferno Ink",       gridColumn: "3/4", gridRow: "1/2" },
   { id: "center",     title: "Home",              gridColumn: "2/3", gridRow: "2/3" },
-  { id: "lowerLeft",  title: "Via Mortis",        gridColumn: "1/2", gridRow: "3/4" },
+  { id: "lowerLeft",  title: "Veilburner",        gridColumn: "1/2", gridRow: "3/4" },
   { id: "lowerRight", title: "The Scrap Pit",     gridColumn: "3/4", gridRow: "3/4" },
 ];
 
@@ -27,7 +27,7 @@ const demoCards = {
     subtitle: "Micro Brewery Taproom",
     url: "https://black-lodge-brews.netlify.app",
     effects:
-      "A demonstration on particle animation, floating navs, and liquid transitions.",
+      "Mist drifts, glasses fill, the pour never stops. The taproom after dark.",
     hoverColors: {
       border: "hover:border-green-500/50",
       shadow: "hover:shadow-green-500/20",
@@ -40,7 +40,7 @@ const demoCards = {
     subtitle: "Tattoo & Body Modification Shop",
     url: "https://inferno-ink.netlify.app",
     effects:
-      "A demonstration on scroll animations, cursor visuals, and fiery gradient effects.",
+      "The cursor trails fire and every click throws sparks. It burns.",
     hoverColors: {
       border: "hover:border-[#FF8C42]/50",
       shadow: "hover:shadow-[#FF8C42]",
@@ -49,15 +49,16 @@ const demoCards = {
     },
   },
   lowerLeft: {
-    title: "Via Mortis",
-    subtitle: "Morbid Tours & Haunted Attractions",
-    url: "https://via-mortis.netlify.app",
-    effects: "A demonstration on glitches, displacement, and broken grid.",
+    title: "Veilburner",
+    subtitle: "Avant-Garde Metal Band",
+    url: "https://veilburner.band",
+    effects:
+      "Eight albums, a listening room, a press vault. A real band's whole world.",
     hoverColors: {
-      border: "hover:border-[#bbff00]/50",
-      shadow: "hover:shadow-[#bbff00]",
-      gradient: "from-[var(--color-black)] to-[#e90000]/90 via-[#4b4b01]/60",
-      text: "text-[#bbff00]",
+      border: "hover:border-[#8B0000]/50",
+      shadow: "hover:shadow-[#8B0000]",
+      gradient: "from-[var(--color-black)] to-[#8B0000]/90 via-[#5a3a2a]/60",
+      text: "text-[#8b7355]",
     },
   },
   lowerRight: {
@@ -65,7 +66,7 @@ const demoCards = {
     subtitle: "MMA Gym & Fighter Training Program",
     url: "https://the-scrap-pit.netlify.app",
     effects:
-      "A demonstration on brutalist aesthetics and CSS color manipulation.",
+      "Big type. Hard hits. Monochrome until it swings to color.",
     hoverColors: {
       border: "hover:border-[#CC9900]/50",
       shadow: "hover:shadow-[#CC9900]",
@@ -158,16 +159,16 @@ export default function Gallery() {
         ],
       },
       lowerLeft: {
-        title: "Via Mortis",
+        title: "Veilburner",
         items: [
-          "Horror themed palette for maximum atmospheric impact",
-          "Broken monitor load screen and CT-animated scan lines",
-          "SVG displacement mapping",
-          "Sophisticated random ambient glitch system",
-          "Color channel separation glitch transitions",
-          "Screech glitches and broken card hover effects",
-          "Dripping blood stream effects and blood-filled cards on hover",
-          "Full destruction animation on user interaction",
+          "Full-bleed parallax hero with layered gradients",
+          "Scroll-triggered image reveals",
+          "Data-driven discography with per-album listening pages",
+          "Press, review, and interview archive",
+          "Streaming-service integration",
+          "Installable PWA with web manifest",
+          "Editorial monospace typography system",
+          "Built for a real band, with their blessing",
         ],
       },
       lowerRight: {
@@ -213,7 +214,7 @@ export default function Gallery() {
               : {}
           }
           whileHover={{
-            boxShadow: "0px 20px 25px var(--color-gray-shadow)",
+            boxShadow: "0px 7px 15px var(--color-gray-shadow)",
             transition: { duration: 0.2, ease: "easeOut" },
           }}
         >
@@ -231,6 +232,7 @@ export default function Gallery() {
                 <FontAwesomeIcon
                   icon={faFlaskGear}
                   onClick={handleTechCardOpen}
+                  title="how we built this"
                   className="!w-8 !h-8 ml-2 cursor-pointer text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200"
                 />
               </div>
@@ -328,8 +330,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
-                Use the minimap below to visit live demo sites to view detailed
-                examples of our work.
+                Four live demos. The minimap takes you there.
               </p>
             </motion.div>
           </div>
@@ -403,7 +404,7 @@ export default function Gallery() {
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
                 <h2 className="text-2xl font-bold text-[color:var(--color-white)] font-primary">
-                  {getTechCardData(currentPage)?.title || "Techniques Involved"}
+                  {`How ${getTechCardData(currentPage)?.title} is built` || "Techniques Involved"}
                 </h2>
                 <motion.button
                   onClick={handleTechCardClose}

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Navigation from "../components/Navigation";
 
 export default function Home() {
@@ -61,6 +62,19 @@ export default function Home() {
               development
             </div>
           </motion.div>
+          <motion.div
+            className="fixed top-100 left-8 z-20"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 1.8 }}
+          >
+            <Link
+              href="/gallery"
+              className="font-primary font-normal text-lg text-[color:var(--color-gray-light)] hover:text-[color:var(--color-cyan-light)] transition-colors duration-300"
+            >
+              see the work →
+            </Link>
+          </motion.div>
         </div>
 
         {/* Spacer for layout */}
@@ -73,7 +87,7 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
         >
           <p className="home-copyright text-[color:var(--color-gray-light)] font-mono font-normal text-left ps-8">
-            <small>© 2024 Garfish Digital. All rights reserved.</small>
+            <small>© {new Date().getFullYear()} Garfish Digital. All rights reserved.</small>
           </p>
         </motion.div>
       </div>

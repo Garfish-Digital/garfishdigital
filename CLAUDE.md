@@ -21,7 +21,7 @@ Garfish Digital is a three-page portfolio site for a boutique web design and dev
 - **Styling**: Tailwind CSS v4 with OKLCH color variables
 - **Animations**: Framer Motion
 - **Icons**: Font Awesome Pro+ Classic Regular
-- **Fonts**: Cutive Mono (Google Fonts CDN), Courier New fallback
+- **Fonts**: Courier Prime, self-hosted from `public/fonts/` (`@font-face` in globals.css, preloaded in layout.jsx); Courier New fallback
 - **Form submission**: Netlify Forms (only works on Netlify-hosted deploys; local dev returns 500 on POST)
 
 ### Project Structure

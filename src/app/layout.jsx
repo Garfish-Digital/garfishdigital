@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "../components/Header";
+import MotionProvider from "../components/MotionProvider";
 
 import { config, library } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -30,21 +31,28 @@ library.add(
   faBars
 );
 
+const siteDescription =
+  "Web design & development. Dark, deliberate sites for brands that don't do beige.";
+
 export const metadata = {
-  title: "Garfish Digital",
-  description: "Web Design and Development",
+  metadataBase: new URL("https://garfishdigital.com"),
+  title: {
+    default: "Garfish Digital",
+    template: "%s — Garfish Digital",
+  },
+  description: siteDescription,
   robots: "index, follow",
   openGraph: {
     title: "Garfish Digital",
-    description: "Web Design and Development",
-    url: "https://garfishdigital.com",
+    description: siteDescription,
+    url: "/",
     siteName: "Garfish Digital",
     images: [
       {
-        url: "https://garfishdigital.com/og-image.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Garfish Digital - Web Design and Development",
+        alt: "Garfish Digital — web design & development",
       },
     ],
     type: "website",
@@ -52,8 +60,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Garfish Digital",
-    description: "Web Design and Development",
-    images: ["https://garfishdigital.com/og-image.jpg"],
+    description: siteDescription,
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -64,7 +72,11 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="theme-color" content="oklch(99.487% 0.00833 146.145)" />
+        <meta name="theme-color" content="#000000" />
+
+        {/* Self-hosted fonts — preload the latin faces used on every page */}
+        <link rel="preload" href="/fonts/courier-prime-400-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/courier-prime-700-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
 
         {/* Favicons */}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -75,8 +87,22 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body>
-        {children}
-        <Header />
+        <MotionProvider>
+          {children}
+          <Header />
+        </MotionProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Garfish Digital",
+              url: "https://garfishdigital.com",
+              logo: "https://garfishdigital.com/web-app-manifest-512x512.png",
+            }),
+          }}
+        />
       </body>
     </html>
   );
