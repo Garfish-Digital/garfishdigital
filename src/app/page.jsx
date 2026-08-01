@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Navigation from "../components/Navigation";
+import FishMark from "../components/FishMark";
 
 export default function Home() {
   return (
@@ -90,6 +91,17 @@ export default function Home() {
             <small>© {new Date().getFullYear()} Garfish Digital. All rights reserved.</small>
           </p>
         </motion.div>
+      </div>
+
+      {/* Decorative gar, bottom right — inert by design. The wordmark holds the
+          top left, this answers it diagonally, and the only door stays "see the work".
+          No opacity fade: undrawn strokes are already invisible, so the line-draw
+          is the entrance. --draw-delay holds it until the tagline has finished. */}
+      <div
+        className="fixed bottom-8 right-8 z-10 w-[7.5rem] md:w-[9.75rem] lg:w-[12rem] pointer-events-none text-[color:var(--color-gray-faint)]"
+        style={{ "--draw-delay": "2.2s" }}
+      >
+        <FishMark className="w-full h-auto" />
       </div>
 
       {/* Navigation Icons - Bottom Right */}

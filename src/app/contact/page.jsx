@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navigation from "../../components/Navigation";
+import Icon from "../../components/Icon";
 import Logo from "../../components/Logo";
 import "./contact.css";
 
@@ -215,8 +216,23 @@ export default function Contact() {
               </motion.button>
             </fieldset>
           </motion.form>
+
         </div>
       </div>
+
+      {/* Instagram — bottom right, mirroring the legal links bottom left */}
+      <motion.a
+        href="https://instagram.com/garfishdigital"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Garfish Digital on Instagram"
+        className="fixed bottom-2 right-6 z-40 p-2 block text-[color:var(--color-gray-light)] hover:text-[color:var(--color-cyan-light)] transition-colors duration-300"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 1 }}
+      >
+        <Icon name="instagram" size={26} className="line-draw" />
+      </motion.a>
 
       {/* Legal Links - Bottom Left */}
       <div className="fixed bottom-4 left-8 z-40 flex gap-4 text-xs">

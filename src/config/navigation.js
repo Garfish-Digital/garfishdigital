@@ -1,16 +1,9 @@
-import {
-  faHouse,
-  faGrid,
-  faMessage,
-} from '@fortawesome/pro-regular-svg-icons';
-
 export const navigationItems = [
   {
     id: 'home',
     title: 'Home',
     label: 'Home',
     href: '/',
-    icon: faHouse,
     enabled: true,
     order: 1
   },
@@ -19,7 +12,6 @@ export const navigationItems = [
     title: 'Gallery',
     label: 'Gallery',
     href: '/gallery',
-    icon: faGrid,
     enabled: true,
     order: 2
   },
@@ -28,7 +20,6 @@ export const navigationItems = [
     title: 'Contact',
     label: 'Contact',
     href: '/contact',
-    icon: faMessage,
     enabled: true,
     order: 3
   },

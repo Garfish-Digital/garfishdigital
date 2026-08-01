@@ -3,12 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Minimap from "../../components/Minimap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRightFromBracket,
-  faWindow,
-  faFlaskGear,
-} from "@fortawesome/pro-regular-svg-icons";
+import Icon from "../../components/Icon";
 import Navigation from "../../components/Navigation";
 import Logo from "../../components/Logo";
 import "./gallery.css";
@@ -229,11 +224,12 @@ export default function Gallery() {
               </h3>
 
               <div className="flex justify-end">
-                <FontAwesomeIcon
-                  icon={faFlaskGear}
+                <Icon
+                  name="flask"
+                  size={32}
                   onClick={handleTechCardOpen}
                   title="how we built this"
-                  className="!w-8 !h-8 ml-2 cursor-pointer text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200"
+                  className="ml-2 cursor-pointer text-[var(--color-gray-light)] hover:text-[var(--color-white)] transition-colors duration-200"
                 />
               </div>
             </div>
@@ -281,8 +277,8 @@ export default function Gallery() {
                   ease: "easeIn",
                 }}
               >
-                <FontAwesomeIcon
-                  icon={faArrowRightFromBracket}
+                <Icon
+                  name="externalLink"
                   className="w-6 h-6 ml-2 group-hover/link:text-[var(--color-white)]"
                 />
               </motion.div>
@@ -298,8 +294,8 @@ export default function Gallery() {
                   ease: "easeOut",
                 }}
               >
-                <FontAwesomeIcon
-                  icon={faWindow}
+                <Icon
+                  name="window"
                   className="w-6 h-6 ml-1 group-hover/link:text-[var(--color-white)]"
                 />
               </motion.div>
@@ -330,7 +326,7 @@ export default function Gallery() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-[color:var(--color-gray-light)] font-primary leading-relaxed">
-                Four live demos. The minimap takes you there.
+                Four live demos.<br/>Let the minimap take you there.
               </p>
             </motion.div>
           </div>

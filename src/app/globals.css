@@ -43,7 +43,7 @@
   --gray-light: rgb(161, 171, 161);
   --gray-dark-transparent: rgba(78, 88, 78, 0.5);
   --gray-dark: rgb(78, 88, 78);
-  --black: rgb(0, 5, 0);
+  --black: rgb(0, 0, 0);
 
   --animated-white: #ffffff;
   --animated-black: #000000;
@@ -150,6 +150,57 @@
 .user-profile-circle .absolute.top-12 {
   top: auto !important;
   bottom: 3rem !important;
+}
+
+
+/* LINE-DRAW ENTRANCE
+   Strokes draw themselves in on load. Every shape inside a .line-draw must carry
+   pathLength="1" so one dash length covers it, whatever its real length is.
+   Framer Motion's MotionConfig doesn't govern CSS, so reduced motion is handled
+   explicitly at the bottom of this block. */
+@keyframes line-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.line-draw path,
+.line-draw rect,
+.line-draw circle {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation-name: line-draw;
+  animation-duration: 1.8s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  /* CSS animations start on the document timeline, not when a Framer Motion
+     parent fades in — so a wrapper with its own delay would draw the shape
+     while it is still invisible. --draw-delay keeps the two in step. */
+  animation-delay: var(--draw-delay, 0s);
+}
+
+/* stagger, so the shape assembles rather than appearing all at once */
+.line-draw > *:nth-child(2) { animation-delay: calc(var(--draw-delay, 0s) + 0.35s); }
+.line-draw > *:nth-child(3) { animation-delay: calc(var(--draw-delay, 0s) + 0.7s); }
+.line-draw > *:nth-child(4) { animation-delay: calc(var(--draw-delay, 0s) + 1.05s); }
+
+@media (prefers-reduced-motion: reduce) {
+  .line-draw path,
+  .line-draw rect,
+  .line-draw circle {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+
+/* PAGE GROUND
+   Page containers paint their own black, but nothing painted the document itself —
+   so overscroll areas and the strip beneath Android's system nav bar fell back to
+   the browser default. Declared here so black reaches every edge. */
+html,
+body {
+  background-color: var(--color-black);
 }
 
 

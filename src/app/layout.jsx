@@ -2,35 +2,6 @@ import "./globals.css";
 import Header from "../components/Header";
 import MotionProvider from "../components/MotionProvider";
 
-import { config, library } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import {
-  faHouse,
-  faGrid,
-  faFlaskGear,
-  faMessage,
-  faArrowRightFromBracket,
-  faWindow,
-  faBars,
-} from "@fortawesome/pro-regular-svg-icons";
-
-// 4. Tell Font Awesome to skip adding the CSS automatically.
-//    We explicitly import the CSS above, which is generally better for Next.js/Tailwind.
-//    This prevents Flash Of Unstyled Icons (FOUT) and avoids potential conflicts.
-config.autoAddCss = false;
-
-// 5. Add the imported icons to the Font Awesome library.
-//    This makes them available throughout your application without re-importing in every component.
-library.add(
-  faHouse,
-  faGrid,
-  faFlaskGear,
-  faMessage,
-  faArrowRightFromBracket,
-  faWindow,
-  faBars
-);
-
 const siteDescription =
   "Web design & development. Dark, deliberate sites for brands that don't do beige.";
 
@@ -38,7 +9,7 @@ export const metadata = {
   metadataBase: new URL("https://garfishdigital.com"),
   title: {
     default: "Garfish Digital",
-    template: "%s — Garfish Digital",
+    template: "Garfish Digital | %s",
   },
   description: siteDescription,
   robots: "index, follow",
@@ -49,7 +20,7 @@ export const metadata = {
     siteName: "Garfish Digital",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Garfish Digital — web design & development",
@@ -61,7 +32,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Garfish Digital",
     description: siteDescription,
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
 };
 
@@ -69,7 +40,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* viewport-fit=cover lets the page paint under Android's system bars,
+            so the black reaches the very bottom of the screen */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="#000000" />
@@ -100,6 +73,7 @@ export default function RootLayout({ children }) {
               name: "Garfish Digital",
               url: "https://garfishdigital.com",
               logo: "https://garfishdigital.com/web-app-manifest-512x512.png",
+              sameAs: ["https://instagram.com/garfishdigital"],
             }),
           }}
         />
