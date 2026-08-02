@@ -1,6 +1,10 @@
 {
   "name": "Garfish Digital",
   "short_name": "Garfish",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Web design & development. Dark, deliberate sites for brands that don't do beige.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
