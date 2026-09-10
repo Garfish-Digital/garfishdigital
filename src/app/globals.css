@@ -4,521 +4,1008 @@
 /* Courier Prime — self-hosted (was Google Fonts CDN); subsets and
    unicode-ranges mirror Google's css2 output */
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: "Courier Prime";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/courier-prime-400-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url("/fonts/courier-prime-400-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: "Courier Prime";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/courier-prime-400-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("/fonts/courier-prime-400-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* The wordmark is live text in this weight, so it must not flash through a
+   fallback mid-entrance: block briefly rather than swap. It is preloaded. */
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/courier-prime-700-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Courier Prime';
+  font-family: "Courier Prime";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/courier-prime-700-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Courier Prime';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/courier-prime-700-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("/fonts/courier-prime-700-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/inter-300-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/inter-300-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter-400-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter-400-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter-500-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter-500-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/inter-600-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/inter-600-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@theme {
+  --color-*: initial;
+  --color-cyan-light: #00cccc;
+  --color-cyan-dark: #006666;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-light: #a1aba1;
+  --color-gray-dark: #4e584e;
+  --color-gray-faint: rgba(161, 171, 161, 0.5);
+  --color-gray-shadow: rgba(78, 88, 78, 0.5);
+  --font-sans: "Inter", Arial, sans-serif;
+  --font-mono: "Courier Prime", "Courier New", monospace;
+}
 :root {
-  
-  --white: rgb(255, 255, 255);
-  --gray-light-transparent: rgba(161, 171, 161, 0.5);
-  --gray-light: rgb(161, 171, 161);
-  --gray-dark-transparent: rgba(78, 88, 78, 0.5);
-  --gray-dark: rgb(78, 88, 78);
-  --black: rgb(0, 0, 0);
-
-  --animated-white: #ffffff;
-  --animated-black: #000000;
-  
-  /* GREENS */
-  --green-half-neon: rgb(50, 255, 0, .15);
-  /* --green-light: rgb(125, 200, 125); */
-    --terminal-green: rgb(50, 205, 50);
-    --common-green: rgb(0, 102, 0);
-
-/* BLUES */
-  --navy-blue: rgb(0, 0, 51);
-  --deep-azure: rgb(0, 71, 150);
-  --midnight-cyan: rgb(0, 102, 102);
-    --vibrant-cyan: rgb(0, 204, 204);
-    --vibrant-half-cyan: rgb(0, 204, 204, .2);
-
-    /* ORANGES */
-    --pale-tan: rgb(240, 220, 190);
-  --camel-tan: rgb(185, 133, 93);
-  --deep-sand: rgb(214, 186, 159);
-    --soft-orange: rgb(255, 150, 0);
-  --burnt-orange: rgb(175, 85, 0);
-
-  /* MAGENTA-LIKE */
-  --rich-black: rgb(10, 10, 10);
-  --space-gray: rgb(30, 30, 30);
-  --dark-plum: rgb(50, 0, 50);
-  --my-dark-plum: rgb(75, 0, 100);
-  --electric-pink: rgb(255, 0, 153);
-  --vibrant-violet: rgb(102, 0, 153);
-  --my-vibrant-violet: rgb(160, 0, 255);
-
-  /* MUTED GREENS */
-  --parchment-cream: rgb(250, 245, 230);
-  --warm-sand: rgb(245, 222, 179);
-    --moss-green: rgb(75, 83, 32);
-  --olive-drab: rgb(107, 142, 35);
+  --page-gutter: clamp(24px, 7vw, 112px);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-space: clamp(160px, 16vw, 256px);
+  /* Sections open at twice the rhythm they close on. Desktop only — the mobile
+     block below returns this to the base value. */
+  --section-space-top: calc(var(--section-space) * 2);
 }
-
-@theme inline {
-  
-  --color-white: var(--white);
-  --color-gray-faint: var(--gray-light-transparent);
-  --color-gray-light: var(--gray-light);
-  --color-gray-shadow: var(--gray-dark-transparent);
-  --color-gray-dark: var(--gray-dark);
-  --color-black: var(--black);
-  --color-animated-white: var(--animated-black);
-  --color-animated-black: var(--animated-white);
-  /* --color-green-half-light: var(--green-half-neon); */
-  --color-green-half-light: var(--vibrant-half-cyan);
-  --color-green-light: var(--terminal-green);
-  /* --color-green-dark: var(--moss-green); */
-  --color-green-dark: var(--common-green);
-  --color-cyan-light: var(--vibrant-cyan);
-  --color-cyan-dark: var(--midnight-cyan);
+* {
+  box-sizing: border-box;
 }
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+html {
+  background: var(--color-black);
+  color: var(--color-white);
+  scroll-behavior: smooth;
+  scroll-padding-top: 48px;
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--color-gray-dark) transparent;
 }
-
-/* Hide scrollbars but maintain functionality */
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+* {
+  scrollbar-color: var(--color-gray-dark) transparent;
 }
-
-/* Client page scrollbar hiding */
-.client-scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
-
-.client-scrollbar-hide::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
-
-/* Modal scrollbar hiding */
-.modal-scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-dark);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 12px;
 }
-
-.modal-scrollbar-hide::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray-light);
 }
-
-/* Reusable Font Family Class */
-.font-mono {
-  font-family: "Courier Prime", "Courier New", Courier, monospace;
-}
-
-
-/* NAVIGATION */
-/* UserProfileCircle positioning - bottom-right for all viewport sizes */
-.user-profile-circle {
-  top: auto !important;
-  bottom: 2rem !important;
-}
-
-/* Flip dropdown direction to open upward for all viewport sizes */
-.user-profile-circle .absolute.top-12 {
-  top: auto !important;
-  bottom: 3rem !important;
-}
-
-
-/* LINE-DRAW ENTRANCE
-   Strokes draw themselves in on load. Every shape inside a .line-draw must carry
-   pathLength="1" so one dash length covers it, whatever its real length is.
-   Framer Motion's MotionConfig doesn't govern CSS, so reduced motion is handled
-   explicitly at the bottom of this block. */
-@keyframes line-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.line-draw path,
-.line-draw rect,
-.line-draw circle {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation-name: line-draw;
-  animation-duration: 1.8s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  /* CSS animations start on the document timeline, not when a Framer Motion
-     parent fades in — so a wrapper with its own delay would draw the shape
-     while it is still invisible. --draw-delay keeps the two in step. */
-  animation-delay: var(--draw-delay, 0s);
-}
-
-/* stagger, so the shape assembles rather than appearing all at once */
-.line-draw > *:nth-child(2) { animation-delay: calc(var(--draw-delay, 0s) + 0.35s); }
-.line-draw > *:nth-child(3) { animation-delay: calc(var(--draw-delay, 0s) + 0.7s); }
-.line-draw > *:nth-child(4) { animation-delay: calc(var(--draw-delay, 0s) + 1.05s); }
-
-@media (prefers-reduced-motion: reduce) {
-  .line-draw path,
-  .line-draw rect,
-  .line-draw circle {
-    animation: none;
-    stroke-dashoffset: 0;
-  }
-}
-
-
-/* PAGE GROUND
-   Page containers paint their own black, but nothing painted the document itself —
-   so overscroll areas and the strip beneath Android's system nav bar fell back to
-   the browser default. Declared here so black reaches every edge. */
-html,
 body {
-  background-color: var(--color-black);
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
+button,
+input {
+  font: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+::selection {
+  background: var(--color-cyan-light);
+  color: var(--color-black);
+}
+:focus-visible {
+  outline: 2px solid var(--color-cyan-light);
+  outline-offset: 6px;
+}
+.page-width {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+.font-primary {
+  font-family: var(--font-sans);
+}
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px;
+  background: var(--color-black);
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+.hero {
+  min-height: 94svh;
+  padding-top: clamp(96px, 15vh, 192px);
+  /* padding-top: clamp(32px, 5vh, 64px); */
+  /* padding-bottom: 100px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 48px;
+}
+.hero-wordmark {
+  /* Every knob for the entrance lives here. */
+  --letter-duration: 0.9s;
+  --letter-stagger: 0.045s;
+  --letter-delay: 0.08s;
+  --letter-scale: 0.9;
+  --letter-rise: 0.05em;
 
-
-/* BUTTONS */
-.garfish-button {
-  padding: 0.5rem 2rem;
-  background-color: var(--color-cyan-dark);
-  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  /* 0.2381 x the widths the outlined mark used to render at. */
+  font-size: clamp(59px, 10vw, 150px);
+  line-height: 1.094;
+  letter-spacing: 0;
   color: var(--color-white);
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Light shadow for dark theme */
+  max-width: 100%;
 }
-
-.garfish-button:hover {
-    background-color: var(--color-cyan-light);
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
+.wordmark-row {
+  display: block;
+  white-space: nowrap;
 }
-
-.garfish-button:active {
-    background-color: var(--color-green-light);
-    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.1);
+.wordmark-letter {
+  display: inline-block;
+  /* Pivot near the baseline so letters settle down onto it rather than from centre. */
+  transform-origin: 50% 85%;
+  animation: wordmark-letter var(--letter-duration) var(--ease-reveal) both;
+  animation-delay: calc(
+    var(--letter-delay) + var(--letter-index) * var(--letter-stagger)
+  );
 }
-
-.disabled-garfish-button {
-padding: 0.5rem 2rem;
-  background-color: var(--color-gray-faint);
-  border-radius: 5px;
+@keyframes wordmark-letter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--letter-rise)) scale(var(--letter-scale));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-statement {
+  /* padding-top: 20px; */
+}
+.hero-title {
+  font-size: clamp(56px, 5.2vw, 80px);
+  /* font-size: clamp(28px, 2.7vw, 40px); */
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+.title-line {
+  display: block;
+  color: var(--color-gray-light);
+}
+.title-line:last-child {
+}
+.title-word {
+  display: inline-block;
+  white-space: pre;
+  animation: service-entrance 0.8s ease-out var(--word-delay, 0.4s) both;
+}
+@keyframes service-entrance {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.hero-note {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.hero-note p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-gray-light);
+  margin: 0;
+}
+.accent-rule {
+  height: 1px;
+  width: 48px;
+  background: var(--color-cyan-light);
+}
+.eyebrow {
+  color: var(--color-gray-light);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 26px;
+}
+h2 {
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+.gallery-section {
+  /* border-top: 1px solid var(--color-gray-shadow); */
+  padding-top: var(--section-space-top);
+  padding-bottom: var(--section-space);
+}
+.section-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: clamp(64px, 7vw, 112px);
+}
+.section-intro > p {
+  color: var(--color-gray-light);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 3px;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(96px, 10vw, 160px) clamp(64px, 7vw, 128px);
+}
+.project {
+  min-width: 0;
+}
+.project-link {
+  display: block;
+}
+.project-image-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-gray-shadow);
+  aspect-ratio: 1.44;
+  transition: clip-path 1.3s var(--ease-reveal) var(--reveal-delay);
+  clip-path: inset(0);
+}
+.project-image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--color-cyan-dark);
+  opacity: 0.12;
+  transition: opacity 0.8s ease;
+}
+.project-visit {
+  z-index: 1;
+}
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 1.4s var(--ease-reveal);
+}
+.project-visit {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--color-black);
   color: var(--color-white);
+  font-size: 11px;
+}
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--color-gray-light);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.project-meta span:first-child {
+  color: var(--color-cyan-light);
+}
+.project h3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  margin: 12px 0;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-gray-shadow);
+}
+.project h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-cyan-light);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.85s var(--ease-reveal);
+}
+.project h3 span {
+  font-size: 23px;
+  color: var(--color-gray-light);
+  transition:
+    transform 0.5s var(--ease-reveal),
+    color 0.4s;
+}
+.project-description {
+  color: var(--color-gray-light);
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 48ch;
+  margin: 0;
+}
+.project-meta,
+.project h3,
+.project-description {
+  transition:
+    opacity 0.9s var(--ease-reveal) var(--reveal-delay),
+    translate 0.9s var(--ease-reveal) var(--reveal-delay);
+}
+.reveal-pending .project-image-frame {
+  clip-path: inset(0 0 100% 0);
+}
+.reveal-pending .project-image {
+  transform: scale(1.06);
+}
+.reveal-pending .project-meta,
+.reveal-pending h3,
+.reveal-pending .project-description {
+  opacity: 0;
+  translate: 0 16px;
+}
+.project:focus-within .project-image-frame {
+  clip-path: inset(0);
+}
+.project:focus-within .project-meta,
+.project:focus-within h3,
+.project:focus-within .project-description {
+  opacity: 1;
+  translate: none;
+}
+.project-link:focus-visible .project-image-frame::after {
+  opacity: 0;
+}
+.project-link:focus-visible h3::after {
+  transform: scaleX(1);
 }
 
-
-/* USER VALIDATION */
-.text-user-green {
-    color: #48bb78;
+@media (hover: hover) {
+  .project-link:hover .project-image-frame::after {
+    opacity: 0;
+  }
+  .project-link:hover h3::after {
+    transform: scaleX(1);
+  }
+  .project-link:hover h3 span {
+    transform: translate(3px, -3px);
+    color: var(--color-cyan-light);
+  }
 }
-
-.text-user-red {
-    color: #dc2626;
+.scroll-brand {
+  position: fixed;
+  top: 26px;
+  left: 22px;
+  z-index: 20;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition:
+    opacity 0.8s var(--ease-reveal),
+    transform 0.8s var(--ease-reveal);
+  pointer-events: none;
 }
-
-.text-user-yellow {
-    color: #ed8936;
+.scroll-brand.is-visible {
+  opacity: 1;
+  transform: none;
 }
-
-
-/* INPUT FIELDS */
+.contact-section {
+  /* border-top: 1px solid var(--color-gray-shadow); */
+  padding-top: var(--section-space-top);
+  /* The footer sits inside Contact rather than after it, so the bottom needs less than
+     the section rhythm. Derived from the token, so it tracks any change to it. */
+  padding-bottom: calc(var(--section-space) / 12);
+}
+.contact-layout {
+  /* Intro and form stack on every width; the form no longer shares a row. */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 120px;
+  align-items: start;
+}
+.contact-intro > p:last-child {
+  color: var(--color-gray-light);
+  font-size: 16px;
+  margin-top: 24px;
+}
+.contact-intro h2 {
+  font-size: clamp(32px, 3.6vw, 48px);
+}
+.contact-form {
+  width: 100%;
+  /* Capped so the single-line fields keep a readable length on wide screens,
+     and centred beneath the left-aligned intro. */
+  max-width: 760px;
+  justify-self: center;
+}
 fieldset {
-    padding: 2rem;
-    border: 1px solid var(--color-cyan-dark);
-    border-radius: 5px;
+  border: 1px solid var(--color-cyan-dark);
+  border-radius: 5px;
+  /* Wide inline padding balances the fieldset now that it owns a full row.
+     This file is desktop-base, so the mobile block resets the inline value. */
+  padding: 24px 72px;
+  min-width: 0;
 }
 legend {
-  color: var(--color-cyan-dark);
-  padding: 0 1rem;
+  color: var(--color-cyan-light);
+  padding-inline: 12px;
+  font-size: 13px;
 }
-
-
-/* Hide bot field completely */
-.visually-hidden-bot-field {
-  position: absolute !important;
-  left: -9999px !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  border: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-input {
-    background-color: var(--color-gray-shadow);
-    border: 1px solid var(--color-gray-light);
+.contact-form input:not([hidden]) {
+  width: 100%;
+  background: var(--color-gray-shadow);
+  border: 1px solid var(--color-gray-light);
   border-radius: 5px;
-  margin-bottom: 1rem;
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05); /* Subtle light shadow */
+  margin-bottom: 16px;
+  padding: 13px 14px;
+  font-size: 16px;
+  color: var(--color-white);
+  transition:
+    border-color 0.3s,
+    background 0.3s;
 }
-
-textarea {
-    background-color: var(--color-gray-shadow);
-    border: 1px solid var(--color-gray-light);
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05); /* Subtle light shadow */
-}
-
-/* Odometer-style placeholder transitions */
-input::placeholder,
-textarea::placeholder {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0);
+.contact-form input::placeholder {
+  color: var(--color-gray-light);
   opacity: 1;
 }
-
-/* Create rolling transition effect */
-input:not(:placeholder-shown)::placeholder,
-textarea:not(:placeholder-shown)::placeholder {
-  transform: translateY(-20px);
+.contact-form input:focus {
+  border-color: var(--color-cyan-light);
+  background: var(--color-black);
+}
+.garfish-button {
+  border: 1px solid var(--color-cyan-dark);
+  border-radius: 5px;
+  background: var(--color-cyan-dark);
+  color: var(--color-white);
+  padding: 11px 30px;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    transform 0.3s;
+}
+.garfish-button:hover {
+  background: var(--color-cyan-light);
+  color: var(--color-black);
+}
+.garfish-button:active {
+  transform: scale(0.97);
+}
+.form-status {
+  min-height: 72px;
+  padding-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-gray-light);
+}
+.form-status strong {
+  color: var(--color-cyan-light);
+  font-weight: 500;
+}
+.form-status p {
+  margin: 0;
+}
+.form-status a {
+  text-decoration: underline;
+}
+.contact-footer {
+  margin-top: clamp(112px, 12vw, 192px);
+}
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  border-top: 1px solid var(--color-gray-shadow);
+  padding-block: 28px;
+}
+.legal-links {
+  display: flex;
+  gap: 24px;
+}
+.legal-links button {
+  color: var(--color-gray-light);
+  background: none;
+  border: 0;
+  padding-block: 12px;
+  font-size: 11px;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  transition:
+    color 0.55s ease,
+    text-decoration-color 0.55s ease;
+}
+.contact-channels {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.email-address {
+  font-size: 12px;
+  color: var(--color-gray-light);
+}
+.social-links {
+  display: flex;
+  /* Targets stay 52px; the gap drops to hold the previous optical spacing
+     between glyphs now that they are smaller. */
+  gap: 6px;
+}
+.social-links a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  color: var(--color-gray-light);
+  transition: color 0.4s var(--ease-reveal);
+}
+/* Hover rule, borrowed wholesale from the gallery heading: same cyan, same easing,
+   same right-to-left origin, so the two interactive regions rhyme. Width tracks the
+   glyph via --icon-size, set alongside the icon size in Contact.jsx. Bottom is
+   derived so the rule sits 6px under the glyph whatever its size, well inside the
+   focus ring's 6px offset. */
+.social-links a::after {
+  content: "";
+  position: absolute;
+  bottom: calc(50% - var(--icon-size, 22px) / 2 - 6px);
+  left: 50%;
+  width: var(--icon-size, 22px);
+  margin-left: calc(var(--icon-size, 22px) / -2);
+  height: 1px;
+  background: var(--color-cyan-light);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s var(--ease-reveal);
+}
+.social-links a:hover,
+.social-links a:focus-visible,
+.social-links a:active {
+  color: var(--color-white);
+}
+.social-links a:hover::after,
+.social-links a:focus-visible::after,
+.social-links a:active::after {
+  transform: scaleX(1);
+}
+.email-address {
+  transition: color 0.55s ease;
+}
+/* Socials are handled above — they go white, with cyan carried by the rule. */
+.legal-links button:hover,
+.legal-links button:focus-visible {
+  color: var(--color-cyan-light);
+}
+.copyright {
+  font-family: var(--font-mono);
+  text-align: center;
+  color: var(--color-gray-light);
+  font-size: 11px;
+  margin: 32px 0 0;
+  padding-bottom: 32px;
+}
+.legal-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-white);
+  overflow: hidden;
+}
+.legal-dialog::backdrop {
+  background: transparent;
+}
+.legal-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.legal-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 768px;
+  max-height: 80svh;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: rgb(0 0 0 / 0.9);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.legal-panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  flex-shrink: 0;
+}
+.legal-panel h2 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+.dialog-close {
+  display: grid;
+  place-items: center;
+  color: rgb(255 255 255 / 0.6);
+  background: none;
+  border: 0;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+.dialog-close:hover,
+.dialog-close:focus-visible {
+  color: var(--color-white);
+}
+.legal-content {
+  padding: 24px;
+  min-height: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  color: var(--color-gray-light);
+  font-size: 16px;
+  line-height: 1.625;
+}
+.legal-content::-webkit-scrollbar {
+  display: none;
+}
+.legal-content > div + div {
+  margin-top: 16px;
+}
+.legal-content h3 {
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.legal-content p {
+  margin: 0;
+}
+.legal-date {
+  color: var(--color-gray-light);
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+  padding: 24px;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+  flex-shrink: 0;
+}
+/* The marks are filled now, so there are no strokes left to draw. They take the
+   wordmark's entrance character instead: same duration, easing, scale and pivot.
+   The stagger is wider — three icons at the wordmark's 0.045s would land together,
+   where fourteen letters read as a sweep. The rise is in px, since 0.05em of a
+   22px glyph is a fifth of a pixel. */
+.social-links {
+  --icon-duration: 0.9s;
+  --icon-stagger: 0.12s;
+  --icon-delay: 0.08s;
+  --icon-scale: 0.9;
+  --icon-rise: 3px;
+}
+.social-links svg {
   opacity: 0;
 }
-
-/* Placeholder color with smooth transitions */
-input:focus::placeholder,
-textarea:focus::placeholder {
-  color: var(--color-gray-faint);
-  border: var(--color-green-dark)
+/* Animate the glyph, never the anchor — the anchor's transform is the hover lift,
+   and an animation's fill mode would win over it permanently. */
+.socials-revealed svg {
+  transform-origin: 50% 85%;
+  animation: social-enter var(--icon-duration) var(--ease-reveal) both;
+  animation-delay: calc(
+    var(--icon-delay) + var(--icon-index, 0) * var(--icon-stagger)
+  );
 }
-
-/* HOME PAGE */
-.home-page-container {
-  overflow: hidden !important; /* Lock viewport - no scrolling */
-}
-
-.home-page-layout {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  height: 100dvh !important;
-}
-
-
-/* Focus bounce animation - one-time bounce effect */
-.focus-bounce {
-  animation: focusBounce 0.6s ease-out;
-}
-
-@keyframes focusBounce {
-  0% {
-    transform: translateX(0);
-  }
-  20% {
-    transform: translateX(-8px);
-  }
-  40% {
-    transform: translateX(2px);
-  }
-  60% {
-    transform: translateX(-1px);
-  }
-  80% {
-    transform: translateX(0.5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.fade-in {
-  animation: fade-in-smooth 800ms ease-in-out forwards;
-  opacity: 0;
-}
-
-@keyframes fade-in-smooth {
-  0% {
+@keyframes social-enter {
+  from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(var(--icon-rise)) scale(var(--icon-scale));
   }
-  100% {
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
-
-
-/* Fluid Scaling System - Progressive breakpoints with clamp() functions */
-
-/* Extra Small Mobile - 320px to 480px */
-@media (min-width: 320px) {
-  .gallery-showcase-heading {
-    font-size: clamp(3rem, 8vw, 4.5rem) !important; /* Fluid scaling from 48px to 72px */
-  }
-  
-  .contact-form-container {
-    max-width: clamp(18rem, 85vw, 24rem) !important; /* Fluid width scaling */
-  }
-  
-  .garfish-button {
-    padding: clamp(0.375rem, 1.5vw, 0.5rem) clamp(1.25rem, 4vw, 2rem);
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
+/* Without JS the reveal class never arrives, so the marks must not stay hidden. */
+@media (scripting: none) {
+  .social-links svg {
+    opacity: 1;
   }
 }
-
-/* Small Mobile - 480px to 768px */
-@media (min-width: 480px) {
-  .gallery-showcase-heading {
-    font-size: clamp(4rem, 7vw, 5rem) !important; /* Smoother scaling curve */
+@media (max-width: 1100px) {
+  .scroll-brand {
+    top: 12px;
+    left: 10px;
   }
-  
-  .contact-form-container {
-    max-width: clamp(24rem, 75vw, 32rem) !important;
+  .scroll-brand img {
+    width: 28px;
+    height: 28px;
   }
-  
-  .contact-form-field {
-    padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem);
+  .footer-row {
+    align-items: flex-start;
   }
-}
-
-/* Medium Tablets - 768px to 1024px */
-@media (min-width: 768px) {
-  .gallery-showcase-heading {
-    font-size: clamp(4.5rem, 6vw, 5.5rem) !important;
-  }
-  
-  .contact-form-container {
-    max-width: clamp(28rem, 65vw, 36rem) !important;
+  .contact-channels {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
   }
 }
-
-/* Large Tablets/Small Desktop - 1024px to 1440px */
-@media (min-width: 1024px) {
-  .gallery-showcase-heading {
-    font-size: clamp(5rem, 5vw, 6rem) !important; /* Approaching original 6rem */
+@media (max-width: 767px) {
+  :root {
+    --page-gutter: 32px;
+    --section-space-top: var(--section-space);
   }
-  
-  .contact-form-container {
-    max-width: clamp(32rem, 55vw, 42rem) !important;
+  .hero {
+    min-height: 88svh;
+    /* Was 96px — double the desktop gap under type a third the size, which left
+       the wordmark stranded high. Matching desktop settles it onto the statement. */
+    gap: 24px;
+    padding-bottom: 64px;
+  }
+  .hero-title {
+    font-size: 28px;
+    letter-spacing: -0.045em;
+  }
+  .hero-wordmark {
+    font-size: clamp(52px, 13.3vw, 86px);
+  }
+  .hero-note {
+    margin-top: 32px;
+  }
+  .scroll-brand {
+    top: 16px;
+    left: 4px;
+  }
+  .scroll-brand img {
+    width: 24px;
+    height: 24px;
+  }
+  .section-intro {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 64px;
+    gap: 24px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 96px;
+  }
+  .project-image-frame {
+    aspect-ratio: 1.44;
+  }
+  .project-meta {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+  .project h3 {
+    font-size: 28px;
+  }
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .contact-form {
+    max-width: none;
+  }
+  fieldset {
+    /* Keep the original inline padding — 72px would leave ~180px inputs here. */
+    padding-inline: 24px;
+  }
+  .footer-row {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 24px;
+  }
+  .contact-channels {
+    align-items: center;
+    gap: 16px;
+  }
+  .copyright {
+    font-size: 10px;
+    line-height: 1.6;
+    margin-top: 20px;
   }
 }
-
-/* Large Desktop - 1440px and above */
-@media (min-width: 1440px) {
-  .gallery-showcase-heading {
-    font-size: 6rem !important; /* Original size restored */
+@media (prefers-reduced-motion: reduce) {
+  .wordmark-letter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
-  
-  .contact-form-container {
-    max-width: 48rem !important; /* Original max-w-2xl restored */
+  html {
+    scroll-behavior: auto;
   }
-}
-
-/* Landscape orientation override for mobile devices - MUST come after other media queries */
-@media (orientation: landscape) {
-  
-  /* Contact form adjustments for landscape with fluid scaling */
-  .contact-form-container {
-    max-width: clamp(20rem, 45vw, 32rem) !important; /* Fluid width based on viewport */
-    transform: scale(clamp(0.7, 0.02 * 100vw, 0.85)) !important; /* Fluid scaling */
-    transform-origin: center !important;
+  .social-links svg {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
   }
-
-  /* Force single column layout in landscape on all devices */
-  .contact-form-grid {
-    grid-template-columns: 1fr !important;
-    gap: clamp(0.5rem, 1.5vw, 1rem) !important; /* Fluid gap scaling */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
-
-  /* Reduce form spacing in landscape with fluid values */
-  .contact-form-container .space-y-4 {
-    gap: clamp(0.5rem, 1.5vw, 1rem) !important; /* Fluid gap scaling */
+  .title-word {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
-
-  /* Fluid top padding in landscape for contact page */
-  .contact-page-container .pt-24 {
-    padding-top: clamp(2rem, 8vh, 6rem) !important; /* Fluid padding based on viewport height */
+  .project-image-frame {
+    clip-path: none !important;
+    transform: none !important;
   }
-
-  /* Fluid button sizing in landscape */
-  .garfish-button {
-    padding: clamp(0.25rem, 1vh, 0.5rem) clamp(1rem, 3vw, 2rem);
-    font-size: clamp(0.75rem, 2vw, 1rem);
+  .project-image {
+    transform: none !important;
   }
-}
-
-/* Surface Duo landscape specific adjustments - 720x540 */
-@media (min-width: 720px) and (max-width: 720px) and (min-height: 540px) and (max-height: 540px) and (orientation: landscape) {
-  .contact-page-container .pt-24 {
-    padding-top: 6rem !important; /* Restore pt-24 for Surface Duo landscape */
+  .project-meta,
+  .project h3,
+  .project-description {
+    opacity: 1 !important;
+    translate: none !important;
   }
-}
-
-/* Contact modal with fluid sizing - all devices and orientations */
-.contact-modal-background {
-  max-width: clamp(20rem, 80vw, 48rem) !important; /* Fluid modal width */
-  max-height: clamp(50vh, 75vh, 80vh) !important; /* Fluid modal height */
-}
-
-.contact-modal-background .p-6 {
-  padding: clamp(0.75rem, 2.5vw, 1.5rem) !important; /* Fluid modal padding */
-}
-
-.contact-modal-background .max-h-\[60vh\] {
-  max-height: clamp(40vh, 55vh, 65vh) !important; /* Fluid content area height */
-}
-
-/* Gallery demo cards sizing - normal size (was previously reduced by 25%) */
-.gallery-page-item .h-full > a {
-  transform: scale(
-    1
-  ) !important; /* Restore to normal size (25% increase from previous 0.75) */
-  transform-origin: center !important;
-}
-
-/* Force hide scrollbars on body for client pages */
-body:has(.client-scrollbar-hide) {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
-}
-
-body:has(.client-scrollbar-hide)::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* Alternative approach using global override */
-.force-hide-scrollbars,
-.force-hide-scrollbars * {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
-}
-
-.force-hide-scrollbars::-webkit-scrollbar,
-.force-hide-scrollbars *::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* Minimap keyboard focus — :focus-visible fires for keyboard navigation
-   only, so mouse users never see it */
-.minimap-button:focus-visible {
-  outline: 2px solid var(--color-cyan-light);
-  outline-offset: 2px;
 }

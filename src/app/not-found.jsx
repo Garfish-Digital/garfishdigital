@@ -1,54 +1,17 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+// Renders as "Garfish Digital | Page not found" via the root title template.
+export const metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: true },
+};
+
 export default function NotFound() {
-  return (
-    <div className="min-h-screen bg-[color:var(--color-black)] flex flex-col justify-center px-8">
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <Image
-          src="/Garfish-Logo-Master.svg"
-          alt="Garfish Digital"
-          width={415}
-          height={88}
-          className="w-72 md:w-96 h-auto"
-          priority
-        />
-      </motion.div>
-
-      <motion.div
-        className="mt-16"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-      >
-        <p className="text-[color:var(--color-gray-light)] font-primary text-4xl font-normal">
-          404
-        </p>
-        <p className="text-[color:var(--color-gray-light)] font-primary text-4xl font-normal mt-2">
-          nothing here.
-        </p>
-      </motion.div>
-
-      <motion.div
-        className="mt-12"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
-      >
-        <Link
-          href="/"
-          className="font-primary text-lg text-[color:var(--color-gray-light)] hover:text-[color:var(--color-cyan-light)] transition-colors duration-300"
-        >
-          go home →
-        </Link>
-      </motion.div>
-    </div>
-  );
+  return <main className="page-width" style={{ minHeight: "100svh", paddingTop: "15vh", paddingBottom: "15vh" }}>
+    <Image src="/garfish-logo-stacked-white.svg" alt="Garfish Digital" width={180} height={94} />
+    <p className="eyebrow" style={{ marginTop: 80 }}>404</p>
+    <h1 style={{ fontSize: "clamp(40px, 8vw, 80px)", letterSpacing: "-.05em" }}>Nothing here.</h1>
+    <Link href="/" className="garfish-button" style={{ display: "inline-block", marginTop: 32 }}>Back to Garfish Digital</Link>
+  </main>;
 }

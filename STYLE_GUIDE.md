@@ -1,184 +1,170 @@
-1. The "Vanguard" CSS Variables
-Add these to your globals.css or main stylesheet. I’ve tuned the HSL values to ensure they feel "heavy" and expensive.
+# Garfish Digital — style guide
 
-```CSS
-@layer base {
-  :root {
-    /* --- THE FOUNDATION --- */
-    /* Deepest obsidian. Use for main page backgrounds. */
-    --void: 220 15% 2%; 
-    
-    /* Slightly lighter "charcoal." Use for cards, sections, or "inner" containers. */
-    --chamber: 220 10% 7%; 
-    
-    /* A muted gray-black. Use for borders on dark elements or subtle "hidden" text. */
-    --cipher: 220 5% 15%;
+## Direction
 
-    /* --- THE LIGHT --- */
-    /* Your Bone White. Primary text color. High contrast but soft on the eyes. */
-    --relic-bone: 45 15% 89%; 
+Quiet, distinctive, and spacious. Pure black provides the ground; strong typography
+and real project imagery do the work. Cyan is a deliberate accent. Motion should feel
+controlled and unhurried, while links and controls respond immediately.
 
-    /* --- THE METALS --- */
-    /* The core "Authority" Gold. Best for primary icons and headers. */
-    --altar-gold: 44 50% 52%; 
-    
-    /* A darker, "weathered" brass. Perfect for secondary accents or shadows. */
-    --tarnish: 41 64% 34%; 
+The studio serves independent businesses and community projects. Its own dark visual
+identity does not dictate the appearance of client websites.
 
-    /* --- THE GLOW (Gradients) --- */
-    /* The "Liquid Gold" look from your button. */
-    --gold-leaf-start: #f9e7b3;
-    --gold-leaf-mid: #e6c97a;
-    --gold-leaf-end: #bfa14a;
-  }
-}
-```
-2. Tailwind Configuration
-Copy this into your tailwind.config.js. This maps the "cool" names to usable utility classes.
+## Palette
 
-```JavaScript
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        // Use: bg-void (Main background)
-        void: "hsl(var(--void))",
-        // Use: bg-chamber (Card backgrounds, dropdowns)
-        chamber: "hsl(var(--chamber))",
-        // Use: border-cipher (Subtle dividers between dark sections)
-        cipher: "hsl(var(--cipher))",
-        // Use: text-relic (All primary body and header text)
-        relic: "hsl(var(--relic-bone))",
-        // Use: text-altar (Primary calls to action, brand highlights)
-        altar: "hsl(var(--altar-gold))",
-        // Use: text-tarnish (Muted metadata, secondary icons, breadcrumbs)
-        tarnish: "hsl(var(--tarnish))",
-      },
-      backgroundImage: {
-        // The "Hero" Gradient: Use 'bg-gold-leaf' for buttons or pinstripe borders
-        'gold-leaf': "linear-gradient(120deg, var(--gold-leaf-start) 0%, var(--gold-leaf-mid) 50%, var(--gold-leaf-end) 100%)",
-        // The "Hover" Gradient: A slightly brighter flash for interaction
-        'gold-flash': "linear-gradient(120deg, #f7f3e2 0%, #e6c97a 60%, #bfa14a 100%)",
-      },
-      boxShadow: {
-        // A subtle "occult" glow for buttons or active icons
-        'altar-glow': '0 0 15px -3px rgba(191, 161, 74, 0.4)',
-      }
-    },
-  },
-}
-```
-3. Deployment Strategy (How to use these)
-For "Luxury" Typography: Use text-relic for your body text, but use text-altar specifically for drop-caps or the first word of a luxury service description.
+These are the only studio UI colors. They are defined as Tailwind theme tokens in
+`src/app/globals.css`; the default Tailwind color palette is disabled.
 
-The "Pinstripe" Border: Instead of a thick gold block, use a 1px border with the gold gradient. In Tailwind:
-<div class="p-[1px] bg-gold-leaf"> <div class="bg-void p-6"> Content </div> </div>
-This creates a razor-thin gold inlay look that feels like a high-end watch box.
+| CSS token | Value | Role |
+| --- | --- | --- |
+| `--color-cyan-light` | `#00CCCC` | Brand mark, accents, focus, interaction |
+| `--color-cyan-dark` | `#006666` | Form border and button ground |
+| `--color-white` | `#FFFFFF` | Primary text |
+| `--color-black` | `#000000` | Page ground |
+| `--color-gray-light` | `#A1ABA1` | Supporting text and metadata |
+| `--color-gray-dark` | `#4E584E` | Decorative borders |
+| `--color-gray-faint` | `rgba(161, 171, 161, 0.5)` | Declared, currently unapplied |
+| `--color-gray-shadow` | `rgba(78, 88, 78, 0.5)` | Surface depth, separators, shadows |
 
-The "Hidden" Layer: Use text-cipher for decorative background text (like large, faint Roman numerals or brand mottos). It won't be immediately visible, which adds to the Mystery of the brand.
+Use semantic variables or their generated utilities. Do not introduce arbitrary
+palette colors. Dark/translucent grays are decorative, not essential small text —
+Gray Faint composites to 2.78:1 on black, so it fails WCAG AA for text and 3:1 for
+controls. It previously coloured the legal links, social icons, and legal date; all
+three now use Gray Light (8.85:1). Do not reintroduce it for anything readable.
+Cyan-light hover backgrounds need black text; cyan-dark buttons use white text.
+Project screenshots retain their own colors.
 
-The Hero Button:
+## Typography
 
-```HTML
-<button class="bg-gold-leaf hover:bg-gold-flash text-void font-bold py-3 px-8 rounded-sm shadow-altar-glow transition-all">
-  ENTER THE VOID
-</button>
-```
-___
+- **Courier Prime:** Garfish Digital wordmark and copyright only. The wordmark is
+  **live Courier Prime 700 text**, not the outlined SVG it used to be — the original
+  mark was that same monospace face on a 17-unit grid, so it reproduces exactly.
+  Do not substitute another monospace face.
+- **Inter:** all other text, including the service statement, headings, labels, form,
+  and legal copy.
+- Fonts are self-hosted. Available Inter weights: 300, 400, 500, 600; Courier Prime 400
+  and 700. Only Courier Prime 700 and Inter 400 are preloaded — both are above the fold.
+  The 700 face uses `font-display: block` so the logo cannot flash through a fallback
+  partway through its entrance.
+- Keep **web design & development** entirely lowercase.
+- The wordmark is the dominant element and the service statement sits beneath it. An
+  earlier iteration reversed this; that reversal is no longer current.
 
+Large Inter headings use regular weight and tight spacing. Supporting copy is gray
+light, with generous line-height. Small section labels use medium weight, uppercase,
+and additional letter spacing. Avoid extending the monospace treatment to metadata.
 
-1. Google Font Pairings: "The Alchemist & The Architect"
-To achieve "Luxury Edgy," we look for High-Contrast Serifs (The Alchemist) paired with Geometric or Humanist Sans-Serifs (The Architect).
+## Composition
 
-Option A: The "Ancient Power" Duo (Highly Recommended)
-Header (Serif): Cinzel
+Home → Gallery → Contact in normal document flow. No navigation menus, gallery
+minimap, hero CTA, scroll hijacking, or perpetual arrow animation. A keyboard-only
+skip link provides direct access to the work.
 
-Psychology: Modeled after first-century Roman inscriptions. It feels monumental, pagan, and permanent. It screams "Authority."
+The content container is capped at 1680px with fluid outer gutters (32px on mobile). Home
+uses an open composition: wordmark above, service statement below. `.hero-note` is a
+reserved but currently empty slot beneath the statement. The Gallery follows with two
+columns at 768px and above, one below that width. Project rows have generous separation;
+previews use a consistent 1.44 aspect ratio.
 
-Body (Sans): Inter
+Contact retains the existing copy and three-field form. The intro and form stack at
+every width — the form sits on its own row beneath the intro, capped at 760px and
+centred while the intro stays left-aligned. The fieldset takes 72px inline padding on
+desktop; the mobile block resets that to 24px, since 72px would leave ~180px inputs. Legal links, Instagram, LinkedIn, and
+email belong to the footer in normal flow. Copyright is centered at the very bottom.
+The email address is reachable through the envelope icon and the form; it is
+deliberately **not** printed as text.
 
-Psychology: A hyper-modern, clean typeface. The contrast between the "ancient" header and the "digital-precise" body creates a "High-End Agency" vibe.
+## Branding
 
-Tailwind: font-serif for Cinzel, font-sans for Inter.
+Home renders the wordmark as live type via `HeroWordmark`, not an image file.
+`public/garfish-logo-stacked-white.svg` is used only on the 404 route. Reveal
+`public/Garfish-circle-logo.svg` gently at the upper left only after Home leaves the
+viewport. It is decorative, does not act as navigation, and disappears when Home
+returns. Keep its presence small and check it against content at narrow widths.
+The line-drawn fish is not used in this composition. Existing source assets remain
+available for other brand uses.
 
-Option B: The "Noir Editorial" DuoHeader (Serif): Playfair DisplayPsychology: High-contrast strokes (thick and thin) mimic high-fashion magazines and luxury watches. It’s "edgy" because of its sharp, needle-like serifs.Body (Sans): Montserrat (Light weight, e.g., 300)Psychology: Geometric and balanced. Using it in a lighter weight against your void background makes it look sophisticated and airy.
+## Motion and interaction
 
-2. Iconography: The Battle of Aesthetic vs. ReliabilityYou mentioned Google Material Icons (Sharp) vs. Lucide vs. Phosphor.The Decision: Use Phosphor IconsWhy? In the psychology of luxury, "Material Icons" are the enemy. They are built for utility and "Googley" friendliness. They feel like a utility bill—not a boutique tattoo studio.
+- Wordmark: `HeroWordmark` splits both rows into per-character spans sharing one
+  continuous stagger across all 14 letters, so the mark arrives as a single sweep.
+  Letters scale and rise onto the baseline (`transform-origin: 50% 85%`). Every
+  parameter is a custom property on `.hero-wordmark` — `--letter-duration`,
+  `--letter-stagger`, `--letter-delay`, `--letter-scale`, `--letter-rise`. Tune the
+  entrance there, never in the component.
+- Service statement: in-house SplitTextReveal using CSS animation.
+  Original 0.8s fade from 50px left, without blur. Word delays: web 0.4s,
+  design 1.4s, & 0.7s, development 1.2s. CSS plays this before hydration.
+- Easing: `cubic-bezier(.16, 1, .3, 1)` for entrances and settling motion.
+- Gallery: scroll-triggered clipping reveal lasting 1.3s; metadata settles over 0.9s.
+  The second desktop-column card has a 0.1s offset. A card reveals only once it is both
+  in view and its image has loaded, so the reveal never wipes open on an empty frame.
+  Previews stay lazy: `priority` or `loading="eager"` makes Next preload a below-the-fold
+  image against the hero.
+- Entrances play once per mount, never reverse on scroll, and may replay on reload.
+- Hover/focus: cyan-dark image tint fades from 0.12 to 0 opacity over 0.8s;
+  the cyan rule reveals from right to left over 0.85s. No hover/press image scaling.
+- Link activation remains immediate.
+- The live-site affordance stays visible on touch devices; no double-tap requirement.
+- Circle mark: 0.8s fade and 5px settling movement.
 
-Icon LibraryStyleBest Fit for Garfish Digital?Material (Sharp)Technical, BlockyNo. It feels "Standard Corporate."Lucide ReactConsistent, FriendlyMaybe. It's clean, but can feel a bit "SaaS-y."Phosphor IconsThin/Light/DuotoneYes. It offers a "Thin" weight that looks incredibly premium on dark backgrounds.
+Reduced motion removes spatial/blur effects, image transforms, and smooth scrolling.
+Content remains readable without JavaScript. Do not hide information behind animation.
 
-The "Luxury" Icon Strategy:Use "Thin" or "Light" Weights: Thick icons feel "loud" and "cheap." Thin icons (1px stroke) feel like jewelry.Phosphor’s "Duotone" Style: You can set the secondary color of the icon to your tarnish (brass) color and the primary to altar (gold). This creates a custom, multi-dimensional look that Google Icons cannot replicate.
+## Forms and accessibility
 
-3. The "Hidden" Design Secret: Custom SVGs
-For your most important brand touchpoints (the "Services" section or "Our Process"), Custom SVGs are non-negotiable.
+Keep visible focus indicators and semantic links/buttons. Social controls have 52px targets with 32px, 2px-stroke icons; close controls
+have 44px targets. Form fields have programmatic labels and at least 16px input text
+on mobile. Preserve native validation, pending state, and persistent submission
+feedback. Never clear entered values on failure.
 
-Insight: Luxury is about Exclusivity. If a user sees the same "Web Development" icon they saw on a $20 template, the luxury illusion breaks.
+Legal dialogs use the browser's native modal behavior. Keep Escape support, focus
+containment/restoration, scroll locking, and readable text. Do not change approved
+legal copy as part of visual styling.
 
-Strategy: Use Phosphor for UI elements (arrows, close buttons, social links), but use custom-illustrated SVGs (geometric sigils, occult-inspired line art) for your main service offerings.
+## Review checklist
 
-4. Final Recommendation Summary
-Typography: Cinzel (Headings) + Inter (Body). Set your Cinzel headers to tracking-widest in Tailwind to give them that "breathing" luxury feel.
+Check 320px mobile through wide desktop, landscape, long text, keyboard use, reduced
+motion, actual image loading, and the once-only scroll behavior. Review the title
+hierarchy and circle mark in motion, not only in static screenshots.
 
-Icons: Phosphor Icons. Specifically use the Thin weight. It will look like a gold needle on your void background.
+### Restored footer motion
 
-Borders: Use that Gold Leaf Gradient as a 1px border for your icons. It makes them look "framed."
+Socials appear in email, LinkedIn, Instagram order. They are **solid filled marks**,
+matching the fin mark — the only other icon in the identity, and deliberately a solid
+with no hairlines. Each is one path whose subpaths knock holes through under `evenodd`.
+Both brand marks are frames — outer rounded square with the tile interior knocked out —
+so they carry matched ink and each keeps its official silhouette. A filled LinkedIn tile
+reads far heavier than Instagram's open camera; inverting Instagram balances it but
+departs too far from the real mark. The envelope stays a solid, which is correct: it is
+a UI icon, not a logo. Do not reintroduce stroked social icons, and do not use the
+brands' official colours — the palette is closed, and project screenshots are its only
+sanctioned exception.
 
+On entering view they fade and settle once, taking the wordmark's entrance character —
+same duration, easing, scale and `50% 85%` pivot — with a wider stagger, since three
+icons at the wordmark's rate would land together. The animation is on the glyph, not the
+anchor, which leaves the anchor free and avoids an animation's fill mode permanently
+overriding any transform placed on it.
 
-To integrate Cinzel and Inter into your Tailwind configuration, you’ll want to treat them as distinct "Atmospheres."
+Social hover/focus/active brightens the glyph Gray Light → White and draws a cyan-light
+rule beneath it. The rule is lifted from the gallery heading — same colour, same
+`--ease-reveal`, same right-to-left `transform-origin` — so the two interactive regions
+rhyme structurally rather than only chromatically. It runs at 0.4s rather than the
+gallery's 0.85s, which is sluggish on a 22px target, and the colour transition matches
+it. Rule width tracks the glyph through `--icon-size`, set alongside the icon size in the
+`socials` array in `Contact.jsx`; its offset is derived so it clears the 6px focus ring at
+any size. There is no hover lift or press scale. Legal-link colour still transitions over
+0.55s to cyan-light.
+Preserve the legal links’ dotted underline; their colour is now Gray Light. Legal dialogs retain
+the original 0.6s blur overlay, 0.5s scale/tilt panel entrance and exit, staggered
+text reveals, and rotating/scaling SVG close button. Native modal focus behavior
+remains underneath that presentation.
 
-In luxury design, letter-spacing (tracking) is just as important as the font itself. Tight text feels crowded and "discount"; wide text feels expensive and "archival."
-
-1. The Tailwind Configuration
-Update your tailwind.config.js to include these custom families. I’ve added a specific "Alchemist" heading style that automatically applies the correct luxury spacing.
-
-```JavaScript
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        // THE ALCHEMIST: Use for Headers, Titles, and Sigils
-        // Best paired with: tracking-widest (Luxury spacing)
-        alchemist: ['Cinzel', 'serif'],
-        
-        // THE ARCHITECT: Use for Body, UI, and Technical details
-        // Clean, readable, and precise.
-        architect: ['Inter', 'sans-serif'],
-      },
-    },
-  },
-}
-```
-2. Implementation: The "Dark Luxury" Typography Scale
-Here is how you actually use these in your components to ensure they project that "Vanguard" authority.
-
-```HTML
-<h1 class="font-alchemist text-altar text-4xl uppercase tracking-[0.2em]">
-  Garfish Digital
-</h1>
-
-<p class="font-architect text-relic font-light leading-relaxed max-w-prose">
-  Forging digital experiences for those who dwell in the shadows. 
-  We blend ancient aesthetics with modern precision.
-</p>
-
-<button class="font-alchemist text-xs tracking-widest text-altar border-b border-tarnish pb-1 hover:text-relic hover:border-altar transition-all">
-  VIEW THE GALLERY
-</button>
-```
-3. Psychology of the Typography Layout
-When building your "Edgy Luxury" site, keep these two rules in mind to maintain the brand's mystery:
-
-Vertical Rhythm: Luxury sites often use massive white space (or in your case, void space) between sections. It signals that you are not desperate for space—you own it.
-
-The "Whisper" UI: Use very small font sizes (10px–12px) for utility items like navigation or labels, but set them in font-alchemist with tracking-widest. This makes the text look like an intricate engraving rather than a menu.
-
-4. Phosphor Icons Integration
-Since you are using Tailwind, you can easily integrate Phosphor Icons. I recommend using the Thin weight to match the sharp lines of Cinzel.
-
-Weight: Thin (1px or 2px stroke).
-
-Color: Use text-tarnish for the icon and text-altar only when the user hovers over the parent element.
-
-
+Gallery uses 160–256px top and bottom padding. Contact keeps that at the top but takes
+half of it at the bottom (`calc(var(--section-space) / 2)`, 80–128px), because the footer
+sits inside the section rather than after it. The root reserves a stable scrollbar gutter
+with a transparent track; modal scroll locking preserves that width and focus restoration
+prevents scrolling. Social icons rest in Gray Light. Sizes are optical, not equal: the envelope is 26px
+while the two tiles are 22px, because the tiles fill their box edge to edge and the
+envelope is wide and short. Targets stay 52px, with a 6px gap holding the glyph-to-glyph
+spacing near its previous value now that the marks are smaller.

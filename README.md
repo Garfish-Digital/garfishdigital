@@ -1,205 +1,137 @@
 # Garfish Digital
 
-Portfolio site for a boutique web design and development studio. Three pages — a
-typographic landing page, a gallery that showcases four live client demos through a
-sliding-grid navigator, and a short contact form.
+A single-page portfolio for an independent web design and development studio.
+Home, Gallery, and Contact form one continuous scroll, with no menus or hero CTA.
 
-Live at [garfishdigital.com](https://garfishdigital.com).
+## Stack and setup
 
-## Stack
+Next.js 15 App Router, React 19, JavaScript, Tailwind CSS v4, and Framer Motion.
+Fonts and project previews are self-hosted; icons are inline SVG. No runtime font
+services, analytics, or embedded project sites. Contact submissions use Netlify Forms.
+No environment variables or secrets are required.
 
-| | |
-|---|---|
-| Framework | Next.js 15 (App Router) |
-| UI | React 19 |
-| Language | JavaScript — no TypeScript |
-| Styling | Tailwind CSS v4 |
-| Animation | Framer Motion |
-| Type | Courier Prime, self-hosted |
-| Icons | Inline SVG — no icon dependency |
-| Forms | Netlify Forms |
-| Hosting | Netlify |
-
-The site makes **zero third-party requests** at runtime. Fonts are self-hosted, icons
-are inline, and there is no analytics or tracking of any kind.
-
-## Requirements
-
-- Node `^18.18.0 || ^19.8.0 || >=20.0.0`
-- npm
-
-No environment variables are needed — `npm install` and the build run without secrets.
-
-## Getting started
-
-```bash
+```sh
 npm install
 npm run dev
 ```
 
-Then open <http://localhost:3000>.
+Development runs at http://localhost:3000. Use `npm run lint` for ESLint,
+`npm run build` for production compilation, and `npm run start` to serve that build.
+Use a Node version supported by the installed Next.js release (verification used Node 22).
 
-## Scripts
+Do not build into `.next` while a development server is using it. An isolated check:
 
-| Script | Does |
-|---|---|
-| `npm run dev` | Development server on port 3000 |
-| `npm run build` | Production build |
-| `npm run start` | Serve a production build |
-| `npm run lint` | ESLint |
-
-Don't run `npm run build` while `npm run dev` is running — both write to `.next`, and
-the result can be a corrupted build directory. Stop the dev server first.
-
-## Project structure
-
-```
-src/
-├── app/
-│   ├── layout.jsx            Root layout — metadata, fonts, favicons, JSON-LD
-│   ├── page.jsx              Home
-│   ├── not-found.jsx         404
-│   ├── globals.css           Palette, @font-face, shared styles
-│   ├── robots.js             /robots.txt
-│   ├── sitemap.js            /sitemap.xml
-│   ├── gallery/
-│   │   ├── layout.jsx        Route metadata
-│   │   ├── page.jsx          Sliding-grid demo navigator
-│   │   └── gallery.css
-│   └── contact/
-│       ├── layout.jsx        Route metadata
-│       ├── page.jsx          Netlify form + legal modals
-│       └── contact.css
-├── components/
-│   ├── Navigation.jsx        Desktop text nav / mobile hamburger
-│   ├── Logo.jsx              Fixed wordmark, top left
-│   ├── Header.jsx            Blur strip on non-home routes
-│   ├── Minimap.jsx           Gallery navigator widget
-│   ├── FishMark.jsx          The gar, inline, for line-draw animation
-│   ├── Icon.jsx              Inline SVG icon set
-│   └── MotionProvider.jsx    Framer Motion reduced-motion config
-└── config/
-    └── navigation.js         Nav items and helpers
+```sh
+GARFISH_BUILD_DIR=.next-verify npm run build
+GARFISH_BUILD_DIR=.next-verify npm run start -- --port 3100
 ```
 
-## How it works
+Use the same build-directory setting for both commands. `.next-verify` is ignored by Git.
 
-A few parts are non-obvious. Read this before editing them.
+## Structure
 
-### The gallery
+- `src/app/page.jsx`: Home composition and section assembly.
+- `src/components/motion/HeroWordmark.jsx`: split-letter wordmark.
+- `src/components/motion/SplitTextReveal.jsx`: configurable service-statement motion.
+- `src/components/Gallery.jsx`: ordered project data, preview cards, one-time reveals.
+- `src/components/Contact.jsx`: Netlify form, legal dialog, social/email links, copyright.
+- `src/components/ScrollBrand.jsx`: circle mark revealed after Home exits the viewport.
+- `src/components/Icon.jsx`: local SVG icons — outline set by default, plus a solid
+  set (`<Icon solid />`) used for the footer marks.
+- `src/components/MotionProvider.jsx`: shared reduced-motion configuration.
+- `src/config/legal.js`: existing Privacy Policy and Terms of Service text.
+- `src/app/globals.css`: font faces, definitive palette, layout, and interaction styles.
+- `src/app/layout.jsx`: metadata exports, the Inter preload, and ProfessionalService JSON-LD.
+- `public/projects/`: local WebP screenshots used as project previews.
+- `public/__forms.html`: static Netlify form schema.
 
-A `300vw × 300vh` 3×3 CSS grid that translates beneath a fixed-viewport wrapper.
-**Only five of the nine cells hold content** — the four corners and the centre. The
-four middle-edge cells are deliberately empty; they flash as black space during
-diagonal slides, which reads as atmosphere rather than as a gap.
+## Spacing
 
-Cell IDs are semantic: `upperLeft`, `upperRight`, `center`, `lowerLeft`, `lowerRight`.
-The active cell lives in React state and is applied as a class,
-`gallery-grid-${currentPage}`; each class sets a different `transform: translate(...)`.
+`--section-space` (`clamp(160px, 16vw, 256px)`) is the section rhythm. Gallery uses it top
+and bottom. Contact uses it at the top but half of it at the bottom, because the footer sits
+*inside* Contact rather than after it — a full measure below the copyright reads as a dead
+gap. The mobile hero gap is 48px, matching desktop; it was 96px, which stranded the wordmark
+high above the statement at a third the type size.
 
-Navigation is mouse-only, via the minimap — there are no arrow or number key bindings.
-`ESC` closes the techniques modal that opens from each card.
+`/gallery` and `/contact` issue permanent redirects to `/#gallery` and `/#contact`.
+The sitemap contains the canonical homepage only and carries a build-time `lastModified`.
+The 404 remains a utility route and is `noindex`.
 
-The four demos on the wall:
+## Typography and motion
 
-- [Black Lodge Brews](https://black-lodge-brews.netlify.app) — micro brewery taproom
-- [Inferno Ink](https://inferno-ink.netlify.app) — tattoo and body modification shop
-- [Veilburner](https://veilburner.band) — avant-garde metal band
-- [The Scrap Pit](https://the-scrap-pit.netlify.app) — MMA gym
+Courier Prime sets the wordmark and the copyright line; Inter is used everywhere else.
+The service statement is always lowercase: “web design & development”. See STYLE_GUIDE.md
+for the full visual system.
 
-### The minimap
+The wordmark is **live Courier Prime 700 text**, not the outlined SVG it used to be. The old
+mark's glyphs sat on an exact 17-unit monospace grid across a 119-unit viewBox, so the same
+face reproduces it as text; `font-size` is derived as 0.2381 × the width the SVG rendered at,
+and the 31-unit row pitch became a 1.094 `line-height`. Because it is real text, that weight
+is preloaded alongside Inter 400 (`ReactDOM.preload`, root layout) and its `@font-face` uses
+`font-display: block` so the logo cannot flash through Courier New mid-entrance. Courier
+Prime 400 is not preloaded — it renders only the copyright line at the very bottom.
 
-A 150×150 fixed widget: four corner squares split by a thin cross-shaped gap, plus a
-circular centre button. A ring overlay in the frame colour carves a quarter-circle out
-of each square's inner corner and absorbs clicks in the gap, so visually empty space
-can't trigger a corner button.
+`HeroWordmark` splits both rows into per-character spans sharing one continuous stagger
+across all 14 letters, so the mark arrives as a single sweep. Every parameter — duration,
+stagger, initial delay, scale, and rise distance — is a custom property on `.hero-wordmark`
+in `globals.css`; tune the entrance there rather than in the component. `transform-origin`
+is `50% 85%`, so letters settle down onto the baseline rather than growing from centre.
 
-States: white when active, cyan on hover, dim green once visited, black at rest. The
-widget's screen position shifts with `getMinimapPosition` so it never covers the demo
-card currently on screen.
+`SplitTextReveal` takes explicit `lines` and restores the original service-statement
+entrance: a 0.8s fade from 50px left, with the original per-word delays. CSS starts
+it before hydration, without blur or an effect-driven visibility reset. The heading
+has one complete accessible label and respects reduced motion.
 
-### Colour
+Gallery cards use IntersectionObserver to reveal once per mount. They remain revealed
+when scrolling back. A card reveals only once it is both in view **and** its image has
+loaded, so the clipping animation never wipes open on an empty frame; an error handler and
+a 3s timeout guarantee the copy appears regardless. Previews stay lazy on purpose —
+`priority` or `loading="eager"` would make Next preload a below-the-fold image against the
+hero. CSS controls the image clipping, scale, and metadata entrances.
+Hover/focus fades a subtle cyan-dark image tint to transparent and reveals the cyan
+heading rule from right to left. Image scaling is reserved for the scroll entrance.
+Project links open directly in a new tab with no transition delay or preview modal.
+Reduced-motion preferences remove the spatial/blur effects and scroll smoothing.
 
-Around thirty `rgb()` custom properties are defined at the top of `globals.css` and
-wired into Tailwind through `@theme inline`. Reference them directly rather than using
-Tailwind's palette names, so everything stays on one system:
+## Projects
 
-```jsx
-className="text-[color:var(--color-gray-light)] bg-[color:var(--color-black)]"
-```
+Client work leads: Portage Place, then Veilburner. Black Lodge Brews and The Scrap Pit
+follow, explicitly labeled as demo concepts. Change project copy and URLs in Gallery.jsx.
+Use 1440 × 1000 screenshots, save as WebP, and keep filenames aligned with each slug.
+Portage Place’s screenshot comes from `https://portageplace.netlify.app`; its live
+link remains `https://portageplacesb.com` (which served the older site during review).
+Screenshots retain the projects' own palettes; studio UI follows the eight brand tokens.
 
-### Typography
+## Contact
 
-Courier Prime, four `woff2` files in `public/fonts/`, declared with `@font-face` in
-`globals.css`. The two latin faces are preloaded in `layout.jsx`. Courier New is the
-fallback.
+The form retains `name` and `email` (required), `business` (optional project text),
+`form-name`, and the `bot-field` honeypot. Keep `public/__forms.html` synchronized if
+any field names change. Submit URL-encoded data to `/__forms.html`.
 
-### Icons
+While sending, the form is disabled. Success clears the form and reports confirmation
+in place. Failure preserves entered values and offers the email alternative. Neither
+state changes the visitor's scroll position. Actual delivery requires Netlify; local
+browser checks use intercepted responses and do not send messages.
 
-`src/components/Icon.jsx` holds the whole icon set as inline SVG on a 24×24 grid, drawn
-at stroke-width 2. Geometry comes from [Lucide](https://lucide.dev) (MIT), copied in
-rather than installed so the build carries no icon dependency.
+Legal text opens in a native modal dialog with keyboard focus containment, Escape
+support, background scroll locking, and focus restoration. Email links use
+`mailto:contact@garfishdigital.com`; their behavior follows the visitor's configured
+email handler. The address is intentionally **not** printed as text — the envelope icon and
+the form both reach the same inbox, and showing it adds nothing for the visitor.
 
-```jsx
-<Icon name="flask" size={32} title="how we built this" className="text-white" />
-```
+The privacy policy names Netlify as the processor that handles and stores form submissions.
+Update the "Last updated" stamp in `Contact.jsx` whenever `src/config/legal.js` changes.
 
-Colour comes from `currentColor`, so style them with ordinary text utilities.
+## Deployment and verification
 
-### Line-draw animations
+Netlify builds using `netlify.toml`, which also sets security headers for all routes:
+`X-Content-Type-Options`, `Referrer-Policy`, `Strict-Transport-Security` (one year, no
+`preload`), `X-Frame-Options`, and a deny-all `Permissions-Policy`. There is no
+Content-Security-Policy yet; the site loads no third-party resources, so the policy would be
+simple, but Next's inline bootstrap script needs a nonce or hash first. Pushing to main deploys. No deployment is part of
+local verification. Run lint and a production build, then inspect desktop/mobile
+layouts, one-time reveals, keyboard focus, reduced motion, legacy redirects, image
+loading, and form success/failure states. Verify real form delivery on a Netlify deploy.
 
-`.line-draw` in `globals.css` animates `stroke-dashoffset` so strokes draw themselves
-in. Two requirements:
-
-1. Every shape inside must carry `pathLength="1"`, so one dash length covers it
-   regardless of the path's real length.
-2. CSS animations run on the document timeline, not on a Framer Motion parent's
-   schedule. If the element also fades in on a delay, set `--draw-delay` to match, or
-   the shape will draw itself while still invisible.
-
-```jsx
-<div style={{ "--draw-delay": "2.2s" }}>
-  <FishMark />
-</div>
-```
-
-`MotionProvider` wraps the app in `<MotionConfig reducedMotion="user">`, which governs
-Framer Motion only — the line-draw carries its own `prefers-reduced-motion` guard.
-
-## Contact form
-
-Three fields: `name` and `email` (required) and `business` (optional). `bot-field` is a
-honeypot for Netlify's spam filtering.
-
-`public/__forms.html` is a static schema declaring the fields Netlify expects at build
-time. **Keep it in sync whenever the form's fields change**, or submissions will be
-rejected.
-
-Submission only works on a Netlify deploy. In local development, `POST /__forms.html`
-returns 500 — that is expected, not a bug.
-
-## Brand assets
-
-`public/Garfish-Logo-Master.svg` is the full gar — pure stroke paths, no fills, so it
-can be recoloured and line-draw animated. It's a fine line drawing at `stroke-width 2`
-on a 415×88 canvas, which means it needs room: **don't reproduce it below about 200px
-wide.**
-
-Everything small — favicon, app icons, launcher — uses the cyan fin mark instead, a
-solid shape that survives down to 16px. The manifest declares it at both `any` and
-`maskable` purposes.
-
-## Deployment
-
-Netlify builds from `netlify.toml` using `@netlify/plugin-nextjs`. Pushing to `main`
-deploys.
-
-## Conventions
-
-- Page components and anything using hooks need `'use client'`.
-- Adding a nav item means editing `src/config/navigation.js` — the `navigationItems`
-  array, its sort order, and `pageToNavMap` inside `getActiveNavigationItem`.
-- Route-specific styles sit beside their page (`gallery.css`, `contact.css`); anything
-  shared belongs in `globals.css`.
-- Per-route titles and descriptions live in each route's `layout.jsx`, because the page
-  components are client components and can't export metadata themselves.
+ROADMAP.md records the renovation decisions and remaining visual review items. It is a
+working guide, not a specification — nothing in it is binding on the build.

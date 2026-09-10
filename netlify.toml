@@ -7,3 +7,21 @@
 
 [functions]
     node_bundler = "esbuild"
+
+# Security headers. No Content-Security-Policy yet: the site loads nothing from a
+# third party, so the policy itself would be trivial, but Next injects an inline
+# bootstrap script that needs a per-request nonce or hash to survive one.
+[[headers]]
+    for = "/*"
+    [headers.values]
+    # Honour the declared Content-Type instead of sniffing the bytes.
+    X-Content-Type-Options = "nosniff"
+    # Send only the origin when a visitor clicks through to a live project site.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # HTTPS only, for a year. `preload` is deliberately omitted — that commits the
+    # domain to a browser-shipped list and is slow to undo.
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    # Nothing here is meant to be embedded in someone else's frame.
+    X-Frame-Options = "SAMEORIGIN"
+    # The site asks for none of these; deny them outright.
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
