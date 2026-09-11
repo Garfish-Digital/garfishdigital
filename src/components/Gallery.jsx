@@ -8,7 +8,7 @@ const projects = [
   { slug: "portage-place", title: "Portage Place", type: "Client build", field: "Community & workspace",
     url: "https://portageplacesb.com", description: "A welcoming village workspace for a South Bend business community." },
   { slug: "veilburner", title: "Veilburner", type: "Client build", field: "Music & culture",
-    url: "https://veilburner.band", description: "An atmospheric presence for an avant-garde metal band.." },
+    url: "https://veilburner.band", description: "An atmospheric presence for an avant-garde metal band." },
   { slug: "black-lodge-brews", title: "Black Lodge Brews", type: "Demo concept", field: "Hospitality",
     url: "https://black-lodge-brews.netlify.app", description: "A brewery and taproom concept with a mystical character." },
   { slug: "the-scrap-pit", title: "The Scrap Pit", type: "Demo concept", field: "Combat sports",
@@ -29,7 +29,15 @@ function Project({ project, index }) {
     ref.current?.classList.remove("reveal-pending");
     ref.current?.classList.add("revealed");
   }
-  function handleImageSettled() {
+  // `load` only means the bytes arrived. The browser may still be rasterising a
+  // 1440x1000 bitmap, and starting the wipe into that decode is what produces a
+  // hitch in the opening frames. decode() waits for a bitmap that is ready to paint.
+  function handleImageSettled(event) {
+    const image = event?.currentTarget;
+    if (image?.decode) {
+      image.decode().catch(() => {}).finally(() => { imageReady.current = true; reveal(); });
+      return;
+    }
     imageReady.current = true;
     reveal();
   }

@@ -95,7 +95,13 @@ available for other brand uses.
   Original 0.8s fade from 50px left, without blur. Word delays: web 0.4s,
   design 1.4s, & 0.7s, development 1.2s. CSS plays this before hydration.
 - Easing: `cubic-bezier(.16, 1, .3, 1)` for entrances and settling motion.
-- Gallery: scroll-triggered clipping reveal lasting 1.3s; metadata settles over 0.9s.
+- Gallery: scroll-triggered reveal lasting 1.3s; metadata settles over 0.9s. The wipe is
+  an opaque black overlay on `.project-image-frame::before` collapsing to `scaleY(0)` from
+  its bottom edge — **not** an animated `clip-path`. clip-path is not a compositor
+  property, so it repainted the full image area every frame, which was smooth on a phone
+  and visibly choppy across two 669px cards on a desktop. The overlay reads identically
+  only because the page ground is pure black; do not reintroduce clip-path here, and keep
+  every property in this reveal to `transform`, `opacity`, or `translate`.
   The second desktop-column card has a 0.1s offset. A card reveals only once it is both
   in view and its image has loaded, so the reveal never wipes open on an empty frame.
   Previews stay lazy: `priority` or `loading="eager"` makes Next preload a below-the-fold
@@ -153,9 +159,15 @@ rhyme structurally rather than only chromatically. It runs at 0.4s rather than t
 gallery's 0.85s, which is sluggish on a 22px target, and the colour transition matches
 it. Rule width tracks the glyph through `--icon-size`, set alongside the icon size in the
 `socials` array in `Contact.jsx`; its offset is derived so it clears the 6px focus ring at
-any size. There is no hover lift or press scale. Legal-link colour still transitions over
-0.55s to cyan-light.
-Preserve the legal links’ dotted underline; their colour is now Gray Light. Legal dialogs retain
+any size. There is no hover lift or press scale.
+
+The legal links take the same treatment at the same 0.4s: label Gray Light → White, with
+a cyan-light rule wiped in from the right. They need no width token — the buttons are flex
+items with no inline padding, so they shrink-wrap their labels and `left/right: 0` gives
+each rule its own text's width. Their resting dotted underline fades to transparent as the
+rule arrives, so the two never stack; it should read as the dotted line becoming solid.
+Keep the dotted underline at rest — without it the buttons read as plain text.
+Preserve the legal links’ resting dotted underline; their resting colour is Gray Light. Legal dialogs retain
 the original 0.6s blur overlay, 0.5s scale/tilt panel entrance and exit, staggered
 text reveals, and rotating/scaling SVG close button. Native modal focus behavior
 remains underneath that presentation.

@@ -25,3 +25,10 @@
     X-Frame-Options = "SAMEORIGIN"
     # The site asks for none of these; deny them outright.
     Permissions-Policy = "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
+
+# The worker must always be revalidated, or a cached copy of an old sw.js keeps
+# serving an old caching strategy long after a deploy.
+[[headers]]
+    for = "/sw.js"
+    [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

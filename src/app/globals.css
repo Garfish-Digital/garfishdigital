@@ -359,7 +359,6 @@ h2 {
   margin: 0;
 }
 .gallery-section {
-  /* border-top: 1px solid var(--color-gray-shadow); */
   padding-top: var(--section-space-top);
   padding-bottom: var(--section-space);
 }
@@ -392,8 +391,24 @@ h2 {
   overflow: hidden;
   background: var(--color-gray-shadow);
   aspect-ratio: 1.44;
-  transition: clip-path 1.3s var(--ease-reveal) var(--reveal-delay);
-  clip-path: inset(0);
+}
+/* The reveal used to animate clip-path on this frame. clip-path is not a
+   compositor property, so every frame forced a repaint of the whole image area —
+   fine on a phone, visibly choppy across two 669px cards on a desktop.
+   This overlay does the same wipe with transform alone, which the GPU handles with
+   no paint at all. It works because the page ground is pure black, so an opaque
+   black panel collapsing toward the bottom is indistinguishable from a clip.
+   z-index clears .project-visit (z-index 1), which the clip used to cut too. */
+.project-image-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--color-black);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 1.3s var(--ease-reveal) var(--reveal-delay);
 }
 .project-image-frame::after {
   content: "";
@@ -483,8 +498,13 @@ h2 {
     opacity 0.9s var(--ease-reveal) var(--reveal-delay),
     translate 0.9s var(--ease-reveal) var(--reveal-delay);
 }
-.reveal-pending .project-image-frame {
-  clip-path: inset(0 0 100% 0);
+.reveal-pending .project-image-frame::before {
+  transform: scaleY(1);
+}
+/* Promote only while the entrance is pending, then hand the memory back. */
+.reveal-pending .project-image-frame::before,
+.reveal-pending .project-image {
+  will-change: transform;
 }
 .reveal-pending .project-image {
   transform: scale(1.06);
@@ -495,8 +515,8 @@ h2 {
   opacity: 0;
   translate: 0 16px;
 }
-.project:focus-within .project-image-frame {
-  clip-path: inset(0);
+.project:focus-within .project-image-frame::before {
+  transform: scaleY(0);
 }
 .project:focus-within .project-meta,
 .project:focus-within h3,
@@ -540,7 +560,6 @@ h2 {
   transform: none;
 }
 .contact-section {
-  /* border-top: 1px solid var(--color-gray-shadow); */
   padding-top: var(--section-space-top);
   /* The footer sits inside Contact rather than after it, so the bottom needs less than
      the section rhythm. Derived from the token, so it tracks any change to it. */
@@ -653,6 +672,7 @@ legend {
   gap: 24px;
 }
 .legal-links button {
+  position: relative;
   color: var(--color-gray-light);
   background: none;
   border: 0;
@@ -661,8 +681,25 @@ legend {
   text-decoration: underline dotted;
   text-underline-offset: 3px;
   transition:
-    color 0.55s ease,
-    text-decoration-color 0.55s ease;
+    color 0.4s var(--ease-reveal),
+    text-decoration-color 0.4s var(--ease-reveal);
+}
+/* Same treatment as the social marks: white text, a cyan rule wiped in from the
+   right. The button is a flex item with no inline padding, so it shrink-wraps its
+   label and left/right:0 gives each rule its own text's width. The resting dotted
+   underline fades out as this arrives, so the two never stack — it reads as the
+   dotted line becoming a solid one. */
+.legal-links button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 11px;
+  height: 1px;
+  background: var(--color-cyan-light);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s var(--ease-reveal);
 }
 .contact-channels {
   display: flex;
@@ -721,8 +758,15 @@ legend {
 }
 /* Socials are handled above — they go white, with cyan carried by the rule. */
 .legal-links button:hover,
-.legal-links button:focus-visible {
-  color: var(--color-cyan-light);
+.legal-links button:focus-visible,
+.legal-links button:active {
+  color: var(--color-white);
+  text-decoration-color: transparent;
+}
+.legal-links button:hover::after,
+.legal-links button:focus-visible::after,
+.legal-links button:active::after {
+  transform: scaleX(1);
 }
 .copyright {
   font-family: var(--font-mono);
@@ -995,9 +1039,10 @@ legend {
     transform: none !important;
     filter: none !important;
   }
-  .project-image-frame {
-    clip-path: none !important;
-    transform: none !important;
+  .project-image-frame::before {
+    /* Belt and braces: the pending class is never applied under reduced motion,
+       but this guarantees the wipe is never left covering the image. */
+    transform: scaleY(0) !important;
   }
   .project-image {
     transform: none !important;

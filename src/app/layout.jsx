@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import "./globals.css";
 import MotionProvider from "../components/MotionProvider";
+import RegisterServiceWorker from "../components/RegisterServiceWorker";
 
 // Provisional wording — revisit alongside the positioning work.
 const siteDescription =
@@ -80,6 +81,7 @@ export default function RootLayout({ children }) {
         <MotionProvider>
           {children}
         </MotionProvider>
+        <RegisterServiceWorker />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

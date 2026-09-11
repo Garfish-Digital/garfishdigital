@@ -44,6 +44,29 @@ Use the same build-directory setting for both commands. `.next-verify` is ignore
 - `src/app/layout.jsx`: metadata exports, the Inter preload, and ProfessionalService JSON-LD.
 - `public/projects/`: local WebP screenshots used as project previews.
 - `public/__forms.html`: static Netlify form schema.
+- `public/sw.js`: service worker, registered by `src/components/RegisterServiceWorker.jsx`.
+
+## Installable app
+
+Chrome on Android offers to install the site. Its criteria are HTTPS, a manifest with
+192px and 512px PNG icons, and a service worker with a fetch handler; `site.webmanifest`
+already covered the manifest half, so `public/sw.js` is the remaining piece.
+
+The worker is network-first for anything that can change, and only falls back to the
+cache when the network fails — serving a stale build during a client demo is worse than
+loading slightly slower. The one exception is `/_next/static/`, which is content-hashed,
+so a cache hit there cannot be the wrong version. Bump `CACHE` in `sw.js` to evict
+everything on the next deploy. `netlify.toml` sends `sw.js` with `max-age=0,
+must-revalidate`, or a cached worker would keep applying an old strategy after a deploy.
+
+Registration is production-only: a worker caching in front of the dev server makes local
+edits look like they never applied.
+
+Home screen icons come from PNGs, not the SVG. Android uses the manifest's
+`web-app-manifest-192/512.png`; iOS uses `apple-touch-icon.png` and ignores the manifest
+icons entirely. `favicon.svg` (identical to `fin-logo-svg.svg`) is the browser tab only.
+**iOS shows no install prompt at all** — that is a WebKit limitation, not a configuration
+gap; Add to Home Screen there is always manual through the Share sheet.
 
 ## Spacing
 
@@ -84,8 +107,10 @@ has one complete accessible label and respects reduced motion.
 
 Gallery cards use IntersectionObserver to reveal once per mount. They remain revealed
 when scrolling back. A card reveals only once it is both in view **and** its image has
-loaded, so the clipping animation never wipes open on an empty frame; an error handler and
-a 3s timeout guarantee the copy appears regardless. Previews stay lazy on purpose —
+loaded **and decoded** (`img.decode()`), so the wipe never opens on an empty frame and never
+competes with rasterising a 1440x1000 bitmap; an error handler and a 3s timeout guarantee
+the copy appears regardless. The wipe itself is a black overlay scaling away, not an
+animated clip-path — see STYLE_GUIDE.md for why. Previews stay lazy on purpose —
 `priority` or `loading="eager"` would make Next preload a below-the-fold image against the
 hero. CSS controls the image clipping, scale, and metadata entrances.
 Hover/focus fades a subtle cyan-dark image tint to transparent and reveals the cyan
