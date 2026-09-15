@@ -977,7 +977,8 @@ legend {
     letter-spacing: -0.045em;
   }
   .statement-text {
-    font-size: 22px;
+    /* Matches the hero title on mobile; the three-quarter ratio only holds on desktop. */
+    font-size: 28px;
     letter-spacing: -0.045em;
   }
   .hero-wordmark {
