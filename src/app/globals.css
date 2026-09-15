@@ -345,7 +345,7 @@ button:disabled {
 }
 .eyebrow {
   color: var(--color-gray-light);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -361,6 +361,31 @@ h2 {
 .gallery-section {
   padding-top: var(--section-space-top);
   padding-bottom: var(--section-space);
+}
+/* Two-line statement between Gallery and Contact. Same face, colour and word entrance
+   as the hero title at three-quarter size; no eyebrow, no heading. Its padding is the
+   breathing room between sections 01 and 02, so tune the gap here, not on either. */
+.statement {
+  padding-block: var(--section-space);
+}
+.statement-text {
+  font-size: clamp(42px, 3.9vw, 60px);
+  font-weight: 400;
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+/* The words hold off-stage until the block scrolls into view, then run the hero
+   entrance. Without JS neither class is ever added and the text simply renders. */
+.statement .title-word {
+  animation: none;
+}
+.statement-pending .title-word {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+.statement-visible .title-word {
+  animation: service-entrance 0.8s ease-out var(--word-delay, 0.4s) both;
 }
 .section-intro {
   display: flex;
@@ -447,7 +472,7 @@ h2 {
   gap: 12px;
   margin-top: 24px;
   color: var(--color-gray-light);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 .project-meta span:first-child {
@@ -486,7 +511,7 @@ h2 {
 }
 .project-description {
   color: var(--color-gray-light);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.8;
   max-width: 48ch;
   margin: 0;
@@ -951,6 +976,10 @@ legend {
     font-size: 28px;
     letter-spacing: -0.045em;
   }
+  .statement-text {
+    font-size: 22px;
+    letter-spacing: -0.045em;
+  }
   .hero-wordmark {
     font-size: clamp(52px, 13.3vw, 86px);
   }
@@ -979,8 +1008,10 @@ legend {
     aspect-ratio: 1.44;
   }
   .project-meta {
-    font-size: 10px;
     margin-top: 20px;
+  }
+  .project-description {
+    font-size: 14px;
   }
   .project h3 {
     font-size: 28px;

@@ -231,4 +231,3 @@ desktop/mobile display sizes.
 
 ___
 
-

@@ -1,5 +1,6 @@
 import HeroWordmark from "../components/motion/HeroWordmark";
 import SplitTextReveal from "../components/motion/SplitTextReveal";
+import Statement from "../components/motion/Statement";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
 import ScrollBrand from "../components/ScrollBrand";
@@ -16,6 +17,7 @@ export default function Home() {
         </div>
       </section>
       <Gallery />
+      <Statement lines={["custom built", "& venturesome"]} />
       <Contact />
     </main>
     <ScrollBrand />

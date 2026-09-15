@@ -5,13 +5,13 @@ import Icon from "./Icon";
 import { useEffect, useRef } from "react";
 
 const projects = [
-  { slug: "portage-place", title: "Portage Place", type: "Client build", field: "Community & workspace",
-    url: "https://portageplacesb.com", description: "A welcoming village workspace for a South Bend business community." },
-  { slug: "veilburner", title: "Veilburner", type: "Client build", field: "Music & culture",
+  { slug: "portage-place", title: "Portage Place", type: "Client", field: "Business and office",
+    url: "https://portageplacesb.com", description: "A welcoming workspace for a South Bend business community." },
+  { slug: "veilburner", title: "Veilburner", type: "Client", field: "Blackened metal music",
     url: "https://veilburner.band", description: "An atmospheric presence for an avant-garde metal band." },
-  { slug: "black-lodge-brews", title: "Black Lodge Brews", type: "Demo concept", field: "Hospitality",
+  { slug: "black-lodge-brews", title: "Black Lodge Brews", type: "Concept", field: "Hospitality",
     url: "https://black-lodge-brews.netlify.app", description: "A brewery and taproom concept with a mystical character." },
-  { slug: "the-scrap-pit", title: "The Scrap Pit", type: "Demo concept", field: "Combat sports",
+  { slug: "the-scrap-pit", title: "The Scrap Pit", type: "Concept", field: "Combat sports",
     url: "https://the-scrap-pit.netlify.app", description: "An MMA gym concept built around the intensity of the sport." },
 ];
 
@@ -71,9 +71,7 @@ function Project({ project, index }) {
           onLoad={handleImageSettled} onError={handleImageSettled} />
         <span className="project-visit">Visit live site <Icon name="externalLink" size={16} /></span>
       </div>
-      <div className="project-meta"><span>{project.type}</span>
-      {/* <span>{project.field}</span> */}
-      </div>
+      <div className="project-meta"><span>{project.type}</span><span>{project.field}</span></div>
       <h3>{project.title}
         {/* <span aria-hidden="true">↗</span> */}
         </h3>
