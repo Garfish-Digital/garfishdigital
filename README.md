@@ -120,8 +120,8 @@ Reduced-motion preferences remove the spatial/blur effects and scroll smoothing.
 
 ## Projects
 
-Client work leads: Portage Place, then Veilburner. Black Lodge Brews and The Scrap Pit
-follow, explicitly labeled as demo concepts. Change project copy and URLs in Gallery.jsx.
+Client work leads: Portage Place, then Veilburner. Almanac Coffee, Black Lodge Brews and
+The Scrap Pit follow, explicitly labeled as demo concepts. Change project copy and URLs in Gallery.jsx.
 Use 1440 × 1000 screenshots, save as WebP, and keep filenames aligned with each slug.
 Portage Place’s screenshot comes from `https://portageplace.netlify.app`; its live
 link remains `https://portageplacesb.com` (which served the older site during review).

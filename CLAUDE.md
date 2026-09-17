@@ -101,19 +101,21 @@ Two conventions worth preserving:
 
 Color comes from `currentColor`. To add an icon, add an entry to the `paths` object — don't install a package. Font Awesome was removed from this project (the Pro registry token expired and wasn't renewed); do not reintroduce it.
 
-### Line-Draw Animations
-`.line-draw` in `globals.css` animates `stroke-dashoffset` so strokes draw themselves in. Two requirements:
+### Scroll Brand (the persistent fin)
+`src/components/ScrollBrand.jsx` keeps the brand on screen once the hero wordmark leaves. It's an `<a href="#home">` fixed top-right at `right: var(--page-gutter)` (so it lines up with the card grid), holding an inline SVG of the fin. The fin path is the **round** favicon's visible region — `favicon.svg`'s fin intersected with its r=30 circle, resolved to a single path — so fill and traced outline share one edge. Don't swap it for the square-cornered path.
 
-1. Every shape inside must carry `pathLength="1"`, so one dash length covers it regardless of the path's true length.
-2. CSS animations run on the **document timeline**, not on a Framer Motion parent's schedule. If the element also fades in on a delay, set `--draw-delay` to match — otherwise the shape draws itself while still invisible.
+Behaviour, all driven by one rAF-coalesced scroll listener measuring `.hero-wordmark`:
+- **Entrance** — rises from its bottom edge (`clip-path`) 1.3s after load, once the wordmark's letter sweep has landed.
+- **Dormant** — `--gray-light` at 50% opacity (visually `--gray-faint`).
+- **Warm-up** — `--brand-warmth` goes 0 → 1 as the wordmark itself slides out under the top edge; the base layer's opacity rises with it.
+- **Strike** — when the wordmark's bottom edge crosses the top of the viewport, `is-lit` + `is-striking`: a cyan stroke traces the outline (~1s), then the cyan fill rises through it. Plays **once per visit**; `is-struck` afterwards, and later crossings crossfade. Scrolling back up cools it.
+- **Hover / focus** — white, per the unified hover language.
 
-```jsx
-<div style={{ "--draw-delay": "2.2s" }}>
-  <FishMark />
-</div>
-```
+All timings live in the `.scroll-brand` block of `globals.css` (`.brand-base`, `.brand-lit`, `.brand-trace`, and the `brand-rise` / `brand-trace` keyframes). Reduced motion collapses the animations to colour swaps via the global rule.
 
-`MotionProvider` wraps the app in `<MotionConfig reducedMotion="user">`, which governs Framer Motion only. The line-draw carries its own `prefers-reduced-motion` guard, and `gallery.css` has one for the grid slide.
+There is no longer a general `.line-draw` utility in `globals.css`. `Icon.jsx` shapes still carry `pathLength="1"` so any stroke-draw animation gets a normalised dash length.
+
+`MotionProvider` wraps the app in `<MotionConfig reducedMotion="user">`, which governs Framer Motion only; CSS animations rely on the `prefers-reduced-motion` block at the bottom of `globals.css`.
 
 ### Navigation System
 - All nav items are defined in `src/config/navigation.js`.
@@ -139,7 +141,8 @@ The title template is `"Garfish Digital | %s"`, brand first, so the brand surviv
 Two-tier identity. Don't collapse them into one asset:
 
 - **The logo** — `public/Garfish-Logo-Master.svg`, the full gar. Pure stroke paths, no fills, so it can be recolored and line-draw animated. Fine linework at `stroke-width 2` on a 415×88 canvas, so it **must not be reproduced below about 200px wide.**
-- **The icon** — the solid cyan fin mark, used for `favicon.svg`, `favicon.ico`, the app icons and the launcher. A filled shape with no hairlines, so it survives to 16px. The manifest declares it at both `any` and `maskable` purposes.
+- **The icon** — the solid cyan fin mark, used for `favicon.svg`, `favicon.ico`, the app icons and the launcher. A filled shape with no hairlines, so it survives to 16px. The tab favicons (`favicon.svg`, `favicon-96x96.png`, `favicon.ico`) are **round** — the black square clipped to a circle. `apple-touch-icon.png` and the `web-app-manifest-*.png` icons stay square on purpose: iOS masks and backdrops its own icon, and the manifest icons are declared `maskable`, which requires full-bleed art.
+- The same round fin, as a single path, is inlined in `ScrollBrand.jsx` (see above). There is no separate ringed-circle logo asset any more.
 
 `og-image.png` is 1200×630 PNG (not JPG — the art is flat two-color, where PNG is both smaller and lossless).
 

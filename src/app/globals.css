@@ -567,22 +567,97 @@ h2 {
     transform: translate(3px, -3px);
     color: var(--color-cyan-light);
   }
+  .scroll-brand:hover .brand-base,
+  .scroll-brand:hover .brand-lit {
+    fill: var(--color-white);
+  }
 }
+/* The fin in the top-right corner. Three stacked copies of one path: a grey base that
+   brightens with --brand-warmth (set from scroll in ScrollBrand.jsx), a cyan layer that
+   fades in once the wordmark has left, and an outline that traces itself on the first
+   crossing. The right edge sits on the page gutter, in line with the card grid. */
 .scroll-brand {
+  --brand-warmth: 0;
   position: fixed;
-  top: 26px;
-  left: 22px;
+  top: 32px;
+  right: var(--page-gutter);
   z-index: 20;
+  display: block;
+  line-height: 0;
+  color: var(--color-cyan-light);
+}
+.scroll-brand svg {
+  overflow: visible;
+}
+.scroll-brand .brand-base {
+  fill: var(--color-gray-light);
+  /* --gray-faint is --gray-light at half opacity, so the warm-up is that alpha rising. */
+  opacity: calc(0.5 + 0.5 * var(--brand-warmth));
+  transition:
+    opacity 0.12s linear,
+    fill 0.4s;
+  /* Entrance: rises from the bottom edge once the wordmark's last letter has landed
+     (its sweep ends at ~1.6s). Deep links that arrive already lit skip it below. */
+  clip-path: inset(100% 0 0 0);
+  animation: brand-rise 0.8s var(--ease-reveal) 1.3s both;
+}
+.scroll-brand.is-lit .brand-base {
+  animation: none;
+  clip-path: none;
+}
+.scroll-brand .brand-lit {
+  fill: currentColor;
   opacity: 0;
-  transform: translateY(-5px);
   transition:
     opacity 0.8s var(--ease-reveal),
-    transform 0.8s var(--ease-reveal);
-  pointer-events: none;
+    fill 0.4s;
 }
-.scroll-brand.is-visible {
+.scroll-brand.is-lit .brand-lit {
   opacity: 1;
-  transform: none;
+}
+/* First strike only: the outline draws first, then the cyan rises from the bottom
+   edge once the trace has closed. Later crossings use the plain crossfade above. */
+.scroll-brand.is-striking .brand-lit {
+  transition: none;
+  opacity: 1;
+  clip-path: inset(100% 0 0 0);
+  animation: brand-rise 0.8s var(--ease-reveal) 0.9s forwards;
+}
+@keyframes brand-rise {
+  to {
+    clip-path: inset(0);
+  }
+}
+.scroll-brand .brand-trace {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+/* Draws over the first second, then fades while the flood fills in beneath it. */
+.scroll-brand.is-striking .brand-trace {
+  animation: brand-trace 1.8s ease-in-out forwards;
+}
+@keyframes brand-trace {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  55% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+.scroll-brand:focus-visible .brand-base,
+.scroll-brand:focus-visible .brand-lit {
+  fill: var(--color-white);
 }
 .contact-section {
   padding-top: var(--section-space-top);
@@ -944,12 +1019,11 @@ legend {
 }
 @media (max-width: 1100px) {
   .scroll-brand {
-    top: 12px;
-    left: 10px;
+    top: 24px;
   }
-  .scroll-brand img {
-    width: 28px;
-    height: 28px;
+  .scroll-brand svg {
+    width: 48px;
+    height: 38px;
   }
   .footer-row {
     align-items: flex-start;
@@ -989,11 +1063,10 @@ legend {
   }
   .scroll-brand {
     top: 16px;
-    left: 4px;
   }
-  .scroll-brand img {
-    width: 24px;
-    height: 24px;
+  .scroll-brand svg {
+    width: 40px;
+    height: 32px;
   }
   .section-intro {
     align-items: flex-start;

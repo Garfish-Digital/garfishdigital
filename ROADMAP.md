@@ -231,3 +231,16 @@ desktop/mobile display sizes.
 
 ___
 
+"Answers:"
+-1. First crossing only.
+-2. Let's try the warm up, as long as it is smooth. We'll see how it looks to do the grey → gray-light over the last stretch of the wordmark exit, then trace + flood at the crossing.
+
+"Confirmation and Additional Information:"
+-Let's drop the ring. I still have the original in Figma. I can re-export the SVG in any size or format you think will be best, unless you think you can handle it without any loss.
+-Let's tie the trigger to the wordmark instead of the hero.
+-A line-drawn entrance would be great. If it's too complicated or otherwise problematic, maybe we can implement a clever clip-path reveal.
+-Let's have it load at --color-gray-faint.
+-Definitely make it a link to href="#home". But I don't want it labelled "Back to top". Make the hover → white to match the unified hover language, and at the top of the page it will be a harmless no-op.
+
+___
+

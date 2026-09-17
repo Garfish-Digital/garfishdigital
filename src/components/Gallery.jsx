@@ -9,10 +9,12 @@ const projects = [
     url: "https://portageplacesb.com", description: "A welcoming workspace for a South Bend business community." },
   { slug: "veilburner", title: "Veilburner", type: "Client", field: "Blackened metal music",
     url: "https://veilburner.band", description: "An atmospheric presence for an avant-garde metal band." },
+  { slug: "almanac-coffee", title: "Almanac Coffee", type: "Concept", field: "Hospitality",
+    url: "https://almanac-coffee.netlify.app", description: "A small-town roastery that reads coffee by the season." },
   { slug: "black-lodge-brews", title: "Black Lodge Brews", type: "Concept", field: "Hospitality",
-    url: "https://black-lodge-brews.netlify.app", description: "A brewery and taproom concept with a mystical character." },
+    url: "https://black-lodge-brews.netlify.app", description: "A brewery and taproom with a mystical character." },
   { slug: "the-scrap-pit", title: "The Scrap Pit", type: "Concept", field: "Combat sports",
-    url: "https://the-scrap-pit.netlify.app", description: "An MMA gym concept built around the intensity of the sport." },
+    url: "https://the-scrap-pit.netlify.app", description: "An MMA gym built around the intensity of the sport." },
 ];
 
 function Project({ project, index }) {

@@ -57,7 +57,7 @@ export default function Contact() {
   return <section id="contact" className="contact-section page-width" aria-labelledby="contact-title">
     <div className="contact-layout">
       <div className="contact-intro"><p className="eyebrow">02 / Contact</p>
-        <h2 id="contact-title">Let&apos;s Get Started</h2>
+        <h2 id="contact-title">Let&apos;s get started.</h2>
         <p>Tell us how to reach you</p>
       </div>
       <form onSubmit={handleSubmit} name="contact" method="POST" action="/__forms.html"
